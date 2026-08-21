@@ -2190,27 +2190,24 @@
       isolation: isolate;
     }
     .moon-stage-motto {
-      position: absolute;
-      z-index: 5;
-      top: 5%;
-      left: 0;
-      width: min(330px, 44%);
-      margin: 0;
-      color: var(--cobalt);
-      font-family: var(--serif);
-      font-size: clamp(25px, 2.25vw, 36px);
-      line-height: 1.13;
-      letter-spacing: -.035em;
+      width: auto;
+      margin: 0 0 18px;
+      color: var(--cobalt-deep);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: .08em;
     }
     .moon-stage-motto span,
     .moon-stage-motto small { display: block; }
     .moon-stage-motto small {
-      margin-top: 10px;
-      color: var(--body-ink);
+      margin-top: 5px;
+      color: var(--muted-ink);
       font-family: var(--sans);
-      font-size: 10px;
-      font-weight: 650;
-      letter-spacing: .08em;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: .11em;
       text-transform: uppercase;
     }
     .moon-orbit {
@@ -2396,7 +2393,7 @@
       .moon-stage h1 > span { font-size: clamp(42px, 4.7vw, 52px); }
       .moon-playground { min-height: 560px; place-items: center end; }
       .moon-object { width: clamp(390px, min(42vw, 60vh), 470px); }
-      .moon-stage-motto { top: 1%; width: 48%; font-size: clamp(23px, 2.45vw, 27px); }
+      .moon-stage-motto { font-size: 11px; }
       .moon-role-copy { bottom: 17%; width: 138px; max-width: 30%; }
       .moon-role-copy h2 { font-size: 34px; }
       .moon-control-help { right: 12%; }
@@ -2415,7 +2412,6 @@
       .moon-stage-intro { margin-top: 20px; font-size: 14px; }
       .moon-stage-evidence { margin-top: 20px; padding-top: 13px; }
       .moon-playground { min-height: 540px; }
-      .moon-stage-motto { top: 2%; }
       .moon-role-copy { bottom: 20%; }
       .moon-control-help { bottom: 10%; }
       .moon-story-axis > div { min-height: 88px; padding-block: 13px; }
@@ -2429,7 +2425,7 @@
       .moon-stage h1 > span { font-size: clamp(40px, 5.5vw, 48px); }
       .moon-playground { min-height: 500px; }
       .moon-object { width: min(49vw, 430px); }
-      .moon-stage-motto { width: 44%; font-size: 24px; }
+      .moon-stage-motto { font-size: 11px; }
       .moon-role-copy {
         left: -2%;
         bottom: 22%;
@@ -2465,7 +2461,7 @@
       }
       .moon-object { width: min(82vw, 430px); }
       .moon-orbit { right: auto; width: 112vw; }
-      .moon-stage-motto { top: 0; left: 0; width: 62%; font-size: clamp(24px, 7vw, 31px); }
+      .moon-stage-motto { margin-bottom: 16px; font-size: 10px; }
       .moon-role-copy {
         grid-area: auto;
         left: auto;
@@ -2506,7 +2502,6 @@
       .moon-stage-inner { grid-template-rows: auto 570px; }
       .moon-playground { min-height: 570px; padding-top: 92px; padding-bottom: 116px; }
       .moon-object { width: 84vw; }
-      .moon-stage-motto { width: 66%; }
       .moon-role-copy { bottom: 56px; width: 43%; }
       .moon-control-help { bottom: 34px; }
     }
@@ -3613,15 +3608,13 @@
     .ecosystem-hero-photo img { aspect-ratio: 16 / 5.25; }
     .ecosystem-hero-photo figcaption { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; align-items: baseline; margin-top: 12px; transform: rotate(.8deg); }
     .ecosystem-hero-photo figcaption span { color: var(--acid); font-size: 8px; font-weight: 700; letter-spacing: .12em; }
-    .ecosystem-hero-photo figcaption strong { max-width: 760px; color: #d8dff4; font-family: var(--serif); font-size: clamp(14px, 1.35vw, 18px); font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; }
+    .ecosystem-hero-photo figcaption strong { max-width: 760px; color: var(--cobalt-deep); font-family: var(--serif); font-size: clamp(16px, 1.5vw, 21px); font-weight: 500; line-height: 1.48; letter-spacing: 0; text-transform: none; }
     .ecosystem-body { grid-template-columns: minmax(0, 1.18fr) minmax(370px, .82fr); margin-top: clamp(30px, 2.8vw, 40px); }
-    .mechanism-stages { display: grid; grid-template-columns: minmax(90px,1fr) 24px minmax(110px,1.08fr) 24px minmax(100px,1fr) 24px minmax(100px,1fr); gap: 8px; align-items: center; margin-top: 28px; }
+    .mechanism-stages { display: grid; grid-template-columns: minmax(90px,1fr) 24px minmax(110px,1.08fr) 24px minmax(100px,1fr) 24px minmax(100px,1fr); gap: 8px; align-items: start; margin-top: 28px; }
     .mechanism-stage { min-width: 0; }
-    .mechanism-stage:nth-of-type(2) { transform: translateY(10px); }
-    .mechanism-stage:nth-of-type(4) { transform: translateY(-8px); }
     .mechanism-stage b { display: block; color: #fffdf8; font-family: var(--serif); font-size: clamp(21px, 2vw, 30px); font-weight: 400; line-height: 1.15; white-space: nowrap; }
     .mechanism-stage small { display: block; min-height: 32px; margin-top: 9px; color: #9faddb; font-size: 8px; line-height: 1.5; }
-    .mechanism-stages > i { color: var(--acid); font-size: 12px; font-style: normal; }
+    .mechanism-stages > i { margin-top: 11px; color: var(--acid); font-size: 12px; font-style: normal; text-align: center; }
     .mechanism-statement { max-width: 650px; margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); font-size: clamp(17px, 1.5vw, 22px); }
     .ecosystem-reflection { max-width: 840px; margin-top: clamp(22px, 2vw, 30px); padding-top: 15px; color: #cbd4ef; font-size: clamp(16px, 1.45vw, 20px); }
     .ecosystem-evidence { padding-left: clamp(22px, 2.8vw, 42px); }
@@ -3639,11 +3632,11 @@
       .mechanism-stages { grid-template-columns: 1fr 22px 1fr; grid-template-rows: auto 18px auto; gap: 14px 8px; }
       .mechanism-stage:nth-of-type(1) { grid-column: 1; grid-row: 1; }
       .mechanism-stages > i:nth-of-type(1) { grid-column: 2; grid-row: 1; }
-      .mechanism-stage:nth-of-type(2) { grid-column: 3; grid-row: 1; transform: translateY(8px); }
-      .mechanism-stages > i:nth-of-type(2) { grid-column: 3; grid-row: 2; transform: rotate(90deg); }
+      .mechanism-stage:nth-of-type(2) { grid-column: 3; grid-row: 1; }
+      .mechanism-stages > i:nth-of-type(2) { grid-column: 3; grid-row: 2; margin-top: 0; transform: rotate(90deg); }
       .mechanism-stage:nth-of-type(3) { grid-column: 1; grid-row: 3; }
       .mechanism-stages > i:nth-of-type(3) { grid-column: 2; grid-row: 3; }
-      .mechanism-stage:nth-of-type(4) { grid-column: 3; grid-row: 3; transform: translateY(-4px); }
+      .mechanism-stage:nth-of-type(4) { grid-column: 3; grid-row: 3; }
       .mechanism-stage b { font-size: 23px; }
       .ecosystem-reflection { margin-top: 32px; }
     }
@@ -4578,13 +4571,13 @@
       <div class="moon-stage-inner wrap">
         <div class="moon-stage-brand">
           <p class="moon-stage-signature">张婵媛（月亮） <span>｜</span> Moon</p>
+          <p class="moon-stage-motto"><span>看见正在发生的生命力</span><small>Seeing What’s Emerging</small></p>
           <h1 id="moon-stage-title"><span>一个向 AI 走去的<br />人类学冒险家</span><small>AI Creator Ecosystem · Storytelling · AI Workflow</small></h1>
           <p class="moon-stage-intro">我从深度媒体与大理的人类学田野出发，后来走进 AI 教育、创业孵化器和开发者社区。<br />一路上，我总在靠近那些还没成为共识、但已经开始行动的人和项目。</p>
           <p class="moon-stage-evidence"><span>0→1 超级个体实验室</span><span>数百人 AI 创造者社群</span><span>7 天营地真实使用</span></p>
         </div>
 
         <div class="moon-playground">
-          <p class="moon-stage-motto"><span>看见正在发生的生命力</span><small>Seeing What’s Emerging</small></p>
           <div class="moon-orbit" aria-hidden="true"></div>
           <div class="moon-object" role="slider" tabindex="0" aria-label="旋转月亮探索不同侧面" aria-roledescription="可旋转月球" aria-orientation="horizontal" aria-describedby="moon-control-help" aria-valuemin="0" aria-valuemax="359" aria-valuenow="0" aria-valuetext="当前看到的侧面：看见 / Observer">
             <span class="moon-sphere" aria-hidden="true">
