@@ -3182,11 +3182,11 @@
       width: 100%;
       min-height: 0;
       flex: 1 1 auto;
-      object-fit: cover;
-      object-position: center top;
+      object-fit: contain;
+      object-position: center;
+      background: #f4f2ec;
       border-bottom: 1px solid rgba(31, 62, 197, .2);
     }
-    .proof-cover-row a:nth-child(3) img { object-position: 54% center; }
     .proof-cover-row span {
       min-height: 34px;
       display: flex;
@@ -4177,10 +4177,14 @@
     .system-output-card__media { overflow: hidden; background: #dfe4ee; }
     .system-output-card__media img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .35s ease; }
     .system-output-card:hover .system-output-card__media img, .system-output-card:focus-visible .system-output-card__media img { transform: scale(1.025); }
-    .system-output-card__body { display: flex; flex-direction: column; min-height: 210px; padding: 20px; }
+    .system-output-card__body { display: flex; flex-direction: column; min-height: 330px; padding: 20px; }
     .system-output-card__body small { color: var(--cobalt); font-size: 8px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
     .system-output-card__body h4 { margin: 12px 0 10px; color: var(--cobalt-deep); font-family: var(--display); font-size: clamp(23px,2.2vw,32px); font-weight: 500; line-height: 1.05; }
     .system-output-card__body p { margin: 0; color: var(--body-ink); font-size: 12px; line-height: 1.65; }
+    .system-output-card__logic { display: grid; gap: 10px; margin: 17px 0 0; padding-top: 15px; border-top: 1px solid rgba(31,62,197,.2); }
+    .system-output-card__logic div { display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 9px; align-items: start; }
+    .system-output-card__logic dt { color: var(--cobalt); font-size: 8px; font-weight: 800; line-height: 1.6; letter-spacing: .08em; }
+    .system-output-card__logic dd { margin: 0; color: var(--body-ink); font-size: 10px; line-height: 1.6; }
     .system-output-card__body b { margin-top: auto; padding-top: 20px; color: var(--cobalt-deep); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
     .system-output-card--event .system-output-card__media { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; padding: 8px; background: #171713; }
     .system-output-card--event .system-output-card__media img { object-position: center; }
@@ -4645,18 +4649,18 @@
             <h3>叙事与内容</h3>
           </header>
           <p class="proof-compact-statement">通过研究与深访，把复杂的人、技术与变化讲清楚。</p>
-          <div class="proof-cover-row" aria-label="三件代表叙事作品">
+          <div class="proof-cover-row" aria-label="三个代表叙事栏目">
             <a href="https://voyayueliang.github.io/moon-becoming-portfolio/" target="_blank" rel="noreferrer">
               <img src="assets/covers/becoming-visual.webp" alt="Becoming 计划作品封面" width="1080" height="1528" loading="lazy" decoding="async" />
-              <span>Becoming</span>
+              <span>Becoming 计划</span>
             </a>
             <a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer">
               <img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" />
-              <span>默子与 Redink</span>
+              <span>观猹人物</span>
             </a>
             <a href="https://mp.weixin.qq.com/s/_Vo3S7n-lxPJEm0pkWbSXg" target="_blank" rel="noreferrer">
               <img src="assets/covers/amd-datawhale.webp" alt="Datawhale 与 AMD 开发者现场长文封面" width="1080" height="720" loading="lazy" decoding="async" />
-              <span>Datawhale × AMD</span>
+              <span>开发者生态</span>
             </a>
           </div>
           <p class="proof-compact-meta">2—3 轮深访 · 公开成稿 · 开发者现场采写</p>
@@ -4728,7 +4732,7 @@
           </section>
         </div>
 
-        <p class="ecosystem-reflection reveal">Research AI+ 的发起者最初是社群里的活跃成员；后来，他与实验室一起共创了面向研究者与创业者的活动。</p>
+        <p class="ecosystem-reflection reveal">Research AI+ 的发起者最初是社群里的活跃成员，我们一起共创了 Research AI+ 的首场活动。一年之后，我们也成为了非常密切的社区伙伴，共同组织了 WAIC After Party“第二届研究者派对之夏”。</p>
       </div>
     </section>
 
@@ -4819,9 +4823,9 @@
               <div class="system-case__summary"><p class="system-thesis">让一次调研、访谈或活动，继续长出判断、内容与关系线索。</p><p>我把公开资料、人物信息和现场记录归集成可追踪的研究底座，再用 AI 辅助检索、整理、核对与转译；人保留选题、语境、事实边界和最后的编辑判断。</p><div class="system-tags"><span>Research Base</span><span>Fact-check</span><span>Editorial</span><span>Knowledge Asset</span></div></div>
             </div>
             <div class="system-output-grid" aria-label="研究与内容资产系统的三种真实输出">
-              <a class="system-output-card" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><span class="system-output-card__media"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱" width="2940" height="1506" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>01 / Research</small><h4>行业与人物图谱</h4><p>从公开信息、人物候选池到访谈假设与持续追踪。</p><b>Explore Map ↗</b></span></a>
-              <a class="system-output-card" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><span class="system-output-card__media"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容创作工作台六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>02 / Content</small><h4>内容生产工作流</h4><p>把研究、采访、素材、结构、写作、核对与归档拆成可复用步骤。</p><b>View Workflow ↗</b></span></a>
-              <div class="system-output-card system-output-card--event"><span class="system-output-card__media"><img src="assets/feishu/waic-quote-posters/waic-quote-poster-1.png" alt="历史教育与 AI Agent 活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /><img src="assets/feishu/waic-quote-posters/waic-quote-poster-2.png" alt="社会创新与 AI for Good 活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /><img src="assets/feishu/waic-quote-posters/waic-quote-poster-3.png" alt="数字分身与关系边界活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>03 / Knowledge Asset</small><h4>活动内容资产</h4><p>把现场表达经语境核对与人工编辑，沉淀为可继续分发和归档的内容。</p><b>WAIC After-party · 2026.07</b></span></div>
+              <a class="system-output-card" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><span class="system-output-card__media"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱" width="2940" height="1506" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>01 / Research</small><h4>行业与人物图谱</h4><p>从公开信息、人物候选池到访谈假设与持续追踪。</p><dl class="system-output-card__logic"><div><dt>功能</dt><dd>归集人物、组织、产品与公开证据。</dd></div><div><dt>效果</dt><dd>把一次性查找变成可追踪的行业研究底座。</dd></div><div><dt>逻辑</dt><dd>公开信息 → 人工判断 → 关系映射 → 持续更新。</dd></div></dl><b>Explore Map ↗</b></span></a>
+              <a class="system-output-card" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><span class="system-output-card__media"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容创作工作台六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>02 / Content</small><h4>内容生产工作流</h4><p>把研究、采访、素材、结构、写作、核对与归档拆成可复用步骤。</p><dl class="system-output-card__logic"><div><dt>功能</dt><dd>串联从材料进入到发布复盘的内容协作。</dd></div><div><dt>效果</dt><dd>把一次性写稿变成可复用、可核对的工作流。</dd></div><div><dt>逻辑</dt><dd>AI 辅助检索整理；人保留语境、事实边界与终审。</dd></div></dl><b>View Workflow ↗</b></span></a>
+              <div class="system-output-card system-output-card--event"><span class="system-output-card__media"><img src="assets/feishu/waic-quote-posters/waic-quote-poster-1.png" alt="历史教育与 AI Agent 活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /><img src="assets/feishu/waic-quote-posters/waic-quote-poster-2.png" alt="社会创新与 AI for Good 活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /><img src="assets/feishu/waic-quote-posters/waic-quote-poster-3.png" alt="数字分身与关系边界活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>03 / Knowledge Asset</small><h4>活动内容资产</h4><p>把现场表达经语境核对与人工编辑，沉淀为可继续分发和归档的内容。</p><dl class="system-output-card__logic"><div><dt>功能</dt><dd>从活动现场提取可核对的观点、故事与素材。</dd></div><div><dt>效果</dt><dd>让一次活动继续长出可分发、可归档的内容。</dd></div><div><dt>逻辑</dt><dd>原始现场 → 语境与事实核对 → 人工编辑 → 分发归档。</dd></div></dl><b>WAIC After-party · 2026.07</b></span></div>
             </div>
           </article>
         </div>
