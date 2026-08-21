@@ -4221,6 +4221,79 @@
     .system-case--featured .system-screen__bar { color: #c9af7d; border-color: rgba(181,138,70,.42); background: #0d0d0b; }
     .system-case--featured .system-status { color: #d9c8a5; background: #20230f; border: 1px solid #667522; }
     .system-status { position: absolute; right: -1px; bottom: -1px; max-width: 280px; padding: 11px 14px; color: #fff; background: var(--cobalt-deep); font-size: 9px; line-height: 1.5; letter-spacing: .04em; }
+    .workflow-primary { padding: clamp(34px,5vw,72px); background: var(--canvas-raised); border: 1px solid rgba(31,62,197,.55); box-shadow: 14px 14px 0 var(--acid); }
+    .workflow-primary__head { display: grid; grid-template-columns: minmax(0,.7fr) minmax(320px,1.3fr); gap: clamp(30px,6vw,86px); align-items: end; padding-bottom: clamp(28px,4vw,48px); border-bottom: 1px solid rgba(31,62,197,.25); }
+    .workflow-primary__head h3 { margin: 0; color: var(--cobalt-deep); font-family: var(--display); font-size: clamp(48px,6vw,88px); line-height: .94; letter-spacing: -.05em; }
+    .workflow-primary__head h3 small { display: block; margin-top: 14px; font-family: var(--sans); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .workflow-primary__thesis { margin: 0; color: var(--cobalt-deep); font-family: var(--serif); font-size: clamp(22px,2.45vw,35px); line-height: 1.48; letter-spacing: -.02em; }
+    .workflow-primary__problem { display: grid; grid-template-columns: minmax(260px,.72fr) minmax(0,1.28fr); gap: clamp(32px,6vw,82px); align-items: start; padding-block: clamp(34px,5vw,62px); }
+    .workflow-kicker { margin: 0 0 14px; color: var(--cobalt); font-size: 9px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .workflow-problem-copy h4, .workflow-iteration h4, .workflow-secondary h3 { margin: 0 0 18px; color: var(--cobalt-deep); font-family: var(--display); font-size: clamp(30px,3.4vw,48px); font-weight: 500; line-height: 1; }
+    .workflow-problem-copy > p { margin: 0; color: var(--body-ink); font-size: 14px; line-height: 1.78; }
+    .workflow-problem-list { display: grid; gap: 0; margin: 24px 0 0; padding: 0; list-style: none; border-top: 1px solid rgba(31,62,197,.22); }
+    .workflow-problem-list li { padding: 11px 0; color: var(--body-ink); border-bottom: 1px solid rgba(31,62,197,.16); font-size: 11px; line-height: 1.55; }
+    .workflow-primary__screen { position: relative; margin: 0; border: 1px solid var(--cobalt); background: #e1e5ee; }
+    .workflow-primary__screen img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top center; }
+    .workflow-primary__screen figcaption { display: flex; justify-content: space-between; gap: 18px; padding: 11px 13px; color: var(--cobalt-deep); background: var(--canvas-raised); border-top: 1px solid rgba(31,62,197,.25); font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .workflow-chain-wrap { padding-block: clamp(34px,5vw,58px); border-block: 1px solid rgba(31,62,197,.25); }
+    .workflow-chain { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); margin-top: 20px; }
+    .workflow-chain__step { position: relative; min-height: 112px; padding: 16px 26px 14px 12px; color: var(--cobalt-deep); border: 1px solid rgba(31,62,197,.28); border-right: 0; }
+    .workflow-chain__step:last-child { border-right: 1px solid rgba(31,62,197,.28); }
+    .workflow-chain__step:not(:last-child)::after { content: "→"; position: absolute; z-index: 1; top: 50%; right: -10px; width: 20px; color: var(--cobalt); background: var(--canvas-raised); font-size: 16px; text-align: center; transform: translateY(-50%); }
+    .workflow-chain__step small { display: block; margin-bottom: 18px; color: var(--cobalt-mid); font-size: 8px; font-weight: 800; letter-spacing: .1em; }
+    .workflow-chain__step b { font-family: var(--serif); font-size: 13px; font-weight: 600; line-height: 1.45; }
+    .workflow-boundary-note { display: grid; grid-template-columns: 150px 1fr; gap: 24px; margin-top: 22px; padding: 18px 0 0; }
+    .workflow-boundary-note b { color: var(--cobalt); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .workflow-boundary-note p { margin: 0; color: var(--cobalt-deep); font-family: var(--serif); font-size: clamp(17px,1.8vw,23px); line-height: 1.55; }
+    .workflow-iteration { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(250px,.75fr); gap: clamp(34px,6vw,82px); padding-top: clamp(38px,5vw,64px); }
+    .iteration-loop { display: grid; grid-template-columns: repeat(5,1fr); margin-top: 26px; border-block: 1px solid rgba(31,62,197,.26); }
+    .iteration-loop span { position: relative; padding: 15px 8px; color: var(--cobalt-deep); border-right: 1px solid rgba(31,62,197,.18); font-size: 9px; font-weight: 800; text-align: center; letter-spacing: .08em; text-transform: uppercase; }
+    .iteration-loop span:last-child { border-right: 0; }
+    .iteration-loop span:not(:last-child)::after { content: "→"; position: absolute; right: -7px; color: var(--cobalt); background: var(--canvas-raised); }
+    .iteration-fields { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+    .iteration-fields span { padding: 7px 9px; color: var(--body-ink); border: 1px solid rgba(31,62,197,.25); font-size: 8px; letter-spacing: .05em; }
+    .workflow-proof { align-self: stretch; padding: 23px; color: #fff; background: var(--cobalt-deep); }
+    .workflow-proof b { display: block; color: var(--acid); font-family: var(--display); font-size: clamp(54px,6vw,82px); font-weight: 500; line-height: .8; }
+    .workflow-proof small { display: block; margin-top: 14px; color: #bdc7ef; font-size: 9px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+    .workflow-proof p { margin: 30px 0 0; font-family: var(--serif); font-size: clamp(18px,1.8vw,24px); line-height: 1.55; }
+    .workflow-secondary { display: grid; grid-template-columns: minmax(240px,.7fr) minmax(0,1.3fr); gap: clamp(28px,5vw,70px); align-items: center; padding-top: clamp(58px,8vw,100px); border-top: 1px solid rgba(31,62,197,.28); }
+    .workflow-secondary__copy > p { margin: 0; color: var(--body-ink); font-size: 14px; line-height: 1.75; }
+    .workflow-secondary__visual { display: grid; grid-template-columns: minmax(160px,.52fr) minmax(0,1.48fr); gap: 16px; align-items: stretch; }
+    .workflow-secondary__visual img { display: block; width: 100%; height: 100%; min-height: 260px; object-fit: cover; object-position: center; border: 1px solid rgba(31,62,197,.35); }
+    .workflow-secondary__notes { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(31,62,197,.3); }
+    .workflow-secondary__notes div { padding: 20px; border-right: 1px solid rgba(31,62,197,.2); border-bottom: 1px solid rgba(31,62,197,.2); }
+    .workflow-secondary__notes div:nth-child(2n) { border-right: 0; }
+    .workflow-secondary__notes div:nth-child(n+3) { border-bottom: 0; }
+    .workflow-secondary__notes b { display: block; margin-bottom: 8px; color: var(--cobalt-deep); font-size: 10px; }
+    .workflow-secondary__notes span { color: var(--body-ink); font-size: 10px; line-height: 1.6; }
+    .workflow-supplements { display: grid; grid-template-columns: .6fr 1.4fr; gap: 28px; margin-top: clamp(58px,8vw,96px); padding-top: 24px; border-top: 1px solid rgba(31,62,197,.28); }
+    .workflow-supplements__links { display: grid; grid-template-columns: repeat(3,1fr); }
+    .workflow-supplements__links a { padding: 15px; color: var(--cobalt-deep); border-left: 1px solid rgba(31,62,197,.22); font-family: var(--serif); font-size: 16px; line-height: 1.35; text-decoration: none; }
+    .workflow-supplements__links small { display: block; margin-top: 18px; color: #68748a; font-family: var(--sans); font-size: 7px; letter-spacing: .08em; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .workflow-primary__head, .workflow-primary__problem, .workflow-iteration, .workflow-secondary { grid-template-columns: 1fr; }
+      .workflow-chain { grid-template-columns: 1fr; }
+      .workflow-chain__step { min-height: 0; border-right: 1px solid rgba(31,62,197,.28); border-bottom: 0; }
+      .workflow-chain__step:last-child { border-bottom: 1px solid rgba(31,62,197,.28); }
+      .workflow-chain__step:not(:last-child)::after { content: "↓"; top: auto; right: 18px; bottom: -11px; transform: none; }
+      .workflow-supplements { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .workflow-primary { padding: 28px 18px 34px; box-shadow: 8px 8px 0 var(--acid); }
+      .workflow-primary__head h3 { font-size: 48px; }
+      .workflow-boundary-note { grid-template-columns: 1fr; gap: 9px; }
+      .iteration-loop { grid-template-columns: 1fr; }
+      .iteration-loop span { border-right: 0; border-bottom: 1px solid rgba(31,62,197,.18); }
+      .iteration-loop span:last-child { border-bottom: 0; }
+      .iteration-loop span:not(:last-child)::after { content: "↓"; right: 18px; bottom: -8px; }
+      .workflow-secondary__visual, .workflow-secondary__notes { grid-template-columns: 1fr; }
+      .workflow-secondary__notes div { border-right: 0; }
+      .workflow-secondary__notes div:nth-child(n) { border-bottom: 1px solid rgba(31,62,197,.2); }
+      .workflow-secondary__notes div:last-child { border-bottom: 0; }
+      .workflow-supplements__links { grid-template-columns: 1fr; }
+      .workflow-supplements__links a { border-top: 1px solid rgba(31,62,197,.22); border-left: 0; }
+    }
     .system-more { display: grid; grid-template-columns: .7fr 1.3fr; gap: 28px; margin-top: clamp(70px,9vw,130px); padding-top: 25px; border-top: 1px solid rgba(31,62,197,.3); }
     .system-more__links { display: grid; grid-template-columns: repeat(3,1fr); }
     .system-more__links a { min-height: 104px; padding: 16px; color: var(--cobalt-deep); border-left: 1px solid rgba(31,62,197,.25); font-family: var(--display); font-size: clamp(18px,2vw,28px); line-height: 1.1; }
@@ -4521,6 +4594,16 @@
     .bside-copy { padding-bottom: 6px; }
     .bside-copy h3 { margin: 0 0 20px; color: var(--cobalt-deep); font-family: var(--display); font-size: clamp(30px,3.5vw,52px); line-height: .98; letter-spacing: -.04em; }
     .bside-copy p { margin: 0; color: #45536b; font-family: var(--serif); font-size: clamp(16px,1.55vw,21px); line-height: 1.7; }
+    .bside-socials { margin-top: 26px; border-block: 1px solid var(--ending-rule); }
+    .bside-socials__title { margin: 0; padding: 11px 0 9px; color: #68748a; font-size: 8px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .bside-social { display: grid; grid-template-columns: 78px minmax(0,1fr) auto; gap: 14px; align-items: baseline; padding: 11px 0; color: var(--cobalt-deep); border-top: 1px solid rgba(18,46,127,.13); text-decoration: none; }
+    .bside-social__platform { font-size: 9px; font-weight: 800; letter-spacing: .08em; }
+    .bside-social__account { font-family: var(--serif); font-size: 14px; line-height: 1.5; }
+    .bside-social__account a { color: var(--cobalt-deep); text-decoration: none; border-bottom: 1px solid rgba(31,62,197,.28); }
+    .bside-social__account small { display: block; margin-top: 2px; color: #68748a; font-family: var(--sans); font-size: 8px; letter-spacing: .04em; }
+    .bside-social__hint { color: #68748a; font-size: 8px; letter-spacing: .06em; white-space: nowrap; }
+    a.bside-social .bside-social__hint { color: var(--cobalt); transition: transform .2s ease; }
+    a.bside-social:hover .bside-social__hint { transform: translate(3px,-2px); }
     @keyframes bside-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: reduce) { .bside-panel { animation: none; } .moon-bside, .bside-trigger-hint i, .bside-trigger-copy, .bside-moon-object, .bside-moon-reverse, .bside-moon-darkness { transition: none; } }
     @media (max-width: 720px) {
@@ -4545,6 +4628,8 @@
       .bside-photo--landscape img { max-height: none; }
       .bside-photo--portrait { width: 42%; }
       .bside-copy { max-width: 520px; padding-bottom: 16px; }
+      .bside-social { grid-template-columns: 70px minmax(0,1fr); gap: 10px; }
+      .bside-social__hint { grid-column: 2; }
     }
   </style>
 </head>
@@ -4690,7 +4775,7 @@
         </article>
       </div>
 
-      <footer class="proof-compact-transition wrap reveal">发现人 · 建立连接 · 沉淀内容 · 形成系统</footer>
+      <footer class="proof-compact-transition wrap reveal">发现人 · 建立关系 · 沉淀内容 · 持续运营 · 形成复利</footer>
     </section>
 
     <section class="ecosystem-flagship narrative-act" id="ecosystem" data-role-section="connector" aria-labelledby="ecosystem-title">
@@ -4802,35 +4887,30 @@
     <section class="workflow-systems" id="workflow" data-role-section="builder" aria-labelledby="workflow-title">
       <div class="wrap">
         <header class="workflow-systems__head reveal">
-          <div><p class="workflow-systems__folio">Page 07 / AI Workflow</p><h2 id="workflow-title">AI Workflow<small>Research · Knowledge · Content · Build</small></h2></div>
-          <p class="workflow-systems__intro">把研究、人物观察、知识管理和内容生产，逐渐沉淀成可以持续复用的 AI 工作系统。</p>
+          <div><p class="workflow-systems__folio">Page 07 / AI Workflow</p><h2 id="workflow-title">AI Workflow<small>AI-native Operations</small></h2></div>
+          <p class="workflow-systems__intro">进入真实业务场景，理解团队原本的协作与信息流，再把重复劳动重构成可以运行、可以持续迭代的 AI 工作流程。</p>
         </header>
 
         <div class="system-stack">
-          <article class="system-case system-case--featured system-case--museum reveal" id="vitality-museum-case">
-            <div class="system-case__copy"><p class="system-case__index">01 / Story → Living Archive · Featured</p><h3>生命力博物馆</h3><p class="system-thesis">展览会结束，但故事不应该消失。</p><p>它最初来自一个持续多年的心愿：不仅记录创造者站上浪潮的时刻，也保存他们沉下去、重新爬起来，以及一件作品如何与一个人共同成长的过程。</p><p class="system-story">从人物访谈、时间轴和菌丝关系网络，到一座可以持续更新的线上展馆。</p><div class="system-evidence" aria-label="生命力博物馆公开项目数据"><span><b>44</b>WAIC 现场展台项目</span><span><b>67</b>累计收录项目</span><span><b>28</b>人物故事</span></div><div class="system-tags"><span>Storytelling</span><span>Living Archive</span><span>Exhibition</span><span>Vibe Coding</span></div><div class="system-actions"><a class="system-cta" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">进入线上展馆 <span>↗</span></a><a class="system-cta" href="https://mp.weixin.qq.com/s/5NCHluULXcNHkgcI_rSx9g" target="_blank" rel="noreferrer">阅读项目故事 <span>↗</span></a></div></div>
-            <div class="system-case__visual"><a class="system-screen" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer"><img src="assets/vitality/vitality-museum-waic-2026-poster.png?v=public-2" alt="生命力博物馆与超脑 AI 孵化器在 WAIC 2026 联合策展的 AI 原住民计划海报" width="1085" height="1450" loading="lazy" decoding="async" /><span class="system-screen__bar"><b>WAIC 2026 / 联合策展真实海报</b><span>Enter Museum ↗</span></span></a><div class="system-status">LIVE · 线上展馆入口已验证</div></div>
+          <article class="workflow-primary reveal">
+            <header class="workflow-primary__head"><div><p class="system-case__index">01 / Primary Case · 7-day Field Iteration</p><h3>AI 创造者<br />观察记录系统<small>From field pain to a working workflow</small></h3></div><p class="workflow-primary__thesis">不是先做一个 AI 工具，而是先进入老师真实的一天：看见信息在哪里产生、如何流动，又在哪里丢失。</p></header>
+            <div class="workflow-primary__problem">
+              <div class="workflow-problem-copy"><p class="workflow-kicker">Problem / 真实业务问题</p><h4>老师有观察，<br />但没有时间重新整理。</h4><p>七天 AI 创新教育营地里，老师白天承担教学、项目辅导与现场运营，晚上还需要把当天的学生表现整理成家长能够理解的观察报告。</p><ul class="workflow-problem-list"><li>不同老师的记录方式与表达不统一</li><li>信息分散在飞书、聊天记录与个人笔记中</li><li>重复整理与重新组织语言消耗大量时间</li><li>忙乱中，具体而有价值的现场观察容易丢失</li><li>最终输出仍需兼顾效率、准确性与人的判断</li></ul></div>
+              <figure class="workflow-primary__screen"><img src="assets/feishu/growth-editor-anonymized.png" alt="已隐去学生姓名的 AI 创造者观察编辑器真实界面" width="2940" height="1650" loading="lazy" decoding="async" /><figcaption><span>真实使用界面 / 学生信息已匿名</span><span>Internal pilot</span></figcaption></figure>
+            </div>
+            <div class="workflow-chain-wrap"><p class="workflow-kicker">System / 嵌入原有协作的信息流</p><div class="workflow-chain" aria-label="AI 创造者观察记录系统七步工作流程"><div class="workflow-chain__step"><small>01</small><b>现场观察</b></div><div class="workflow-chain__step"><small>02</small><b>老师口述<br />快速记录</b></div><div class="workflow-chain__step"><small>03</small><b>飞书<br />统一归集</b></div><div class="workflow-chain__step"><small>04</small><b>AI 结构化<br />整理</b></div><div class="workflow-chain__step"><small>05</small><b>编辑器人工<br />确认修改</b></div><div class="workflow-chain__step"><small>06</small><b>学生观察<br />报告</b></div><div class="workflow-chain__step"><small>07</small><b>分发家长</b></div></div><div class="workflow-boundary-note"><b>Human-in-the-loop</b><p>AI 承担信息整理、结构化与初稿生成；老师保留最终编辑、事实确认和判断权。</p></div></div>
+            <div class="workflow-iteration"><div><p class="workflow-kicker">Iteration / 边使用，边重构</p><h4>不是一次性设计完成，<br />而是在每天使用后继续修改。</h4><div class="iteration-loop" aria-label="观察、搭建、使用、反馈、迭代循环"><span>Observe</span><span>Build</span><span>Use</span><span>Feedback</span><span>Iterate</span></div><div class="iteration-fields"><span>提示词</span><span>信息字段</span><span>输入方式</span><span>编辑器结构</span><span>输出格式</span><span>人机协作边界</span></div></div><aside class="workflow-proof"><b>7 Days</b><small>Real-world iteration</small><p>每天投入真实教学现场，每天根据老师遇到的新问题调整。</p></aside></div>
+            <div class="system-story">我关注的不只是「AI 能生成什么」，而是 AI 如何进入真实团队的协作、信息和工作流程。</div>
+            <div class="system-actions"><a class="system-cta" href="https://growth-card-editor.sg.superbrain-ai.com/editor/app" target="_blank" rel="noreferrer">查看编辑器 Demo <span>↗</span></a></div>
           </article>
 
-          <article class="system-case reveal">
-            <div class="system-case__copy"><p class="system-case__index">02 / Field Pain → Working Product · P0</p><h3>AI 创造者观察记录系统</h3><p class="system-thesis">白天陪学生做项目，晚上还欠着一份家长反馈。</p><p>在七天营地里，老师白天要教学、陪学生找问题和推进项目，晚上还要把一天里零散的观察重新写成家长能读懂的个人成长报告。真正的难题不是老师没有观察，而是观察散落在不同老师、不同场景和不同表达里。</p><p>我一边参与教学，一边把老师的工作方式转成一条可协作的路径：老师口述观察，内容经飞书统一归集，进入编辑器排版，再由团队核对、调整与分发。工具每天投入使用，也每天根据一线反馈修改；七天后，它从现场痛点长成了一个团队真正用起来的小产品。</p><div class="system-tags"><span>口述输入</span><span>飞书归集</span><span>人工核对</span><span>批量分发</span></div></div>
-            <div class="system-case__visual"><div class="system-screen system-screen--safe-blueprint" role="img" aria-label="不包含个人资料的观察记录系统结构图"><div class="safe-blueprint"><p><b>01</b><span>现场观察</span></p><i>→</i><p><b>02</b><span>口述归集</span></p><i>→</i><p><b>03</b><span>团队核对</span></p><i>→</i><p><b>04</b><span>结构化反馈</span></p></div><span class="system-screen__bar"><b>公开结构图 / 不含个人资料</b><span>Internal pilot</span></span></div><div class="system-mini-flow" aria-label="营地成长反馈工作路径"><span>现场观察</span><span>老师口述</span><span>飞书归集</span><span>团队核对</span><span>家长反馈</span></div></div>
-          </article>
-
-                    <article class="system-case system-case--combined reveal">
-            <div class="system-case__copy">
-              <div><p class="system-case__index">03 / Research → Content → Knowledge Asset</p><h3>研究与内容资产系统</h3></div>
-              <div class="system-case__summary"><p class="system-thesis">让一次调研、访谈或活动，继续长出判断、内容与关系线索。</p><p>我把公开资料、人物信息和现场记录归集成可追踪的研究底座，再用 AI 辅助检索、整理、核对与转译；人保留选题、语境、事实边界和最后的编辑判断。</p><div class="system-tags"><span>Research Base</span><span>Fact-check</span><span>Editorial</span><span>Knowledge Asset</span></div></div>
-            </div>
-            <div class="system-output-grid" aria-label="研究与内容资产系统的三种真实输出">
-              <a class="system-output-card" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><span class="system-output-card__media"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱" width="2940" height="1506" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>01 / Research</small><h4>行业与人物图谱</h4><p>从公开信息、人物候选池到访谈假设与持续追踪。</p><dl class="system-output-card__logic"><div><dt>功能</dt><dd>归集人物、组织、产品与公开证据。</dd></div><div><dt>效果</dt><dd>把一次性查找变成可追踪的行业研究底座。</dd></div><div><dt>逻辑</dt><dd>公开信息 → 人工判断 → 关系映射 → 持续更新。</dd></div></dl><b>Explore Map ↗</b></span></a>
-              <a class="system-output-card" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><span class="system-output-card__media"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容创作工作台六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>02 / Content</small><h4>内容生产工作流</h4><p>把研究、采访、素材、结构、写作、核对与归档拆成可复用步骤。</p><dl class="system-output-card__logic"><div><dt>功能</dt><dd>串联从材料进入到发布复盘的内容协作。</dd></div><div><dt>效果</dt><dd>把一次性写稿变成可复用、可核对的工作流。</dd></div><div><dt>逻辑</dt><dd>AI 辅助检索整理；人保留语境、事实边界与终审。</dd></div></dl><b>View Workflow ↗</b></span></a>
-              <div class="system-output-card system-output-card--event"><span class="system-output-card__media"><img src="assets/feishu/waic-quote-posters/waic-quote-poster-1.png" alt="历史教育与 AI Agent 活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /><img src="assets/feishu/waic-quote-posters/waic-quote-poster-2.png" alt="社会创新与 AI for Good 活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /><img src="assets/feishu/waic-quote-posters/waic-quote-poster-3.png" alt="数字分身与关系边界活动金句海报" width="1080" height="1440" loading="lazy" decoding="async" /></span><span class="system-output-card__body"><small>03 / Knowledge Asset</small><h4>活动内容资产</h4><p>把现场表达经语境核对与人工编辑，沉淀为可继续分发和归档的内容。</p><dl class="system-output-card__logic"><div><dt>功能</dt><dd>从活动现场提取可核对的观点、故事与素材。</dd></div><div><dt>效果</dt><dd>让一次活动继续长出可分发、可归档的内容。</dd></div><div><dt>逻辑</dt><dd>原始现场 → 语境与事实核对 → 人工编辑 → 分发归档。</dd></div></dl><b>WAIC After-party · 2026.07</b></span></div>
-            </div>
+          <article class="workflow-secondary reveal" id="vitality-museum-case">
+            <div class="workflow-secondary__copy"><p class="system-case__index">02 / AI-native Build · Secondary Case</p><h3>生命力博物馆</h3><p>把人物访谈、项目档案、时间线和关系网络组织成可以持续更新的线上展馆。它补充证明了从 idea 到实际产品的执行，以及内容结构、产品审美与 AI-native build 的结合。</p><div class="system-tags"><span>Content Structure</span><span>Living Archive</span><span>Product Aesthetic</span><span>Build</span></div><div class="system-actions"><a class="system-cta" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">进入线上展馆 <span>↗</span></a><a class="system-cta" href="https://mp.weixin.qq.com/s/5NCHluULXcNHkgcI_rSx9g" target="_blank" rel="noreferrer">阅读项目故事 <span>↗</span></a></div></div>
+            <div class="workflow-secondary__visual"><img src="assets/vitality/vitality-museum-waic-2026-poster.png?v=public-2" alt="生命力博物馆与超脑 AI 孵化器在 WAIC 2026 联合策展海报" width="1085" height="1450" loading="lazy" decoding="async" /><div class="workflow-secondary__notes"><div><b>信息结构</b><span>人物、作品、变化与来源进入同一档案框架。</span></div><div><b>内容产品</b><span>把一次现场展示转成可持续更新的公共入口。</span></div><div><b>产品审美</b><span>让复杂信息保持清晰、可读与可探索。</span></div><div><b>执行</b><span>从策展构想到可访问的线上产品。</span></div></div></div>
           </article>
         </div>
 
-        <footer class="system-more reveal"><div><p class="system-more__label">More Experiments</p><p>This portfolio is also part of the experiment.</p></div><div class="system-more__links"><a href="#top">This Portfolio<small>Research · Design · Code</small></a><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer">GitHub Skills ↗<small>Open-source workflow</small></a><a href="https://voyayueliang.github.io/voice-ai-industry-map/research/" target="_blank" rel="noreferrer">Research Engine ↗<small>Selected vibe coding</small></a></div></footer>
+        <footer class="workflow-supplements reveal"><div><p class="system-more__label">Supporting Systems</p><p>更轻量的研究、内容与知识资产工作流。</p></div><div class="workflow-supplements__links"><a href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">行业与人物图谱<small>Research → Knowledge Graph</small></a><a href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">内容生产工作流<small>Research → Content → Archive</small></a><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer">公开 Workflow<small>Selected Skills / GitHub ↗</small></a></div></footer>
       </div>
     </section>
 
@@ -4923,6 +5003,12 @@
             <div class="bside-copy">
               <h3>B-side of the Moon<small> / 月球背面</small></h3>
               <p>离开屏幕和现场之后，我也会走向山里、户外和路上。<br />徒步、雪山、旅行与在地观察，让我重新校准节奏，也提醒我保持对世界的好奇、耐心与感受力。</p>
+              <nav class="bside-socials" aria-label="月亮的播客与社交媒体">
+                <p class="bside-socials__title">Listen &amp; Follow / 继续相遇</p>
+                <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗</a><small>另有 Becoming计划</small></span><span class="bside-social__hint">小宇宙</span></div>
+                <div class="bside-social"><span class="bside-social__platform">小红书</span><span class="bside-social__account">@流浪月亮计划</span><span class="bside-social__hint">小红书号 2893937787</span></div>
+                <div class="bside-social"><span class="bside-social__platform">公众号</span><span class="bside-social__account">流浪月亮计划</span><span class="bside-social__hint">微信内搜索</span></div>
+              </nav>
               <nav class="bside-reading" aria-label="月球背面的延伸阅读">
                 <a href="https://mp.weixin.qq.com/s/Ttv2Pq7dIQhv3L1695wHyw" target="_blank" rel="noreferrer"><span><b>在 AI 浪潮之下，看见具体的人</b><small>AI × People · Public Thinking</small></span><span>↗</span></a>
                 <a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><span><b>我们这一代，还能以热爱和理想躬身入局吗？</b><small>Becoming · Long-term Question</small></span><span>↗</span></a>
