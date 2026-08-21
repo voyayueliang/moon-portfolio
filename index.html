@@ -4266,14 +4266,17 @@
     .workflow-secondary__notes div:nth-child(n+3) { border-bottom: 0; }
     .workflow-secondary__notes b { display: block; margin-bottom: 8px; color: var(--cobalt-deep); font-size: 10px; }
     .workflow-secondary__notes span { color: var(--body-ink); font-size: 10px; line-height: 1.6; }
-    .workflow-supplements { display: grid; grid-template-columns: .6fr 1.4fr; gap: 28px; margin-top: clamp(58px,8vw,96px); padding-top: 24px; border-top: 1px solid rgba(31,62,197,.28); }
-    .workflow-supplements__links { display: grid; grid-template-columns: repeat(3,1fr); }
-    .workflow-supplements__links a { display: grid; grid-template-rows: 132px auto auto; padding: 0 15px 15px; color: var(--cobalt-deep); border-left: 1px solid rgba(31,62,197,.22); text-decoration: none; }
-    .workflow-supplement-thumb { display: block; overflow: hidden; margin: 0 0 17px; background: #dfe4ee; border: 1px solid rgba(31,62,197,.28); }
+    .workflow-supplements { display: block; margin-top: clamp(68px,9vw,118px); padding-top: 30px; border-top: 1px solid rgba(31,62,197,.28); }
+    .workflow-supplements > div:first-child { display: grid; grid-template-columns: .62fr 1.38fr; gap: 28px; align-items: end; }
+    .workflow-supplements > div:first-child p:last-child { max-width: 640px; margin: 0; color: var(--body-ink); font-family: var(--serif); font-size: clamp(19px,2vw,27px); line-height: 1.5; }
+    .workflow-supplements__links { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 34px; }
+    .workflow-supplements__links a { display: flex; min-height: 430px; padding: 0 18px 20px; flex-direction: column; color: var(--cobalt-deep); border: 1px solid rgba(31,62,197,.28); text-decoration: none; }
+    .workflow-supplement-thumb { display: block; height: 190px; overflow: hidden; margin: 0 -18px 22px; background: #dfe4ee; border-bottom: 1px solid rgba(31,62,197,.28); }
     .workflow-supplement-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .35s ease; }
     .workflow-supplements__links a:hover .workflow-supplement-thumb img { transform: scale(1.025); }
-    .workflow-supplements__links b { font-family: var(--serif); font-size: 16px; font-weight: 500; line-height: 1.35; }
-    .workflow-supplements__links small { display: block; margin-top: 12px; color: #68748a; font-family: var(--sans); font-size: 7px; letter-spacing: .08em; text-transform: uppercase; }
+    .workflow-supplements__links b { font-family: var(--serif); font-size: clamp(22px,2vw,30px); font-weight: 500; line-height: 1.2; }
+    .workflow-supplements__links p { margin: 16px 0 0; color: var(--body-ink); font-size: 11px; line-height: 1.7; }
+    .workflow-supplements__links small { display: block; margin-top: auto; padding-top: 24px; color: #68748a; font-family: var(--sans); font-size: 7px; letter-spacing: .08em; text-transform: uppercase; }
 
     @media (max-width: 900px) {
       .workflow-primary__head, .workflow-primary__problem, .workflow-iteration, .workflow-secondary { grid-template-columns: 1fr; }
@@ -4281,7 +4284,7 @@
       .workflow-chain__step { min-height: 0; border-right: 1px solid rgba(31,62,197,.28); border-bottom: 0; }
       .workflow-chain__step:last-child { border-bottom: 1px solid rgba(31,62,197,.28); }
       .workflow-chain__step:not(:last-child)::after { content: "↓"; top: auto; right: 18px; bottom: -11px; transform: none; }
-      .workflow-supplements { grid-template-columns: 1fr; }
+      .workflow-supplements > div:first-child { grid-template-columns: 1fr; }
     }
     @media (max-width: 620px) {
       .workflow-primary { padding: 28px 18px 34px; box-shadow: 8px 8px 0 var(--acid); }
@@ -4296,7 +4299,8 @@
       .workflow-secondary__notes div:nth-child(n) { border-bottom: 1px solid rgba(31,62,197,.2); }
       .workflow-secondary__notes div:last-child { border-bottom: 0; }
       .workflow-supplements__links { grid-template-columns: 1fr; }
-      .workflow-supplements__links a { border-top: 1px solid rgba(31,62,197,.22); border-left: 0; }
+      .workflow-supplements__links a { min-height: 0; }
+      .workflow-supplement-thumb { height: 180px; }
     }
     .system-more { display: grid; grid-template-columns: .7fr 1.3fr; gap: 28px; margin-top: clamp(70px,9vw,130px); padding-top: 25px; border-top: 1px solid rgba(31,62,197,.3); }
     .system-more__links { display: grid; grid-template-columns: repeat(3,1fr); }
@@ -4914,7 +4918,7 @@
           </article>
         </div>
 
-        <footer class="workflow-supplements reveal"><div><p class="system-more__label">Supporting Systems</p><p>更轻量的研究、内容与知识资产工作流。</p></div><div class="workflow-supplements__links"><a href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱界面" width="2940" height="1506" loading="lazy" decoding="async" /></span><b>行业与人物图谱</b><small>Research → Knowledge Graph</small></a><a href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容生产六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></span><b>内容生产工作流</b><small>Research → Content → Archive</small></a><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/content-workflow-live.png" alt="Moon AI 内容工作台公开界面" loading="lazy" decoding="async" /></span><b>公开 Workflow</b><small>Selected Skills / GitHub ↗</small></a></div></footer>
+        <footer class="workflow-supplements reveal"><div><p class="system-more__label">Supporting Systems</p><p>这些不是彼此孤立的工具，而是我把研究、内容生产和重复判断逐步沉淀为可复用工作方式的三个切面。</p></div><div class="workflow-supplements__links"><a href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱界面" width="2940" height="1506" loading="lazy" decoding="async" /></span><b>行业与人物图谱</b><p>把公开资料中的人物、组织、产品与技术路线组织成可追踪的研究底座，帮助我进入陌生行业、建立访谈假设，并持续更新关系与证据。</p><small>Research → Knowledge Graph</small></a><a href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容生产六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></span><b>内容生产工作流</b><p>把录音、访谈、活动材料和旧稿先分诊，再进入研究、结构、起草、核对与归档；AI 负责整理与转译，人保留语境和终审。</p><small>Research → Content → Archive</small></a><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/content-workflow-live.png" alt="Moon AI 内容工作台公开界面" loading="lazy" decoding="async" /></span><b>公开 Workflow</b><p>把反复使用的判断标准和协作步骤封装为 Skills 与 Workflow，让一次项目里形成的方法，可以在下一次研究、写作和复盘中继续复用。</p><small>Selected Skills / GitHub ↗</small></a></div></footer>
       </div>
     </section>
 
