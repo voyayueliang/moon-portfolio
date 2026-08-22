@@ -3197,7 +3197,8 @@
       gap: 7px;
       align-items: stretch;
     }
-    .proof-cover-row a {
+    .proof-cover-row > a,
+    .proof-cover-entry {
       min-width: 0;
       display: flex;
       flex-direction: column;
@@ -3207,9 +3208,16 @@
       text-decoration: none;
       transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
     }
-    .proof-cover-row a:nth-child(2) { transform: translateY(-5px); }
-    .proof-cover-row a:hover,
-    .proof-cover-row a:focus-visible { z-index: 2; transform: translateY(-7px); box-shadow: 5px 6px 0 var(--acid); }
+    .proof-cover-row > a:nth-child(2) { transform: translateY(-5px); }
+    .proof-cover-row > a:hover,
+    .proof-cover-row > a:focus-visible,
+    .proof-cover-entry:hover { z-index: 2; transform: translateY(-7px); box-shadow: 5px 6px 0 var(--acid); }
+    .proof-cover-entry__visual { min-height: 0; display: flex; flex: 1 1 auto; overflow: hidden; }
+    .proof-cover-entry__footer { min-height: 34px; display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center; padding: 6px 8px; }
+    .proof-cover-entry__footer > span:first-child { min-height: 0; padding: 0; }
+    .proof-cover-entry__links { display: flex; gap: 5px; }
+    .proof-cover-entry__links a { padding: 3px 5px; color: var(--cobalt); border: 1px solid rgba(31,62,197,.28); font-size: 7px; font-weight: 800; line-height: 1; text-decoration: none; white-space: nowrap; }
+    .proof-cover-entry__links a:hover { color: #fff; background: var(--cobalt); }
     .proof-cover-row img {
       width: 100%;
       min-height: 0;
@@ -3344,7 +3352,7 @@
       .proof-scale-grid dt { font-size: 25px; }
       .proof-photo-strip { min-height: 76px; flex-basis: 76px; }
       .proof-cover-row { min-height: 126px; flex-basis: 126px; }
-      .proof-cover-row a { height: 126px; overflow: hidden; }
+      .proof-cover-row > a, .proof-cover-entry { height: 126px; overflow: hidden; }
       .proof-cover-row img { height: 96px; flex: 0 0 96px; }
       .proof-cover-row span { min-height: 30px; font-size: 10px; }
       .proof-workflow-list { min-height: 118px; flex-basis: 118px; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 1fr; gap: 7px; border-top: 0; }
@@ -3697,7 +3705,8 @@
       .proof-system-shot img,
       .proof-cta span,
       .proof-photo-strip img,
-      .proof-cover-row a,
+      .proof-cover-row > a,
+      .proof-cover-entry,
       .proof-workflow-list b,
       .proof-compact-cta span { transition: none; animation: none; }
     }
@@ -4912,10 +4921,10 @@
           </header>
           <p class="proof-compact-statement">通过研究与深访，把复杂的人、技术与变化讲清楚。</p>
           <div class="proof-cover-row" aria-label="三个代表叙事栏目">
-            <a href="https://voyayueliang.github.io/moon-becoming-portfolio/" target="_blank" rel="noreferrer">
-              <img src="assets/covers/becoming-visual.webp" alt="Becoming 计划作品封面" width="1080" height="1528" loading="lazy" decoding="async" />
-              <span>Becoming 计划</span>
-            </a>
+            <article class="proof-cover-entry">
+              <a class="proof-cover-entry__visual" href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer" aria-label="收听 Becoming 计划播客"><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划作品封面" width="1080" height="1528" loading="lazy" decoding="async" /></a>
+              <div class="proof-cover-entry__footer"><span>Becoming 计划</span><span class="proof-cover-entry__links"><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">播客 ↗</a><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer">公众号 ↗</a></span></div>
+            </article>
             <a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer">
               <img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" />
               <span>观猹人物</span>
