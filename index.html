@@ -4828,6 +4828,165 @@
       .ending-copy h2 { font-size: clamp(64px, 22vw, 92px); }
     }
 
+    /* Mobile editorial edition — recompose the desktop spreads into one
+       readable column instead of merely shrinking them. */
+    @media (max-width: 620px) {
+      html, body { max-width: 100%; overflow-x: clip; }
+      :root { --pad: 20px; }
+      .wrap { width: 100%; padding-inline: var(--pad); }
+      .site-header .inner { min-height: 61px; padding-inline: 20px; }
+      .brand { font-size: 10px; letter-spacing: .08em; }
+      .brand span:first-child, .brand i { display: none; }
+      .role-mini-nav { gap: 13px; }
+      .role-mini-link { min-width: 34px; padding: 12px 0 9px; }
+      .mini-orb { width: 28px; height: 28px; }
+      .mini-label { font-size: 9px; letter-spacing: .02em; }
+
+      .moon-stage-inner {
+        grid-template-rows: auto auto;
+        gap: 0;
+        padding-top: 94px;
+        padding-bottom: 0;
+      }
+      .moon-stage-signature { margin-bottom: 25px; }
+      .moon-stage h1 > span { font-size: clamp(39px, 11.7vw, 50px); line-height: 1.06; }
+      .moon-stage h1 > small { font-size: 9px; letter-spacing: .025em; }
+      .moon-stage-intro { font-size: 13px; line-height: 1.78; }
+      .moon-stage-evidence { gap: 7px 12px; font-size: 8px; }
+      .moon-playground {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        padding: 58px 0 34px;
+      }
+      .moon-object { grid-row: 1; width: min(78vw, 330px); }
+      .moon-orbit { display: none; }
+      .moon-control-help {
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        top: min(73vw, 308px);
+        padding: 7px 10px 6px;
+        background: rgba(247,244,236,.9);
+        transform: translate(-50%, -100%);
+        white-space: nowrap;
+      }
+      .moon-role-copy {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        max-width: none;
+        margin-top: 25px;
+        padding: 15px 0 0 12px;
+        justify-self: stretch;
+        background: transparent;
+      }
+      .moon-role-copy h2 { font-size: 34px; }
+      .moon-role-description { margin-top: 9px; font-size: 11px; }
+      .moon-role-evidence { font-size: 8px; }
+      .moon-story-axis {
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: visible;
+        padding: 0 20px 18px;
+      }
+      .moon-story-axis > div {
+        width: 100%;
+        min-width: 0;
+        min-height: 72px;
+        padding: 14px 0;
+        border-top: 1px solid rgba(31,62,197,.22);
+        border-left: 0 !important;
+      }
+
+      .proof-index--compact::before {
+        min-height: 52px;
+        padding-inline: 20px;
+        font-size: 7px;
+        letter-spacing: .055em;
+      }
+      .proof-compact-head { padding: 38px 20px 30px; }
+      .proof-compact-head h2 { font-size: clamp(43px, 13vw, 54px); line-height: .95; }
+      .proof-compact-head > p:last-child { font-size: 13px; line-height: 1.65; }
+      .proof-compact-column { padding: 30px 20px 32px; }
+      .proof-compact-column header { min-height: 0; }
+      .proof-compact-column h3 { font-size: 30px; }
+      .proof-compact-statement { min-height: 0; font-size: 13px; }
+      .proof-cover-row { min-height: 0; }
+
+      .ecosystem-flagship { padding-block: 58px 52px; }
+      .ecosystem-flagship-head h2 { font-size: clamp(37px, 10.4vw, 46px); line-height: 1.08; }
+      .ecosystem-hero-photo { width: 100%; margin-inline: 0; transform: none; }
+      .ecosystem-hero-photo img { aspect-ratio: 4 / 3; }
+      .ecosystem-hero-photo figcaption { transform: none; }
+      .ecosystem-body { gap: 34px; }
+      .mechanism-stages { margin-top: 23px; }
+      .mechanism-stage b { font-size: 20px; white-space: normal; }
+      .mechanism-statement { font-size: 17px; }
+      .ecosystem-reflection { margin-top: 22px; font-size: 15px; line-height: 1.62; }
+      .ecosystem-evidence { padding-top: 28px; }
+      .evidence-anchor b { font-size: 82px; }
+      .ecosystem-map-strip h2 { font-size: clamp(38px, 11.5vw, 48px); }
+
+      .creator-fieldwork { padding-block: 62px 56px; }
+      .creator-fieldwork h2 { font-size: clamp(42px, 12vw, 50px); }
+      .creator-fieldwork__intro { font-size: 13px; }
+      .field-route { margin-top: 38px; }
+      .field-route__entry { padding-left: 21px; }
+      .field-route__entry h3 { font-size: 26px; }
+
+      .story-v4 > .story-editorial__head { padding-top: 62px; }
+      .story-editorial__head h2 { font-size: clamp(48px, 15vw, 62px); }
+      .story-editorial__lede { font-size: 17px; line-height: 1.55; }
+      .story-editorial__sequence {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+      }
+      .story-editorial__sequence::-webkit-scrollbar { display: none; }
+      .story-v4__people { padding-block: 42px 54px; }
+      .story-v4__becoming figure, .story-v4__guacha-hero { width: 100%; margin: 0 !important; }
+      .story-v4__people-links { grid-template-columns: 1fr; }
+      .story-v4__people-links a,
+      .story-v4__people-links a:nth-child(3) { min-height: 0; padding: 12px 0; border-left: 0; }
+
+      .workflow-systems { padding-block: 62px 68px; }
+      .workflow-systems__head { gap: 22px; margin-bottom: 40px; }
+      .workflow-systems__head h2 { font-size: clamp(48px, 15vw, 62px); }
+      .workflow-systems__intro { font-size: 18px; line-height: 1.55; }
+      .workflow-primary { padding: 24px 15px 29px; box-shadow: 6px 6px 0 var(--acid); }
+      .workflow-primary--compact .workflow-primary__head h3 { font-size: 35px; }
+      .workflow-primary--compact .workflow-primary__thesis { font-size: 17px; }
+      .workflow-compact { gap: 26px; }
+      .workflow-compact__copy > p { font-size: 16px; }
+      .workflow-supplements { margin-top: 56px; }
+      .workflow-supplements__headline { font-size: 34px; }
+
+      .talks-public { padding-block: 62px 68px; }
+      .talks-public__head h2 { font-size: clamp(46px, 14.5vw, 60px); }
+      .talks-public__intro { font-size: 17px; }
+      .talks-public__lead,
+      .talks-public__slice,
+      .talks-public__slice:nth-of-type(3) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+      .talks-public__lead-link,
+      .talks-public__lead img,
+      .talks-public__slice img,
+      .talks-public__media { height: auto; min-height: 0; }
+      .talks-public__lead img,
+      .talks-public__slice img { aspect-ratio: 4 / 3; object-fit: cover; }
+
+      .field-notes__head h2 { font-size: 39px; }
+      .ending-copy h2 { font-size: 62px; }
+      .ending-statement p { font-size: 18px; }
+      .bside-panel { grid-template-columns: 1fr; }
+    }
+
     /* Page turn: identity gives way to a denser, cooler evidence index. */
     .moon-stage {
       border-bottom: 0;
