@@ -4827,6 +4827,57 @@
       .field-notes__related-list { grid-template-columns: 1fr; }
       .ending-copy h2 { font-size: clamp(64px, 22vw, 92px); }
     }
+
+    /* Page turn: identity gives way to a denser, cooler evidence index. */
+    .moon-stage {
+      border-bottom: 0;
+    }
+    .proof-index--compact {
+      position: relative;
+      color: #17264b;
+      background: #eef1f7;
+      border-top: 0;
+    }
+    .proof-index--compact::before {
+      content: "FROM IDENTITY TO EVIDENCE  /  从我是谁，到我做成了什么";
+      display: flex;
+      min-height: 64px;
+      align-items: center;
+      padding-inline: var(--pad);
+      color: #f7f4ec;
+      background: var(--cobalt-deep);
+      font-size: 10px;
+      font-weight: 750;
+      line-height: 1.4;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .proof-compact-head {
+      align-items: center;
+      padding-block: clamp(48px, 6.2vh, 72px) clamp(34px, 4.5vh, 48px);
+    }
+    .proof-compact-head h2 {
+      color: var(--cobalt-deep);
+      font-size: clamp(56px, 5.8vw, 82px);
+      line-height: .9;
+    }
+    .proof-compact-grid {
+      background: rgba(255,255,255,.18);
+      border-top-color: rgba(31,62,197,.42);
+    }
+    .proof-compact-column {
+      padding-top: clamp(28px, 3.8vh, 42px);
+    }
+    @media (max-width: 720px) {
+      .proof-index--compact::before {
+        min-height: 54px;
+        font-size: 8px;
+        letter-spacing: .08em;
+      }
+      .proof-compact-head h2 {
+        font-size: clamp(44px, 13vw, 58px);
+      }
+    }
   </style>
 </head>
 <body class="lunar-home">
