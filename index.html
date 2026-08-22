@@ -4828,6 +4828,43 @@
       .ending-copy h2 { font-size: clamp(64px, 22vw, 92px); }
     }
 
+    /* Homepage weight pass — darker editorial ink, less interface theatre. */
+    .moon-stage {
+      --cobalt: #18358f;
+      --cobalt-deep: #10265f;
+      --cobalt-mid: #43599f;
+      --body-ink: #354158;
+      --acid: #c4df48;
+    }
+    .moon-stage h1 > span {
+      max-width: 570px;
+      font-size: clamp(46px, 4.35vw, 66px);
+      font-weight: 560;
+      letter-spacing: -.052em;
+    }
+    .moon-stage-intro { font-weight: 440; }
+    .moon-stage-evidence { font-weight: 700; }
+    .moon-stage-evidence span:first-child {
+      text-decoration-thickness: 2px;
+      text-underline-offset: 6px;
+    }
+    .moon-object { width: clamp(440px, min(42.5vw, 63vh), 600px); }
+    .moon-role-copy { border-left-width: 2px; }
+    .moon-control-help {
+      padding: 0 0 4px;
+      color: var(--muted-ink);
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid rgba(16,38,95,.34);
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      font-size: 9px;
+      letter-spacing: .035em;
+    }
+    .moon-control-help > span { font-size: 11px; }
+    .moon-control-help small { display: none; }
+
     /* Mobile editorial edition — recompose the desktop spreads into one
        readable column instead of merely shrinking them. */
     @media (max-width: 620px) {
