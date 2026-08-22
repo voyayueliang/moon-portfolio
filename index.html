@@ -1314,20 +1314,44 @@
       .lunar-home .site-header .brand { gap: 5px; font-size: 10px; }
       .lunar-home .site-header .brand span:first-child,
       .lunar-home .site-header .brand i { display: none; }
-      .role-mini-nav { gap: 0; }
+      .header-right { position: absolute; top: 0; right: 20px; width: 196px; height: 62px; }
+      .role-mini-nav { width: 196px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
       .role-mini-link,
       .role-mini-link:hover,
       .role-mini-link:focus-visible,
       .role-mini-link.is-current {
-        width: 40px;
-        min-width: 40px;
+        width: 100%;
+        min-width: 0;
         height: 44px;
         min-height: 44px;
-        flex-basis: 40px;
-        padding: 0;
+        flex: none;
+        padding: 0 7px;
         background: transparent;
       }
-      .role-mini-link .mini-label { display: none; }
+      .role-mini-link .mini-orb { display: none; }
+      .role-mini-link .mini-label {
+        position: static;
+        display: inline;
+        width: auto;
+        padding: 0;
+        opacity: 1;
+        color: var(--body-ink);
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        font-size: 10px;
+        font-weight: 650;
+        letter-spacing: .02em;
+        transform: none;
+      }
+      .role-mini-link:nth-child(1) .mini-label { font-size: 0; }
+      .role-mini-link:nth-child(1) .mini-label::after { content: "发现"; font-size: 10px; }
+      .role-mini-link:nth-child(2) .mini-label { font-size: 0; }
+      .role-mini-link:nth-child(2) .mini-label::after { content: "生态"; font-size: 10px; }
+      .role-mini-link:nth-child(3) .mini-label { font-size: 0; }
+      .role-mini-link:nth-child(3) .mini-label::after { content: "工作流"; font-size: 10px; }
+      .role-mini-link:nth-child(4) .mini-label { font-size: 0; }
+      .role-mini-link:nth-child(4) .mini-label::after { content: "叙事"; font-size: 10px; }
       .mini-orb { width: 17px; }
 
       .lunar-hero { min-height: 100svh; padding: 122px 0 122px; }
@@ -1866,6 +1890,29 @@
     .lunar-home .site-nav a { color: var(--body-ink); }
     .lunar-home .site-nav a:hover,
     .lunar-home .site-nav a:focus-visible { color: var(--cobalt); }
+    .lunar-home .site-nav {
+      gap: clamp(18px, 2.1vw, 34px);
+    }
+    .lunar-home .site-nav a {
+      position: relative;
+      padding: 7px 0 6px;
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .045em;
+      text-transform: none;
+    }
+    .lunar-home .site-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 2px;
+      background: var(--acid);
+      transition: right .24s ease;
+    }
+    .lunar-home .site-nav a:hover::after,
+    .lunar-home .site-nav a:focus-visible::after { right: 0; }
     .lunar-home .reading-progress { background: rgba(31, 62, 197, .08); }
     .lunar-home .reading-progress::after { background: var(--cobalt); }
 
@@ -2309,55 +2356,6 @@
       transform: none;
     }
     .moon-control-help > span { font-size: 13px; }
-    .moon-anchor-nav {
-      position: absolute;
-      z-index: 7;
-      right: 0;
-      bottom: 1.5%;
-      display: flex;
-      align-items: center;
-      width: min(100%, 570px);
-      justify-content: flex-end;
-      gap: clamp(5px, .8vw, 11px);
-    }
-    .moon-anchor-button {
-      min-width: 104px;
-      min-height: 48px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      grid-template-areas: "primary arrow" "secondary secondary";
-      align-content: center;
-      gap: 4px 7px;
-      padding: 8px 10px 7px;
-      color: var(--muted-ink);
-      background: rgba(31, 62, 197, .025);
-      border: 1px solid rgba(31, 62, 197, .15);
-      border-bottom: 3px solid rgba(31, 62, 197, .15);
-      border-radius: 0;
-      cursor: pointer;
-      font: 650 10px/1 var(--sans);
-      letter-spacing: .05em;
-      text-decoration: none;
-      transition: color .24s ease, border-color .24s ease, background .24s ease, transform .24s ease;
-    }
-    .moon-anchor-primary { grid-area: primary; }
-    .moon-anchor-secondary { grid-area: secondary; color: var(--muted-ink); font-size: 8px; font-weight: 600; letter-spacing: .03em; }
-    .moon-anchor-arrow { grid-area: arrow; color: var(--cobalt-mid); font-size: 10px; transition: transform .24s ease; }
-    .moon-anchor-button:hover,
-    .moon-anchor-button:focus-visible {
-      color: var(--cobalt-deep);
-      background: rgba(31, 62, 197, .065);
-      border-color: rgba(31, 62, 197, .42);
-      transform: translateY(-2px);
-    }
-    .moon-anchor-button:hover .moon-anchor-arrow,
-    .moon-anchor-button:focus-visible .moon-anchor-arrow { transform: translate(2px, 2px); }
-    .moon-anchor-button.is-active {
-      color: var(--cobalt-deep);
-      border-bottom-color: var(--acid);
-      background: rgba(209, 243, 78, .09);
-    }
-
     .moon-story-axis {
       position: absolute;
       z-index: 8;
@@ -2453,8 +2451,6 @@
         max-width: 38%;
       }
       .moon-role-copy h2 { font-size: 34px; }
-      .moon-anchor-nav { gap: 12px; }
-      .moon-anchor-button { font-size: 9px; }
     }
 
     @media (max-width: 780px) {
@@ -2496,10 +2492,6 @@
       .moon-role-evidence { margin-top: 4px; font-size: 8px; }
       .moon-role-copy #role-jump { display: none; }
       .moon-control-help { right: auto; left: 50%; bottom: 84px; transform: translateX(-50%); }
-      .moon-anchor-nav { right: auto; left: 50%; bottom: 0; width: min(100%, 430px); gap: 4px; transform: translateX(-50%); }
-      .moon-anchor-button { min-width: 0; min-height: 52px; flex: 1 1 0; gap: 3px 4px; padding: 7px 6px 6px; font-size: 9px; }
-      .moon-anchor-secondary { font-size: 7.5px; line-height: 1.2; letter-spacing: 0; }
-      .moon-anchor-arrow { font-size: 8px; }
       .moon-story-axis {
         position: relative;
         left: auto;
@@ -2526,6 +2518,17 @@
       .moon-object { width: 84vw; }
       .moon-role-copy { bottom: 56px; width: 43%; }
       .moon-control-help { bottom: 84px; }
+    }
+
+    @media (min-width: 1041px) {
+      .lunar-home .role-mini-nav { display: none; }
+    }
+    @media (max-width: 1040px) {
+      .lunar-home .role-mini-nav { display: flex; }
+      .moon-stage-visible .role-mini-nav { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
+    }
+    @media (max-width: 680px) {
+      .lunar-home .role-mini-nav { display: grid; }
     }
 
     /* Page 02 / Proof Index — identity gives way to evidence. */
@@ -4674,10 +4677,11 @@
     <div class="inner wrap">
       <a class="brand" href="#top"><span>月亮</span><i>/</i><span>MOON</span></a>
       <div class="header-right">
-        <nav class="site-nav" aria-label="页面导航">
-          <a href="#top">月相</a>
-          <a href="#proof">证据</a>
-          <a href="#story">作品</a>
+        <nav class="site-nav" aria-label="项目导航">
+          <a href="#proof">项目发现</a>
+          <a href="#ecosystem">创业者生态</a>
+          <a href="#workflow">AI 工作流</a>
+          <a href="#story">叙事与内容</a>
         </nav>
         <nav class="role-mini-nav" aria-label="月相导航">
           <a class="role-mini-link" href="#proof" data-role="observer" aria-label="看见，项目发现"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">看见 / 项目发现</span></a>
@@ -4720,12 +4724,6 @@
             <a id="role-jump" href="#proof">进入项目发现 <span>↓</span></a>
           </article>
           <p class="moon-control-help" id="moon-control-help"><span>↔</span> 拖动月亮，看看不同侧面 <small>Drag to rotate</small></p>
-          <nav class="moon-anchor-nav" aria-label="直接进入四类项目">
-            <a class="moon-anchor-button is-active" href="#proof" data-role="observer" aria-current="true"><span class="moon-anchor-primary">看见</span><small class="moon-anchor-secondary">项目发现</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
-            <a class="moon-anchor-button" href="#ecosystem" data-role="connector"><span class="moon-anchor-primary">连接</span><small class="moon-anchor-secondary">创业者生态</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
-            <a class="moon-anchor-button" href="#workflow" data-role="builder"><span class="moon-anchor-primary">搭建</span><small class="moon-anchor-secondary">AI 工作流</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
-            <a class="moon-anchor-button" href="#story" data-role="storyteller"><span class="moon-anchor-primary">讲述</span><small class="moon-anchor-secondary">叙事与内容</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
-          </nav>
         </div>
       </div>
 
@@ -5140,7 +5138,6 @@
     const moonRoleCopy = document.querySelector('.moon-role-copy');
     const moonCanvas = document.querySelector('.moon-webgl');
     const moonTexture = document.querySelector('.moon-texture');
-    const moonAnchorButtons = [...document.querySelectorAll('.moon-anchor-button[data-role]')];
     const miniLinks = [...document.querySelectorAll('.role-mini-link[data-role]')];
     const roleSections = [...document.querySelectorAll('[data-role-section]')];
     const roleTitle = document.querySelector('#role-title');
@@ -5208,15 +5205,6 @@
       }
     }
 
-    function syncAnchorControls(role, visible = true) {
-      moonAnchorButtons.forEach((button) => {
-        const isActive = visible && button.dataset.role === role;
-        button.classList.toggle('is-active', isActive);
-        if (isActive) button.setAttribute('aria-current', 'true');
-        else button.removeAttribute('aria-current');
-      });
-    }
-
     function setMoonAngle(nextAngle, options = {}) {
       surfaceAngle = normalizeAngle(nextAngle);
       const lightAngle = lightAngleForSurface(surfaceAngle);
@@ -5232,7 +5220,6 @@
       });
 
       moonRoleCopy?.classList.toggle('is-between-anchors', !anchorVisible);
-      syncAnchorControls(anchor.role, anchorVisible);
       if (anchorVisible && anchor.role !== activeMoonRole) {
         activeMoonRole = anchor.role;
         moonStage.dataset.activeRole = activeMoonRole;
@@ -5390,10 +5377,6 @@
         const nextRole = roleOrder[(currentAnchor.index + 1) % roleOrder.length];
         animateMoonTo(roleData[nextRole].angle);
       }
-    });
-
-    moonAnchorButtons.forEach((button) => {
-      button.addEventListener('click', () => animateMoonTo(roleData[button.dataset.role].angle));
     });
 
     if (window.MoonSphere && moonObject && moonCanvas && !reduceMotion) {
@@ -5555,7 +5538,6 @@
     });
 
     renderRoleContent('observer', false, false);
-    syncAnchorControls('observer', true);
     setMoonAngle(0, { animate: false, announce: false });
     updatePageState();
   </script>
