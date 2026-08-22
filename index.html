@@ -2316,26 +2316,46 @@
       bottom: 1.5%;
       display: flex;
       align-items: center;
-      gap: clamp(12px, 1.6vw, 24px);
+      width: min(100%, 570px);
+      justify-content: flex-end;
+      gap: clamp(5px, .8vw, 11px);
     }
     .moon-anchor-button {
-      min-height: 34px;
-      padding: 6px 0 4px;
+      min-width: 104px;
+      min-height: 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "primary arrow" "secondary secondary";
+      align-content: center;
+      gap: 4px 7px;
+      padding: 8px 10px 7px;
       color: var(--muted-ink);
-      background: none;
-      border: 0;
-      border-bottom: 3px solid transparent;
+      background: rgba(31, 62, 197, .025);
+      border: 1px solid rgba(31, 62, 197, .15);
+      border-bottom: 3px solid rgba(31, 62, 197, .15);
       border-radius: 0;
       cursor: pointer;
       font: 650 10px/1 var(--sans);
       letter-spacing: .05em;
-      transition: color .24s ease, border-color .24s ease, opacity .24s ease;
+      text-decoration: none;
+      transition: color .24s ease, border-color .24s ease, background .24s ease, transform .24s ease;
     }
+    .moon-anchor-primary { grid-area: primary; }
+    .moon-anchor-secondary { grid-area: secondary; color: var(--muted-ink); font-size: 8px; font-weight: 600; letter-spacing: .03em; }
+    .moon-anchor-arrow { grid-area: arrow; color: var(--cobalt-mid); font-size: 10px; transition: transform .24s ease; }
     .moon-anchor-button:hover,
-    .moon-anchor-button:focus-visible { color: var(--cobalt); }
+    .moon-anchor-button:focus-visible {
+      color: var(--cobalt-deep);
+      background: rgba(31, 62, 197, .065);
+      border-color: rgba(31, 62, 197, .42);
+      transform: translateY(-2px);
+    }
+    .moon-anchor-button:hover .moon-anchor-arrow,
+    .moon-anchor-button:focus-visible .moon-anchor-arrow { transform: translate(2px, 2px); }
     .moon-anchor-button.is-active {
       color: var(--cobalt-deep);
       border-bottom-color: var(--acid);
+      background: rgba(209, 243, 78, .09);
     }
 
     .moon-story-axis {
@@ -2475,9 +2495,11 @@
       .moon-role-description { margin-top: 8px; font-size: 10px; }
       .moon-role-evidence { margin-top: 4px; font-size: 8px; }
       .moon-role-copy #role-jump { display: none; }
-      .moon-control-help { right: auto; left: 50%; bottom: 36px; transform: translateX(-50%); }
-      .moon-anchor-nav { right: auto; left: 50%; bottom: 0; gap: 17px; transform: translateX(-50%); }
-      .moon-anchor-button { font-size: 9px; }
+      .moon-control-help { right: auto; left: 50%; bottom: 84px; transform: translateX(-50%); }
+      .moon-anchor-nav { right: auto; left: 50%; bottom: 0; width: min(100%, 430px); gap: 4px; transform: translateX(-50%); }
+      .moon-anchor-button { min-width: 0; min-height: 52px; flex: 1 1 0; gap: 3px 4px; padding: 7px 6px 6px; font-size: 9px; }
+      .moon-anchor-secondary { font-size: 7.5px; line-height: 1.2; letter-spacing: 0; }
+      .moon-anchor-arrow { font-size: 8px; }
       .moon-story-axis {
         position: relative;
         left: auto;
@@ -2503,7 +2525,7 @@
       .moon-playground { min-height: 570px; padding-top: 92px; padding-bottom: 116px; }
       .moon-object { width: 84vw; }
       .moon-role-copy { bottom: 56px; width: 43%; }
-      .moon-control-help { bottom: 34px; }
+      .moon-control-help { bottom: 84px; }
     }
 
     /* Page 02 / Proof Index — identity gives way to evidence. */
@@ -4658,10 +4680,10 @@
           <a href="#story">作品</a>
         </nav>
         <nav class="role-mini-nav" aria-label="月相导航">
-          <a class="role-mini-link" href="#field-notes" data-role="observer" aria-label="看见 Observer"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">看见</span></a>
-          <a class="role-mini-link" href="#ecosystem" data-role="connector" aria-label="连接者 Connector"><span class="mini-orb mini-orb--half" aria-hidden="true"></span><span class="mini-label">连接</span></a>
-          <a class="role-mini-link" href="#workflow" data-role="builder" aria-label="搭建 Builder"><span class="mini-orb mini-orb--gibbous" aria-hidden="true"></span><span class="mini-label">搭建</span></a>
-          <a class="role-mini-link" href="#story" data-role="storyteller" aria-label="讲述 Storyteller"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">讲述</span></a>
+          <a class="role-mini-link" href="#proof" data-role="observer" aria-label="看见，项目发现"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">看见 / 项目发现</span></a>
+          <a class="role-mini-link" href="#ecosystem" data-role="connector" aria-label="连接，创业者生态"><span class="mini-orb mini-orb--half" aria-hidden="true"></span><span class="mini-label">连接 / 创业者生态</span></a>
+          <a class="role-mini-link" href="#workflow" data-role="builder" aria-label="搭建，AI 工作流"><span class="mini-orb mini-orb--gibbous" aria-hidden="true"></span><span class="mini-label">搭建 / AI 工作流</span></a>
+          <a class="role-mini-link" href="#story" data-role="storyteller" aria-label="讲述，叙事与内容"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">讲述 / 叙事与内容</span></a>
         </nav>
       </div>
     </div>
@@ -4695,14 +4717,14 @@
             <h2 id="role-title">看见</h2>
             <p class="moon-role-description" id="role-description">进入现场，观察人和变化。</p>
             <p class="moon-role-evidence" id="role-evidence">大理田野 · 早期信号</p>
-            <a id="role-jump" href="#field-notes">查看相关作品 <span>↓</span></a>
+            <a id="role-jump" href="#proof">进入项目发现 <span>↓</span></a>
           </article>
           <p class="moon-control-help" id="moon-control-help"><span>↔</span> 拖动月亮，看看不同侧面 <small>Drag to rotate</small></p>
-          <nav class="moon-anchor-nav" aria-label="直接查看月亮的不同侧面">
-            <button type="button" class="moon-anchor-button is-active" data-role="observer" aria-pressed="true">看见</button>
-            <button type="button" class="moon-anchor-button" data-role="connector" aria-pressed="false">连接</button>
-            <button type="button" class="moon-anchor-button" data-role="builder" aria-pressed="false">搭建</button>
-            <button type="button" class="moon-anchor-button" data-role="storyteller" aria-pressed="false">讲述</button>
+          <nav class="moon-anchor-nav" aria-label="直接进入四类项目">
+            <a class="moon-anchor-button is-active" href="#proof" data-role="observer" aria-current="true"><span class="moon-anchor-primary">看见</span><small class="moon-anchor-secondary">项目发现</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
+            <a class="moon-anchor-button" href="#ecosystem" data-role="connector"><span class="moon-anchor-primary">连接</span><small class="moon-anchor-secondary">创业者生态</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
+            <a class="moon-anchor-button" href="#workflow" data-role="builder"><span class="moon-anchor-primary">搭建</span><small class="moon-anchor-secondary">AI 工作流</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
+            <a class="moon-anchor-button" href="#story" data-role="storyteller"><span class="moon-anchor-primary">讲述</span><small class="moon-anchor-secondary">叙事与内容</small><span class="moon-anchor-arrow" aria-hidden="true">↘</span></a>
           </nav>
         </div>
       </div>
@@ -5081,8 +5103,8 @@
         description: '进入现场，观察人和变化。',
         evidence: '大理田野 · 早期信号',
         angle: 0,
-        target: '#field-notes',
-        action: '查看相关作品'
+        target: '#proof',
+        action: '进入项目发现'
       },
       connector: {
         title: '连接',
@@ -5091,7 +5113,7 @@
         evidence: '数百人社群 · 关系网络',
         angle: 90,
         target: '#ecosystem',
-        action: '查看相关作品'
+        action: '进入创业者生态'
       },
       builder: {
         title: '搭建',
@@ -5100,7 +5122,7 @@
         evidence: '7 天真实使用 · 人工确认',
         angle: 180,
         target: '#workflow',
-        action: '查看相关作品'
+        action: '进入 AI 工作流'
       },
       storyteller: {
         title: '讲述',
@@ -5109,7 +5131,7 @@
         evidence: '多轮深访 · 公开成稿',
         angle: 270,
         target: '#story',
-        action: '查看相关作品'
+        action: '进入叙事与内容'
       }
     };
 
@@ -5190,7 +5212,8 @@
       moonAnchorButtons.forEach((button) => {
         const isActive = visible && button.dataset.role === role;
         button.classList.toggle('is-active', isActive);
-        button.setAttribute('aria-pressed', String(isActive));
+        if (isActive) button.setAttribute('aria-current', 'true');
+        else button.removeAttribute('aria-current');
       });
     }
 
