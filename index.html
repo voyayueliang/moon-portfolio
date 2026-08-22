@@ -5595,6 +5595,7 @@
       moonRenderer = window.MoonSphere.create({
         host: moonObject,
         canvas: moonCanvas,
+        portrait: 'assets/vitality/moon-field-portrait.jpg',
         surfaceAngle: 0,
         lightAngle: lightAngleForSurface(0),
         portraitOpacity: .92,
@@ -5608,17 +5609,17 @@
         }
       });
       if (moonRenderer) {
-        const activateMoonPortrait = async () => {
-          if (moonPortraitSource && !moonPortraitSource.complete) {
-            try { await moonPortraitSource.decode(); } catch (_) {}
+        moonRenderer.ready.then(async (loadedFromUrl) => {
+          let portraitReady = loadedFromUrl;
+          if (!portraitReady && moonPortraitSource) {
+            if (!moonPortraitSource.complete) {
+              try { await moonPortraitSource.decode(); } catch (_) {}
+            }
+            portraitReady = await moonRenderer.setPortrait(moonPortraitSource);
           }
-          const portraitReady = moonPortraitSource
-            ? await moonRenderer.setPortrait(moonPortraitSource)
-            : false;
           moonObject.classList.toggle('is-webgl-ready', Boolean(portraitReady));
           setMoonAngle(surfaceAngle, { animate: false, announce: false });
-        };
-        activateMoonPortrait();
+        });
       }
     }
 
@@ -5659,6 +5660,7 @@
       bsideMoonRenderer = window.MoonSphere.create({
         host: bsideMoonObject,
         canvas: bsideMoonCanvas,
+        portrait: 'assets/vitality/moon-field-portrait.jpg',
         surfaceAngle: bsideMoonAngle * Math.PI / 180,
         lightAngle: lightAngleForSurface(bsideMoonAngle),
         portraitOpacity: .92,
@@ -5669,17 +5671,17 @@
         onContextLost: () => bsideMoonObject.classList.remove('is-webgl-ready'),
         onContextRestored: (controller) => bsideMoonObject.classList.toggle('is-webgl-ready', Boolean(controller.getState().hasPortrait))
       });
-      const activateBsidePortrait = async () => {
-        if (bsideMoonPortraitSource && !bsideMoonPortraitSource.complete) {
-          try { await bsideMoonPortraitSource.decode(); } catch (_) {}
+      bsideMoonRenderer?.ready.then(async (loadedFromUrl) => {
+        let portraitReady = loadedFromUrl;
+        if (!portraitReady && bsideMoonPortraitSource) {
+          if (!bsideMoonPortraitSource.complete) {
+            try { await bsideMoonPortraitSource.decode(); } catch (_) {}
+          }
+          portraitReady = await bsideMoonRenderer.setPortrait(bsideMoonPortraitSource);
         }
-        const portraitReady = bsideMoonPortraitSource
-          ? await bsideMoonRenderer.setPortrait(bsideMoonPortraitSource)
-          : false;
         bsideMoonObject.classList.toggle('is-webgl-ready', Boolean(portraitReady));
         setBsideMoonAngle(bsideMoonAngle);
-      };
-      activateBsidePortrait();
+      });
     }
 
     bsideMoonObject?.addEventListener('pointerdown', (event) => {
