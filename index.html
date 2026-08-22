@@ -4863,16 +4863,26 @@
       .moon-object { grid-row: 1; width: min(78vw, 330px); }
       .moon-orbit { display: none; }
       .moon-control-help {
-        left: 50%;
+        grid-row: 2;
+        position: relative;
+        left: auto;
         right: auto;
         bottom: auto;
-        top: min(73vw, 308px);
-        padding: 7px 10px 6px;
-        background: rgba(247,244,236,.9);
-        transform: translate(-50%, -100%);
+        top: auto;
+        margin: 13px 0 0;
+        padding: 0;
+        color: var(--muted-ink);
+        background: transparent;
+        border: 0;
+        font-size: 9px;
+        letter-spacing: .035em;
+        transform: none;
         white-space: nowrap;
       }
+      .moon-control-help > span { color: var(--cobalt); font-size: 11px; }
+      .moon-control-help small { display: none; }
       .moon-role-copy {
+        grid-row: 3;
         position: relative;
         left: auto;
         right: auto;
