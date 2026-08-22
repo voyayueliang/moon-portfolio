@@ -1400,6 +1400,7 @@
       --moon-drag-y: 0px;
       --moon-drag-rotate: 0deg;
       --portrait-drag-rotate: 0deg;
+      --portrait-drag-x: 0%;
       position: relative;
       min-height: max(820px, 100svh);
       color: var(--lunar-mist);
@@ -1662,10 +1663,10 @@
       object-fit: cover;
       object-position: 50% 59%;
       border-radius: 50%;
-      opacity: .82;
+      opacity: .88;
       filter: grayscale(.25) saturate(.52) contrast(1.06) brightness(.88);
       mix-blend-mode: luminosity;
-      transform: rotate(calc(var(--portrait-rest-rotate) + var(--portrait-drag-rotate))) scale(1.05);
+      transform: translateX(var(--portrait-drag-x)) rotate(calc(var(--portrait-rest-rotate) + var(--portrait-drag-rotate))) scale(1.13);
       transition: transform .68s cubic-bezier(.22,1,.36,1), opacity .38s ease;
       will-change: transform;
       pointer-events: none;
@@ -1675,14 +1676,14 @@
       z-index: 1;
       inset: -5%;
       border-radius: 50%;
-      opacity: .2;
-      mix-blend-mode: soft-light;
+      opacity: .38;
+      mix-blend-mode: multiply;
       background:
-        radial-gradient(circle at 28% 31%, rgba(101,119,182,.28) 0 5.5%, transparent 6.4%),
-        radial-gradient(circle at 67% 27%, rgba(255,255,255,.23) 0 7%, transparent 7.8%),
-        radial-gradient(circle at 72% 64%, rgba(92,111,177,.21) 0 9%, transparent 10%),
-        radial-gradient(circle at 38% 70%, rgba(255,255,255,.2) 0 10%, transparent 11%),
-        radial-gradient(ellipse at 47% 46%, rgba(91,110,176,.15) 0 17%, transparent 18%);
+        radial-gradient(circle at 28% 31%, rgba(47,65,132,.34) 0 4.8%, rgba(235,239,255,.18) 5.6%, transparent 7%),
+        radial-gradient(circle at 67% 27%, rgba(49,68,137,.22) 0 6%, rgba(242,244,255,.16) 7%, transparent 8.4%),
+        radial-gradient(circle at 72% 64%, rgba(44,61,126,.3) 0 8%, rgba(232,237,255,.13) 9%, transparent 11%),
+        radial-gradient(circle at 38% 70%, rgba(48,66,131,.24) 0 9%, rgba(244,246,255,.12) 10%, transparent 12%),
+        radial-gradient(ellipse at 47% 46%, rgba(53,70,139,.22) 0 16%, transparent 20%);
     }
     .moon-object.is-dragging .moon-portrait,
     .moon-object.is-dragging .moon-texture { transition: none; }
@@ -1691,8 +1692,8 @@
       z-index: 2;
       inset: -1px;
       border-radius: 50%;
-      background: rgba(5, 14, 43, .78);
-      box-shadow: inset -12px 0 28px rgba(104,122,205,.14);
+      background: linear-gradient(90deg,rgba(7,18,66,.84) 0%,rgba(18,39,121,.66) 34%,rgba(28,53,145,.12) 72%,transparent 100%);
+      box-shadow: inset -24px 0 46px rgba(7,18,66,.28);
       transform: translateX(var(--phase-shadow));
       transition: transform .68s cubic-bezier(.22,1,.36,1);
     }
@@ -1703,7 +1704,10 @@
       inset: 0;
       border: 1px solid rgba(231,235,255,.38);
       border-radius: 50%;
-      box-shadow: inset 0 0 34px rgba(185,196,244,.12);
+      box-shadow:
+        inset -38px -22px 58px rgba(8,20,70,.38),
+        inset 22px 16px 34px rgba(245,247,255,.2),
+        inset 0 0 16px rgba(31,62,197,.2);
       pointer-events: none;
     }
     .moon-control-help {
@@ -1994,14 +1998,17 @@
       filter: saturate(.9) contrast(1.03) brightness(1.02);
       mix-blend-mode: normal;
     }
-    .moon-texture { opacity: .09; }
+    .moon-texture { opacity: .3; mix-blend-mode: multiply; }
     .moon-shadow {
-      background: rgba(23, 45, 132, .6);
-      box-shadow: inset -10px 0 24px rgba(117, 139, 216, .14);
+      background: linear-gradient(90deg,rgba(10,25,86,.82) 0%,rgba(23,45,132,.6) 35%,rgba(31,62,197,.1) 72%,transparent 100%);
+      box-shadow: inset -24px 0 46px rgba(10,25,86,.3);
     }
     .moon-rim {
       border-color: rgba(31, 62, 197, .48);
-      box-shadow: inset 0 0 38px rgba(31, 62, 197, .1);
+      box-shadow:
+        inset -42px -26px 64px rgba(10,25,86,.34),
+        inset 24px 18px 38px rgba(255,255,255,.2),
+        inset 0 0 18px rgba(31,62,197,.18);
     }
     .moon-control-help {
       color: var(--cobalt-deep);
@@ -4262,6 +4269,26 @@
     .workflow-primary__screen { position: relative; margin: 0; border: 1px solid var(--cobalt); background: #e1e5ee; }
     .workflow-primary__screen img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top center; }
     .workflow-primary__screen figcaption { display: flex; justify-content: space-between; gap: 18px; padding: 11px 13px; color: var(--cobalt-deep); background: var(--canvas-raised); border-top: 1px solid rgba(31,62,197,.25); font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .workflow-primary--compact .workflow-primary__head { display: block; padding-bottom: clamp(24px,3vw,38px); }
+    .workflow-primary--compact .workflow-primary__head h3 { max-width: 980px; font-size: clamp(42px,4.6vw,68px); line-height: 1.02; letter-spacing: -.045em; }
+    .workflow-primary--compact .workflow-primary__thesis { max-width: 920px; margin-top: 22px; font-size: clamp(21px,2vw,29px); line-height: 1.5; }
+    .workflow-compact { display: grid; grid-template-columns: minmax(360px,1.08fr) minmax(320px,.92fr); grid-template-areas: "visual copy"; gap: clamp(30px,4.5vw,64px); align-items: start; padding-top: clamp(30px,4vw,48px); }
+    .workflow-compact__copy { display: grid; gap: 24px; }
+    .workflow-compact__copy { grid-area: copy; }
+    .workflow-compact__visual { grid-area: visual; }
+    .workflow-compact__copy > p { max-width: 720px; margin: 0; color: var(--body-ink); font-family: var(--serif); font-size: clamp(18px,1.7vw,23px); line-height: 1.72; }
+    .workflow-compact__screen { margin: 0; border: 1px solid rgba(31,62,197,.35); background: #e1e5ee; }
+    .workflow-compact__screen img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top center; }
+    .workflow-compact__screen figcaption { display: flex; justify-content: space-between; gap: 16px; padding: 9px 11px; color: var(--cobalt-deep); background: var(--canvas-raised); border-top: 1px solid rgba(31,62,197,.25); font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .workflow-compact__loop { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; color: var(--cobalt); }
+    .workflow-compact__loop span { padding: 9px 12px; border: 1px solid rgba(31,62,197,.3); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .workflow-compact__loop i { font-style: normal; }
+    .workflow-compact__proofs { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(31,62,197,.35); }
+    .workflow-compact__proofs div { min-width: 0; padding: 20px 16px; }
+    .workflow-compact__proofs div + div { border-left: 1px solid rgba(31,62,197,.25); }
+    .workflow-compact__proofs b, .workflow-compact__proofs span { display: block; }
+    .workflow-compact__proofs b { color: var(--cobalt); font-family: var(--display); font-size: clamp(25px,2.2vw,32px); font-weight: 500; line-height: 1; letter-spacing: -.035em; }
+    .workflow-compact__proofs span { margin-top: 9px; color: var(--body-ink); font-size: 9px; line-height: 1.5; }
     .workflow-chain-wrap { padding-block: clamp(34px,5vw,58px); border-block: 1px solid rgba(31,62,197,.25); }
     .workflow-chain { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); margin-top: 20px; }
     .workflow-chain__step { position: relative; min-height: 112px; padding: 16px 26px 14px 12px; color: var(--cobalt-deep); border: 1px solid rgba(31,62,197,.28); border-right: 0; }
@@ -4293,45 +4320,27 @@
     .workflow-secondary__notes div:nth-child(n+3) { border-bottom: 0; }
     .workflow-secondary__notes b { display: block; margin-bottom: 8px; color: var(--cobalt-deep); font-size: 10px; }
     .workflow-secondary__notes span { color: var(--body-ink); font-size: 10px; line-height: 1.6; }
-    .workflow-supplements { display: block; margin-top: clamp(68px,9vw,118px); padding-top: 30px; border-top: 1px solid rgba(31,62,197,.28); }
-    .workflow-supplements > div:first-child { display: grid; grid-template-columns: .62fr 1.38fr; gap: 28px; align-items: end; }
-    .workflow-supplements > div:first-child p:last-child { max-width: 640px; margin: 0; color: var(--body-ink); font-family: var(--serif); font-size: clamp(19px,2vw,27px); line-height: 1.5; }
-    .workflow-supplements__links { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 34px; }
-    .workflow-supplements__links a { display: flex; min-height: 590px; padding: 0 20px 22px; flex-direction: column; color: var(--cobalt-deep); border: 1px solid rgba(31,62,197,.28); text-decoration: none; }
-    .workflow-supplement-thumb { display: block; height: 210px; overflow: hidden; margin: 0 -20px 22px; background: #dfe4ee; border-bottom: 1px solid rgba(31,62,197,.28); }
-    .workflow-supplement-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .35s ease; }
-    .workflow-supplements__links a:hover .workflow-supplement-thumb img { transform: scale(1.025); }
-    .workflow-supplements__links b { font-family: var(--serif); font-size: clamp(22px,2vw,30px); font-weight: 500; line-height: 1.2; }
-    .workflow-supplements__links p { margin: 16px 0 0; color: var(--body-ink); font-size: 11px; line-height: 1.7; }
+    .workflow-supplements { display: block; margin-top: clamp(64px,8vw,104px); padding-top: 28px; border-top: 1px solid rgba(31,62,197,.28); }
+    .workflow-supplements__head { display: block; max-width: 1040px; }
+    .workflow-supplements__eyebrow { margin: 0 0 clamp(22px,3vw,38px); color: var(--cobalt); font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .workflow-supplements__headline { max-width: 840px; margin: 0; color: var(--body-ink); font-family: "Noto Serif SC","Source Han Serif SC",var(--serif); font-size: clamp(38px,5vw,72px); font-weight: 500; line-height: 1.13; letter-spacing: 0; }
+    .workflow-supplements__deck { max-width: 780px; margin: 18px 0 0; color: var(--body-ink); font-family: var(--sans); font-size: clamp(14px,1.35vw,18px); line-height: 1.7; }
+    .workflow-supplements__spread { display: grid; grid-template-columns: minmax(0,1.62fr) minmax(280px,.88fr); gap: clamp(34px,5vw,76px); align-items: start; margin-top: clamp(34px,4.5vw,58px); }
+    .workflow-supplement-plate { min-width: 0; color: var(--cobalt-deep); }
+    .workflow-supplement-plate--secondary { padding-top: clamp(6px,1vw,16px); }
+    .workflow-supplement-plate__media { display: block; overflow: hidden; background: #eef0f3; border: 1px solid rgba(31,62,197,.28); }
+    .workflow-supplement-plate--primary .workflow-supplement-plate__media { aspect-ratio: 1.95 / 1; }
+    .workflow-supplement-plate--secondary .workflow-supplement-plate__media { aspect-ratio: 1.48 / 1; }
+    .workflow-supplement-plate__media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .4s ease; }
+    .workflow-supplement-plate__media:hover img { transform: scale(1.015); }
+    .workflow-supplement-plate__meta { margin: 14px 0 0; color: var(--cobalt); font-size: 8px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+    .workflow-supplement-plate__title { display: inline-block; margin-top: 10px; color: var(--cobalt-deep); font-family: "Noto Serif SC","Source Han Serif SC",var(--serif); font-size: clamp(27px,2.7vw,42px); font-weight: 600; line-height: 1.15; letter-spacing: 0; text-decoration: none; }
+    .workflow-supplement-plate__copy { max-width: 720px; margin: 13px 0 0; color: var(--body-ink); font-family: var(--sans); font-size: 11px; line-height: 1.75; }
+    .workflow-supplements__index { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(30px,4vw,48px); color: var(--cobalt); font-size: 8px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .workflow-supplements__index a { color: inherit; text-decoration: none; }
     .workflow-supplement-logic { display: grid; gap: 0; margin-top: 19px; border-top: 1px solid rgba(31,62,197,.2); }
     .workflow-supplement-logic span { display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 10px; padding: 10px 0; color: var(--body-ink); border-bottom: 1px solid rgba(31,62,197,.14); font-size: 9px; line-height: 1.6; }
     .workflow-supplement-logic b { color: var(--cobalt); font-family: var(--sans); font-size: 8px; font-weight: 800; letter-spacing: .08em; }
-    .workflow-supplements__links small { display: block; margin-top: auto; padding-top: 24px; color: #68748a; font-family: var(--sans); font-size: 7px; letter-spacing: .08em; text-transform: uppercase; }
-
-    @media (max-width: 900px) {
-      .workflow-primary__head, .workflow-primary__problem, .workflow-iteration, .workflow-secondary { grid-template-columns: 1fr; }
-      .workflow-chain { grid-template-columns: 1fr; }
-      .workflow-chain__step { min-height: 0; border-right: 1px solid rgba(31,62,197,.28); border-bottom: 0; }
-      .workflow-chain__step:last-child { border-bottom: 1px solid rgba(31,62,197,.28); }
-      .workflow-chain__step:not(:last-child)::after { content: "↓"; top: auto; right: 18px; bottom: -11px; transform: none; }
-      .workflow-supplements > div:first-child { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 620px) {
-      .workflow-primary { padding: 28px 18px 34px; box-shadow: 8px 8px 0 var(--acid); }
-      .workflow-primary__head h3 { font-size: 48px; }
-      .workflow-boundary-note { grid-template-columns: 1fr; gap: 9px; }
-      .iteration-loop { grid-template-columns: 1fr; }
-      .iteration-loop span { border-right: 0; border-bottom: 1px solid rgba(31,62,197,.18); }
-      .iteration-loop span:last-child { border-bottom: 0; }
-      .iteration-loop span:not(:last-child)::after { content: "↓"; right: 18px; bottom: -8px; }
-      .workflow-secondary__visual, .workflow-secondary__notes { grid-template-columns: 1fr; }
-      .workflow-secondary__notes div { border-right: 0; }
-      .workflow-secondary__notes div:nth-child(n) { border-bottom: 1px solid rgba(31,62,197,.2); }
-      .workflow-secondary__notes div:last-child { border-bottom: 0; }
-      .workflow-supplements__links { grid-template-columns: 1fr; }
-      .workflow-supplements__links a { min-height: 0; }
-      .workflow-supplement-thumb { height: 180px; }
-    }
     .system-more { display: grid; grid-template-columns: .7fr 1.3fr; gap: 28px; margin-top: clamp(70px,9vw,130px); padding-top: 25px; border-top: 1px solid rgba(31,62,197,.3); }
     .system-more__links { display: grid; grid-template-columns: repeat(3,1fr); }
     .system-more__links a { min-height: 104px; padding: 16px; color: var(--cobalt-deep); border-left: 1px solid rgba(31,62,197,.25); font-family: var(--display); font-size: clamp(18px,2vw,28px); line-height: 1.1; }
@@ -4348,6 +4357,13 @@
       .system-output-grid { grid-template-columns: 1fr; }
       .system-output-card { grid-template-columns: minmax(220px,.8fr) minmax(0,1.2fr); grid-template-rows: auto; }
       .system-output-card__body { min-height: 220px; }
+      .workflow-primary__head, .workflow-primary__problem, .workflow-iteration, .workflow-secondary { grid-template-columns: 1fr; }
+      .workflow-compact { grid-template-columns: 1fr; grid-template-areas: "copy" "visual"; }
+      .workflow-chain { grid-template-columns: 1fr; }
+      .workflow-chain__step { min-height: 0; border-right: 1px solid rgba(31,62,197,.28); border-bottom: 0; }
+      .workflow-chain__step:last-child { border-bottom: 1px solid rgba(31,62,197,.28); }
+      .workflow-chain__step:not(:last-child)::after { content: "↓"; top: auto; right: 18px; bottom: -11px; transform: none; }
+      .workflow-supplements__spread { grid-template-columns: minmax(0,1.45fr) minmax(250px,.85fr); gap: 32px; }
     }
     @media (max-width: 620px) {
       .workflow-systems { padding-block: 68px 76px; }
@@ -4375,6 +4391,21 @@
       .system-more__links a small { margin-top: 14px; }
       .system-case--combined { padding-top: 28px; }
       .system-output-card { grid-template-columns: 1fr; grid-template-rows: 190px auto; }
+      .workflow-primary { padding: 28px 18px 34px; box-shadow: 8px 8px 0 var(--acid); }
+      .workflow-primary__head h3 { font-size: 48px; }
+      .workflow-compact__proofs { grid-template-columns: 1fr; }
+      .workflow-compact__proofs div + div { border-top: 1px solid rgba(31,62,197,.25); border-left: 0; }
+      .workflow-boundary-note { grid-template-columns: 1fr; gap: 9px; }
+      .iteration-loop { grid-template-columns: 1fr; }
+      .iteration-loop span { border-right: 0; border-bottom: 1px solid rgba(31,62,197,.18); }
+      .iteration-loop span:last-child { border-bottom: 0; }
+      .iteration-loop span:not(:last-child)::after { content: "↓"; right: 18px; bottom: -8px; }
+      .workflow-secondary__visual, .workflow-secondary__notes { grid-template-columns: 1fr; }
+      .workflow-secondary__notes div { border-right: 0; }
+      .workflow-secondary__notes div:nth-child(n) { border-bottom: 1px solid rgba(31,62,197,.2); }
+      .workflow-secondary__notes div:last-child { border-bottom: 0; }
+      .workflow-supplements__spread { grid-template-columns: 1fr; }
+      .workflow-supplement-plate--secondary { padding-top: 0; }
       .system-output-card__body { min-height: 0; }
     }
 
@@ -4544,6 +4575,13 @@
     .bside-reading small { display: block; margin-top: 3px; color: #68748a; font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
     .bside-reading a > span:last-child { font-size: 12px; transition: transform .2s ease; }
     .bside-reading a:hover > span:last-child { transform: translate(3px,-2px); }
+    .portfolio-editbar { position: fixed; z-index: 9999; right: 18px; bottom: 18px; display: flex; gap: 7px; align-items: center; padding: 9px; color: #fff; background: var(--cobalt-deep); border: 1px solid rgba(255,255,255,.34); box-shadow: 7px 7px 0 var(--acid); font-family: var(--sans); }
+    .portfolio-editbar span { padding-inline: 5px; font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .portfolio-editbar button { padding: 8px 10px; color: var(--cobalt-deep); background: var(--paper-warm); border: 0; font: 800 9px/1 var(--sans); cursor: pointer; }
+    .portfolio-editbar button[data-edit-save] { background: var(--acid); }
+    .portfolio-editing [contenteditable="true"] { outline: 1px dashed rgba(31,62,197,.38); outline-offset: 4px; cursor: text; }
+    .portfolio-editing [contenteditable="true"]:focus { outline: 2px solid var(--acid); background: rgba(255,255,255,.34); }
+    @media (max-width: 620px) { .portfolio-editbar { right: 8px; bottom: 8px; left: 8px; justify-content: center; } .portfolio-editbar span { display: none; } }
     @media (max-width: 720px) {
       .field-notes { padding-block: 36px 42px; }
       .field-notes__head, .field-notes__lead { grid-template-columns: 1fr; gap: 22px; }
@@ -4668,6 +4706,112 @@
       .bside-copy { max-width: 520px; padding-bottom: 16px; }
       .bside-social { grid-template-columns: 70px minmax(0,1fr); gap: 10px; }
       .bside-social__hint { grid-column: 2; }
+    }
+
+    /* Responsive stability pass — let editorial sections reflow before they
+       become cropped presentations on laptops and medium-width screens. */
+    html { scroll-padding-top: 78px; }
+    main > section { scroll-margin-top: 78px; }
+    img { max-width: 100%; }
+
+    @media (min-width: 781px) and (max-height: 900px) {
+      .moon-stage,
+      .moon-stage-inner { min-height: 0; }
+      .moon-stage-inner {
+        padding-top: 82px;
+        padding-bottom: 96px;
+      }
+      .moon-stage-signature { margin-bottom: 20px; }
+      .moon-stage h1 > span { font-size: clamp(40px, 4vw, 58px); }
+      .moon-stage h1 > small { margin-top: 13px; }
+      .moon-stage-intro { margin-top: 16px; line-height: 1.68; }
+      .moon-stage-evidence { margin-top: 16px; padding-top: 11px; }
+      .moon-playground { min-height: min(520px, 66vh); }
+      .moon-object { width: clamp(360px, min(40vw, 58vh), 520px); }
+      .moon-story-axis > div { min-height: 78px; padding-block: 10px; }
+    }
+
+    @media (max-width: 1180px) {
+      .proof-compact-head {
+        grid-template-columns: 90px minmax(280px, .9fr) minmax(250px, .8fr);
+        gap: 22px;
+      }
+      .proof-compact-head h2 { font-size: clamp(58px, 7vw, 82px); }
+      .creator-fieldwork__head,
+      .story-editorial__head,
+      .workflow-systems__head,
+      .talks-public__head,
+      .field-notes__head,
+      .field-notes__lead,
+      .field-notes__related,
+      .ending-main { gap: clamp(24px, 4vw, 54px); }
+      .workflow-systems__head { grid-template-columns: minmax(0, .85fr) minmax(300px, 1.15fr); }
+      .workflow-systems__head h2 { font-size: clamp(54px, 6.4vw, 82px); }
+      .workflow-compact { grid-template-columns: minmax(330px, 1fr) minmax(300px, 1fr); gap: 34px; }
+      .system-case--featured { grid-template-columns: minmax(300px, .9fr) minmax(0, 1.1fr); }
+      .system-case--museum .system-screen img { height: clamp(400px, 62svh, 680px); }
+      .workflow-supplements__spread { grid-template-columns: minmax(0,1.45fr) minmax(260px,.8fr); gap: 34px; }
+      .talks-public__lead,
+      .talks-public__slice,
+      .talks-public__slice:nth-of-type(3) { grid-column: span 6; }
+    }
+
+    @media (max-width: 980px) {
+      .proof-index--compact { min-height: 0; }
+      .proof-compact-head { grid-template-columns: 1fr; gap: 14px; }
+      .proof-compact-folio { margin: 0 0 4px; }
+      .proof-compact-head h2 { white-space: normal; }
+      .proof-compact-grid { grid-template-columns: 1fr; padding-inline: 0; }
+      .proof-compact-column + .proof-compact-column { border-top: 1px solid rgba(31,62,197,.24); border-left: 0; }
+      .creator-fieldwork { min-height: 0; }
+      .creator-fieldwork__head,
+      .story-v4__people-grid,
+      .story-v4__amd-head,
+      .workflow-systems__head,
+      .workflow-compact,
+      .system-case--featured,
+      .workflow-supplements__head { max-width: 820px; }
+      .workflow-compact { grid-template-areas: "copy" "visual"; }
+      .system-case--museum .system-case__visual { order: -1; }
+      .system-case--museum .system-screen img { width: 100%; height: auto; max-height: 72svh; }
+      .workflow-supplements__spread { grid-template-columns: 1fr; }
+      .story-v4__becoming figure { position: static; }
+    }
+
+    @media (max-width: 720px) {
+      html { scroll-padding-top: 70px; }
+      main > section { scroll-margin-top: 70px; }
+      .site-header .inner { min-width: 0; }
+      .site-nav { display: none; }
+      .moon-stage-inner { grid-template-rows: auto auto; }
+      .moon-playground { min-height: 0; padding: 72px 0 96px; }
+      .moon-object { width: min(78vw, 360px); }
+      .moon-story-axis > div { min-width: min(78vw, 300px); }
+      .proof-compact-head h2 { font-size: clamp(48px, 15vw, 64px); }
+      .proof-scale-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .proof-scale-grid div:nth-child(3) { padding-left: 0; border-left: 0; }
+      .creator-fieldwork { padding-block: 62px; }
+      .creator-fieldwork__metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .creator-fieldwork__metrics span { min-width: 0; }
+      .story-editorial { padding-block: 68px; }
+      .story-editorial__head { grid-template-columns: 1fr; gap: 20px; }
+      .story-editorial__head h2 { font-size: clamp(52px, 17vw, 72px); }
+      .story-editorial__lede { font-size: 21px; }
+      .workflow-systems__head h2 { font-size: clamp(48px, 16vw, 66px); }
+      .workflow-primary--compact .workflow-primary__head h3 { font-size: clamp(36px, 11vw, 48px); }
+      .workflow-primary--compact .workflow-primary__thesis { font-size: 19px; }
+      .workflow-compact__copy > p { font-size: 17px; }
+      .workflow-compact__loop { gap: 7px; }
+      .workflow-compact__loop span { padding: 8px 9px; font-size: 8px; }
+      .workflow-supplements__headline { font-size: clamp(34px,10vw,48px); }
+      .workflow-supplements__deck { font-size: 15px; }
+      .workflow-supplements__spread { grid-template-columns: 1fr; }
+      .system-case--museum .system-screen img { max-height: 66svh; }
+      .talks-public__lead,
+      .talks-public__slice,
+      .talks-public__slice:nth-of-type(3) { grid-column: 1 / -1; }
+      .field-notes__related-list { grid-template-columns: 1fr; }
+      .ending-copy h2 { font-size: clamp(64px, 22vw, 92px); }
     }
   </style>
 </head>
@@ -4925,16 +5069,12 @@
         </header>
 
         <div class="system-stack">
-          <article class="workflow-primary reveal">
-            <header class="workflow-primary__head"><div><p class="system-case__index">01 / Primary Case · 7-day Field Iteration</p><h3>AI 创造者<br />观察记录体系<small>From field pain to a working workflow</small></h3></div><p class="workflow-primary__thesis">不是先做一个 AI 工具，而是先进入老师真实的一天：看见信息在哪里产生、如何流动，又在哪里丢失。</p></header>
-            <div class="workflow-primary__problem">
-              <div class="workflow-problem-copy"><p class="workflow-kicker">Problem / 真实业务问题</p><h4>老师有观察，<br />但没有时间重新整理。</h4><p>七天 AI 创新教育营地里，老师白天承担教学、项目辅导与现场运营，晚上还需要把当天的学生表现整理成家长能够理解的观察报告。</p><ul class="workflow-problem-list"><li>不同老师的记录方式与表达不统一</li><li>信息分散在飞书、聊天记录与个人笔记中</li><li>重复整理与重新组织语言消耗大量时间</li><li>忙乱中，具体而有价值的现场观察容易丢失</li><li>最终输出仍需兼顾效率、准确性与人的判断</li></ul></div>
-              <figure class="workflow-primary__screen"><img src="assets/feishu/growth-editor-anonymized.png" alt="已隐去学生姓名的 AI 创造者观察编辑器真实界面" width="2940" height="1650" loading="lazy" decoding="async" /><figcaption><span>真实使用界面 / 学生信息已匿名</span><span>Internal pilot</span></figcaption></figure>
+          <article class="workflow-primary workflow-primary--compact reveal">
+            <header class="workflow-primary__head"><div><p class="system-case__index">01 / Field Experiment · 7-day Iteration</p><h3>真实场景中的 AI 工作流实验<small>From field need to a working workflow</small></h3></div><p class="workflow-primary__thesis">用7天时间，搭建一个AI创造者观察记录体系</p></header>
+            <div class="workflow-compact">
+              <div class="workflow-compact__copy"><p>在大理 AI 营地中，老师每天需要记录学生状态，并向家长提供具体、可信的观察反馈。我将零散记录整理为一套由 AI 辅助、老师最终确认的工作流，并在七天真实使用中持续调整人机协作边界。</p><div class="workflow-compact__loop" aria-label="观察、搭建、使用、反馈、迭代循环"><span>Observe</span><i>→</i><span>Build</span><i>→</i><span>Use</span><i>→</i><span>Feedback</span><i>→</i><span>Iterate</span></div></div>
+              <div class="workflow-compact__visual"><div class="workflow-compact__proofs" aria-label="AI 工作流实验的三项核心证据"><div><b>7 Days</b><span>连续投入真实教学现场</span></div><div><b>Human</b><span>老师保留事实确认与最终判断</span></div><div><b>Loop</b><span>每天根据使用反馈继续调整</span></div></div></div>
             </div>
-            <div class="workflow-chain-wrap"><p class="workflow-kicker">System / 嵌入原有协作的信息流</p><div class="workflow-chain" aria-label="AI 创造者观察记录体系七步工作流程"><div class="workflow-chain__step"><small>01</small><b>现场观察</b></div><div class="workflow-chain__step"><small>02</small><b>老师口述<br />快速记录</b></div><div class="workflow-chain__step"><small>03</small><b>飞书<br />统一归集</b></div><div class="workflow-chain__step"><small>04</small><b>AI 结构化<br />整理</b></div><div class="workflow-chain__step"><small>05</small><b>编辑器人工<br />确认修改</b></div><div class="workflow-chain__step"><small>06</small><b>学生观察<br />报告</b></div><div class="workflow-chain__step"><small>07</small><b>分发家长</b></div></div><div class="workflow-boundary-note"><b>Human-in-the-loop</b><p>AI 承担信息整理、结构化与初稿生成；老师保留最终编辑、事实确认和判断权。</p></div></div>
-            <div class="workflow-iteration"><div><p class="workflow-kicker">Iteration / 边使用，边重构</p><h4>在大理营地，老师每天需要观察学生，并向家长呈现他们的状态。<br />围绕这一真实需求，我搭建了一套学生观察工作台，并在每天的真实使用中暴露问题、吸收反馈，持续调整人与 AI 的协作边界。</h4><div class="iteration-loop" aria-label="观察、搭建、使用、反馈、迭代循环"><span>Observe</span><span>Build</span><span>Use</span><span>Feedback</span><span>Iterate</span></div><div class="iteration-fields"><span>提示词</span><span>信息字段</span><span>输入方式</span><span>编辑器结构</span><span>输出格式</span><span>人机协作边界</span></div></div><aside class="workflow-proof"><b>7 Days</b><small>Real-world iteration</small><p>每天投入真实教学现场，每天根据老师遇到的新问题调整。</p></aside></div>
-            <div class="system-story">我关注的不只是「AI 能生成什么」，而是 AI 如何进入真实团队的协作、信息和工作流程。</div>
-            <div class="system-actions"><a class="system-cta" href="https://growth-card-editor.sg.superbrain-ai.com/editor/app" target="_blank" rel="noreferrer">查看编辑器 Demo <span>↗</span></a></div>
           </article>
 
           <article class="system-case system-case--featured system-case--museum reveal" id="vitality-museum-case">
@@ -4943,7 +5083,14 @@
           </article>
         </div>
 
-        <footer class="workflow-supplements reveal"><div><p class="system-more__label">Supporting Systems</p><p>这些不是彼此孤立的工具，而是我把研究、内容生产和重复判断逐步沉淀为可复用工作方式的三个切面。</p></div><div class="workflow-supplements__links"><a href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱界面" width="2940" height="1506" loading="lazy" decoding="async" /></span><b>行业与人物图谱</b><p>从公开信息、人物候选池到访谈假设与持续追踪，把一次性查找变成可更新的行业研究底座。</p><div class="workflow-supplement-logic"><span><b>功能</b>归集人物、组织、产品与公开证据。</span><span><b>效果</b>帮助我进入陌生行业，持续追踪关键人物与关系。</span><span><b>逻辑</b>公开信息 → 人工判断 → 关系映射 → 持续更新。</span></div><small>Research → Knowledge Graph</small></a><a href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容生产六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></span><b>内容生产工作流</b><p>把研究、采访、素材、结构、写作、核对与归档拆成可复用步骤，而不是一键生成正文。</p><div class="workflow-supplement-logic"><span><b>功能</b>串联从材料进入到发布复盘的内容协作。</span><span><b>效果</b>把一次性写稿变成可复用、可核对的工作流。</span><span><b>逻辑</b>AI 辅助检索整理；人保留语境、事实边界与终审。</span></div><small>Research → Content → Archive</small></a><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer"><span class="workflow-supplement-thumb"><img src="assets/feishu/content-workflow-live.png" alt="Moon AI 内容工作台公开界面" loading="lazy" decoding="async" /></span><b>公开 Workflow</b><p>把在真实项目中反复使用的判断标准与协作步骤，封装为可以继续调用和迭代的 Skills 与 Workflow。</p><div class="workflow-supplement-logic"><span><b>功能</b>封装素材分诊、研究、审稿、改写与复盘等重复流程。</span><span><b>效果</b>减少每次重新解释任务，让方法进入下一次项目。</span><span><b>逻辑</b>真实使用 → 提炼边界 → 封装流程 → 持续更新。</span></div><small>Selected Skills / GitHub ↗</small></a></div></footer>
+        <footer class="workflow-supplements reveal">
+          <header class="workflow-supplements__head"><p class="workflow-supplements__eyebrow">Supporting Systems&nbsp;&nbsp;/&nbsp;&nbsp;From Signal to Relationship</p><h3 class="workflow-supplements__headline">从公开线索里，<br />找到值得持续跟进的人。</h3><p class="workflow-supplements__deck">理解他们正在解决的问题，再把判断变成内容、关系与下一步行动。</p></header>
+          <div class="workflow-supplements__spread">
+            <article class="workflow-supplement-plate workflow-supplement-plate--primary"><a class="workflow-supplement-plate__media" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱界面" width="2940" height="1506" loading="lazy" decoding="async" /></a><p class="workflow-supplement-plate__meta">01 / Project Discovery</p><a class="workflow-supplement-plate__title" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">项目与人物发现</a><p class="workflow-supplement-plate__copy">从公开信息、人物候选到访谈假设，持续追踪谁在解决什么问题，以及他们与谁发生连接。</p></article>
+            <article class="workflow-supplement-plate workflow-supplement-plate--secondary"><a class="workflow-supplement-plate__media" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容生产六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></a><p class="workflow-supplement-plate__meta">02 / Content &amp; Ecosystem Ops</p><a class="workflow-supplement-plate__title" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">内容与关系推进</a><p class="workflow-supplement-plate__copy">把采访、素材、判断与核对组织成可复用的交付路径，让一次内容合作留下后续关系与项目线索。</p></article>
+          </div>
+          <nav class="workflow-supplements__index" aria-label="Supporting Systems 相关入口"><a href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">Open Map</a><span>/</span><a href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">Content Workflow</a><span>/</span><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer">Selected Skills ↗</a></nav>
+        </footer>
       </div>
     </section>
 
@@ -5061,6 +5208,53 @@
 
   <script src="assets/js/moon-sphere.js?v=stable-light-2"></script>
   <script>
+    const editParams = new URLSearchParams(window.location.search);
+    const editMode = editParams.get('edit') === '1';
+    if (editMode) {
+      const editStorageKey = 'moon-portfolio-text-draft-v1';
+      const editableSelector = 'main h1, main h2, main h3, main h4, main p, main li, main blockquote, main figcaption, main dt, main dd';
+      const editableNodes = [...document.querySelectorAll(editableSelector)].filter((node) => !node.closest('.portfolio-editbar'));
+      const originalValues = editableNodes.map((node) => node.innerHTML);
+      const storedDraft = localStorage.getItem(editStorageKey);
+      if (storedDraft) {
+        try {
+          const values = JSON.parse(storedDraft);
+          editableNodes.forEach((node, index) => { if (typeof values[index] === 'string') node.innerHTML = values[index]; });
+        } catch { localStorage.removeItem(editStorageKey); }
+      }
+      document.body.classList.add('portfolio-editing');
+      editableNodes.forEach((node) => { node.contentEditable = 'true'; node.spellcheck = false; });
+      const editbar = document.createElement('aside');
+      editbar.className = 'portfolio-editbar';
+      editbar.setAttribute('aria-label', '页面文字编辑工具');
+      editbar.innerHTML = '<span>Editing draft</span><button type="button" data-edit-save>保存草稿</button><button type="button" data-edit-export>复制修改</button><button type="button" data-edit-reset>恢复原文</button><button type="button" data-edit-close>退出编辑</button>';
+      document.body.appendChild(editbar);
+      const saveButton = editbar.querySelector('[data-edit-save]');
+      saveButton.addEventListener('click', () => {
+        localStorage.setItem(editStorageKey, JSON.stringify(editableNodes.map((node) => node.innerHTML)));
+        saveButton.textContent = '已保存';
+        window.setTimeout(() => { saveButton.textContent = '保存草稿'; }, 1500);
+      });
+      editbar.querySelector('[data-edit-export]').addEventListener('click', async (event) => {
+        const changes = editableNodes.map((node, index) => ({ index, original: originalValues[index], updated: node.innerHTML })).filter((item) => item.original !== item.updated);
+        const payload = JSON.stringify({ page: window.location.pathname, changes }, null, 2);
+        try {
+          await navigator.clipboard.writeText(payload);
+          event.currentTarget.textContent = `已复制 ${changes.length} 处`;
+        } catch {
+          window.prompt('复制下面的修改内容并发给我：', payload);
+        }
+      });
+      editbar.querySelector('[data-edit-reset]').addEventListener('click', () => {
+        localStorage.removeItem(editStorageKey);
+        window.location.reload();
+      });
+      editbar.querySelector('[data-edit-close]').addEventListener('click', () => {
+        editParams.delete('edit');
+        const query = editParams.toString();
+        window.location.href = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
+      });
+    }
     const reveals = document.querySelectorAll('.reveal');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const contactCopy = document.querySelector('[data-contact-copy]');
@@ -5137,6 +5331,7 @@
     const moonObject = document.querySelector('.moon-object');
     const moonRoleCopy = document.querySelector('.moon-role-copy');
     const moonCanvas = document.querySelector('.moon-webgl');
+    const moonPortraitSource = moonObject?.querySelector('.moon-portrait');
     const moonTexture = document.querySelector('.moon-texture');
     const miniLinks = [...document.querySelectorAll('.role-mini-link[data-role]')];
     const roleSections = [...document.querySelectorAll('[data-role-section]')];
@@ -5173,10 +5368,9 @@
     }
 
     function lightAngleForSurface(angle) {
-      // The moon rotates beneath one stable light source. Keeping the light
-      // independent from the four role anchors prevents the terminator from
-      // flipping sides as the portrait moves between roles.
-      return 56 * Math.PI / 180;
+      // Keep the moon readable while allowing the terminator to travel enough
+      // for a drag gesture to feel visibly three-dimensional.
+      return (42 + Math.sin(normalizeAngle(angle) * Math.PI / 180) * 24) * Math.PI / 180;
     }
 
     function fallbackShadowForLight(lightAngle) {
@@ -5213,6 +5407,8 @@
 
       moonStage?.style.setProperty('--phase-shadow', `${fallbackShadowForLight(lightAngle).toFixed(2)}%`);
       moonStage?.style.setProperty('--moon-texture-rotate', `${(surfaceAngle * .42).toFixed(2)}deg`);
+      moonStage?.style.setProperty('--portrait-drag-rotate', `${(Math.sin(surfaceAngle * Math.PI / 180) * 14).toFixed(2)}deg`);
+      moonStage?.style.setProperty('--portrait-drag-x', `${(Math.sin(surfaceAngle * Math.PI / 180) * -7).toFixed(2)}%`);
       moonTexture?.style.setProperty('transform', `rotate(${(surfaceAngle * .42).toFixed(2)}deg) scale(1.03)`);
       moonRenderer?.setState({
         surfaceAngle: surfaceAngle * Math.PI / 180,
@@ -5316,7 +5512,7 @@
         moonRoleCopy?.setAttribute('aria-live', 'off');
       }
 
-      const nextAngle = gestureStartAngle + dx * .48;
+      const nextAngle = gestureStartAngle + dx * .72;
       setMoonAngle(nextAngle, { animate: false, announce: false });
       if (!reduceMotion) {
         const dragX = Math.max(-28, Math.min(28, dx * .09));
@@ -5379,15 +5575,16 @@
       }
     });
 
-    if (window.MoonSphere && moonObject && moonCanvas && !reduceMotion) {
+    // Reduced-motion should remove automatic/animated transitions, not the
+    // user-controlled WebGL moon itself. Dragging remains an explicit action.
+    if (window.MoonSphere && moonObject && moonCanvas) {
       moonRenderer = window.MoonSphere.create({
         host: moonObject,
         canvas: moonCanvas,
-        portrait: 'assets/vitality/moon-field-portrait.jpg',
         surfaceAngle: 0,
         lightAngle: lightAngleForSurface(0),
         portraitOpacity: .92,
-        portraitRotationScale: .14,
+        portraitRotationScale: .42,
         dprCap: 1.75,
         autoPause: false,
         zIndex: 5,
@@ -5397,10 +5594,17 @@
         }
       });
       if (moonRenderer) {
-        moonRenderer.ready.then((portraitReady) => {
+        const activateMoonPortrait = async () => {
+          if (moonPortraitSource && !moonPortraitSource.complete) {
+            try { await moonPortraitSource.decode(); } catch (_) {}
+          }
+          const portraitReady = moonPortraitSource
+            ? await moonRenderer.setPortrait(moonPortraitSource)
+            : false;
           moonObject.classList.toggle('is-webgl-ready', Boolean(portraitReady));
           setMoonAngle(surfaceAngle, { animate: false, announce: false });
-        });
+        };
+        activateMoonPortrait();
       }
     }
 
@@ -5408,6 +5612,7 @@
     const bsideSummary = bsideDetails?.querySelector('summary');
     const bsideMoonObject = document.querySelector('.bside-moon-object');
     const bsideMoonCanvas = bsideMoonObject?.querySelector('.moon-webgl');
+    const bsideMoonPortraitSource = bsideMoonObject?.querySelector('.moon-portrait');
     let bsideMoonRenderer = null;
     let bsideMoonAngle = 18;
     let bsidePointerStart = 0;
@@ -5436,25 +5641,31 @@
       requestAnimationFrame(frame);
     }
 
-    if (window.MoonSphere && bsideMoonObject && bsideMoonCanvas && !reduceMotion) {
+    if (window.MoonSphere && bsideMoonObject && bsideMoonCanvas) {
       bsideMoonRenderer = window.MoonSphere.create({
         host: bsideMoonObject,
         canvas: bsideMoonCanvas,
-        portrait: 'assets/vitality/moon-field-portrait.jpg',
         surfaceAngle: bsideMoonAngle * Math.PI / 180,
         lightAngle: lightAngleForSurface(bsideMoonAngle),
         portraitOpacity: .92,
-        portraitRotationScale: .14,
+        portraitRotationScale: .42,
         dprCap: 1.6,
         autoPause: true,
         zIndex: 5,
         onContextLost: () => bsideMoonObject.classList.remove('is-webgl-ready'),
         onContextRestored: (controller) => bsideMoonObject.classList.toggle('is-webgl-ready', Boolean(controller.getState().hasPortrait))
       });
-      bsideMoonRenderer?.ready.then((portraitReady) => {
+      const activateBsidePortrait = async () => {
+        if (bsideMoonPortraitSource && !bsideMoonPortraitSource.complete) {
+          try { await bsideMoonPortraitSource.decode(); } catch (_) {}
+        }
+        const portraitReady = bsideMoonPortraitSource
+          ? await bsideMoonRenderer.setPortrait(bsideMoonPortraitSource)
+          : false;
         bsideMoonObject.classList.toggle('is-webgl-ready', Boolean(portraitReady));
         setBsideMoonAngle(bsideMoonAngle);
-      });
+      };
+      activateBsidePortrait();
     }
 
     bsideMoonObject?.addEventListener('pointerdown', (event) => {
