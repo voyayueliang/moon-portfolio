@@ -5084,6 +5084,115 @@
         font-size: clamp(44px, 13vw, 58px);
       }
     }
+
+    /* Project navigator v2 — one control surface, compact evidence bridge. */
+    .site-nav--projects a { position: relative; min-width: 0; }
+    .site-header .brand { flex: 0 0 auto; white-space: nowrap; }
+    .site-header .header-right { min-width: 0; }
+    .site-nav--projects { gap: clamp(14px,1.65vw,24px) !important; }
+    .site-nav--projects a b {
+      font: inherit;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .site-nav--projects a.is-active { color: var(--cobalt); }
+    .site-nav--projects a.is-active::after { right: 0; }
+
+    .project-preview-strip {
+      scroll-margin-top: 64px;
+      color: var(--cobalt-deep);
+      background: var(--canvas-raised);
+      border-block: 1px solid rgba(31,62,197,.24);
+    }
+    .project-preview-strip::before {
+      content: "FROM IDENTITY TO EVIDENCE  /  从我是谁，到我做成了什么";
+      display: flex;
+      min-height: 48px;
+      align-items: center;
+      padding-inline: var(--pad);
+      color: #f7f4ec;
+      background: var(--cobalt-deep);
+      font-size: 9px;
+      font-weight: 750;
+      letter-spacing: .12em;
+    }
+    .project-preview-strip__grid {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      width: min(1480px,100%);
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+    .moon-project-axis {
+      position: relative;
+      z-index: 12;
+      width: min(1480px,100%);
+      margin: 0 auto;
+      padding-inline: var(--pad);
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      color: var(--cobalt-deep);
+      background: rgba(245,242,235,.94);
+      border-top: 1px solid rgba(31,62,197,.24);
+      backdrop-filter: blur(8px);
+    }
+    .moon-project-axis .project-preview { min-height: 116px; padding-top: 17px; padding-bottom: 18px; }
+    .moon-project-axis .project-preview h2 { margin: 7px 0 8px; font-size: clamp(22px,1.9vw,29px); }
+    .moon-project-axis .project-preview::after { bottom: 8px; }
+    .project-preview {
+      position: relative;
+      min-width: 0;
+      min-height: 164px;
+      padding: 25px clamp(18px,2.5vw,38px) 22px;
+      color: inherit;
+      text-decoration: none;
+      transition: background .22s ease;
+    }
+    .project-preview + .project-preview { border-left: 1px solid rgba(31,62,197,.22); }
+    .project-preview:hover,
+    .project-preview:focus-visible { background: var(--cobalt-wash); }
+    .project-preview__top { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; }
+    .project-preview__number { color: var(--cobalt-mid); font-size: 9px; font-weight: 800; letter-spacing: .13em; }
+    .project-preview__arrow { font-size: 20px; transition: transform .2s ease; }
+    .project-preview:hover .project-preview__arrow,
+    .project-preview:focus-visible .project-preview__arrow { transform: translateX(5px); }
+    .project-preview h2 { margin: 10px 0 14px; font-family: var(--serif); font-size: clamp(25px,2.2vw,34px); font-weight: 400; line-height: 1.05; }
+    .project-preview p { margin: 4px 0 0; color: var(--body-ink); font-size: 9px; line-height: 1.55; }
+    .project-preview p b { color: var(--cobalt); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .project-preview::after { content: ""; position: absolute; left: clamp(18px,2.5vw,38px); bottom: 15px; width: 36px; height: 3px; background: var(--acid); }
+
+    @media (max-width: 980px) {
+      .site-nav--projects a small { display: none; }
+      .project-preview-strip__grid { grid-template-columns: 1fr; padding-inline: 0; }
+      .project-preview { min-height: 126px; padding-inline: 20px; }
+      .project-preview + .project-preview { border-top: 1px solid rgba(31,62,197,.22); border-left: 0; }
+      .project-preview::after { left: 20px; }
+      .moon-project-axis { grid-template-columns: repeat(3,minmax(0,1fr)); padding-inline: 0; }
+      .moon-project-axis .project-preview { min-height: 108px; padding: 15px 12px 17px; }
+      .moon-project-axis .project-preview + .project-preview { border-top: 0; border-left: 1px solid rgba(31,62,197,.22); }
+      .moon-project-axis .project-preview h2 { font-size: 21px; }
+      .moon-project-axis .project-preview p { display: none; }
+      .moon-project-axis .project-preview::after { left: 12px; }
+    }
+    @media (max-width: 680px) {
+      .header-right { width: 216px; }
+      .role-mini-nav { width: 216px; grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .role-mini-link:nth-child(1) .mini-label::after { content: "创造者生态"; }
+      .role-mini-link:nth-child(2) .mini-label::after { content: "人物叙事"; }
+      .role-mini-link:nth-child(3) .mini-label::after { content: "AI 工作流"; }
+      .project-preview-strip::before { min-height: 46px; padding-inline: 20px; font-size: 7px; letter-spacing: .06em; }
+      .project-preview h2 { font-size: 28px; }
+      .project-preview p { font-size: 9px; }
+      .moon-project-axis {
+        grid-template-columns: 1fr;
+        background: var(--canvas-raised);
+        backdrop-filter: none;
+      }
+      .moon-project-axis .project-preview { min-height: 84px; padding: 13px 20px 15px; }
+      .moon-project-axis .project-preview + .project-preview { border-top: 1px solid rgba(31,62,197,.22); border-left: 0; }
+      .moon-project-axis .project-preview h2 { margin: 4px 0 0; font-size: 24px; }
+      .moon-project-axis .project-preview::after { left: 20px; bottom: 7px; }
+    }
   </style>
 </head>
 <body class="lunar-home">
@@ -5092,17 +5201,15 @@
     <div class="inner wrap">
       <a class="brand" href="#top"><span>月亮</span><i>/</i><span>MOON</span></a>
       <div class="header-right">
-        <nav class="site-nav" aria-label="项目导航">
-          <a href="#proof">项目发现</a>
-          <a href="#ecosystem">创业者生态</a>
-          <a href="#workflow">AI 工作流</a>
-          <a href="#story">叙事与内容</a>
+        <nav class="site-nav site-nav--projects" aria-label="作品方向导航">
+          <a href="#ecosystem" data-project-nav="ecosystem"><b>01 创造者生态</b></a>
+          <a href="#story" data-project-nav="story"><b>02 人物与生态叙事</b></a>
+          <a href="#workflow" data-project-nav="workflow"><b>03 AI Workflow</b></a>
         </nav>
-        <nav class="role-mini-nav" aria-label="月相导航">
-          <a class="role-mini-link" href="#proof" data-role="observer" aria-label="看见，项目发现"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">看见 / 项目发现</span></a>
-          <a class="role-mini-link" href="#ecosystem" data-role="connector" aria-label="连接，创业者生态"><span class="mini-orb mini-orb--half" aria-hidden="true"></span><span class="mini-label">连接 / 创业者生态</span></a>
-          <a class="role-mini-link" href="#workflow" data-role="builder" aria-label="搭建，AI 工作流"><span class="mini-orb mini-orb--gibbous" aria-hidden="true"></span><span class="mini-label">搭建 / AI 工作流</span></a>
-          <a class="role-mini-link" href="#story" data-role="storyteller" aria-label="讲述，叙事与内容"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">讲述 / 叙事与内容</span></a>
+        <nav class="role-mini-nav" aria-label="作品方向快捷导航">
+          <a class="role-mini-link" href="#ecosystem" data-role="connector" aria-label="创造者生态"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">01 / 创造者生态</span></a>
+          <a class="role-mini-link" href="#story" data-role="storyteller" aria-label="人物与生态叙事"><span class="mini-orb mini-orb--half" aria-hidden="true"></span><span class="mini-label">02 / 人物与生态叙事</span></a>
+          <a class="role-mini-link" href="#workflow" data-role="builder" aria-label="AI Workflow"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">03 / AI Workflow</span></a>
         </nav>
       </div>
     </div>
@@ -5142,88 +5249,23 @@
         </div>
       </div>
 
-      <div class="moon-story-axis wrap" aria-label="Becoming Emerging Booming 个人叙事轴">
-        <div><b>Becoming</b><span>我如何成为今天的我</span><small>大理田野 · AI 创新教育</small></div>
-        <div><b>Emerging</b><span>我看见什么正在出现</span><small>年轻创造者 · 非共识变化</small></div>
-        <div><b>Booming</b><span>我如何参与它继续生长</span><small>创业者生态 · NOW / Vitality Studio</small></div>
+      <div class="moon-project-axis" id="proof" aria-label="作品方向与案例索引">
+        <a class="project-preview" href="#ecosystem">
+          <div class="project-preview__top"><span class="project-preview__number">01 / CREATOR ECOSYSTEM</span><span class="project-preview__arrow">→</span></div>
+          <h2>创造者生态</h2>
+          <p><b>Works</b>｜社群搭建 · 创造者田野</p>
+        </a>
+        <a class="project-preview" href="#story">
+          <div class="project-preview__top"><span class="project-preview__number">02 / STORYTELLING</span><span class="project-preview__arrow">→</span></div>
+          <h2>人物与生态叙事</h2>
+          <p><b>Works</b>｜人物深访 · Builder 观察 · 生态报道</p>
+        </a>
+        <a class="project-preview" href="#workflow">
+          <div class="project-preview__top"><span class="project-preview__number">03 / AI WORKFLOW</span><span class="project-preview__arrow">→</span></div>
+          <h2>AI Workflow</h2>
+          <p><b>Works</b>｜内容策展 · 内容生产 · 行业研究</p>
+        </a>
       </div>
-    </section>
-
-    <section class="proof-index proof-index--compact" id="proof" data-role-section="none" aria-labelledby="proof-title">
-      <header class="proof-compact-head wrap reveal">
-        <p class="proof-compact-folio">Page 02 / Proof Index</p>
-        <h2 id="proof-title">What I Build</h2>
-        <p>围绕 AI 创业者、创造者与新技术，我积累了三类可核对的实践。</p>
-      </header>
-
-      <div class="proof-compact-grid">
-        <article class="proof-compact-column proof-compact-column--founder" id="proof-ecosystem">
-          <header>
-            <p class="proof-compact-kicker"><span>01</span> Founder Ecosystem</p>
-            <h3>创业者与创造者生态</h3>
-          </header>
-          <p class="proof-compact-statement">100+ 天，从 0 到 1 聚拢 400+ AI 创造者与创业者；项目期累计连接与触达近 500 人。</p>
-          <dl class="proof-scale-grid" aria-label="创业者生态代表数据">
-            <div><dt>0→1</dt><dd>2025.03 发起</dd></div>
-            <div><dt>100+</dt><dd>天·完成冷启动</dd></div>
-            <div><dt>400+</dt><dd>社群创造者</dd></div>
-            <div class="proof-scale-primary"><dt>近500</dt><dd>项目期累计触达</dd></div>
-          </dl>
-          <a class="proof-photo-strip" href="#ecosystem" aria-label="查看超级个体实验室案例">
-            <img src="assets/vitality/researcher-party-group.jpg" alt="超级个体实验室与 Research AI+、Datawhale、AI Nexus 的活动合影" width="1600" height="900" loading="lazy" decoding="async" />
-          </a>
-          <p class="proof-compact-meta"><strong>旗舰现场</strong>｜限额 60 → 170+ 报名 · 近百到场 · 9 个圆桌<br />3 场公开可追溯跨界客厅 · Research AI+ × Datawhale × AI Nexus</p>
-          <a class="proof-compact-cta" href="#ecosystem">超级个体实验室 <span>→</span></a>
-        </article>
-
-        <article class="proof-compact-column proof-compact-column--story" id="proof-storytelling">
-          <header>
-            <p class="proof-compact-kicker"><span>02</span> Storytelling</p>
-            <h3>叙事与内容</h3>
-          </header>
-          <p class="proof-compact-statement">通过研究与深访，把复杂的人、技术与变化讲清楚。</p>
-          <div class="proof-cover-row" aria-label="三个代表叙事栏目">
-            <article class="proof-cover-entry">
-              <a class="proof-cover-entry__visual" href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer" aria-label="收听 Becoming 计划播客"><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划作品封面" width="1080" height="1528" loading="lazy" decoding="async" /></a>
-              <div class="proof-cover-entry__footer"><span>Becoming 计划</span><span class="proof-cover-entry__links"><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">播客 ↗</a><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer">公众号 ↗</a></span></div>
-            </article>
-            <a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer">
-              <img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" />
-              <span>观猹人物</span>
-            </a>
-            <a href="https://mp.weixin.qq.com/s/_Vo3S7n-lxPJEm0pkWbSXg" target="_blank" rel="noreferrer">
-              <img src="assets/covers/amd-datawhale.webp" alt="Datawhale 与 AMD 开发者现场长文封面" width="1080" height="720" loading="lazy" decoding="async" />
-              <span>开发者生态</span>
-            </a>
-          </div>
-          <p class="proof-compact-meta">2—3 轮深访 · 公开成稿 · 开发者现场采写</p>
-          <a class="proof-compact-cta" href="#story">View Stories <span>→</span></a>
-        </article>
-
-        <article class="proof-compact-column proof-compact-column--workflow" id="proof-workflow">
-          <header>
-            <p class="proof-compact-kicker"><span>03</span> AI Workflow</p>
-            <h3>AI 工作流</h3>
-          </header>
-          <p class="proof-compact-statement">把研究、知识管理与内容生产整理成可复用的 AI 工作流。</p>
-          <div class="proof-workflow-list" aria-label="三项代表 AI 工作流">
-            <a class="proof-workflow-feature" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">
-              <span class="proof-workflow-preview" aria-hidden="true"><img src="assets/feishu/voice-ai-map-highres.png" alt="" width="2940" height="1506" loading="lazy" decoding="async" /></span>
-              <b>Voice AI 人物图谱</b>
-            </a>
-            <a class="proof-workflow-line" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">
-              <b>AI 内容工作台</b><span>Research · Fact-check · Editorial</span>
-            </a>
-            <a class="proof-workflow-line" href="#workflow">
-              <b>AI 创造者观察编辑器</b><span>7 天真实试用 · 人工确认</span>
-            </a>
-          </div>
-          <p class="proof-compact-meta">部分 Workflow / Skills 已公开于 GitHub。</p>
-          <a class="proof-compact-cta" href="#workflow">Explore Workflow <span>→</span></a>
-        </article>
-      </div>
-
-      <footer class="proof-compact-transition wrap reveal">发现人 · 建立关系 · 沉淀内容 · 持续运营 · 形成复利</footer>
     </section>
 
     <section class="ecosystem-flagship narrative-act" id="ecosystem" data-role-section="connector" aria-labelledby="ecosystem-title">
@@ -5606,6 +5648,12 @@
     const moonTexture = document.querySelector('.moon-texture');
     const miniLinks = [...document.querySelectorAll('.role-mini-link[data-role]')];
     const roleSections = [...document.querySelectorAll('[data-role-section]')];
+    const projectLinks = [...document.querySelectorAll('[data-project-nav]')];
+    const projectSections = [
+      { key: 'ecosystem', node: document.querySelector('#ecosystem') },
+      { key: 'story', node: document.querySelector('#story') },
+      { key: 'workflow', node: document.querySelector('#workflow') }
+    ].filter((item) => item.node);
     const roleTitle = document.querySelector('#role-title');
     const roleTitleEn = document.querySelector('#role-title-en');
     const roleDescription = document.querySelector('#role-description');
@@ -6003,6 +6051,17 @@
       });
       if (role === 'none' || !roleData[role]) role = null;
       setCurrentRole(role);
+
+      let currentProject = null;
+      projectSections.forEach((item) => {
+        if (item.node.getBoundingClientRect().top <= readingLine) currentProject = item.key;
+      });
+      projectLinks.forEach((link) => {
+        const isActive = link.dataset.projectNav === currentProject;
+        link.classList.toggle('is-active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
       progressTicking = false;
     }
 
