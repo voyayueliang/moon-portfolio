@@ -4828,43 +4828,6 @@
       .ending-copy h2 { font-size: clamp(64px, 22vw, 92px); }
     }
 
-    /* Homepage weight pass — darker editorial ink, less interface theatre. */
-    .moon-stage {
-      --cobalt: #18358f;
-      --cobalt-deep: #10265f;
-      --cobalt-mid: #43599f;
-      --body-ink: #354158;
-      --acid: #c4df48;
-    }
-    .moon-stage h1 > span {
-      max-width: 570px;
-      font-size: clamp(46px, 4.35vw, 66px);
-      font-weight: 560;
-      letter-spacing: -.052em;
-    }
-    .moon-stage-intro { font-weight: 440; }
-    .moon-stage-evidence { font-weight: 700; }
-    .moon-stage-evidence span:first-child {
-      text-decoration-thickness: 2px;
-      text-underline-offset: 6px;
-    }
-    .moon-object { width: clamp(440px, min(42.5vw, 63vh), 600px); }
-    .moon-role-copy { border-left-width: 2px; }
-    .moon-control-help {
-      padding: 0 0 4px;
-      color: var(--muted-ink);
-      background: transparent;
-      border: 0;
-      border-bottom: 1px solid rgba(16,38,95,.34);
-      box-shadow: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      font-size: 9px;
-      letter-spacing: .035em;
-    }
-    .moon-control-help > span { font-size: 11px; }
-    .moon-control-help small { display: none; }
-
     /* Mobile editorial edition — recompose the desktop spreads into one
        readable column instead of merely shrinking them. */
     @media (max-width: 620px) {
@@ -5084,110 +5047,6 @@
         font-size: clamp(44px, 13vw, 58px);
       }
     }
-
-    /* Project navigator v2 — one control surface, compact evidence bridge. */
-    .site-nav--projects a {
-      position: relative;
-      display: grid;
-      grid-template-columns: auto;
-      gap: 2px;
-      min-width: 0;
-    }
-    .site-header .brand { flex: 0 0 auto; white-space: nowrap; }
-    .site-header .header-right { min-width: 0; }
-    .site-nav--projects { gap: clamp(14px,1.65vw,24px) !important; }
-    .site-nav--projects a b {
-      font: inherit;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .site-nav--projects a small {
-      position: absolute;
-      z-index: 3;
-      top: 31px;
-      right: 0;
-      max-width: 0;
-      overflow: hidden;
-      padding: 0;
-      color: var(--muted-ink);
-      background: rgba(245,242,235,.97);
-      font-size: 7px;
-      font-weight: 550;
-      line-height: 1.3;
-      white-space: nowrap;
-      opacity: 0;
-      transition: max-width .3s ease, opacity .2s ease, padding .2s ease;
-    }
-    .site-nav--projects a:hover small,
-    .site-nav--projects a:focus-visible small,
-    .site-nav--projects a.is-active small { max-width: 230px; padding: 7px 9px; opacity: 1; }
-    .site-nav--projects a.is-active { color: var(--cobalt); }
-    .site-nav--projects a.is-active::after { right: 0; }
-
-    .project-preview-strip {
-      scroll-margin-top: 64px;
-      color: var(--cobalt-deep);
-      background: var(--canvas-raised);
-      border-block: 1px solid rgba(31,62,197,.24);
-    }
-    .project-preview-strip::before {
-      content: "FROM IDENTITY TO EVIDENCE  /  从我是谁，到我做成了什么";
-      display: flex;
-      min-height: 48px;
-      align-items: center;
-      padding-inline: var(--pad);
-      color: #f7f4ec;
-      background: var(--cobalt-deep);
-      font-size: 9px;
-      font-weight: 750;
-      letter-spacing: .12em;
-    }
-    .project-preview-strip__grid {
-      display: grid;
-      grid-template-columns: repeat(3,minmax(0,1fr));
-      width: min(1480px,100%);
-      margin-inline: auto;
-      padding-inline: var(--pad);
-    }
-    .project-preview {
-      position: relative;
-      min-width: 0;
-      min-height: 164px;
-      padding: 25px clamp(18px,2.5vw,38px) 22px;
-      color: inherit;
-      text-decoration: none;
-      transition: background .22s ease;
-    }
-    .project-preview + .project-preview { border-left: 1px solid rgba(31,62,197,.22); }
-    .project-preview:hover,
-    .project-preview:focus-visible { background: var(--cobalt-wash); }
-    .project-preview__top { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; }
-    .project-preview__number { color: var(--cobalt-mid); font-size: 9px; font-weight: 800; letter-spacing: .13em; }
-    .project-preview__arrow { font-size: 20px; transition: transform .2s ease; }
-    .project-preview:hover .project-preview__arrow,
-    .project-preview:focus-visible .project-preview__arrow { transform: translateX(5px); }
-    .project-preview h2 { margin: 10px 0 14px; font-family: var(--serif); font-size: clamp(25px,2.2vw,34px); font-weight: 400; line-height: 1.05; }
-    .project-preview p { margin: 4px 0 0; color: var(--body-ink); font-size: 9px; line-height: 1.55; }
-    .project-preview p b { color: var(--cobalt); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-    .project-preview::after { content: ""; position: absolute; left: clamp(18px,2.5vw,38px); bottom: 15px; width: 36px; height: 3px; background: var(--acid); }
-
-    @media (max-width: 980px) {
-      .site-nav--projects a small { display: none; }
-      .project-preview-strip__grid { grid-template-columns: 1fr; padding-inline: 0; }
-      .project-preview { min-height: 126px; padding-inline: 20px; }
-      .project-preview + .project-preview { border-top: 1px solid rgba(31,62,197,.22); border-left: 0; }
-      .project-preview::after { left: 20px; }
-    }
-    @media (max-width: 680px) {
-      .header-right { width: 216px; }
-      .role-mini-nav { width: 216px; grid-template-columns: repeat(3,minmax(0,1fr)); }
-      .role-mini-link:nth-child(1) .mini-label::after { content: "实验室"; }
-      .role-mini-link:nth-child(2) .mini-label::after { content: "项目判断"; }
-      .role-mini-link:nth-child(3) .mini-label::after { content: "博物馆"; }
-      .project-preview-strip::before { min-height: 46px; padding-inline: 20px; font-size: 7px; letter-spacing: .06em; }
-      .project-preview h2 { font-size: 28px; }
-      .project-preview p { font-size: 9px; }
-    }
   </style>
 </head>
 <body class="lunar-home">
@@ -5196,15 +5055,17 @@
     <div class="inner wrap">
       <a class="brand" href="#top"><span>月亮</span><i>/</i><span>MOON</span></a>
       <div class="header-right">
-        <nav class="site-nav site-nav--projects" aria-label="代表项目导航">
-          <a href="#ecosystem" data-project-nav="ecosystem"><b>01 超级个体实验室</b><small>项目发起人 · 100+ 天 / 400+ 创造者</small></a>
-          <a href="#story-founders" data-project-nav="discovery"><b>02 项目发现与判断</b><small>田野研究 · 4 期人物稿 / 关系推进</small></a>
-          <a href="#vitality-museum-case" data-project-nav="museum"><b>03 生命力博物馆</b><small>策展与叙事系统 · 67 个项目 / 28 个故事</small></a>
+        <nav class="site-nav" aria-label="项目导航">
+          <a href="#proof">项目发现</a>
+          <a href="#ecosystem">创业者生态</a>
+          <a href="#workflow">AI 工作流</a>
+          <a href="#story">叙事与内容</a>
         </nav>
-        <nav class="role-mini-nav" aria-label="代表项目快捷导航">
-          <a class="role-mini-link" href="#ecosystem" data-role="connector" aria-label="超级个体实验室"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">01 / 超级个体实验室</span></a>
-          <a class="role-mini-link" href="#story-founders" data-role="storyteller" aria-label="项目发现与判断"><span class="mini-orb mini-orb--half" aria-hidden="true"></span><span class="mini-label">02 / 项目发现与判断</span></a>
-          <a class="role-mini-link" href="#vitality-museum-case" data-role="builder" aria-label="生命力博物馆"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">03 / 生命力博物馆</span></a>
+        <nav class="role-mini-nav" aria-label="月相导航">
+          <a class="role-mini-link" href="#proof" data-role="observer" aria-label="看见，项目发现"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">看见 / 项目发现</span></a>
+          <a class="role-mini-link" href="#ecosystem" data-role="connector" aria-label="连接，创业者生态"><span class="mini-orb mini-orb--half" aria-hidden="true"></span><span class="mini-label">连接 / 创业者生态</span></a>
+          <a class="role-mini-link" href="#workflow" data-role="builder" aria-label="搭建，AI 工作流"><span class="mini-orb mini-orb--gibbous" aria-hidden="true"></span><span class="mini-label">搭建 / AI 工作流</span></a>
+          <a class="role-mini-link" href="#story" data-role="storyteller" aria-label="讲述，叙事与内容"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">讲述 / 叙事与内容</span></a>
         </nav>
       </div>
     </div>
@@ -5251,27 +5112,81 @@
       </div>
     </section>
 
-    <section class="project-preview-strip" id="proof" data-role-section="none" aria-label="代表项目预览">
-      <div class="project-preview-strip__grid">
-        <a class="project-preview" href="#ecosystem">
-          <div class="project-preview__top"><span class="project-preview__number">01 / SUPER INDIVIDUAL LAB</span><span class="project-preview__arrow">→</span></div>
-          <h2>超级个体实验室</h2>
-          <p><b>Role</b>｜项目发起人 · 社区与内容体系搭建</p>
-          <p><b>Result</b>｜100+ 天 · 400+ AI 创造者</p>
-        </a>
-        <a class="project-preview" href="#story-founders">
-          <div class="project-preview__top"><span class="project-preview__number">02 / PROJECT DISCOVERY</span><span class="project-preview__arrow">→</span></div>
-          <h2>项目发现与判断</h2>
-          <p><b>Role</b>｜田野研究 · 人物发现 · 关系推进</p>
-          <p><b>Result</b>｜4 期公开人物稿 · 真实关系推进</p>
-        </a>
-        <a class="project-preview" href="#vitality-museum-case">
-          <div class="project-preview__top"><span class="project-preview__number">03 / VITALITY MUSEUM</span><span class="project-preview__arrow">→</span></div>
-          <h2>生命力博物馆</h2>
-          <p><b>Role</b>｜策展 · 叙事系统 · AI-native build</p>
-          <p><b>Result</b>｜67 个项目 · 28 个人物故事</p>
-        </a>
+    <section class="proof-index proof-index--compact" id="proof" data-role-section="none" aria-labelledby="proof-title">
+      <header class="proof-compact-head wrap reveal">
+        <p class="proof-compact-folio">Page 02 / Proof Index</p>
+        <h2 id="proof-title">What I Build</h2>
+        <p>围绕 AI 创业者、创造者与新技术，我积累了三类可核对的实践。</p>
+      </header>
+
+      <div class="proof-compact-grid">
+        <article class="proof-compact-column proof-compact-column--founder" id="proof-ecosystem">
+          <header>
+            <p class="proof-compact-kicker"><span>01</span> Founder Ecosystem</p>
+            <h3>创业者与创造者生态</h3>
+          </header>
+          <p class="proof-compact-statement">100+ 天，从 0 到 1 聚拢 400+ AI 创造者与创业者；项目期累计连接与触达近 500 人。</p>
+          <dl class="proof-scale-grid" aria-label="创业者生态代表数据">
+            <div><dt>0→1</dt><dd>2025.03 发起</dd></div>
+            <div><dt>100+</dt><dd>天·完成冷启动</dd></div>
+            <div><dt>400+</dt><dd>社群创造者</dd></div>
+            <div class="proof-scale-primary"><dt>近500</dt><dd>项目期累计触达</dd></div>
+          </dl>
+          <a class="proof-photo-strip" href="#ecosystem" aria-label="查看超级个体实验室案例">
+            <img src="assets/vitality/researcher-party-group.jpg" alt="超级个体实验室与 Research AI+、Datawhale、AI Nexus 的活动合影" width="1600" height="900" loading="lazy" decoding="async" />
+          </a>
+          <p class="proof-compact-meta"><strong>旗舰现场</strong>｜限额 60 → 170+ 报名 · 近百到场 · 9 个圆桌<br />3 场公开可追溯跨界客厅 · Research AI+ × Datawhale × AI Nexus</p>
+          <a class="proof-compact-cta" href="#ecosystem">超级个体实验室 <span>→</span></a>
+        </article>
+
+        <article class="proof-compact-column proof-compact-column--story" id="proof-storytelling">
+          <header>
+            <p class="proof-compact-kicker"><span>02</span> Storytelling</p>
+            <h3>叙事与内容</h3>
+          </header>
+          <p class="proof-compact-statement">通过研究与深访，把复杂的人、技术与变化讲清楚。</p>
+          <div class="proof-cover-row" aria-label="三个代表叙事栏目">
+            <article class="proof-cover-entry">
+              <a class="proof-cover-entry__visual" href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer" aria-label="收听 Becoming 计划播客"><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划作品封面" width="1080" height="1528" loading="lazy" decoding="async" /></a>
+              <div class="proof-cover-entry__footer"><span>Becoming 计划</span><span class="proof-cover-entry__links"><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">播客 ↗</a><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer">公众号 ↗</a></span></div>
+            </article>
+            <a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer">
+              <img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" />
+              <span>观猹人物</span>
+            </a>
+            <a href="https://mp.weixin.qq.com/s/_Vo3S7n-lxPJEm0pkWbSXg" target="_blank" rel="noreferrer">
+              <img src="assets/covers/amd-datawhale.webp" alt="Datawhale 与 AMD 开发者现场长文封面" width="1080" height="720" loading="lazy" decoding="async" />
+              <span>开发者生态</span>
+            </a>
+          </div>
+          <p class="proof-compact-meta">2—3 轮深访 · 公开成稿 · 开发者现场采写</p>
+          <a class="proof-compact-cta" href="#story">View Stories <span>→</span></a>
+        </article>
+
+        <article class="proof-compact-column proof-compact-column--workflow" id="proof-workflow">
+          <header>
+            <p class="proof-compact-kicker"><span>03</span> AI Workflow</p>
+            <h3>AI 工作流</h3>
+          </header>
+          <p class="proof-compact-statement">把研究、知识管理与内容生产整理成可复用的 AI 工作流。</p>
+          <div class="proof-workflow-list" aria-label="三项代表 AI 工作流">
+            <a class="proof-workflow-feature" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">
+              <span class="proof-workflow-preview" aria-hidden="true"><img src="assets/feishu/voice-ai-map-highres.png" alt="" width="2940" height="1506" loading="lazy" decoding="async" /></span>
+              <b>Voice AI 人物图谱</b>
+            </a>
+            <a class="proof-workflow-line" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">
+              <b>AI 内容工作台</b><span>Research · Fact-check · Editorial</span>
+            </a>
+            <a class="proof-workflow-line" href="#workflow">
+              <b>AI 创造者观察编辑器</b><span>7 天真实试用 · 人工确认</span>
+            </a>
+          </div>
+          <p class="proof-compact-meta">部分 Workflow / Skills 已公开于 GitHub。</p>
+          <a class="proof-compact-cta" href="#workflow">Explore Workflow <span>→</span></a>
+        </article>
       </div>
+
+      <footer class="proof-compact-transition wrap reveal">发现人 · 建立关系 · 沉淀内容 · 持续运营 · 形成复利</footer>
     </section>
 
     <section class="ecosystem-flagship narrative-act" id="ecosystem" data-role-section="connector" aria-labelledby="ecosystem-title">
@@ -5654,12 +5569,6 @@
     const moonTexture = document.querySelector('.moon-texture');
     const miniLinks = [...document.querySelectorAll('.role-mini-link[data-role]')];
     const roleSections = [...document.querySelectorAll('[data-role-section]')];
-    const projectLinks = [...document.querySelectorAll('[data-project-nav]')];
-    const projectSections = [
-      { key: 'ecosystem', node: document.querySelector('#ecosystem') },
-      { key: 'discovery', node: document.querySelector('#story-founders') },
-      { key: 'museum', node: document.querySelector('#vitality-museum-case') }
-    ].filter((item) => item.node);
     const roleTitle = document.querySelector('#role-title');
     const roleTitleEn = document.querySelector('#role-title-en');
     const roleDescription = document.querySelector('#role-description');
@@ -6057,17 +5966,6 @@
       });
       if (role === 'none' || !roleData[role]) role = null;
       setCurrentRole(role);
-
-      let currentProject = null;
-      projectSections.forEach((item) => {
-        if (item.node.getBoundingClientRect().top <= readingLine) currentProject = item.key;
-      });
-      projectLinks.forEach((link) => {
-        const isActive = link.dataset.projectNav === currentProject;
-        link.classList.toggle('is-active', isActive);
-        if (isActive) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
       progressTicking = false;
     }
 
