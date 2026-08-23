@@ -3696,6 +3696,55 @@
       .proof-compact-cta span { transition: none; animation: none; }
     }
 
+    /* Creator Fieldwork — three years, three real education sites. */
+    .creator-fieldwork { --field-paper: #eeeae0; position: relative; padding: clamp(72px, 7vw, 104px) 0 clamp(64px, 6vw, 88px); overflow: hidden; background: linear-gradient(rgba(238,234,224,.92), rgba(238,234,224,.92)), url("assets/textures/editorial-paper-folds-v2.png") center / cover; color: #152f7d; border-block: 1px solid rgba(21,47,125,.2); }
+    .creator-fieldwork::before { content: ""; position: absolute; top: 0; right: 8%; width: 1px; height: 100%; background: rgba(21,47,125,.1); transform: rotate(9deg); transform-origin: top; pointer-events: none; }
+    .creator-fieldwork__head { display: grid; grid-template-columns: minmax(0,1fr) minmax(330px,.72fr); gap: clamp(34px,7vw,110px); align-items: end; }
+    .creator-fieldwork__folio { margin: 0 0 14px; color: #6070a3; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .creator-fieldwork h2 { margin: 0; font-family: var(--serif); font-size: clamp(48px,6.2vw,92px); line-height: .94; letter-spacing: -.065em; }
+    .creator-fieldwork h2 small { display: block; margin-top: 18px; font-family: var(--sans); font-size: clamp(18px,1.8vw,27px); font-weight: 700; line-height: 1.25; letter-spacing: -.035em; }
+    .creator-fieldwork__intro { margin: 0; color: #2d3d73; font-size: 14px; line-height: 1.85; }
+    .creator-fieldwork__metrics { display: flex; gap: 24px; margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(21,47,125,.25); }
+    .creator-fieldwork__metrics span { min-width: 76px; color: #53628f; font-size: 9px; line-height: 1.45; letter-spacing: .08em; text-transform: uppercase; }
+    .creator-fieldwork__metrics b { display: block; margin-bottom: 2px; color: #152f7d; font-family: var(--serif); font-size: 30px; font-weight: 700; letter-spacing: -.04em; }
+    .creator-route { position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(20px,3.2vw,50px); margin-top: clamp(42px,4.5vw,60px); }
+    .creator-route::before { content: ""; position: absolute; top: 12px; left: 1.5%; right: 1.5%; height: 1px; background: #152f7d; }
+    .creator-stop { position: relative; padding-top: 34px; }
+    .creator-stop::before { content: ""; position: absolute; z-index: 2; top: 7px; left: 0; width: 11px; height: 11px; border: 1px solid #152f7d; border-radius: 50%; background: var(--field-paper); }
+    .creator-stop__meta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; color: #53628f; font-size: 9px; letter-spacing: .11em; text-transform: uppercase; }
+    .creator-stop__meta b { color: #152f7d; font-family: var(--serif); font-size: 23px; letter-spacing: -.025em; }
+    .creator-stop figure { position: relative; margin: 0; overflow: hidden; background: #152f7d; }
+    .creator-stop figure::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(21,47,125,.24); pointer-events: none; }
+    .creator-stop img { width: 100%; height: clamp(168px,16vw,230px); object-fit: cover; filter: saturate(.72) contrast(1.03); transition: transform .5s ease, filter .5s ease; }
+    .creator-stop:hover img { transform: scale(1.018); filter: saturate(.9) contrast(1.02); }
+    .creator-stop--shanghai img { object-position: center; }
+    .creator-stop--kunshan img { object-position: 52% 46%; }
+    .creator-stop--dali img { object-position: 50% 70%; }
+    .creator-stop h3 { margin: 16px 0 7px; font-family: var(--serif); font-size: clamp(24px,2.3vw,34px); line-height: 1.08; letter-spacing: -.04em; }
+    .creator-stop p { max-width: 94%; margin: 0; color: #344473; font-size: 13px; line-height: 1.72; }
+    .creator-stop__tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+    .creator-stop__tags span { padding: 4px 7px; border: 1px solid rgba(21,47,125,.25); color: #52618c; font-size: 8px; letter-spacing: .06em; text-transform: uppercase; }
+    .creator-fieldwork__closing { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(30px,6vw,92px); margin-top: clamp(30px,3.5vw,48px); padding-top: 18px; border-top: 1px solid rgba(21,47,125,.25); }
+    .creator-fieldwork__closing p { margin: 0; font-family: var(--serif); font-size: clamp(19px,2vw,28px); line-height: 1.5; letter-spacing: -.025em; }
+    .creator-fieldwork__closing small { color: #5b6790; font-size: 10px; line-height: 1.7; letter-spacing: .04em; text-transform: uppercase; }
+
+    @media (max-width: 760px) {
+      .creator-fieldwork { padding-block: 68px 60px; }
+      .creator-fieldwork__head, .creator-fieldwork__closing { grid-template-columns: 1fr; }
+      .creator-fieldwork h2 { font-size: clamp(42px,12vw,53px); }
+      .creator-fieldwork h2 small { font-size: 19px; }
+      .creator-fieldwork__intro { font-size: 13px; }
+      .creator-fieldwork__metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+      .creator-fieldwork__metrics span { min-width: 0; }
+      .creator-route { grid-template-columns: 1fr; gap: 38px; margin-top: 54px; padding-left: 22px; }
+      .creator-route::before { top: 0; bottom: 0; left: 5px; right: auto; width: 1px; height: auto; }
+      .creator-stop { padding-top: 0; }
+      .creator-stop::before { top: 4px; left: -22px; }
+      .creator-stop img { height: min(58vw,255px); }
+      .creator-stop__meta { justify-content: flex-start; }
+      .creator-fieldwork__closing { gap: 16px; }
+    }
+
 
     /* Page 04 / Storytelling — editorial evidence, kept independent from the other sections. */
     .story-editorial {
@@ -4670,7 +4719,7 @@
     .bside-social__platform { font-size: 9px; font-weight: 800; letter-spacing: .08em; }
     .bside-social__account { font-family: var(--serif); font-size: 14px; line-height: 1.5; }
     .bside-social__account a { color: var(--cobalt-deep); text-decoration: none; border-bottom: 1px solid rgba(31,62,197,.28); }
-    .bside-social__account small { display: block; margin-top: 2px; color: #68748a; font-family: var(--sans); font-size: 8px; letter-spacing: .04em; }
+    .bside-social__account--links { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
     .bside-social__hint { color: #68748a; font-size: 8px; letter-spacing: .06em; white-space: nowrap; }
     a.bside-social .bside-social__hint { color: var(--cobalt); transition: transform .2s ease; }
     a.bside-social:hover .bside-social__hint { transform: translate(3px,-2px); }
@@ -5230,7 +5279,7 @@
           <p class="moon-stage-motto"><span>看见正在发生的生命力</span><small>Seeing What’s Emerging</small></p>
           <h1 id="moon-stage-title"><span>一个向 AI 走去的<br />人类学冒险家</span><small>AI Creator Ecosystem · Storytelling · AI Workflow</small></h1>
           <p class="moon-stage-intro">我从深度媒体与大理的人类学田野出发，后来走进 AI 教育、创业孵化器和开发者社区。<br />一路上，我总在靠近那些还没成为共识、但已经开始行动的人和项目。</p>
-          <p class="moon-stage-evidence"><span>0→1 超级个体实验室</span><span>数百人 AI 创造者社群</span><span>7 天营地真实使用</span></p>
+          <p class="moon-stage-evidence"><span>0→1 超级个体实验室</span><span>数百人 AI 创造者社群</span><span>3 年 AI 教育田野</span></p>
         </div>
 
         <div class="moon-playground">
@@ -5341,6 +5390,52 @@
             <p class="ecosystem-map-strip__names">腾讯研究院 · 中信出版·信睿Lab · DIIS<br />WAIC · 2050 · …</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="creator-fieldwork" id="creator-fieldwork" data-role-section="observer" aria-labelledby="creator-fieldwork-title">
+      <div class="wrap">
+        <header class="creator-fieldwork__head reveal">
+          <div>
+            <p class="creator-fieldwork__folio">Creator Fieldwork / 2024—2026</p>
+            <h2 id="creator-fieldwork-title">AI时代的教育新范式探索<small>三年持续进入年轻创造者现场</small></h2>
+          </div>
+          <div>
+            <p class="creator-fieldwork__intro">2024—2026，作为超脑 AI 孵化器核心团队成员，我深度参与 6 个 AI 营地与黑客松，持续跟踪 80+ 名青少年从提出问题、使用 AI，到组队和完成项目原型的创造过程。</p>
+            <div class="creator-fieldwork__metrics" aria-label="AI for Good 创新教育田野核心事实"><span><b>3</b>Years</span><span><b>6</b>Camps &amp;<br />Hackathons</span><span><b>80+</b>Creation<br />Journeys</span></div>
+          </div>
+        </header>
+
+        <div class="creator-route" aria-label="2024 至 2026 三年创新教育现场">
+          <article class="creator-stop creator-stop--shanghai reveal">
+            <div class="creator-stop__meta"><b>2024</b><span>Shanghai · 31.2304°N</span></div>
+            <figure><img src="assets/fieldwork/2024-shanghai-collage.jpg" alt="青少年围绕白板讨论、体验 Vision Pro 并在电脑前制作项目的现场拼图" width="1781" height="1279" loading="lazy" decoding="async" /></figure>
+            <h3>AI Hackathon</h3>
+            <p>学生从自己的兴趣和生活问题出发，找到伙伴、组队制作，再根据导师反馈继续修改。我们尝试把一次 AI 学习，推到从想法走向项目原型的完整过程。</p>
+            <div class="creator-stop__tags"><span>AI Games</span><span>VR / Vision Pro</span><span>Prototype</span></div>
+          </article>
+
+          <article class="creator-stop creator-stop--kunshan reveal">
+            <div class="creator-stop__meta"><b>2025</b><span>Kunshan · 31.3846°N</span></div>
+            <figure><img src="assets/fieldwork/2025-kunshan-night.jpg" alt="共居社区夜间对谈与共同记录现场" width="1440" height="1080" loading="lazy" decoding="async" /></figure>
+            <h3>Co-living Hackathon</h3>
+            <p>学生住进同一个社区，在共同生活和密集交流中找伙伴、组队、制作、讨论与修改。我们开始观察，空间、同伴和社区关系会怎样影响创造发生。</p>
+            <div class="creator-stop__tags"><span>Co-living</span><span>Community</span><span>Hackathon</span></div>
+          </article>
+
+          <article class="creator-stop creator-stop--dali reveal">
+            <div class="creator-stop__meta"><b>2026</b><span>Dali · 25.6065°N</span></div>
+            <figure><img src="assets/fieldwork/2026-dali-students.jpg" alt="大理 AI for Good 营地学生结营合影" width="1800" height="1350" loading="lazy" decoding="async" /></figure>
+            <h3>AI for Good</h3>
+            <p>学生先访谈真实案主，理解具体需求，再定义问题、组队和制作原型。创造由此进入日常生活与社会问题，也开始接受真实反馈。</p>
+            <div class="creator-stop__tags"><span>Real Needs</span><span>Fieldwork</span><span>AI for Good</span></div>
+          </article>
+        </div>
+
+        <footer class="creator-fieldwork__closing reveal">
+          <small>Participate &amp; Build / Observe<br />在共同做事的过程中观察</small>
+          <p>我对早期创造者的兴趣，并不是从一个人成为 Founder 之后才开始。我一直在更早的现场，观察他们如何开始创造，也参与搭建让创造发生的条件。</p>
+        </footer>
       </div>
     </section>
 
@@ -5504,7 +5599,7 @@
               <p>离开屏幕和现场之后，我也会走向山里、户外和路上。<br />徒步、雪山、旅行与在地观察，让我重新校准节奏，也提醒我保持对世界的好奇、耐心与感受力。</p>
               <nav class="bside-socials" aria-label="月亮的播客与社交媒体">
                 <p class="bside-socials__title">Listen &amp; Follow / 继续相遇</p>
-                <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗</a><small><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">Becoming计划 ↗</a></small></span><span class="bside-social__hint">小宇宙</span></div>
+                <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account bside-social__account--links"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗</a><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">Becoming计划 ↗</a></span><span class="bside-social__hint">小宇宙</span></div>
                 <div class="bside-social"><span class="bside-social__platform">小红书</span><span class="bside-social__account">@流浪月亮计划</span><span class="bside-social__hint">小红书号 2893937787</span></div>
                 <div class="bside-social"><span class="bside-social__platform">公众号</span><span class="bside-social__account">流浪月亮计划</span><span class="bside-social__hint">微信内搜索</span></div>
               </nav>
