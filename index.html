@@ -5199,11 +5199,13 @@
       .moon-project-axis .project-preview::after { left: 12px; }
     }
     @media (max-width: 680px) {
-      .header-right { width: 216px; }
-      .role-mini-nav { width: 216px; grid-template-columns: repeat(3,minmax(0,1fr)); }
-      .role-mini-link:nth-child(1) .mini-label::after { content: "创造者生态"; }
-      .role-mini-link:nth-child(2) .mini-label::after { content: "人物叙事"; }
-      .role-mini-link:nth-child(3) .mini-label::after { content: "AI 工作流"; }
+      .header-right { right: 12px; width: 180px; }
+      .role-mini-nav { width: 180px; grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .role-mini-link:nth-child(1) .mini-label::after { content: "生态"; }
+      .role-mini-link:nth-child(2) .mini-label::after { content: "人物"; }
+      .role-mini-link:nth-child(3) .mini-label::after { content: "工作流"; }
+      .moon-stage-intro { max-width: 100%; overflow-wrap: anywhere; }
+      .moon-stage-intro br { display: none; }
       .project-preview-strip::before { min-height: 46px; padding-inline: 20px; font-size: 7px; letter-spacing: .06em; }
       .project-preview h2 { font-size: 28px; }
       .project-preview p { font-size: 9px; }
