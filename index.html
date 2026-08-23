@@ -5720,10 +5720,8 @@
       return (42 + Math.sin(normalizeAngle(angle) * Math.PI / 180) * 24) * Math.PI / 180;
     }
 
-    function fallbackShadowForLight(lightAngle) {
-      const illumination = (1 + Math.cos(lightAngle)) * .5;
-      const side = Math.sin(lightAngle) >= 0 ? -1 : 1;
-      return side * illumination * 118;
+    function visibleShadowShift(angle) {
+      return Math.sin(normalizeAngle(angle) * Math.PI / 180) * 48;
     }
 
     function renderRoleContent(role, animate = true, announce = true) {
@@ -5752,7 +5750,7 @@
       const anchor = nearestAnchor(surfaceAngle);
       const anchorVisible = anchor.distance <= anchorRevealDistance;
 
-      moonStage?.style.setProperty('--phase-shadow', `${fallbackShadowForLight(lightAngle).toFixed(2)}%`);
+      moonStage?.style.setProperty('--phase-shadow', `${visibleShadowShift(surfaceAngle).toFixed(2)}%`);
       moonStage?.style.setProperty('--moon-texture-rotate', `${(surfaceAngle * .42).toFixed(2)}deg`);
       moonStage?.style.setProperty('--portrait-drag-rotate', `${(Math.sin(surfaceAngle * Math.PI / 180) * 14).toFixed(2)}deg`);
       moonStage?.style.setProperty('--portrait-drag-x', `${(Math.sin(surfaceAngle * Math.PI / 180) * -7).toFixed(2)}%`);
@@ -5971,7 +5969,7 @@
     function setBsideMoonAngle(angle) {
       bsideMoonAngle = normalizeAngle(angle);
       const lightAngle = lightAngleForSurface(bsideMoonAngle);
-      bsideMoonObject?.style.setProperty('--phase-shadow', `${fallbackShadowForLight(lightAngle).toFixed(2)}%`);
+      bsideMoonObject?.style.setProperty('--phase-shadow', `${visibleShadowShift(bsideMoonAngle).toFixed(2)}%`);
       bsideMoonRenderer?.setState({ surfaceAngle: bsideMoonAngle * Math.PI / 180, lightAngle });
     }
 
