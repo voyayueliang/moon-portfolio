@@ -1621,6 +1621,7 @@
       z-index: 2;
       width: clamp(440px, min(52vw, 68vh), 660px);
       aspect-ratio: 1;
+      overflow: hidden;
       border-radius: 50%;
       cursor: grab;
       touch-action: pan-y;
@@ -1689,7 +1690,7 @@
     .moon-object.is-dragging .moon-texture { transition: none; }
     .moon-shadow {
       position: absolute;
-      z-index: 2;
+      z-index: 6;
       inset: -1px;
       border-radius: 50%;
       background: linear-gradient(90deg,rgba(7,18,66,.84) 0%,rgba(18,39,121,.66) 34%,rgba(28,53,145,.12) 72%,transparent 100%);
@@ -1700,7 +1701,7 @@
     .moon-object.is-dragging .moon-shadow { transition: none; }
     .moon-rim {
       position: absolute;
-      z-index: 3;
+      z-index: 7;
       inset: 0;
       border: 1px solid rgba(231,235,255,.38);
       border-radius: 50%;
@@ -4648,7 +4649,7 @@
     .bside-trigger-copy { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; transition: transform .4s cubic-bezier(.22,1,.36,1); }
     .bside-trigger-copy b { font-family: var(--serif); font-size: clamp(22px,2.3vw,32px); font-weight: 600; letter-spacing: -.025em; }
     .bside-trigger-copy em { color: #68748a; font-size: 8px; font-style: normal; letter-spacing: .13em; text-transform: uppercase; }
-    .bside-moon-object { --phase-shadow: 26%; position: relative; width: clamp(210px,20vw,280px); aspect-ratio: 1; border-radius: 50%; cursor: grab; touch-action: pan-y; user-select: none; transform: rotate(-2deg); transition: transform .7s cubic-bezier(.22,1,.36,1), filter .5s ease; }
+    .bside-moon-object { --phase-shadow: 26%; position: relative; width: clamp(210px,20vw,280px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; cursor: grab; touch-action: pan-y; user-select: none; transform: rotate(-2deg); transition: transform .7s cubic-bezier(.22,1,.36,1), filter .5s ease; }
     .bside-moon-object .moon-sphere { box-shadow: 0 0 0 1px rgba(31,62,197,.2), 0 18px 46px rgba(52,72,143,.17), inset -28px -30px 70px rgba(62,77,143,.2), inset 18px 16px 48px rgba(255,255,255,.22); }
     .bside-moon-object .moon-portrait { opacity: .86; object-position: 50% 56%; }
     .bside-moon-object .moon-texture { opacity: .09; }
@@ -5259,10 +5260,10 @@
             <span class="moon-sphere" aria-hidden="true">
               <img class="moon-portrait" src="assets/vitality/moon-field-portrait.jpg" alt="" width="933" height="1400" loading="eager" decoding="async" fetchpriority="high" />
               <span class="moon-texture"></span>
-              <span class="moon-shadow"></span>
-              <span class="moon-rim"></span>
             </span>
             <canvas class="moon-webgl" aria-hidden="true"></canvas>
+            <span class="moon-shadow" aria-hidden="true"></span>
+            <span class="moon-rim" aria-hidden="true"></span>
           </div>
           <article class="moon-role-copy" aria-live="polite" aria-atomic="true">
             <p class="moon-role-title-en" id="role-title-en">Observer</p>
@@ -5505,9 +5506,10 @@
             <span class="bside-moon-object" role="img" aria-label="点击或轻拖月球，打开月球背面">
               <span class="moon-sphere" aria-hidden="true">
                 <img class="moon-portrait" src="assets/vitality/moon-field-portrait.jpg" alt="" width="933" height="1400" loading="lazy" decoding="async" />
-                <span class="moon-texture"></span><span class="moon-shadow"></span><span class="moon-rim"></span>
+                <span class="moon-texture"></span>
               </span>
               <canvas class="moon-webgl" aria-hidden="true"></canvas>
+              <span class="moon-shadow" aria-hidden="true"></span><span class="moon-rim" aria-hidden="true"></span>
               <img class="bside-moon-reverse" src="assets/outdoor/moon-highland-portrait.jpg" alt="" loading="lazy" decoding="async" />
               <span class="bside-moon-darkness" aria-hidden="true"></span>
             </span>
