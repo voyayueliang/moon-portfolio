@@ -2293,11 +2293,11 @@
       pointer-events: none;
       transition: opacity .36s ease;
     }
-    /* Only replace the photo fallback after WebGL confirms that the portrait
-       texture is present. If texture upload fails or the context is restored
-       without it, the real photo remains visible instead of a blank moon. */
+    /* Keep the CSS moon underneath the WebGL layer even after initialization.
+       Mobile browsers can silently discard a composited canvas without firing
+       webglcontextlost; the persistent fallback prevents a blank/plain disc. */
     .moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-webgl { opacity: 1; }
-    .moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 0; }
+    .moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 1; }
 
     .moon-role-copy {
       grid-area: auto;
@@ -4655,7 +4655,7 @@
     .bside-moon-object .moon-rim { border-color: rgba(31,62,197,.22); }
     .bside-moon-object .moon-webgl { opacity: 0; }
     .bside-moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-webgl { opacity: 1; }
-    .bside-moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 0; }
+    .bside-moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 1; }
     .bside-moon-reverse { position: absolute; z-index: 7; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; border-radius: 50%; opacity: 0; filter: saturate(.86) contrast(.98) brightness(.98); transform: scale(1.08) rotate(-5deg); transition: opacity .72s ease .2s, transform 1s cubic-bezier(.22,1,.36,1), filter .9s ease; pointer-events: none; }
     .bside-moon-darkness { position: absolute; z-index: 8; inset: -1px; border-radius: 50%; opacity: 0; background: linear-gradient(118deg,rgba(255,244,222,.18),transparent 46%,rgba(69,85,131,.08)); box-shadow: inset -10px -8px 30px rgba(52,68,116,.1), 0 20px 46px rgba(56,72,116,.13); transition: opacity .8s ease; pointer-events: none; }
     .moon-bside[open] .bside-moon-object .moon-webgl { opacity: 0; }
@@ -5001,19 +5001,43 @@
       .story-v4__people-links a:nth-child(3) { min-height: 0; padding: 12px 0; border-left: 0; }
 
       .workflow-systems { padding-block: 62px 68px; }
-      .workflow-systems__head { gap: 22px; margin-bottom: 40px; }
+      .workflow-systems__head {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 40px;
+      }
       .workflow-systems__head h2 { font-size: clamp(48px, 15vw, 62px); }
       .workflow-systems__intro { font-size: 18px; line-height: 1.55; }
-      .workflow-primary { padding: 24px 15px 29px; box-shadow: 6px 6px 0 var(--acid); }
+      .workflow-primary {
+        width: 100%;
+        min-width: 0;
+        padding: 24px 15px 29px;
+        box-shadow: 6px 6px 0 var(--acid);
+      }
       .workflow-primary--compact .workflow-primary__head h3 { font-size: 35px; }
       .workflow-primary--compact .workflow-primary__thesis { font-size: 17px; }
-      .workflow-compact { gap: 26px; }
+      .workflow-compact {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "copy" "visual";
+        width: 100%;
+        min-width: 0;
+        gap: 26px;
+      }
       .workflow-compact__copy > p { font-size: 16px; }
+      .system-case--featured {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+      }
+      .system-case--featured > * { min-width: 0; }
       .workflow-supplements { margin-top: 56px; }
       .workflow-supplements__headline { font-size: 34px; }
 
       .talks-public { padding-block: 62px 68px; }
-      .talks-public__head h2 { font-size: clamp(46px, 14.5vw, 60px); }
+      .talks-public__head, .talks-public__head > * { min-width: 0; }
+      .talks-public__head h2 { max-width: 100%; font-size: clamp(42px, 13.5vw, 52px); overflow-wrap: anywhere; }
       .talks-public__intro { font-size: 17px; }
       .talks-public__lead,
       .talks-public__slice,
@@ -6022,6 +6046,17 @@
       if (bsideDetails.open) window.setTimeout(() => bsideDetails.querySelector('.bside-panel')?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }), 160);
     });
     setBsideMoonAngle(bsideMoonAngle);
+
+    function refreshMoonRenderers() {
+      moonRenderer?.resize();
+      moonRenderer?.render();
+      bsideMoonRenderer?.resize();
+      bsideMoonRenderer?.render();
+    }
+    window.addEventListener('pageshow', refreshMoonRenderers);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') requestAnimationFrame(refreshMoonRenderers);
+    });
 
     function setCurrentRole(role) {
       if (role === currentRole) return;
