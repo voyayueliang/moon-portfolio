@@ -1391,7 +1391,6 @@
 
     /* Single interactive moon stage */
     .moon-stage {
-      --phase-shadow: -24%;
       --moon-rest-x: 26px;
       --moon-rest-y: -18px;
       --moon-rest-rotate: -7deg;
@@ -1427,28 +1426,24 @@
       transition: opacity .4s ease, transform .65s cubic-bezier(.22,1,.36,1);
     }
     .moon-stage[data-active-role="observer"] {
-      --phase-shadow: -24%;
       --moon-rest-x: 26px;
       --moon-rest-y: -18px;
       --moon-rest-rotate: -7deg;
       --portrait-rest-rotate: 7deg;
     }
     .moon-stage[data-active-role="connector"] {
-      --phase-shadow: -53%;
       --moon-rest-x: -24px;
       --moon-rest-y: 14px;
       --moon-rest-rotate: 16deg;
       --portrait-rest-rotate: -16deg;
     }
     .moon-stage[data-active-role="builder"] {
-      --phase-shadow: -82%;
       --moon-rest-x: 18px;
       --moon-rest-y: 24px;
       --moon-rest-rotate: 39deg;
       --portrait-rest-rotate: -39deg;
     }
     .moon-stage[data-active-role="storyteller"] {
-      --phase-shadow: -118%;
       --moon-rest-x: -18px;
       --moon-rest-y: -8px;
       --moon-rest-rotate: 68deg;
@@ -1688,17 +1683,6 @@
     }
     .moon-object.is-dragging .moon-portrait,
     .moon-object.is-dragging .moon-texture { transition: none; }
-    .moon-shadow {
-      position: absolute;
-      z-index: 6;
-      inset: -1px;
-      border-radius: 50%;
-      background: linear-gradient(90deg,rgba(7,18,66,.84) 0%,rgba(18,39,121,.66) 34%,rgba(28,53,145,.12) 72%,transparent 100%);
-      box-shadow: inset -24px 0 46px rgba(7,18,66,.28);
-      transform: translateX(var(--phase-shadow));
-      transition: transform .68s cubic-bezier(.22,1,.36,1);
-    }
-    .moon-object.is-dragging .moon-shadow { transition: none; }
     .moon-rim {
       position: absolute;
       z-index: 7;
@@ -2000,10 +1984,6 @@
       mix-blend-mode: normal;
     }
     .moon-texture { opacity: .3; mix-blend-mode: multiply; }
-    .moon-shadow {
-      background: linear-gradient(90deg,rgba(10,25,86,.82) 0%,rgba(23,45,132,.6) 35%,rgba(31,62,197,.1) 72%,transparent 100%);
-      box-shadow: inset -24px 0 46px rgba(10,25,86,.3);
-    }
     .moon-rim {
       border-color: rgba(31, 62, 197, .48);
       box-shadow:
@@ -3703,7 +3683,6 @@
       .moon-orbit,
       .moon-object,
       .moon-texture,
-      .moon-shadow,
       .moon-role-copy,
       .moon-state-button,
       .proof-founder-visual img,
@@ -4649,7 +4628,7 @@
     .bside-trigger-copy { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; transition: transform .4s cubic-bezier(.22,1,.36,1); }
     .bside-trigger-copy b { font-family: var(--serif); font-size: clamp(22px,2.3vw,32px); font-weight: 600; letter-spacing: -.025em; }
     .bside-trigger-copy em { color: #68748a; font-size: 8px; font-style: normal; letter-spacing: .13em; text-transform: uppercase; }
-    .bside-moon-object { --phase-shadow: 26%; position: relative; width: clamp(210px,20vw,280px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; cursor: grab; touch-action: pan-y; user-select: none; transform: rotate(-2deg); transition: transform .7s cubic-bezier(.22,1,.36,1), filter .5s ease; }
+    .bside-moon-object { position: relative; width: clamp(210px,20vw,280px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; cursor: grab; touch-action: pan-y; user-select: none; transform: rotate(-2deg); transition: transform .7s cubic-bezier(.22,1,.36,1), filter .5s ease; }
     .bside-moon-object .moon-sphere { box-shadow: 0 0 0 1px rgba(31,62,197,.2), 0 18px 46px rgba(52,72,143,.17), inset -28px -30px 70px rgba(62,77,143,.2), inset 18px 16px 48px rgba(255,255,255,.22); }
     .bside-moon-object .moon-portrait { opacity: .86; object-position: 50% 56%; }
     .bside-moon-object .moon-texture { opacity: .09; }
@@ -5262,7 +5241,6 @@
               <span class="moon-texture"></span>
             </span>
             <canvas class="moon-webgl" aria-hidden="true"></canvas>
-            <span class="moon-shadow" aria-hidden="true"></span>
             <span class="moon-rim" aria-hidden="true"></span>
           </div>
           <article class="moon-role-copy" aria-live="polite" aria-atomic="true">
@@ -5509,7 +5487,7 @@
                 <span class="moon-texture"></span>
               </span>
               <canvas class="moon-webgl" aria-hidden="true"></canvas>
-              <span class="moon-shadow" aria-hidden="true"></span><span class="moon-rim" aria-hidden="true"></span>
+              <span class="moon-rim" aria-hidden="true"></span>
               <img class="bside-moon-reverse" src="assets/outdoor/moon-highland-portrait.jpg" alt="" loading="lazy" decoding="async" />
               <span class="bside-moon-darkness" aria-hidden="true"></span>
             </span>
@@ -5720,10 +5698,6 @@
       return (42 + Math.sin(normalizeAngle(angle) * Math.PI / 180) * 24) * Math.PI / 180;
     }
 
-    function visibleShadowShift(angle) {
-      return Math.sin(normalizeAngle(angle) * Math.PI / 180) * 48;
-    }
-
     function renderRoleContent(role, animate = true, announce = true) {
       const data = roleData[role];
       if (!data) return;
@@ -5750,7 +5724,6 @@
       const anchor = nearestAnchor(surfaceAngle);
       const anchorVisible = anchor.distance <= anchorRevealDistance;
 
-      moonStage?.style.setProperty('--phase-shadow', `${visibleShadowShift(surfaceAngle).toFixed(2)}%`);
       moonStage?.style.setProperty('--moon-texture-rotate', `${(surfaceAngle * .42).toFixed(2)}deg`);
       moonStage?.style.setProperty('--portrait-drag-rotate', `${(Math.sin(surfaceAngle * Math.PI / 180) * 14).toFixed(2)}deg`);
       moonStage?.style.setProperty('--portrait-drag-x', `${(Math.sin(surfaceAngle * Math.PI / 180) * -7).toFixed(2)}%`);
@@ -5969,7 +5942,6 @@
     function setBsideMoonAngle(angle) {
       bsideMoonAngle = normalizeAngle(angle);
       const lightAngle = lightAngleForSurface(bsideMoonAngle);
-      bsideMoonObject?.style.setProperty('--phase-shadow', `${visibleShadowShift(bsideMoonAngle).toFixed(2)}%`);
       bsideMoonRenderer?.setState({ surfaceAngle: bsideMoonAngle * Math.PI / 180, lightAngle });
     }
 
