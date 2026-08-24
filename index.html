@@ -5187,6 +5187,37 @@
       .moon-project-axis .project-preview::after { left: 12px; }
     }
     @media (max-width: 680px) {
+      .workflow-systems .system-stack {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+      }
+      .workflow-systems .system-case,
+      .workflow-systems .workflow-primary,
+      .workflow-systems .workflow-primary__head,
+      .workflow-systems .workflow-primary__problem,
+      .workflow-systems .workflow-compact,
+      .workflow-systems .system-case__copy,
+      .workflow-systems .system-case__visual {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+      .workflow-systems .system-case,
+      .workflow-systems .system-case--featured,
+      .workflow-systems .system-case--museum {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .workflow-primary--compact .workflow-primary__head h3 {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        font-size: clamp(30px, 9.2vw, 36px);
+        line-height: 1.08;
+      }
+      .workflow-primary--compact .workflow-primary__head h3 small {
+        overflow-wrap: normal;
+      }
       .system-case--event,
       .system-case--event .system-case__copy,
       .system-case--event .system-case__visual,
@@ -5387,10 +5418,10 @@
         <div class="wrap">
           <header class="story-v4__amd-head reveal"><div><p class="story-kicker">02 / Developer Ecosystem</p><h3 id="story-amd-title">Datawhale × AMD<small>AI 开发者日 · 上海</small></h3></div><div class="story-v4__amd-copy"><p>我参与组建内容团队、协调现场分工，联结开发者社区与生态伙伴，设计采访方向，并把开发者、项目与社区关系沉淀成一篇完整的生态叙事。</p><p class="story-role-line">团队组建 · 社区联结 · 现场人物发现 · 采访策划 · 内容生产与沉淀</p><a class="story-link" href="https://mp.weixin.qq.com/s/_Vo3S7n-lxPJEm0pkWbSXg" target="_blank" rel="noreferrer">阅读完整报道 <span>↗</span></a></div></header>
           <div class="story-v4__amd-gallery" aria-label="AMD AI 开发者日现场图片">
-            <figure class="reveal"><img src="assets/amd/scene-0.jpg" alt="苏姿丰在 Datawhale 展台与社区成员交流" width="1080" height="720" loading="lazy" decoding="async" /><figcaption>Datawhale 展台 / 苏姿丰到访</figcaption></figure>
-            <figure class="reveal"><img src="assets/amd/scene-6.jpg" alt="Datawhale 与开发者社区伙伴现场合影" width="1080" height="720" loading="lazy" decoding="async" /><figcaption>开发者与社区伙伴</figcaption></figure>
-            <figure class="reveal"><img src="assets/amd/scene-7.jpg" alt="AMD AI 开发者日社区圆桌交流" width="1080" height="720" loading="lazy" decoding="async" /><figcaption>社区交流现场</figcaption></figure>
-            <figure class="reveal"><img src="assets/amd/scene-9.jpg" alt="AMD AI 开发者日颁奖环节大合影" width="1080" height="720" loading="lazy" decoding="async" /><figcaption>开发者、项目与生态伙伴共同在场</figcaption></figure>
+            <figure class="reveal"><img src="assets/amd/scene-0.jpg" alt="苏姿丰在 Datawhale 展台与社区成员交流" width="1080" height="720" decoding="async" /><figcaption>Datawhale 展台 / 苏姿丰到访</figcaption></figure>
+            <figure class="reveal"><img src="assets/amd/scene-6.jpg" alt="Datawhale 与开发者社区伙伴现场合影" width="1080" height="720" decoding="async" /><figcaption>开发者与社区伙伴</figcaption></figure>
+            <figure class="reveal"><img src="assets/amd/scene-7.jpg" alt="AMD AI 开发者日社区圆桌交流" width="1080" height="720" decoding="async" /><figcaption>社区交流现场</figcaption></figure>
+            <figure class="reveal"><img src="assets/amd/scene-9.jpg" alt="AMD AI 开发者日颁奖环节大合影" width="1080" height="720" decoding="async" /><figcaption>开发者、项目与生态伙伴共同在场</figcaption></figure>
           </div>
         </div>
       </section>
