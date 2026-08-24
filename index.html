@@ -4007,23 +4007,23 @@
     .story-v4 > .story-editorial__head { padding-top: clamp(76px, 8vw, 112px); }
     .story-v4 > .story-editorial__sequence { margin-top: 32px; }
     .story-v4__people { padding-block: clamp(50px, 5.5vw, 76px); }
-    .story-v4__people-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(38px, 6vw, 92px); align-items: start; }
-    .story-v4__becoming { display: grid; grid-template-columns: minmax(130px,.72fr) 1.28fr; gap: 24px; align-items: center; }
-    .story-v4__becoming figure { aspect-ratio: 4 / 5; box-shadow: 9px 9px 0 rgba(31,62,197,.11); }
-    .story-v4__becoming h3 { font-size: clamp(29px, 3vw, 44px); }
+    .story-v4__people-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0; align-items: stretch; border-block: 1px solid rgba(31,62,197,.24); }
+    .story-v4__people-grid > article { display: grid; grid-template-rows: auto auto 1fr; align-content: start; min-width: 0; padding: clamp(32px,4vw,58px); }
+    .story-v4__people-grid > article + article { border-left: 1px solid rgba(31,62,197,.24); }
+    .story-v4__column-head { display: grid; grid-template-rows: auto auto auto; align-content: start; }
+    .story-v4__column-head h3 { max-width: 12em; min-height: 3.2em; margin-bottom: 22px; font-size: clamp(30px,2.65vw,42px); line-height: 1.06; }
+    .story-v4__column-head > p:last-child { max-width: 38em; min-height: 7.2em; margin: 0; }
+    .story-v4__column-media { display: block; position: relative; width: 100%; margin: 28px 0 0; overflow: hidden; color: #fff; background: #ecebe5; text-decoration: none; aspect-ratio: 16 / 8.8; }
+    .story-v4__column-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .4s ease; }
+    .story-v4__column-media:hover img { transform: scale(1.025); }
+    .story-v4__becoming .story-v4__column-media img { object-fit: contain; }
+    .story-v4__column-media span { position: absolute; inset: auto 0 0; padding: 11px 13px; color: #fff; background: rgba(3,16,27,.84); font-size: 9px; }
     .story-v4__becoming blockquote { margin: 22px 0 18px; padding-left: 16px; color: #172c85; border-left: 2px solid #1f3ec5; font-family: var(--serif); font-size: clamp(20px, 2vw, 29px); line-height: 1.35; }
     .story-v4__becoming-links { display: grid; gap: 7px; }
     .story-v4__becoming-links a { padding-top: 9px; color: #172c85; border-top: 1px solid rgba(31,62,197,.25); text-decoration: none; }
     .story-v4__becoming-links b, .story-v4__becoming-links small { display: block; }
     .story-v4__becoming-links b { font-family: var(--serif); font-size: 14px; font-weight: 400; line-height: 1.3; }
     .story-v4__becoming-links small { margin-top: 4px; color: #74809e; font-size: 8px; line-height: 1.45; }
-    .story-v4__guacha { padding-left: clamp(26px, 4vw, 58px); border-left: 1px solid rgba(31,62,197,.24); }
-    .story-v4__guacha-head { display: grid; grid-template-columns: 1fr .72fr; gap: 28px; align-items: end; }
-    .story-v4__guacha-head h3 { font-size: clamp(31px, 3.4vw, 50px); }
-    .story-v4__guacha-hero { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; color: #fff; text-decoration: none; }
-    .story-v4__guacha-hero img { width: 100%; transition: transform .4s ease; }
-    .story-v4__guacha-hero:hover img { transform: scale(1.025); }
-    .story-v4__guacha-hero span { position: absolute; inset: auto 0 0; padding: 12px 14px; background: rgba(3,16,27,.84); font-size: 9px; }
     .story-v4__metrics { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 24px; border-block: 1px solid rgba(31,62,197,.24); }
     .story-v4__metrics p { margin: 0; padding: 14px 16px 14px 0; }
     .story-v4__metrics p + p { padding-left: 16px; border-left: 1px solid rgba(31,62,197,.24); }
@@ -4052,13 +4052,14 @@
     .story-v4__amd-gallery figcaption { position: absolute; inset: auto 0 0; margin: 0; padding: 10px 12px; color: #fff; background: linear-gradient(transparent,rgba(2,12,25,.82)); font-size: 8px; }
     @media (max-width: 920px) {
       .story-v4__people-grid, .story-v4__amd-head { grid-template-columns: 1fr; }
-      .story-v4__guacha { padding: 38px 0 0; border-top: 1px solid rgba(31,62,197,.24); border-left: 0; }
+      .story-v4__people-grid > article + article { border-top: 1px solid rgba(31,62,197,.24); border-left: 0; }
+      .story-v4__column-head h3, .story-v4__column-head > p:last-child { min-height: 0; }
       .story-v4__amd-gallery { grid-template-rows: 260px 190px; }
     }
     @media (max-width: 680px) {
-      .story-v4__becoming, .story-v4__guacha-head { grid-template-columns: 1fr; }
-      .story-v4__becoming figure { width: 58%; }
-      .story-v4__guacha-hero { width: 82%; margin-left: auto !important; }
+      .story-v4__people-grid > article { padding: 34px 20px 40px; }
+      .story-v4__column-head h3 { font-size: clamp(31px,9.2vw,39px); }
+      .story-v4__column-media { aspect-ratio: 4 / 3; }
       .story-v4__metrics { grid-template-columns: 1fr 1fr; }
       .story-v4__metrics p:last-child { grid-column: 1 / -1; padding-left: 0; border-top: 1px solid rgba(31,62,197,.24); border-left: 0; }
       .story-v4__people-links { grid-template-columns: 1fr 1fr; }
@@ -5403,13 +5404,14 @@
       <section class="story-v4__people" id="story-founders" aria-labelledby="story-founders-title">
         <div class="wrap story-v4__people-grid">
           <article class="story-v4__becoming reveal">
-            <figure><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划系列视觉" width="1080" height="1528" loading="lazy" decoding="async" /></figure>
-            <div><p class="story-kicker">01A / Becoming · 微型生命史</p><h3 id="story-founders-title">一个有主体性、以热爱为驱动的创造者，是如何一步步成为的？</h3><p>以播客对谈与微型传记，进入普通人的成长经历、迷茫试错和关键节点。我们不复述成功标签，而是打开“成为”的黑箱：热爱如何被发现、验证，并在时代中逐渐长成一项愿意长期投入的事业。</p><blockquote>看见过程，而不只看见结果。</blockquote><div class="story-v4__becoming-links"><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><b>开篇词｜我们这一代，还能以热爱和理想躬身入局吗？ ↗</b><small>从教育、主动性与时代焦虑出发，说明 Becoming 为什么开始。</small></a><a href="https://mp.weixin.qq.com/s/RWh69Q8JQmYlL40mfD1rKA" target="_blank" rel="noreferrer"><b>乐乐｜AI 教育创业者</b><small>从小城、留白与热爱，理解她为什么走向 AI、教育与游戏。</small></a><a href="https://mp.weixin.qq.com/s/wgFAtBLtW6yvm9acbR7FzQ" target="_blank" rel="noreferrer"><b>Tim｜Artflow.ai 创始人</b><small>从连续创业进入生活本身：一个创业者的人生哲学与选择。</small></a></div></div>
+            <header class="story-v4__column-head"><p class="story-kicker">01A / Becoming · 微型生命史</p><h3 id="story-founders-title">一个有主体性、以热爱为驱动的创造者，是如何一步步成为的？</h3><p>以播客对谈与微型传记，进入普通人的成长经历、迷茫试错和关键节点。我们不复述成功标签，而是打开“成为”的黑箱：热爱如何被发现、验证，并在时代中逐渐长成一项愿意长期投入的事业。</p></header>
+            <figure class="story-v4__column-media"><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划系列视觉" width="1080" height="1528" loading="lazy" decoding="async" /><span>Becoming 计划 / 微型生命史</span></figure>
+            <div><blockquote>看见过程，而不只看见结果。</blockquote><div class="story-v4__becoming-links"><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><b>开篇词｜我们这一代，还能以热爱和理想躬身入局吗？ ↗</b><small>从教育、主动性与时代焦虑出发，说明 Becoming 为什么开始。</small></a><a href="https://mp.weixin.qq.com/s/RWh69Q8JQmYlL40mfD1rKA" target="_blank" rel="noreferrer"><b>乐乐｜AI 教育创业者</b><small>从小城、留白与热爱，理解她为什么走向 AI、教育与游戏。</small></a><a href="https://mp.weixin.qq.com/s/wgFAtBLtW6yvm9acbR7FzQ" target="_blank" rel="noreferrer"><b>Tim｜Artflow.ai 创始人</b><small>从连续创业进入生活本身：一个创业者的人生哲学与选择。</small></a></div></div>
           </article>
           <article class="story-v4__guacha reveal">
-            <div class="story-v4__guacha-head"><header><p class="story-kicker">01B / 观猹人物 · Builder Profile</p><h3>寻找还没有成为共识的 AI Builder。<small>Founder Discovery before consensus</small></h3><p>4 期公开人物稿。关注非标准路径里的早期创造者：他们还没有被成功叙事定义，却已经开始做产品、写代码和验证自己的判断。</p></header><a class="story-v4__guacha-hero" href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" /><span>默子 / Redink · 00 后开源 Builder　↗</span></a></div>
-            <div class="story-v4__metrics"><p><b>4</b><span>期公开人物稿</span></p><p><b>8000+</b><span>系列阅读</span></p><p><b>20+</b><span>默子稿后的资源沟通</span></p></div>
-            <div class="story-v4__people-links" aria-label="观猹人物四期公开文章"><a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><b>默子｜开源 Builder</b><small>3 天做出 4.5k+ Stars 的 Redink，进入投资人和大厂视野。</small></a><a href="https://mp.weixin.qq.com/s/pudO0eJISbL6BylC1BDC0Q" target="_blank" rel="noreferrer"><b>杨晨｜AI 创造者</b><small>前大厂运营；白天做保安，夜里用 AI 重建行动感。</small></a><a href="https://mp.weixin.qq.com/s/sEBMUapVyCz0tm073si_sg" target="_blank" rel="noreferrer"><b>核蛋｜17 岁创业少年</b><small>在课业、创业比赛与产品实践之间，长出自己的商业判断。</small></a><a href="https://mp.weixin.qq.com/s/7IHYXyU80C9vM8Tzz1KOrQ" target="_blank" rel="noreferrer"><b>小鹅｜创意硬件 Builder</b><small>从黑客松金奖走向 AI 硬件与设计型一人公司。</small></a></div>
+            <header class="story-v4__column-head"><p class="story-kicker">01B / 观猹人物 · Builder Profile</p><h3>寻找还没有成为共识的 AI Builder。<small>Founder Discovery before consensus</small></h3><p>4 期公开人物稿。关注非标准路径里的早期创造者：他们还没有被成功叙事定义，却已经开始做产品、写代码和验证自己的判断。</p></header>
+            <a class="story-v4__column-media" href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" /><span>默子 / Redink · 00 后开源 Builder　↗</span></a>
+            <div><div class="story-v4__metrics"><p><b>4</b><span>期公开人物稿</span></p><p><b>8000+</b><span>系列阅读</span></p><p><b>20+</b><span>默子稿后的资源沟通</span></p></div><div class="story-v4__people-links" aria-label="观猹人物四期公开文章"><a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><b>默子｜开源 Builder</b><small>3 天做出 4.5k+ Stars 的 Redink，进入投资人和大厂视野。</small></a><a href="https://mp.weixin.qq.com/s/pudO0eJISbL6BylC1BDC0Q" target="_blank" rel="noreferrer"><b>杨晨｜AI 创造者</b><small>前大厂运营；白天做保安，夜里用 AI 重建行动感。</small></a><a href="https://mp.weixin.qq.com/s/sEBMUapVyCz0tm073si_sg" target="_blank" rel="noreferrer"><b>核蛋｜17 岁创业少年</b><small>在课业、创业比赛与产品实践之间，长出自己的商业判断。</small></a><a href="https://mp.weixin.qq.com/s/7IHYXyU80C9vM8Tzz1KOrQ" target="_blank" rel="noreferrer"><b>小鹅｜创意硬件 Builder</b><small>从黑客松金奖走向 AI 硬件与设计型一人公司。</small></a></div></div>
           </article>
         </div>
       </section>
