@@ -1391,6 +1391,7 @@
 
     /* Single interactive moon stage */
     .moon-stage {
+      --phase-shadow: -24%;
       --moon-rest-x: 26px;
       --moon-rest-y: -18px;
       --moon-rest-rotate: -7deg;
@@ -1426,24 +1427,28 @@
       transition: opacity .4s ease, transform .65s cubic-bezier(.22,1,.36,1);
     }
     .moon-stage[data-active-role="observer"] {
+      --phase-shadow: -24%;
       --moon-rest-x: 26px;
       --moon-rest-y: -18px;
       --moon-rest-rotate: -7deg;
       --portrait-rest-rotate: 7deg;
     }
     .moon-stage[data-active-role="connector"] {
+      --phase-shadow: -53%;
       --moon-rest-x: -24px;
       --moon-rest-y: 14px;
       --moon-rest-rotate: 16deg;
       --portrait-rest-rotate: -16deg;
     }
     .moon-stage[data-active-role="builder"] {
+      --phase-shadow: -82%;
       --moon-rest-x: 18px;
       --moon-rest-y: 24px;
       --moon-rest-rotate: 39deg;
       --portrait-rest-rotate: -39deg;
     }
     .moon-stage[data-active-role="storyteller"] {
+      --phase-shadow: -118%;
       --moon-rest-x: -18px;
       --moon-rest-y: -8px;
       --moon-rest-rotate: 68deg;
@@ -1616,7 +1621,6 @@
       z-index: 2;
       width: clamp(440px, min(52vw, 68vh), 660px);
       aspect-ratio: 1;
-      overflow: hidden;
       border-radius: 50%;
       cursor: grab;
       touch-action: pan-y;
@@ -1683,9 +1687,20 @@
     }
     .moon-object.is-dragging .moon-portrait,
     .moon-object.is-dragging .moon-texture { transition: none; }
+    .moon-shadow {
+      position: absolute;
+      z-index: 2;
+      inset: -1px;
+      border-radius: 50%;
+      background: linear-gradient(90deg,rgba(7,18,66,.84) 0%,rgba(18,39,121,.66) 34%,rgba(28,53,145,.12) 72%,transparent 100%);
+      box-shadow: inset -24px 0 46px rgba(7,18,66,.28);
+      transform: translateX(var(--phase-shadow));
+      transition: transform .68s cubic-bezier(.22,1,.36,1);
+    }
+    .moon-object.is-dragging .moon-shadow { transition: none; }
     .moon-rim {
       position: absolute;
-      z-index: 7;
+      z-index: 3;
       inset: 0;
       border: 1px solid rgba(231,235,255,.38);
       border-radius: 50%;
@@ -1984,6 +1999,10 @@
       mix-blend-mode: normal;
     }
     .moon-texture { opacity: .3; mix-blend-mode: multiply; }
+    .moon-shadow {
+      background: linear-gradient(90deg,rgba(10,25,86,.82) 0%,rgba(23,45,132,.6) 35%,rgba(31,62,197,.1) 72%,transparent 100%);
+      box-shadow: inset -24px 0 46px rgba(10,25,86,.3);
+    }
     .moon-rim {
       border-color: rgba(31, 62, 197, .48);
       box-shadow:
@@ -2274,11 +2293,11 @@
       pointer-events: none;
       transition: opacity .36s ease;
     }
-    /* Keep the CSS moon underneath the WebGL layer even after initialization.
-       Mobile browsers can silently discard a composited canvas without firing
-       webglcontextlost; the persistent fallback prevents a blank/plain disc. */
+    /* Only replace the photo fallback after WebGL confirms that the portrait
+       texture is present. If texture upload fails or the context is restored
+       without it, the real photo remains visible instead of a blank moon. */
     .moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-webgl { opacity: 1; }
-    .moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 1; }
+    .moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 0; }
 
     .moon-role-copy {
       grid-area: auto;
@@ -3683,6 +3702,7 @@
       .moon-orbit,
       .moon-object,
       .moon-texture,
+      .moon-shadow,
       .moon-role-copy,
       .moon-state-button,
       .proof-founder-visual img,
@@ -3694,55 +3714,6 @@
       .proof-cover-entry,
       .proof-workflow-list b,
       .proof-compact-cta span { transition: none; animation: none; }
-    }
-
-    /* Creator Fieldwork — three years, three real education sites. */
-    .creator-fieldwork { --field-paper: #eeeae0; position: relative; padding: clamp(72px, 7vw, 104px) 0 clamp(64px, 6vw, 88px); overflow: hidden; background: linear-gradient(rgba(238,234,224,.92), rgba(238,234,224,.92)), url("assets/textures/editorial-paper-folds-v2.png") center / cover; color: #152f7d; border-block: 1px solid rgba(21,47,125,.2); }
-    .creator-fieldwork::before { content: ""; position: absolute; top: 0; right: 8%; width: 1px; height: 100%; background: rgba(21,47,125,.1); transform: rotate(9deg); transform-origin: top; pointer-events: none; }
-    .creator-fieldwork__head { display: grid; grid-template-columns: minmax(0,1fr) minmax(330px,.72fr); gap: clamp(34px,7vw,110px); align-items: end; }
-    .creator-fieldwork__folio { margin: 0 0 14px; color: #6070a3; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-    .creator-fieldwork h2 { margin: 0; font-family: var(--serif); font-size: clamp(48px,6.2vw,92px); line-height: .94; letter-spacing: -.065em; }
-    .creator-fieldwork h2 small { display: block; margin-top: 18px; font-family: var(--sans); font-size: clamp(18px,1.8vw,27px); font-weight: 700; line-height: 1.25; letter-spacing: -.035em; }
-    .creator-fieldwork__intro { margin: 0; color: #2d3d73; font-size: 14px; line-height: 1.85; }
-    .creator-fieldwork__metrics { display: flex; gap: 24px; margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(21,47,125,.25); }
-    .creator-fieldwork__metrics span { min-width: 76px; color: #53628f; font-size: 9px; line-height: 1.45; letter-spacing: .08em; text-transform: uppercase; }
-    .creator-fieldwork__metrics b { display: block; margin-bottom: 2px; color: #152f7d; font-family: var(--serif); font-size: 30px; font-weight: 700; letter-spacing: -.04em; }
-    .creator-route { position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(20px,3.2vw,50px); margin-top: clamp(42px,4.5vw,60px); }
-    .creator-route::before { content: ""; position: absolute; top: 12px; left: 1.5%; right: 1.5%; height: 1px; background: #152f7d; }
-    .creator-stop { position: relative; padding-top: 34px; }
-    .creator-stop::before { content: ""; position: absolute; z-index: 2; top: 7px; left: 0; width: 11px; height: 11px; border: 1px solid #152f7d; border-radius: 50%; background: var(--field-paper); }
-    .creator-stop__meta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; color: #53628f; font-size: 9px; letter-spacing: .11em; text-transform: uppercase; }
-    .creator-stop__meta b { color: #152f7d; font-family: var(--serif); font-size: 23px; letter-spacing: -.025em; }
-    .creator-stop figure { position: relative; margin: 0; overflow: hidden; background: #152f7d; }
-    .creator-stop figure::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(21,47,125,.24); pointer-events: none; }
-    .creator-stop img { width: 100%; height: clamp(168px,16vw,230px); object-fit: cover; filter: saturate(.72) contrast(1.03); transition: transform .5s ease, filter .5s ease; }
-    .creator-stop:hover img { transform: scale(1.018); filter: saturate(.9) contrast(1.02); }
-    .creator-stop--shanghai img { object-position: center; }
-    .creator-stop--kunshan img { object-position: 52% 46%; }
-    .creator-stop--dali img { object-position: 50% 70%; }
-    .creator-stop h3 { margin: 16px 0 7px; font-family: var(--serif); font-size: clamp(24px,2.3vw,34px); line-height: 1.08; letter-spacing: -.04em; }
-    .creator-stop p { max-width: 94%; margin: 0; color: #344473; font-size: 13px; line-height: 1.72; }
-    .creator-stop__tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
-    .creator-stop__tags span { padding: 4px 7px; border: 1px solid rgba(21,47,125,.25); color: #52618c; font-size: 8px; letter-spacing: .06em; text-transform: uppercase; }
-    .creator-fieldwork__closing { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(30px,6vw,92px); margin-top: clamp(30px,3.5vw,48px); padding-top: 18px; border-top: 1px solid rgba(21,47,125,.25); }
-    .creator-fieldwork__closing p { margin: 0; font-family: var(--serif); font-size: clamp(19px,2vw,28px); line-height: 1.5; letter-spacing: -.025em; }
-    .creator-fieldwork__closing small { color: #5b6790; font-size: 10px; line-height: 1.7; letter-spacing: .04em; text-transform: uppercase; }
-
-    @media (max-width: 760px) {
-      .creator-fieldwork { padding-block: 68px 60px; }
-      .creator-fieldwork__head, .creator-fieldwork__closing { grid-template-columns: 1fr; }
-      .creator-fieldwork h2 { font-size: clamp(42px,12vw,53px); }
-      .creator-fieldwork h2 small { font-size: 19px; }
-      .creator-fieldwork__intro { font-size: 13px; }
-      .creator-fieldwork__metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-      .creator-fieldwork__metrics span { min-width: 0; }
-      .creator-route { grid-template-columns: 1fr; gap: 38px; margin-top: 54px; padding-left: 22px; }
-      .creator-route::before { top: 0; bottom: 0; left: 5px; right: auto; width: 1px; height: auto; }
-      .creator-stop { padding-top: 0; }
-      .creator-stop::before { top: 4px; left: -22px; }
-      .creator-stop img { height: min(58vw,255px); }
-      .creator-stop__meta { justify-content: flex-start; }
-      .creator-fieldwork__closing { gap: 16px; }
     }
 
 
@@ -4267,6 +4238,7 @@
     .system-output-card--event .system-output-card__media img { object-position: center; }
     .system-poster-stage { overflow: hidden; background: #0b0b0a; border: 1px solid #9d783d; box-shadow: 13px 13px 0 var(--acid); }
     .system-poster-gallery { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1px; padding: 14px; background: #28251f; }
+    .system-poster-gallery--two { grid-template-columns: repeat(2,minmax(0,1fr)); }
     .system-poster-gallery figure { margin: 0; background: #080808; }
     .system-poster-gallery img { display: block; width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; }
     .system-poster-gallery figcaption { padding: 10px 9px 11px; color: #c9af7d; border-top: 1px solid rgba(181,138,70,.28); font-size: 8px; line-height: 1.45; letter-spacing: .06em; text-transform: uppercase; }
@@ -4320,7 +4292,7 @@
     .workflow-compact__copy { grid-area: copy; }
     .workflow-compact__visual { grid-area: visual; }
     .workflow-compact__copy > p { max-width: 720px; margin: 0; color: var(--body-ink); font-family: var(--serif); font-size: clamp(18px,1.7vw,23px); line-height: 1.72; }
-    .workflow-compact__screen { margin: 18px 0 0; border: 1px solid rgba(31,62,197,.35); background: #e1e5ee; }
+    .workflow-compact__screen { margin: 0; border: 1px solid rgba(31,62,197,.35); background: #e1e5ee; }
     .workflow-compact__screen img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top center; }
     .workflow-compact__screen figcaption { display: flex; justify-content: space-between; gap: 16px; padding: 9px 11px; color: var(--cobalt-deep); background: var(--canvas-raised); border-top: 1px solid rgba(31,62,197,.25); font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
     .workflow-compact__loop { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; color: var(--cobalt); }
@@ -4415,9 +4387,20 @@
       .workflow-systems__intro { font-size: 23px; }
       .system-stack { gap: 76px; }
       .system-case__copy h3 { font-size: 43px; }
+      .system-case--event {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      .system-case--event .system-case__copy,
+      .system-case--event .system-case__visual,
+      .system-case--event .system-poster-stage,
+      .system-case--event .system-poster-gallery { width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; }
       .system-screen { box-shadow: 8px 8px 0 var(--acid); }
       .system-screen__bar { align-items: flex-start; flex-direction: column; gap: 4px; }
       .system-poster-gallery { grid-template-columns: 1fr; gap: 14px; padding: 12px; }
+      .system-poster-gallery--two { grid-template-columns: 1fr; }
       .system-intel-schema__grid { grid-template-columns: 1fr 1fr; }
       .system-intel-schema__grid span:nth-child(n) { border-right: 1px solid rgba(162,176,255,.25); border-bottom: 1px solid rgba(162,176,255,.25); }
       .system-intel-schema__grid span:nth-child(2n) { border-right: 0; }
@@ -4677,14 +4660,14 @@
     .bside-trigger-copy { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; transition: transform .4s cubic-bezier(.22,1,.36,1); }
     .bside-trigger-copy b { font-family: var(--serif); font-size: clamp(22px,2.3vw,32px); font-weight: 600; letter-spacing: -.025em; }
     .bside-trigger-copy em { color: #68748a; font-size: 8px; font-style: normal; letter-spacing: .13em; text-transform: uppercase; }
-    .bside-moon-object { position: relative; width: clamp(210px,20vw,280px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; cursor: grab; touch-action: pan-y; user-select: none; transform: rotate(-2deg); transition: transform .7s cubic-bezier(.22,1,.36,1), filter .5s ease; }
+    .bside-moon-object { --phase-shadow: 26%; position: relative; width: clamp(210px,20vw,280px); aspect-ratio: 1; border-radius: 50%; cursor: grab; touch-action: pan-y; user-select: none; transform: rotate(-2deg); transition: transform .7s cubic-bezier(.22,1,.36,1), filter .5s ease; }
     .bside-moon-object .moon-sphere { box-shadow: 0 0 0 1px rgba(31,62,197,.2), 0 18px 46px rgba(52,72,143,.17), inset -28px -30px 70px rgba(62,77,143,.2), inset 18px 16px 48px rgba(255,255,255,.22); }
     .bside-moon-object .moon-portrait { opacity: .86; object-position: 50% 56%; }
     .bside-moon-object .moon-texture { opacity: .09; }
     .bside-moon-object .moon-rim { border-color: rgba(31,62,197,.22); }
     .bside-moon-object .moon-webgl { opacity: 0; }
     .bside-moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-webgl { opacity: 1; }
-    .bside-moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 1; }
+    .bside-moon-object.is-webgl-ready[data-moon-sphere="portrait"] .moon-sphere { opacity: 0; }
     .bside-moon-reverse { position: absolute; z-index: 7; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; border-radius: 50%; opacity: 0; filter: saturate(.86) contrast(.98) brightness(.98); transform: scale(1.08) rotate(-5deg); transition: opacity .72s ease .2s, transform 1s cubic-bezier(.22,1,.36,1), filter .9s ease; pointer-events: none; }
     .bside-moon-darkness { position: absolute; z-index: 8; inset: -1px; border-radius: 50%; opacity: 0; background: linear-gradient(118deg,rgba(255,244,222,.18),transparent 46%,rgba(69,85,131,.08)); box-shadow: inset -10px -8px 30px rgba(52,68,116,.1), 0 20px 46px rgba(56,72,116,.13); transition: opacity .8s ease; pointer-events: none; }
     .moon-bside[open] .bside-moon-object .moon-webgl { opacity: 0; }
@@ -4719,7 +4702,7 @@
     .bside-social__platform { font-size: 9px; font-weight: 800; letter-spacing: .08em; }
     .bside-social__account { font-family: var(--serif); font-size: 14px; line-height: 1.5; }
     .bside-social__account a { color: var(--cobalt-deep); text-decoration: none; border-bottom: 1px solid rgba(31,62,197,.28); }
-    .bside-social__account--links { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+    .bside-social__account small { display: block; margin-top: 2px; color: #68748a; font-family: var(--sans); font-size: 8px; letter-spacing: .04em; }
     .bside-social__hint { color: #68748a; font-size: 8px; letter-spacing: .06em; white-space: nowrap; }
     a.bside-social .bside-social__hint { color: var(--cobalt); transition: transform .2s ease; }
     a.bside-social:hover .bside-social__hint { transform: translate(3px,-2px); }
@@ -5030,43 +5013,19 @@
       .story-v4__people-links a:nth-child(3) { min-height: 0; padding: 12px 0; border-left: 0; }
 
       .workflow-systems { padding-block: 62px 68px; }
-      .workflow-systems__head {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 22px;
-        width: 100%;
-        min-width: 0;
-        margin-bottom: 40px;
-      }
+      .workflow-systems__head { gap: 22px; margin-bottom: 40px; }
       .workflow-systems__head h2 { font-size: clamp(48px, 15vw, 62px); }
       .workflow-systems__intro { font-size: 18px; line-height: 1.55; }
-      .workflow-primary {
-        width: 100%;
-        min-width: 0;
-        padding: 24px 15px 29px;
-        box-shadow: 6px 6px 0 var(--acid);
-      }
+      .workflow-primary { padding: 24px 15px 29px; box-shadow: 6px 6px 0 var(--acid); }
       .workflow-primary--compact .workflow-primary__head h3 { font-size: 35px; }
       .workflow-primary--compact .workflow-primary__thesis { font-size: 17px; }
-      .workflow-compact {
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas: "copy" "visual";
-        width: 100%;
-        min-width: 0;
-        gap: 26px;
-      }
+      .workflow-compact { gap: 26px; }
       .workflow-compact__copy > p { font-size: 16px; }
-      .system-case--featured {
-        grid-template-columns: minmax(0, 1fr);
-        width: 100%;
-        min-width: 0;
-      }
-      .system-case--featured > * { min-width: 0; }
       .workflow-supplements { margin-top: 56px; }
       .workflow-supplements__headline { font-size: 34px; }
 
       .talks-public { padding-block: 62px 68px; }
-      .talks-public__head, .talks-public__head > * { min-width: 0; }
-      .talks-public__head h2 { max-width: 100%; font-size: clamp(42px, 13.5vw, 52px); overflow-wrap: anywhere; }
+      .talks-public__head h2 { font-size: clamp(46px, 14.5vw, 60px); }
       .talks-public__intro { font-size: 17px; }
       .talks-public__lead,
       .talks-public__slice,
@@ -5228,13 +5187,21 @@
       .moon-project-axis .project-preview::after { left: 12px; }
     }
     @media (max-width: 680px) {
-      .header-right { right: 12px; width: 180px; }
-      .role-mini-nav { width: 180px; grid-template-columns: repeat(3,minmax(0,1fr)); }
-      .role-mini-link:nth-child(1) .mini-label::after { content: "生态"; }
-      .role-mini-link:nth-child(2) .mini-label::after { content: "人物"; }
-      .role-mini-link:nth-child(3) .mini-label::after { content: "工作流"; }
-      .moon-stage-intro { max-width: 100%; overflow-wrap: anywhere; }
-      .moon-stage-intro br { display: none; }
+      .system-case--event,
+      .system-case--event .system-case__copy,
+      .system-case--event .system-case__visual,
+      .system-case--event .system-poster-stage,
+      .system-case--event .system-poster-gallery {
+        width: calc(100vw - 40px);
+        max-width: calc(100vw - 40px);
+        min-width: 0;
+      }
+      .system-case--event { grid-template-columns: minmax(0, 1fr); }
+      .header-right { width: 216px; }
+      .role-mini-nav { width: 216px; grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .role-mini-link:nth-child(1) .mini-label::after { content: "创造者生态"; }
+      .role-mini-link:nth-child(2) .mini-label::after { content: "人物叙事"; }
+      .role-mini-link:nth-child(3) .mini-label::after { content: "AI 工作流"; }
       .project-preview-strip::before { min-height: 46px; padding-inline: 20px; font-size: 7px; letter-spacing: .06em; }
       .project-preview h2 { font-size: 28px; }
       .project-preview p { font-size: 9px; }
@@ -5279,7 +5246,7 @@
           <p class="moon-stage-motto"><span>看见正在发生的生命力</span><small>Seeing What’s Emerging</small></p>
           <h1 id="moon-stage-title"><span>一个向 AI 走去的<br />人类学冒险家</span><small>AI Creator Ecosystem · Storytelling · AI Workflow</small></h1>
           <p class="moon-stage-intro">我从大理的数字游民社区和创新教育田野走来，也是一名 AI Native 创造者——AI 不只是我持续进入的领域，也是我研究项目、生产内容和运营关系的工作底座。<br />过去三年，我进入 AI 创新教育、创业孵化与开发者社区，持续发现和连接早期创业者；从 0 到 1 发起超级个体实验室，汇聚了 500+ 位 AI 创业者，并联动社区与孵化器，通过活动、黑客松和工作坊促成深度交流与合作。</p>
-          <p class="moon-stage-evidence"><span>0→1 超级个体实验室</span><span>数百人 AI 创造者社群</span><span>3 年 AI 教育田野</span></p>
+          <p class="moon-stage-evidence"><span>0→1 超级个体实验室</span><span>数百人 AI 创造者社群</span><span>7 天营地真实使用</span></p>
         </div>
 
         <div class="moon-playground">
@@ -5288,9 +5255,10 @@
             <span class="moon-sphere" aria-hidden="true">
               <img class="moon-portrait" src="assets/vitality/moon-field-portrait.jpg" alt="" width="933" height="1400" loading="eager" decoding="async" fetchpriority="high" />
               <span class="moon-texture"></span>
+              <span class="moon-shadow"></span>
+              <span class="moon-rim"></span>
             </span>
             <canvas class="moon-webgl" aria-hidden="true"></canvas>
-            <span class="moon-rim" aria-hidden="true"></span>
           </div>
           <article class="moon-role-copy" aria-live="polite" aria-atomic="true">
             <p class="moon-role-title-en" id="role-title-en">Observer</p>
@@ -5345,7 +5313,7 @@
               <div class="mechanism-stage"><b>共创场域</b><small>30–40 人客厅 · 垂直议题</small></div><i>→</i>
               <div class="mechanism-stage"><b>让网络自组织</b><small>主理人共创 · 垂类社群</small></div>
             </div>
-            <p class="mechanism-statement">先筛到对的人，再让成员和主理人共同组织下一次连接。</p>
+            <p class="mechanism-statement">搭建支持深度交流、信任和支持创新的场域</p>
             <p class="ecosystem-reflection reveal">Research AI+ 的发起者最初是社群里的活跃成员，我们一起共创了 Research AI+ 的首场活动。一年之后，我们也成为了非常密切的社区伙伴，共同组织了 WAIC After Party“第二届研究者派对之夏”。</p>
           </section>
 
@@ -5393,52 +5361,6 @@
       </div>
     </section>
 
-    <section class="creator-fieldwork" id="creator-fieldwork" data-role-section="observer" aria-labelledby="creator-fieldwork-title">
-      <div class="wrap">
-        <header class="creator-fieldwork__head reveal">
-          <div>
-            <p class="creator-fieldwork__folio">Creator Fieldwork / 2024—2026</p>
-            <h2 id="creator-fieldwork-title">AI时代的教育新范式探索<small>三年持续进入年轻创造者现场</small></h2>
-          </div>
-          <div>
-            <p class="creator-fieldwork__intro">2024—2026，作为超脑 AI 孵化器核心团队成员，我深度参与 6 个 AI 营地与黑客松，持续跟踪 80+ 名青少年从提出问题、使用 AI，到组队和完成项目原型的创造过程。</p>
-            <div class="creator-fieldwork__metrics" aria-label="AI for Good 创新教育田野核心事实"><span><b>3</b>Years</span><span><b>6</b>Camps &amp;<br />Hackathons</span><span><b>80+</b>Creation<br />Journeys</span></div>
-          </div>
-        </header>
-
-        <div class="creator-route" aria-label="2024 至 2026 三年创新教育现场">
-          <article class="creator-stop creator-stop--shanghai reveal">
-            <div class="creator-stop__meta"><b>2024</b><span>Shanghai · 31.2304°N</span></div>
-            <figure><img src="assets/fieldwork/2024-shanghai-collage.jpg" alt="青少年围绕白板讨论、体验 Vision Pro 并在电脑前制作项目的现场拼图" width="1781" height="1279" loading="lazy" decoding="async" /></figure>
-            <h3>AI Hackathon</h3>
-            <p>学生从自己的兴趣和生活问题出发，找到伙伴、组队制作，再根据导师反馈继续修改。我们尝试把一次 AI 学习，推到从想法走向项目原型的完整过程。</p>
-            <div class="creator-stop__tags"><span>AI Games</span><span>VR / Vision Pro</span><span>Prototype</span></div>
-          </article>
-
-          <article class="creator-stop creator-stop--kunshan reveal">
-            <div class="creator-stop__meta"><b>2025</b><span>Kunshan · 31.3846°N</span></div>
-            <figure><img src="assets/fieldwork/2025-kunshan-night.jpg" alt="共居社区夜间对谈与共同记录现场" width="1440" height="1080" loading="lazy" decoding="async" /></figure>
-            <h3>Co-living Hackathon</h3>
-            <p>学生住进同一个社区，在共同生活和密集交流中找伙伴、组队、制作、讨论与修改。我们开始观察，空间、同伴和社区关系会怎样影响创造发生。</p>
-            <div class="creator-stop__tags"><span>Co-living</span><span>Community</span><span>Hackathon</span></div>
-          </article>
-
-          <article class="creator-stop creator-stop--dali reveal">
-            <div class="creator-stop__meta"><b>2026</b><span>Dali · 25.6065°N</span></div>
-            <figure><img src="assets/fieldwork/2026-dali-students.jpg" alt="大理 AI for Good 营地学生结营合影" width="1800" height="1350" loading="lazy" decoding="async" /></figure>
-            <h3>AI for Good</h3>
-            <p>学生先访谈真实案主，理解具体需求，再定义问题、组队和制作原型。创造由此进入日常生活与社会问题，也开始接受真实反馈。</p>
-            <div class="creator-stop__tags"><span>Real Needs</span><span>Fieldwork</span><span>AI for Good</span></div>
-          </article>
-        </div>
-
-        <footer class="creator-fieldwork__closing reveal">
-          <small>Participate &amp; Build / Observe<br />在共同做事的过程中观察</small>
-          <p>我对早期创造者的兴趣，并不是从一个人成为 Founder 之后才开始。我一直在更早的现场，观察他们如何开始创造，也参与搭建让创造发生的条件。</p>
-        </footer>
-      </div>
-    </section>
-
 
     <section class="story-editorial story-v3 story-v4" id="story" data-role-section="storyteller" aria-labelledby="story-editorial-title">
       <header class="story-editorial__head wrap reveal">
@@ -5451,11 +5373,11 @@
         <div class="wrap story-v4__people-grid">
           <article class="story-v4__becoming reveal">
             <figure><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划系列视觉" width="1080" height="1528" loading="lazy" decoding="async" /></figure>
-            <div><p class="story-kicker">01A / Becoming · 微型生命史</p><h3 id="story-founders-title">一个人，如何一步步成为今天的自己。</h3><p>以播客对谈与微型传记，进入普通人的成长经历、迷茫试错和关键节点。我们不复述成功标签，而是打开“成为”的黑箱：热爱如何被发现、验证，并在时代中逐渐长成一项愿意长期投入的事业。</p><blockquote>看见过程，而不只看见结果。</blockquote><div class="story-v4__becoming-links"><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><b>开篇词｜我们这一代，还能以热爱和理想躬身入局吗？ ↗</b><small>从教育、主动性与时代焦虑出发，说明 Becoming 为什么开始。</small></a><a href="https://mp.weixin.qq.com/s/RWh69Q8JQmYlL40mfD1rKA" target="_blank" rel="noreferrer"><b>乐乐｜AI 教育创业者</b><small>从小城、留白与热爱，理解她为什么走向 AI、教育与游戏。</small></a><a href="https://mp.weixin.qq.com/s/wgFAtBLtW6yvm9acbR7FzQ" target="_blank" rel="noreferrer"><b>Tim｜Artflow.ai 创始人</b><small>从连续创业进入生活本身：一个创业者的人生哲学与选择。</small></a></div></div>
+            <div><p class="story-kicker">01A / Becoming · 微型生命史</p><h3 id="story-founders-title">一个有主体性、以热爱为驱动的创造者，是如何一步步成为的？</h3><p>以播客对谈与微型传记，进入普通人的成长经历、迷茫试错和关键节点。我们不复述成功标签，而是打开“成为”的黑箱：热爱如何被发现、验证，并在时代中逐渐长成一项愿意长期投入的事业。</p><blockquote>看见过程，而不只看见结果。</blockquote><div class="story-v4__becoming-links"><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><b>开篇词｜我们这一代，还能以热爱和理想躬身入局吗？ ↗</b><small>从教育、主动性与时代焦虑出发，说明 Becoming 为什么开始。</small></a><a href="https://mp.weixin.qq.com/s/RWh69Q8JQmYlL40mfD1rKA" target="_blank" rel="noreferrer"><b>乐乐｜AI 教育创业者</b><small>从小城、留白与热爱，理解她为什么走向 AI、教育与游戏。</small></a><a href="https://mp.weixin.qq.com/s/wgFAtBLtW6yvm9acbR7FzQ" target="_blank" rel="noreferrer"><b>Tim｜Artflow.ai 创始人</b><small>从连续创业进入生活本身：一个创业者的人生哲学与选择。</small></a></div></div>
           </article>
           <article class="story-v4__guacha reveal">
             <div class="story-v4__guacha-head"><header><p class="story-kicker">01B / 观猹人物 · Builder Profile</p><h3>寻找还没有成为共识的 AI Builder。<small>Founder Discovery before consensus</small></h3><p>4 期公开人物稿。关注非标准路径里的早期创造者：他们还没有被成功叙事定义，却已经开始做产品、写代码和验证自己的判断。</p></header><a class="story-v4__guacha-hero" href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" /><span>默子 / Redink · 00 后开源 Builder　↗</span></a></div>
-            <div class="story-v4__metrics"><p><b>4</b><span>期公开人物稿</span></p><p><b>8000+</b><span>系列累计阅读</span></p><p><b>20+</b><span>默子稿后的资源沟通</span></p></div>
+            <div class="story-v4__metrics"><p><b>4</b><span>期公开人物稿</span></p><p><b>8000+</b><span>系列阅读</span></p><p><b>20+</b><span>默子稿后的资源沟通</span></p></div>
             <div class="story-v4__people-links" aria-label="观猹人物四期公开文章"><a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><b>默子｜开源 Builder</b><small>3 天做出 4.5k+ Stars 的 Redink，进入投资人和大厂视野。</small></a><a href="https://mp.weixin.qq.com/s/pudO0eJISbL6BylC1BDC0Q" target="_blank" rel="noreferrer"><b>杨晨｜AI 创造者</b><small>前大厂运营；白天做保安，夜里用 AI 重建行动感。</small></a><a href="https://mp.weixin.qq.com/s/sEBMUapVyCz0tm073si_sg" target="_blank" rel="noreferrer"><b>核蛋｜17 岁创业少年</b><small>在课业、创业比赛与产品实践之间，长出自己的商业判断。</small></a><a href="https://mp.weixin.qq.com/s/7IHYXyU80C9vM8Tzz1KOrQ" target="_blank" rel="noreferrer"><b>小鹅｜创意硬件 Builder</b><small>从黑客松金奖走向 AI 硬件与设计型一人公司。</small></a></div>
           </article>
         </div>
@@ -5486,13 +5408,18 @@
             <header class="workflow-primary__head"><div><p class="system-case__index">01 / Field Experiment · 7-day Iteration</p><h3>真实场景中的 AI 工作流实验<small>From field need to a working workflow</small></h3></div><p class="workflow-primary__thesis">用7天时间，搭建一个AI创造者观察记录体系</p></header>
             <div class="workflow-compact">
               <div class="workflow-compact__copy"><p>在大理 AI 营地中，老师每天需要记录学生状态，并向家长提供具体、可信的观察反馈。我将零散记录整理为一套由 AI 辅助、老师最终确认的工作流，并在七天真实使用中持续调整人机协作边界。</p><div class="workflow-compact__loop" aria-label="观察、搭建、使用、反馈、迭代循环"><span>Observe</span><i>→</i><span>Build</span><i>→</i><span>Use</span><i>→</i><span>Feedback</span><i>→</i><span>Iterate</span></div></div>
-              <div class="workflow-compact__visual"><div class="workflow-compact__proofs" aria-label="AI 工作流实验的三项核心证据"><div><b>7 Days</b><span>连续投入真实教学现场</span></div><div><b>Human</b><span>老师保留事实确认与最终判断</span></div><div><b>Loop</b><span>每天根据使用反馈继续调整</span></div></div><figure class="workflow-compact__screen"><img src="assets/feishu/growth-editor-anonymized.png" alt="已隐去学生姓名的 AI 创造者观察编辑器真实界面" width="2940" height="1650" loading="lazy" decoding="async" /><figcaption><span>真实使用界面 / 学生信息已匿名</span><span>Internal pilot</span></figcaption></figure></div>
+              <div class="workflow-compact__visual"><div class="workflow-compact__proofs" aria-label="AI 工作流实验的三项核心证据"><div><b>7 Days</b><span>连续投入真实教学现场</span></div><div><b>Human</b><span>老师保留事实确认与最终判断</span></div><div><b>Loop</b><span>每天根据使用反馈继续调整</span></div></div></div>
             </div>
           </article>
 
           <article class="system-case system-case--featured system-case--museum reveal" id="vitality-museum-case">
             <div class="system-case__copy"><p class="system-case__index">02 / Story → Living Archive · Secondary Case</p><h3>生命力博物馆</h3><p class="system-thesis">展览会结束，但故事不应该消失。</p><p>2025 年夏天，我先做了一个很小的 Demo，想把社区里创业者一路成长的故事保存下来。真正的转折发生在随后持续的深访里：学生、家长和志愿者讲述的不只是项目结果，也包括辍学、寻找、重新行动，以及教育如何改变一个人和一个家庭。</p><p>我把这些分散的生命历程组织成章节、时间轴、菌丝关系网络与生命力地图，让人们不仅看见一件作品，也能追踪作品背后的人如何变化，以及不同的人如何在一个组织中相遇、彼此影响。</p><p class="system-story">2026 年 WAIC，我与超脑团队共同策划「AI 原住民计划」线上特别展。来自不同城市、学校和机构的 44+ 个青少年项目来到现场；展览通过视频、自述、个人网页与 GitHub，把一次性的展台继续延伸为可以长期访问、持续更新的创造者档案。</p><div class="system-evidence" aria-label="生命力博物馆公开项目数据"><span><b>44+</b>带到 WAIC 现场的项目</span><span><b>67</b>累计收录项目</span><span><b>28</b>人物故事</span></div><div class="system-tags"><span>Storytelling</span><span>Living Archive</span><span>Exhibition</span><span>AI-native Build</span></div><div class="system-actions"><a class="system-cta" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">进入线上展馆 <span>↗</span></a><a class="system-cta" href="https://mp.weixin.qq.com/s/5NCHluULXcNHkgcI_rSx9g" target="_blank" rel="noreferrer">阅读项目故事 <span>↗</span></a></div></div>
             <div class="system-case__visual"><a class="system-screen" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer"><img src="assets/vitality/vitality-museum-waic-2026-poster.png?v=public-2" alt="生命力博物馆与超脑 AI 孵化器在 WAIC 2026 联合策展的 AI 原住民计划海报" width="1085" height="1450" loading="lazy" decoding="async" /><span class="system-screen__bar"><b>WAIC 2026 / 联合策展真实海报</b><span>Enter Museum ↗</span></span></a><div class="system-status">LIVE · 线上展馆入口已验证</div></div>
+          </article>
+
+          <article class="system-case system-case--event reveal">
+            <div class="system-case__copy"><p class="system-case__index">03 / Event → Knowledge Asset</p><h3>活动内容产品化</h3><p class="system-thesis">一场活动结束后，现场表达如何继续生长？</p><p>WAIC Pre-Party「AI时代，人文不做旁观者」活动结束后，我用 AI 辅助整理嘉宾的现场发言，再回到具体语境中核对、编辑，并与现场照片一起制作成可继续分发和归档的人物海报。</p><div class="system-tags"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>视觉编辑</span><span>分发归档</span></div></div>
+            <div class="system-case__visual"><div class="system-poster-stage"><div class="system-poster-gallery system-poster-gallery--two" aria-label="WAIC Pre-Party AI时代，人文不做旁观者嘉宾内容海报"><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-zhulianbi.png" alt="复旦大学历史系副教授朱联璧谈历史教育与 AI Agent 的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>朱联璧 / 历史教育 × AI Agent</figcaption></figure><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-dehong.png" alt="独立硬件开发者德宏谈数字分身与人工具边界的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>德宏 / 数字分身 × 人与工具的边界</figcaption></figure></div><span class="system-screen__bar"><b>2 张真实嘉宾内容海报</b><span>2026.07.15 · Shanghai</span></span></div><div class="system-mini-flow" aria-label="活动内容产品化路径"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>人工编辑</span><span>分发归档</span></div></div>
           </article>
         </div>
 
@@ -5579,10 +5506,9 @@
             <span class="bside-moon-object" role="img" aria-label="点击或轻拖月球，打开月球背面">
               <span class="moon-sphere" aria-hidden="true">
                 <img class="moon-portrait" src="assets/vitality/moon-field-portrait.jpg" alt="" width="933" height="1400" loading="lazy" decoding="async" />
-                <span class="moon-texture"></span>
+                <span class="moon-texture"></span><span class="moon-shadow"></span><span class="moon-rim"></span>
               </span>
               <canvas class="moon-webgl" aria-hidden="true"></canvas>
-              <span class="moon-rim" aria-hidden="true"></span>
               <img class="bside-moon-reverse" src="assets/outdoor/moon-highland-portrait.jpg" alt="" loading="lazy" decoding="async" />
               <span class="bside-moon-darkness" aria-hidden="true"></span>
             </span>
@@ -5599,7 +5525,7 @@
               <p>离开屏幕和现场之后，我也会走向山里、户外和路上。<br />徒步、雪山、旅行与在地观察，让我重新校准节奏，也提醒我保持对世界的好奇、耐心与感受力。</p>
               <nav class="bside-socials" aria-label="月亮的播客与社交媒体">
                 <p class="bside-socials__title">Listen &amp; Follow / 继续相遇</p>
-                <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account bside-social__account--links"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗</a><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">Becoming计划 ↗</a></span><span class="bside-social__hint">小宇宙</span></div>
+                <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗</a><small><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">Becoming计划 ↗</a></small></span><span class="bside-social__hint">小宇宙</span></div>
                 <div class="bside-social"><span class="bside-social__platform">小红书</span><span class="bside-social__account">@流浪月亮计划</span><span class="bside-social__hint">小红书号 2893937787</span></div>
                 <div class="bside-social"><span class="bside-social__platform">公众号</span><span class="bside-social__account">流浪月亮计划</span><span class="bside-social__hint">微信内搜索</span></div>
               </nav>
@@ -5793,6 +5719,12 @@
       return (42 + Math.sin(normalizeAngle(angle) * Math.PI / 180) * 24) * Math.PI / 180;
     }
 
+    function fallbackShadowForLight(lightAngle) {
+      const illumination = (1 + Math.cos(lightAngle)) * .5;
+      const side = Math.sin(lightAngle) >= 0 ? -1 : 1;
+      return side * illumination * 118;
+    }
+
     function renderRoleContent(role, animate = true, announce = true) {
       const data = roleData[role];
       if (!data) return;
@@ -5819,6 +5751,7 @@
       const anchor = nearestAnchor(surfaceAngle);
       const anchorVisible = anchor.distance <= anchorRevealDistance;
 
+      moonStage?.style.setProperty('--phase-shadow', `${fallbackShadowForLight(lightAngle).toFixed(2)}%`);
       moonStage?.style.setProperty('--moon-texture-rotate', `${(surfaceAngle * .42).toFixed(2)}deg`);
       moonStage?.style.setProperty('--portrait-drag-rotate', `${(Math.sin(surfaceAngle * Math.PI / 180) * 14).toFixed(2)}deg`);
       moonStage?.style.setProperty('--portrait-drag-x', `${(Math.sin(surfaceAngle * Math.PI / 180) * -7).toFixed(2)}%`);
@@ -6037,6 +5970,7 @@
     function setBsideMoonAngle(angle) {
       bsideMoonAngle = normalizeAngle(angle);
       const lightAngle = lightAngleForSurface(bsideMoonAngle);
+      bsideMoonObject?.style.setProperty('--phase-shadow', `${fallbackShadowForLight(lightAngle).toFixed(2)}%`);
       bsideMoonRenderer?.setState({ surfaceAngle: bsideMoonAngle * Math.PI / 180, lightAngle });
     }
 
@@ -6115,17 +6049,6 @@
       if (bsideDetails.open) window.setTimeout(() => bsideDetails.querySelector('.bside-panel')?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }), 160);
     });
     setBsideMoonAngle(bsideMoonAngle);
-
-    function refreshMoonRenderers() {
-      moonRenderer?.resize();
-      moonRenderer?.render();
-      bsideMoonRenderer?.resize();
-      bsideMoonRenderer?.render();
-    }
-    window.addEventListener('pageshow', refreshMoonRenderers);
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') requestAnimationFrame(refreshMoonRenderers);
-    });
 
     function setCurrentRole(role) {
       if (role === currentRole) return;
