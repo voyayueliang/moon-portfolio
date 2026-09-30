@@ -5335,6 +5335,29 @@
       .talks-public__after { grid-template-columns:1fr; gap:16px; }
       .talks-public__after img { width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; }
     }
+
+    /* Chinese reading hierarchy, one English folio per chapter. */
+    .project-preview__number, .ecosystem-meta, .ecosystem-hero-photo figcaption span,
+    .ecosystem-map-strip__folio, .story-editorial__folio, .story-kicker,
+    .workflow-systems__folio, .workflow-compact__index, .system-case__index,
+    .workflow-supplements__eyebrow, .workflow-supplement-plate__meta,
+    .talks-public__folio, .talks-public__line, .field-notes__folio, .field-notes__index,
+    .ending-folio, .booming-case__eyebrow { font-size:12px; line-height:1.65; letter-spacing:.04em; }
+    .mechanism-stage small, .evidence-editorial span, .story-v4__becoming-links small,
+    .story-v4__people-links small, .story-v4__metrics span, .system-tags span,
+    .workflow-compact__loop span, .workflow-compact__proofs span, .system-mini-flow span,
+    .talks-public__event-name, .talks-public__source, .field-notes__related-list small { font-size:12px; line-height:1.65; }
+    .story-v4__people-links { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .story-v4__people-links a:nth-child(3) { padding-left:0; border-left:0; }
+    .story-editorial__head h2, .workflow-systems__head h2,
+    .talks-public__head h2, .field-notes__head h2 { font-size:clamp(34px,4vw,58px); line-height:1.25; letter-spacing:-.02em; }
+    .ending-copy h2 { font-size:clamp(48px,6vw,76px); line-height:1.2; }
+    .story-editorial__sequence { flex-wrap:wrap; }
+    @media(max-width:620px) {
+      .story-editorial__head h2, .workflow-systems__head h2, .talks-public__head h2, .field-notes__head h2 { font-size:34px; }
+      .mechanism-stage small { min-height:40px; }
+    }
+    .ecosystem-mechanism > h3, .ecosystem-evidence > h3 { font-size:12px; line-height:1.65; letter-spacing:.04em; }
   </style>
 </head>
 <body class="lunar-home">
@@ -5347,12 +5370,12 @@
         <nav class="site-nav site-nav--projects" aria-label="作品方向导航">
           <a href="#ecosystem" data-project-nav="ecosystem"><b>01 创造者生态</b></a>
           <a href="#story" data-project-nav="story"><b>02 人物与生态叙事</b></a>
-          <a href="#workflow" data-project-nav="workflow"><b>03 AI Workflow</b></a>
+          <a href="#workflow" data-project-nav="workflow"><b>03 AI 工作流</b></a>
         </nav>
         <nav class="role-mini-nav" aria-label="作品方向快捷导航">
           <a class="role-mini-link" href="#ecosystem" data-role="connector" aria-label="创造者生态"><span class="mini-orb mini-orb--crescent" aria-hidden="true"></span><span class="mini-label">01 / 创造者生态</span></a>
           <a class="role-mini-link" href="#story" data-role="storyteller" aria-label="人物与生态叙事"><span class="mini-orb mini-orb--half" aria-hidden="true"></span><span class="mini-label">02 / 人物与生态叙事</span></a>
-          <a class="role-mini-link" href="#workflow" data-role="builder" aria-label="AI Workflow"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">03 / AI Workflow</span></a>
+          <a class="role-mini-link" href="#workflow" data-role="builder" aria-label="AI 工作流"><span class="mini-orb mini-orb--full" aria-hidden="true"></span><span class="mini-label">03 / AI 工作流</span></a>
         </nav>
       </div>
     </div>
@@ -5365,7 +5388,7 @@
         <div class="moon-stage-brand">
           <p class="moon-stage-signature">张婵媛（月亮） <span>｜</span> Moon</p>
           <p class="moon-stage-motto"><span>看见正在发生的生命力</span><small>Seeing What’s Emerging</small></p>
-          <h1 id="moon-stage-title"><span>一个向 AI 走去的<br />人类学冒险家</span><small>AI Creator Ecosystem · Storytelling · AI Workflow</small></h1>
+          <h1 id="moon-stage-title"><span>一个向 AI 走去的<br />人类学冒险家</span><small>创造者生态 · 人物叙事 · AI 工作流</small></h1>
           <p class="moon-stage-intro">我从大理的数字游民社区和创新教育田野走来，也是一名 AI Native 创造者——AI 不只是我持续进入的领域，也是我研究项目、生产内容和运营关系的工作底座。<br />过去三年，我进入 AI 创新教育、创业孵化与开发者社区，持续发现和连接早期创业者；从 0 到 1 发起超级个体实验室，汇聚了 700+ 位 AI 创业者，并联动社区与孵化器，通过活动、黑客松和工作坊促成深度交流与合作。</p>
           <p class="moon-stage-evidence"><span>0→1 超级个体实验室</span><span>数百人 AI 创造者社群</span><span>7 天营地真实使用</span></p>
         </div>
@@ -5388,25 +5411,25 @@
             <p class="moon-role-evidence" id="role-evidence">大理田野 · 早期信号</p>
             <a id="role-jump" href="#proof">进入项目发现 <span>↓</span></a>
           </article>
-          <p class="moon-control-help" id="moon-control-help"><span>↔</span> 拖动月亮，看看不同侧面 <small>Drag to rotate</small></p>
+          <p class="moon-control-help" id="moon-control-help"><span>↔</span> 拖动月亮，看看不同侧面 </p>
         </div>
       </div>
 
       <div class="moon-project-axis" id="proof" aria-label="作品方向与案例索引">
         <a class="project-preview" href="#ecosystem">
-          <div class="project-preview__top"><span class="project-preview__number">01 / CREATOR ECOSYSTEM</span><span class="project-preview__arrow">→</span></div>
+          <div class="project-preview__top"><span class="project-preview__number">01</span><span class="project-preview__arrow">→</span></div>
           <h2>创造者生态</h2>
-          <p><b>Works</b>｜社群搭建 · 创造者田野</p>
+          <p>社群搭建 · 创造者田野</p>
         </a>
         <a class="project-preview" href="#story">
-          <div class="project-preview__top"><span class="project-preview__number">02 / STORYTELLING</span><span class="project-preview__arrow">→</span></div>
+          <div class="project-preview__top"><span class="project-preview__number">02</span><span class="project-preview__arrow">→</span></div>
           <h2>人物与生态叙事</h2>
-          <p><b>Works</b>｜人物深访 · Builder 观察 · 生态报道</p>
+          <p>人物深访 · Builder 观察 · 生态报道</p>
         </a>
         <a class="project-preview" href="#workflow">
-          <div class="project-preview__top"><span class="project-preview__number">03 / AI WORKFLOW</span><span class="project-preview__arrow">→</span></div>
-          <h2>AI Workflow</h2>
-          <p><b>Works</b>｜内容策展 · 内容生产 · 行业研究</p>
+          <div class="project-preview__top"><span class="project-preview__number">03</span><span class="project-preview__arrow">→</span></div>
+          <h2>AI 工作流</h2>
+          <p>内容策展 · 内容生产 · 行业研究</p>
         </a>
       </div>
     </section>
@@ -5416,18 +5439,18 @@
         <header class="ecosystem-flagship-head reveal">
           <div class="ecosystem-identity">
             <p class="ecosystem-flagship-name"><span>Super Individual Lab</span>超级个体实验室</p>
-            <p class="ecosystem-meta">2025 · Shanghai<br />Role｜项目发起人 · 社区与内容体系搭建</p>
+            <p class="ecosystem-meta">2025 · 上海<br />我的职责｜项目发起人 · 社区与内容体系搭建</p>
           </div>
           <h2 id="ecosystem-title">100+ 天，把“超级个体正在出现”的判断，变成 <em>400+</em> 人的 AI 创造者社群。</h2>
           <figure class="ecosystem-hero-photo">
             <img src="assets/vitality/researcher-party-group.jpg" alt="超级个体实验室与 Research AI+、Datawhale、AI Nexus 的活动合影" width="1600" height="900" loading="lazy" decoding="async" />
-            <figcaption><span>01 / THE SIGNAL · FIELD / 2025</span><strong>年轻 AI Native 创造者已经出现，但缺少持续被发现、连接的入口。</strong></figcaption>
+            <figcaption><span>01 / 现场观察 · 2025</span><strong>年轻 AI Native 创造者已经出现，但缺少持续被发现、连接的入口。</strong></figcaption>
           </figure>
         </header>
 
         <div class="ecosystem-body">
           <section class="ecosystem-mechanism reveal" aria-labelledby="ecosystem-build-title">
-            <h3 id="ecosystem-build-title">02 / What I Built</h3>
+            <h3 id="ecosystem-build-title">02 / 我搭建了什么</h3>
             <div class="mechanism-stages" aria-label="超级个体实验室四阶段生态机制">
               <div class="mechanism-stage"><b>识别人</b><small>内容触达 · 了解项目与需求</small></div><i>→</i>
               <div class="mechanism-stage"><b>筛选入群</b><small>先认识 · 再邀请 · 保持画像</small></div><i>→</i>
@@ -5439,10 +5462,10 @@
           </section>
 
           <section class="ecosystem-evidence reveal" aria-labelledby="ecosystem-evidence-title">
-            <h3 id="ecosystem-evidence-title">03 / Evidence</h3>
+            <h3 id="ecosystem-evidence-title">03 / 项目成果</h3>
             <div class="evidence-editorial">
               <div class="evidence-anchor"><b>700+</b><span>项目期 AI 创业者与开发者<br />累计连接 / 触达</span></div>
-              <div class="evidence-note evidence-note--days"><b>100+ Days</b><span>从 0 到 1 完成社群冷启动</span></div>
+              <div class="evidence-note evidence-note--days"><b>100+ 天</b><span>从 0 到 1 完成社群冷启动</span></div>
               <div class="evidence-note evidence-note--partners"><b>400+</b><span>高粘性创业者社区</span></div>
               <div class="evidence-note evidence-note--programs"><b>30+</b><span>社区、孵化器、投资机构生态伙伴</span></div>
               <div class="evidence-note evidence-note--field"><b>60 → 170+</b><span><strong>旗舰现场</strong>｜近百人到场 · 9 个技术议题圆桌</span></div>
@@ -5457,7 +5480,7 @@
     <section class="booming-case" id="booming-shenzhen" data-role-section="connector" aria-labelledby="booming-title">
       <div class="wrap booming-case__grid">
         <div>
-          <p class="booming-case__eyebrow">CREATOR ECOSYSTEM / SHENZHEN · 2026</p>
+          <p class="booming-case__eyebrow">创造者生态 · 深圳 · 2026</p>
           <h2 id="booming-title">蓝驰 Booming Hub · 深圳<br />AI × 硬件闭门交流</h2>
           <p class="booming-case__role">蓝驰创投 × DCG Foundry 联合发起 · Google Cloud 合作支持</p>
           <p class="booming-case__role">活动 Owner · 跨团队协作 · AI 工作流</p>
@@ -5474,26 +5497,26 @@
 
     <section class="ecosystem-map-strip" id="ecosystem-map" data-role-section="connector" aria-labelledby="ecosystem-map-title">
       <div class="wrap reveal">
-        <p class="ecosystem-map-strip__folio">Page 03 / Ecosystem Map</p>
+        <p class="ecosystem-map-strip__folio">Ecosystem Map</p>
         <h2 id="ecosystem-map-title">我长期连接与进入的生态网络</h2>
         <p class="ecosystem-map-strip__lede">从田野、教育与社区出发，持续进入 AI 创业者、开发者与研究网络。</p>
 
         <div class="ecosystem-map-strip__grid">
           <article class="ecosystem-map-strip__group">
             <h3>创业者与开发者生态</h3>
-            <small>Founder / Builder Ecosystem</small>
+            
             <p class="ecosystem-map-strip__names">Datawhale · 超脑 AI 孵化器 · 超级个体实验室<br />Research AI+ · NCC 社区 · 深圳科创学院 · …</p>
           </article>
 
           <article class="ecosystem-map-strip__group">
             <h3>产业合作</h3>
-            <small>Industry Collaboration</small>
+            
             <p class="ecosystem-map-strip__names">RTE / Agora / Backchannel · BottleDream<br />小红书 · 真格基金 · …</p>
           </article>
 
           <article class="ecosystem-map-strip__group">
             <h3>研究、叙事与公共现场</h3>
-            <small>Research / Storytelling / Public Field</small>
+            
             <p class="ecosystem-map-strip__names">腾讯研究院 · 中信出版·信睿Lab · DIIS<br />WAIC · 2050 · …</p>
           </article>
         </div>
@@ -5503,10 +5526,10 @@
 
     <section class="story-editorial story-v3 story-v4" id="story" data-role-section="storyteller" aria-labelledby="story-editorial-title">
       <header class="story-editorial__head wrap reveal">
-        <div><p class="story-editorial__folio">Page 04 / Storytelling</p><h2 id="story-editorial-title">Storytelling</h2></div>
+        <div><p class="story-editorial__folio">Storytelling</p><h2 id="story-editorial-title">人物与生态叙事</h2></div>
         <p class="story-editorial__lede">从理解一个人、发现水下 Founder，到进入一整个开发者与社区生态现场。</p>
       </header>
-      <nav class="story-editorial__sequence wrap reveal" aria-label="Storytelling 叙事顺序"><a href="#story-founders">People / Founders</a><i>→</i><a href="#story-amd">Developer Ecosystem</a><small>Close-up → Field</small></nav>
+      <nav class="story-editorial__sequence wrap reveal" aria-label="Storytelling 叙事顺序"><a href="#story-founders">人物与创业者</a><i>→</i><a href="#story-amd">开发者生态</a><small>从人物到生态</small></nav>
 
       <section class="story-v4__people" id="story-founders" aria-labelledby="story-founders-title">
         <div class="wrap story-v4__people-grid">
@@ -5516,7 +5539,7 @@
             <div><blockquote>看见过程，而不只看见结果。</blockquote><div class="story-v4__becoming-links"><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><b>开篇词｜我们这一代，还能以热爱和理想躬身入局吗？ ↗</b><small>从教育、主动性与时代焦虑出发，说明 Becoming 为什么开始。</small></a><a href="https://mp.weixin.qq.com/s/RWh69Q8JQmYlL40mfD1rKA" target="_blank" rel="noreferrer"><b>乐乐｜AI 教育创业者</b><small>从小城、留白与热爱，理解她为什么走向 AI、教育与游戏。</small></a><a href="https://mp.weixin.qq.com/s/wgFAtBLtW6yvm9acbR7FzQ" target="_blank" rel="noreferrer"><b>Tim｜Artflow.ai 创始人</b><small>从连续创业进入生活本身：一个创业者的人生哲学与选择。</small></a></div></div>
           </article>
           <article class="story-v4__guacha reveal">
-            <header class="story-v4__column-head"><p class="story-kicker">01B / 观猹人物 · Builder Profile</p><h3>寻找还没有成为共识的 AI Builder。<small>Founder Discovery before consensus</small></h3><p>4 期公开人物稿。关注非标准路径里的早期创造者：他们还没有被成功叙事定义，却已经开始做产品、写代码和验证自己的判断。</p></header>
+            <header class="story-v4__column-head"><p class="story-kicker">01B / 观猹人物</p><h3>寻找还没有成为共识的 AI Builder。</h3><p>4 期公开人物稿。关注非标准路径里的早期创造者：他们还没有被成功叙事定义，却已经开始做产品、写代码和验证自己的判断。</p></header>
             <a class="story-v4__column-media" href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" /><span>默子 / Redink · 00 后开源 Builder　↗</span></a>
             <div><div class="story-v4__metrics"><p><b>4</b><span>期公开人物稿</span></p><p><b>8000+</b><span>系列阅读</span></p><p><b>20+</b><span>默子稿后的资源沟通</span></p></div><div class="story-v4__people-links" aria-label="观猹人物四期公开文章"><a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><b>默子｜开源 Builder</b><small>3 天做出 4.5k+ Stars 的 Redink，进入投资人和大厂视野。</small></a><a href="https://mp.weixin.qq.com/s/pudO0eJISbL6BylC1BDC0Q" target="_blank" rel="noreferrer"><b>杨晨｜AI 创造者</b><small>前大厂运营；白天做保安，夜里用 AI 重建行动感。</small></a><a href="https://mp.weixin.qq.com/s/sEBMUapVyCz0tm073si_sg" target="_blank" rel="noreferrer"><b>核蛋｜17 岁创业少年</b><small>在课业、创业比赛与产品实践之间，长出自己的商业判断。</small></a><a href="https://mp.weixin.qq.com/s/7IHYXyU80C9vM8Tzz1KOrQ" target="_blank" rel="noreferrer"><b>小鹅｜创意硬件 Builder</b><small>从黑客松金奖走向 AI 硬件与设计型一人公司。</small></a></div></div>
           </article>
@@ -5525,7 +5548,7 @@
 
       <section class="story-v4__amd" id="story-amd" aria-labelledby="story-amd-title">
         <div class="wrap">
-          <header class="story-v4__amd-head reveal"><div><p class="story-kicker">02 / Developer Ecosystem</p><h3 id="story-amd-title">Datawhale × AMD<small>AI 开发者日 · 上海</small></h3></div><div class="story-v4__amd-copy"><p>我参与组建内容团队、协调现场分工，联结开发者社区与生态伙伴，设计采访方向，并把开发者、项目与社区关系沉淀成一篇完整的生态叙事。</p><p class="story-role-line">团队组建 · 社区联结 · 现场人物发现 · 采访策划 · 内容生产与沉淀</p><a class="story-link" href="https://mp.weixin.qq.com/s/_Vo3S7n-lxPJEm0pkWbSXg" target="_blank" rel="noreferrer">阅读完整报道 <span>↗</span></a></div></header>
+          <header class="story-v4__amd-head reveal"><div><p class="story-kicker">02 / 开发者生态</p><h3 id="story-amd-title">Datawhale × AMD<small>AI 开发者日 · 上海</small></h3></div><div class="story-v4__amd-copy"><p>我参与组建内容团队、协调现场分工，联结开发者社区与生态伙伴，设计采访方向，并把开发者、项目与社区关系沉淀成一篇完整的生态叙事。</p><p class="story-role-line">团队组建 · 社区联结 · 现场人物发现 · 采访策划 · 内容生产与沉淀</p><a class="story-link" href="https://mp.weixin.qq.com/s/_Vo3S7n-lxPJEm0pkWbSXg" target="_blank" rel="noreferrer">阅读完整报道 <span>↗</span></a></div></header>
           <div class="story-v4__amd-gallery" aria-label="AMD AI 开发者日现场图片">
             <figure class="reveal"><img src="assets/amd/scene-0.jpg" alt="苏姿丰在 Datawhale 展台与社区成员交流" width="1080" height="720" decoding="async" /><figcaption>Datawhale 展台 / 苏姿丰到访</figcaption></figure>
             <figure class="reveal"><img src="assets/amd/scene-6.jpg" alt="Datawhale 与开发者社区伙伴现场合影" width="1080" height="720" decoding="async" /><figcaption>开发者与社区伙伴</figcaption></figure>
@@ -5539,37 +5562,37 @@
     <section class="workflow-systems" id="workflow" data-role-section="builder" aria-labelledby="workflow-title">
       <div class="wrap">
         <header class="workflow-systems__head reveal">
-          <div><p class="workflow-systems__folio">Page 05 / AI Workflow</p><h2 id="workflow-title">AI Workflow<small>AI-native Operations</small></h2></div>
+          <div><p class="workflow-systems__folio">AI Workflow</p><h2 id="workflow-title">AI 工作流<small>从真实协作到 AI 工作流</small></h2></div>
           <p class="workflow-systems__intro">进入真实业务场景，理解团队原本的协作与信息流，再把重复劳动重构成可以运行、可以持续迭代的 AI 工作流程。</p>
         </header>
 
         <div class="system-stack">
           <article class="workflow-primary workflow-primary--compact reveal">
-            <header class="workflow-primary__head"><div><p class="system-case__index">01 / Field Experiment · 7-day Iteration</p><h3>真实场景中的 AI 工作流实验<small>From field need to a working workflow</small></h3></div><p class="workflow-primary__thesis">用7天时间，搭建一个AI创造者观察记录体系</p></header>
+            <header class="workflow-primary__head"><div><p class="system-case__index">01 / 真实场景 · 七天迭代</p><h3>真实场景中的 AI 工作流实验<small>从现场需求到可用流程</small></h3></div><p class="workflow-primary__thesis">用7天时间，搭建一个AI创造者观察记录体系</p></header>
             <div class="workflow-compact">
-              <div class="workflow-compact__copy"><p>在大理 AI 营地中，老师每天需要记录学生状态，并向家长提供具体、可信的观察反馈。我将零散记录整理为一套由 AI 辅助、老师最终确认的工作流，并在七天真实使用中持续调整人机协作边界。</p><div class="workflow-compact__loop" aria-label="观察、搭建、使用、反馈、迭代循环"><span>Observe</span><i>→</i><span>Build</span><i>→</i><span>Use</span><i>→</i><span>Feedback</span><i>→</i><span>Iterate</span></div></div>
-              <div class="workflow-compact__visual"><figure class="workflow-compact__screen" data-private-workflow-screen><img src="assets/feishu/growth-editor-anonymized.png" alt="已隐去学生姓名的 AI 创造者观察编辑器真实界面" width="2940" height="1650" loading="lazy" decoding="async" /><figcaption><span>真实使用界面 / 学生信息已匿名</span><span>Internal pilot</span></figcaption></figure><div class="workflow-compact__proofs" aria-label="AI 工作流实验的三项核心证据"><div><b>7 Days</b><span>连续投入真实教学现场</span></div><div><b>Human</b><span>老师保留事实确认与最终判断</span></div><div><b>Loop</b><span>每天根据使用反馈继续调整</span></div></div></div>
+              <div class="workflow-compact__copy"><p>在大理 AI 营地中，老师每天需要记录学生状态，并向家长提供具体、可信的观察反馈。我将零散记录整理为一套由 AI 辅助、老师最终确认的工作流，并在七天真实使用中持续调整人机协作边界。</p><div class="workflow-compact__loop" aria-label="观察、搭建、使用、反馈、迭代循环"><span>观察</span><i>→</i><span>搭建</span><i>→</i><span>使用</span><i>→</i><span>反馈</span><i>→</i><span>迭代</span></div></div>
+              <div class="workflow-compact__visual"><figure class="workflow-compact__screen" data-private-workflow-screen><img src="assets/feishu/growth-editor-anonymized.png" alt="已隐去学生姓名的 AI 创造者观察编辑器真实界面" width="2940" height="1650" loading="lazy" decoding="async" /><figcaption><span>真实使用界面 / 学生信息已匿名</span><span>内部试用</span></figcaption></figure><div class="workflow-compact__proofs" aria-label="AI 工作流实验的三项核心证据"><div><b>7 天</b><span>连续投入真实教学现场</span></div><div><b>人工判断</b><span>老师保留事实确认与最终判断</span></div><div><b>持续迭代</b><span>每天根据使用反馈继续调整</span></div></div></div>
             </div>
           </article>
 
           <article class="system-case system-case--featured system-case--museum reveal" id="vitality-museum-case">
-            <div class="system-case__copy"><p class="system-case__index">02 / Story → Living Archive · Secondary Case</p><h3>生命力博物馆</h3><p class="system-thesis">展览会结束，但故事不应该消失。</p><p>2025 年夏天，我先做了一个很小的 Demo，想把社区里创业者一路成长的故事保存下来。真正的转折发生在随后持续的深访里：学生、家长和志愿者讲述的不只是项目结果，也包括辍学、寻找、重新行动，以及教育如何改变一个人和一个家庭。</p><p>我把这些分散的生命历程组织成章节、时间轴、菌丝关系网络与生命力地图，让人们不仅看见一件作品，也能追踪作品背后的人如何变化，以及不同的人如何在一个组织中相遇、彼此影响。</p><p class="system-story">2026 年 WAIC，我与超脑团队共同策划「AI 原住民计划」线上特别展。来自不同城市、学校和机构的 44+ 个青少年项目来到现场；展览通过视频、自述、个人网页与 GitHub，把一次性的展台继续延伸为可以长期访问、持续更新的创造者档案。</p><div class="system-evidence" aria-label="生命力博物馆公开项目数据"><span><b>44+</b>带到 WAIC 现场的项目</span><span><b>67</b>累计收录项目</span><span><b>28</b>人物故事</span></div><div class="system-tags"><span>Storytelling</span><span>Living Archive</span><span>Exhibition</span><span>AI-native Build</span></div><div class="system-actions"><a class="system-cta" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">进入线上展馆 <span>↗</span></a><a class="system-cta" href="https://mp.weixin.qq.com/s/5NCHluULXcNHkgcI_rSx9g" target="_blank" rel="noreferrer">阅读项目故事 <span>↗</span></a></div></div>
-            <div class="system-case__visual"><a class="system-screen" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer"><img src="assets/vitality/vitality-museum-waic-2026-poster.png?v=public-2" alt="生命力博物馆与超脑 AI 孵化器在 WAIC 2026 联合策展的 AI 原住民计划海报" width="1085" height="1450" loading="lazy" decoding="async" /><span class="system-screen__bar"><b>WAIC 2026 / 联合策展真实海报</b><span>Enter Museum ↗</span></span></a><div class="system-status">LIVE · 线上展馆入口已验证</div></div>
+            <div class="system-case__copy"><p class="system-case__index">02 / 从故事到长期档案</p><h3>生命力博物馆</h3><p class="system-thesis">展览会结束，但故事不应该消失。</p><p>2025 年夏天，我先做了一个很小的 Demo，想把社区里创业者一路成长的故事保存下来。真正的转折发生在随后持续的深访里：学生、家长和志愿者讲述的不只是项目结果，也包括辍学、寻找、重新行动，以及教育如何改变一个人和一个家庭。</p><p>我把这些分散的生命历程组织成章节、时间轴、菌丝关系网络与生命力地图，让人们不仅看见一件作品，也能追踪作品背后的人如何变化，以及不同的人如何在一个组织中相遇、彼此影响。</p><p class="system-story">2026 年 WAIC，我与超脑团队共同策划「AI 原住民计划」线上特别展。来自不同城市、学校和机构的 44+ 个青少年项目来到现场；展览通过视频、自述、个人网页与 GitHub，把一次性的展台继续延伸为可以长期访问、持续更新的创造者档案。</p><div class="system-evidence" aria-label="生命力博物馆公开项目数据"><span><b>44+</b>带到 WAIC 现场的项目</span><span><b>67</b>累计收录项目</span><span><b>28</b>人物故事</span></div><div class="system-tags"><span>人物叙事</span><span>长期档案</span><span>线上策展</span><span>AI 辅助搭建</span></div><div class="system-actions"><a class="system-cta" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">进入线上展馆 <span>↗</span></a><a class="system-cta" href="https://mp.weixin.qq.com/s/5NCHluULXcNHkgcI_rSx9g" target="_blank" rel="noreferrer">阅读项目故事 <span>↗</span></a></div></div>
+            <div class="system-case__visual"><a class="system-screen" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer"><img src="assets/vitality/vitality-museum-waic-2026-poster.png?v=public-2" alt="生命力博物馆与超脑 AI 孵化器在 WAIC 2026 联合策展的 AI 原住民计划海报" width="1085" height="1450" loading="lazy" decoding="async" /><span class="system-screen__bar"><b>WAIC 2026 / 联合策展真实海报</b><span>进入展馆 ↗</span></span></a><div class="system-status">线上展馆 · 可访问</div></div>
           </article>
 
           <article class="system-case system-case--event reveal">
-            <div class="system-case__copy"><p class="system-case__index">03 / Event → Knowledge Asset</p><h3>活动内容产品化</h3><p class="system-thesis">一场活动结束后，现场表达如何继续生长？</p><p>WAIC Pre-Party「AI时代，人文不做旁观者」活动结束后，我用 AI 辅助整理嘉宾的现场发言，再回到具体语境中核对、编辑，并与现场照片一起制作成可继续分发和归档的人物海报。</p><div class="system-tags"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>视觉编辑</span><span>分发归档</span></div></div>
-            <div class="system-case__visual"><div class="system-poster-stage"><div class="system-poster-gallery system-poster-gallery--two" aria-label="WAIC Pre-Party AI时代，人文不做旁观者嘉宾内容海报"><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-zhulianbi.png" alt="复旦大学历史系副教授朱联璧谈历史教育与 AI Agent 的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>朱联璧 / 历史教育 × AI Agent</figcaption></figure><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-dehong.png" alt="独立硬件开发者德宏谈数字分身与人工具边界的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>德宏 / 数字分身 × 人与工具的边界</figcaption></figure></div><span class="system-screen__bar"><b>2 张真实嘉宾内容海报</b><span>2026.07.15 · Shanghai</span></span></div><div class="system-mini-flow" aria-label="活动内容产品化路径"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>人工编辑</span><span>分发归档</span></div></div>
+            <div class="system-case__copy"><p class="system-case__index">03 / 从活动到内容资产</p><h3>活动内容产品化</h3><p class="system-thesis">一场活动结束后，现场表达如何继续生长？</p><p>WAIC Pre-Party「AI时代，人文不做旁观者」活动结束后，我用 AI 辅助整理嘉宾的现场发言，再回到具体语境中核对、编辑，并与现场照片一起制作成可继续分发和归档的人物海报。</p><div class="system-tags"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>视觉编辑</span><span>分发归档</span></div></div>
+            <div class="system-case__visual"><div class="system-poster-stage"><div class="system-poster-gallery system-poster-gallery--two" aria-label="WAIC Pre-Party AI时代，人文不做旁观者嘉宾内容海报"><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-zhulianbi.png" alt="复旦大学历史系副教授朱联璧谈历史教育与 AI Agent 的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>朱联璧 / 历史教育 × AI Agent</figcaption></figure><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-dehong.png" alt="独立硬件开发者德宏谈数字分身与人工具边界的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>德宏 / 数字分身 × 人与工具的边界</figcaption></figure></div><span class="system-screen__bar"><b>2 张真实嘉宾内容海报</b><span>2026.07.15 · 上海</span></span></div><div class="system-mini-flow" aria-label="活动内容产品化路径"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>人工编辑</span><span>分发归档</span></div></div>
           </article>
         </div>
 
         <footer class="workflow-supplements reveal">
-          <header class="workflow-supplements__head"><p class="workflow-supplements__eyebrow">Supporting Systems&nbsp;&nbsp;/&nbsp;&nbsp;From Signal to Relationship</p><h3 class="workflow-supplements__headline">从公开线索里，<br />找到值得持续跟进的人。</h3><p class="workflow-supplements__deck">理解他们正在解决的问题，再把判断变成内容、关系与下一步行动。</p></header>
+          <header class="workflow-supplements__head"><p class="workflow-supplements__eyebrow">研究与内容工具</p><h3 class="workflow-supplements__headline">从公开线索里，<br />找到值得持续跟进的人。</h3><p class="workflow-supplements__deck">理解他们正在解决的问题，再把判断变成内容、关系与下一步行动。</p></header>
           <div class="workflow-supplements__spread">
-            <article class="workflow-supplement-plate workflow-supplement-plate--primary"><a class="workflow-supplement-plate__media" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱界面" width="2940" height="1506" loading="lazy" decoding="async" /></a><p class="workflow-supplement-plate__meta">01 / Project Discovery</p><a class="workflow-supplement-plate__title" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">项目与人物发现</a><p class="workflow-supplement-plate__copy">从公开信息、人物候选到访谈假设，持续追踪谁在解决什么问题，以及他们与谁发生连接。</p></article>
-            <article class="workflow-supplement-plate workflow-supplement-plate--secondary"><a class="workflow-supplement-plate__media" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容生产六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></a><p class="workflow-supplement-plate__meta">02 / Content Creation Workflow</p><a class="workflow-supplement-plate__title" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">内容创作工作流</a><p class="workflow-supplement-plate__copy">把录音、策划案、截图与旧稿依次完成任务分诊、结构重组、起草、事实核对与发布复盘，沉淀为可重复调用的内容生产流程。</p></article>
+            <article class="workflow-supplement-plate workflow-supplement-plate--primary"><a class="workflow-supplement-plate__media" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer"><img src="assets/feishu/voice-ai-map-highres.png" alt="Voice AI 行业与人物关系图谱界面" width="2940" height="1506" loading="lazy" decoding="async" /></a><p class="workflow-supplement-plate__meta">01 / 项目与人物发现</p><a class="workflow-supplement-plate__title" href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">项目与人物发现</a><p class="workflow-supplement-plate__copy">从公开信息、人物候选到访谈假设，持续追踪谁在解决什么问题，以及他们与谁发生连接。</p></article>
+            <article class="workflow-supplement-plate workflow-supplement-plate--secondary"><a class="workflow-supplement-plate__media" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer"><img src="assets/feishu/ai-content-workflow-pipeline.png" alt="AI 内容生产六步工作流" width="1600" height="1000" loading="lazy" decoding="async" /></a><p class="workflow-supplement-plate__meta">02 / 内容创作流程</p><a class="workflow-supplement-plate__title" href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">内容创作工作流</a><p class="workflow-supplement-plate__copy">把录音、策划案、截图与旧稿依次完成任务分诊、结构重组、起草、事实核对与发布复盘，沉淀为可重复调用的内容生产流程。</p></article>
           </div>
-          <nav class="workflow-supplements__index" aria-label="Supporting Systems 相关入口"><a href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">Open Map</a><span>/</span><a href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">Content Workflow</a><span>/</span><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer">Selected Skills ↗</a></nav>
+          <nav class="workflow-supplements__index" aria-label="Supporting Systems 相关入口"><a href="https://voyayueliang.github.io/voice-ai-industry-map/network/" target="_blank" rel="noreferrer">打开人物图谱</a><span>/</span><a href="https://voyayueliang.github.io/Content-Creators/share.html" target="_blank" rel="noreferrer">查看内容流程</a><span>/</span><a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer">GitHub 项目 ↗</a></nav>
         </footer>
       </div>
     </section>
@@ -5577,14 +5600,14 @@
     <section class="talks-public" id="talks" data-role-section="storyteller" aria-labelledby="talks-public-title">
       <div class="wrap">
         <header class="talks-public__head reveal">
-          <p class="talks-public__folio">Page 06 / Public Field</p>
-          <div><h2 id="talks-public-title">Talks &amp; Public Conversations<small>把田野观察带进公共讨论</small></h2><p class="talks-public__intro">从大型舞台、研究工作坊到普通人的生活案例，把 AI 创新教育、创业者生态与真实生活中的变化，转译成不同人能够共同进入的问题。</p></div>
+          <p class="talks-public__folio">Public Conversations</p>
+          <div><h2 id="talks-public-title">演讲与公共对谈<small>把田野观察带进公共讨论</small></h2><p class="talks-public__intro">从大型舞台、研究工作坊到普通人的生活案例，把 AI 创新教育、创业者生态与真实生活中的变化，转译成不同人能够共同进入的问题。</p></div>
         </header>
         <div class="talks-public__spread">
-          <figure class="talks-public__lead reveal"><a class="talks-public__lead-link" href="https://mp.weixin.qq.com/s/cnveCinN-zOcOtKiq5UC0w" target="_blank" rel="noreferrer" aria-label="阅读 2050 学习节活动记录"><img src="assets/feishu/2050-super-individual-panel.jpg?v=sync-2" alt="月亮作为超级个体实验室发起人，在 2050 学习节与真格基金投资人和 IFVP 全球理事进行圆桌对谈" width="1600" height="1067" loading="lazy" decoding="async" /></a><figcaption><div><span class="talks-public__line">01 / Panel Conversation · Hangzhou</span><h3>2050 学习节</h3></div><small>作为超级个体实验室发起人与超级个体代表，与真格基金投资人、国际视觉实践联盟 IFVP 全球理事，围绕“AI 时代的新发展与个人发展新路径”展开对谈，讨论年轻创业者与超级个体的新趋势。<a class="talks-public__source" href="https://mp.weixin.qq.com/s/cnveCinN-zOcOtKiq5UC0w" target="_blank" rel="noreferrer">阅读活动记录 ↗</a></small></figcaption></figure>
-          <figure class="talks-public__slice talks-public__slice--fudan reveal"><div class="talks-public__media"><img src="assets/feishu/digital-china-workshop-highres.jpg" alt="月亮在复旦大学与 UCL 数字中国跨学科论坛进行分享" /><img class="talks-public__poster" src="assets/feishu/fudan-ucl-digital-china-forum-poster.png?v=sync-2" alt="复旦大学与 UCL 数字中国跨学科论坛嘉宾海报，月亮作为 AI 田野实践者参会" width="1248" height="1979" loading="lazy" decoding="async" /></div><figcaption><span class="talks-public__line">02 / Academic Forum · Shanghai</span><h3>复旦 × UCL</h3><span class="talks-public__event-name">数字中国跨学科论坛</span><small>作为论坛唯一来自 AI 产业实践的一线嘉宾，把创新教育与创业社区的田野观察带进学术讨论。</small></figcaption></figure>
-          <figure class="talks-public__slice reveal"><img src="assets/feishu/ai-life-sharing-highres.jpg" alt="月亮以普通家庭使用 AI 的案例进行现场分享" /><figcaption><span class="talks-public__line">03 / Case-based Talk</span><h3>AI 进入生活的样子</h3><small>从普通家庭的具体片段，进入 AI × Society 的讨论。</small></figcaption></figure>
-          <article class="talks-public__after reveal"><img src="assets/feishu/ai-cross-border-group-highres.jpg" alt="2026 WAIC Pre-party 人文不做旁观者活动参与者合影" /><div><span class="talks-public__line">04 / WAIC 2026 · Public Conversation</span><h3>在 AI 浪潮下，看见具体的人。</h3><p>我们与中信出版·信睿Lab、VAST 一起发起 WAIC Pre-party「人文，不做旁观者」系列，邀请复旦大学、上海交通大学的教授、研究者和身边的人文科技创业者，共同分享创业与研究成果。</p></div><b>Convening<br />Cross-field connection</b></article>
+          <figure class="talks-public__lead reveal"><a class="talks-public__lead-link" href="https://mp.weixin.qq.com/s/cnveCinN-zOcOtKiq5UC0w" target="_blank" rel="noreferrer" aria-label="阅读 2050 学习节活动记录"><img src="assets/feishu/2050-super-individual-panel.jpg?v=sync-2" alt="月亮作为超级个体实验室发起人，在 2050 学习节与真格基金投资人和 IFVP 全球理事进行圆桌对谈" width="1600" height="1067" loading="lazy" decoding="async" /></a><figcaption><div><span class="talks-public__line">01 / 圆桌对谈 · 杭州</span><h3>2050 学习节</h3></div><small>作为超级个体实验室发起人与超级个体代表，与真格基金投资人、国际视觉实践联盟 IFVP 全球理事，围绕“AI 时代的新发展与个人发展新路径”展开对谈，讨论年轻创业者与超级个体的新趋势。<a class="talks-public__source" href="https://mp.weixin.qq.com/s/cnveCinN-zOcOtKiq5UC0w" target="_blank" rel="noreferrer">阅读活动记录 ↗</a></small></figcaption></figure>
+          <figure class="talks-public__slice talks-public__slice--fudan reveal"><div class="talks-public__media"><img src="assets/feishu/digital-china-workshop-highres.jpg" alt="月亮在复旦大学与 UCL 数字中国跨学科论坛进行分享" /><img class="talks-public__poster" src="assets/feishu/fudan-ucl-digital-china-forum-poster.png?v=sync-2" alt="复旦大学与 UCL 数字中国跨学科论坛嘉宾海报，月亮作为 AI 田野实践者参会" width="1248" height="1979" loading="lazy" decoding="async" /></div><figcaption><span class="talks-public__line">02 / 学术论坛 · 上海</span><h3>复旦 × UCL</h3><span class="talks-public__event-name">数字中国跨学科论坛</span><small>作为论坛唯一来自 AI 产业实践的一线嘉宾，把创新教育与创业社区的田野观察带进学术讨论。</small></figcaption></figure>
+          <figure class="talks-public__slice reveal"><img src="assets/feishu/ai-life-sharing-highres.jpg" alt="月亮以普通家庭使用 AI 的案例进行现场分享" /><figcaption><span class="talks-public__line">03 / 案例分享</span><h3>AI 进入生活的样子</h3><small>从普通家庭的具体片段，进入 AI × Society 的讨论。</small></figcaption></figure>
+          <article class="talks-public__after reveal"><img src="assets/feishu/ai-cross-border-group-highres.jpg" alt="2026 WAIC Pre-party 人文不做旁观者活动参与者合影" /><div><span class="talks-public__line">04 / WAIC 2026 · 公共讨论</span><h3>在 AI 浪潮下，看见具体的人。</h3><p>我们与中信出版·信睿Lab、VAST 一起发起 WAIC Pre-party「人文，不做旁观者」系列，邀请复旦大学、上海交通大学的教授、研究者和身边的人文科技创业者，共同分享创业与研究成果。</p></div><b>活动发起<br />跨领域连接</b></article>
         </div>
       </div>
     </section>
@@ -5592,15 +5615,15 @@
     <section class="field-notes" id="field-notes" aria-labelledby="field-notes-title">
       <div class="wrap">
         <header class="field-notes__head reveal">
-          <p class="field-notes__folio">Page 07 / Notes from the Field</p>
+          <p class="field-notes__folio">Notes from the Field</p>
           <div>
-            <h2 id="field-notes-title">Notes from the Field<small>关于人、AI 与创造如何发生</small></h2>
+            <h2 id="field-notes-title">田野笔记<small>关于人、AI 与创造如何发生</small></h2>
             <p class="field-notes__intro">项目之外，我也持续记录自己在现场形成的判断：什么值得被讲述，真实问题怎样改变一个原型，以及 AI 时代的人如何学习、创造并彼此支持。</p>
           </div>
         </header>
 
         <article class="field-notes__lead reveal">
-          <p class="field-notes__index">01 / Storytelling · Judgement</p>
+          <p class="field-notes__index">01 / 叙事与判断</p>
           <div>
             <blockquote><span>“先有真实，再有叙事。”</span></blockquote>
             <div class="field-notes__lead-copy">
@@ -5611,10 +5634,10 @@
         </article>
 
         <div class="field-notes__related reveal">
-          <p class="field-notes__related-label">Related field notes / 延伸阅读</p>
+          <p class="field-notes__related-label">延伸阅读</p>
           <nav class="field-notes__related-list" aria-label="Notes from the Field 延伸阅读">
-            <a href="https://mp.weixin.qq.com/s/2wHiQmaDG464SjqZEhrssg" target="_blank" rel="noreferrer"><span><b>脆弱、接纳与力量：当视障人士走入青少年 AI 课堂</b><small>AI for Good · Field Story</small></span><span>↗</span></a>
-            <a href="https://mp.weixin.qq.com/s/tKRh8cjxxBEVIMR3vrp7BA" target="_blank" rel="noreferrer"><span><b>创造者人类学：看见 AI 浪潮下的青少年</b><small>Creator Anthropology · Field Note</small></span><span>↗</span></a>
+            <a href="https://mp.weixin.qq.com/s/2wHiQmaDG464SjqZEhrssg" target="_blank" rel="noreferrer"><span><b>脆弱、接纳与力量：当视障人士走入青少年 AI 课堂</b><small>AI 向善 · 现场故事</small></span><span>↗</span></a>
+            <a href="https://mp.weixin.qq.com/s/tKRh8cjxxBEVIMR3vrp7BA" target="_blank" rel="noreferrer"><span><b>创造者人类学：看见 AI 浪潮下的青少年</b><small>创造者人类学 · 田野笔记</small></span><span>↗</span></a>
           </nav>
         </div>
       </div>
@@ -5623,16 +5646,16 @@
     <section class="portfolio-ending" id="index" aria-labelledby="ending-title">
       <div class="wrap">
         <div class="ending-main reveal">
-          <p class="ending-folio">Page 08 / What’s Next</p>
+          <p class="ending-folio">What’s Next</p>
           <div class="ending-copy">
-            <h2 id="ending-title">Next<small>下一程</small></h2>
+            <h2 id="ending-title">下一程</h2>
             <div class="ending-statement">
               <p>我希望继续站在 AI 创业、创造者生态与 Storytelling 的交汇处，发现并支持那些还没有成为共识、但正在认真创造新可能的人。</p>
               <p>我想把研究、叙事、社区机制与 AI workflow，放进一个更完整的支持系统里：让一次相遇不止停在活动现场，让一个项目不止停在短期传播，也让值得被看见的人和作品，拥有继续生长的机会。</p>
             </div>
             <nav class="ending-links" aria-label="继续了解与联系">
               <a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">Vitality Museum ↗</a>
+              <a href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">生命力博物馆 ↗</a>
               <a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer">流浪月亮计划 ↗</a>
             </nav>
             <div class="contact-direct" id="contact">
@@ -5644,7 +5667,7 @@
 
         <details class="moon-bside">
           <summary>
-            <span class="bside-trigger-copy"><b>B-side of the Moon / 月球背面</b><em>Turn the moon to reveal the other side</em></span>
+            <span class="bside-trigger-copy"><b>B-side of the Moon / 月球背面</b><em>转动月亮，看看生活的另一面</em></span>
             <span class="bside-moon-object" role="img" aria-label="点击或轻拖月球，打开月球背面">
               <span class="moon-sphere" aria-hidden="true">
                 <img class="moon-portrait" src="assets/vitality/moon-field-portrait.jpg" alt="" width="933" height="1400" loading="lazy" decoding="async" />
@@ -5654,26 +5677,26 @@
               <img class="bside-moon-reverse" src="assets/outdoor/moon-highland-portrait.jpg" alt="" loading="lazy" decoding="async" />
               <span class="bside-moon-darkness" aria-hidden="true"></span>
             </span>
-            <span class="bside-trigger-hint"><i>↻</i><small>Click to reveal</small></span>
+            <span class="bside-trigger-hint"><i>↻</i><small>点击展开</small></span>
           </summary>
           <div class="bside-panel">
             <figure class="bside-gallery">
               <div class="bside-photo bside-photo--landscape"><img src="assets/outdoor/moon-snow-mountain-valley.jpg" alt="日照雪山、河谷与蜿蜒的河流" /></div>
               <div class="bside-photo bside-photo--portrait"><img src="assets/outdoor/moon-highland-portrait.jpg" alt="月亮在高原雪山前张开双臂" /></div>
-              <figcaption>On the road / field notes</figcaption>
+              <figcaption>在路上 · 田野记录</figcaption>
             </figure>
             <div class="bside-copy">
               <h3>B-side of the Moon<small> / 月球背面</small></h3>
               <p>离开屏幕和现场之后，我也会走向山里、户外和路上。<br />徒步、雪山、旅行与在地观察，让我重新校准节奏，也提醒我保持对世界的好奇、耐心与感受力。</p>
               <nav class="bside-socials" aria-label="月亮的播客与社交媒体">
-                <p class="bside-socials__title">Listen &amp; Follow / 继续相遇</p>
+                <p class="bside-socials__title">继续相遇</p>
                 <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗</a><small><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">Becoming计划 ↗</a></small></span><span class="bside-social__hint">小宇宙</span></div>
                 <div class="bside-social"><span class="bside-social__platform">小红书</span><span class="bside-social__account">@流浪月亮计划</span><span class="bside-social__hint">小红书号 2893937787</span></div>
                 <div class="bside-social"><span class="bside-social__platform">公众号</span><span class="bside-social__account">流浪月亮计划</span><span class="bside-social__hint">微信内搜索</span></div>
               </nav>
               <nav class="bside-reading" aria-label="月球背面的延伸阅读">
-                <a href="https://mp.weixin.qq.com/s/Ttv2Pq7dIQhv3L1695wHyw" target="_blank" rel="noreferrer"><span><b>在 AI 浪潮之下，看见具体的人</b><small>AI × People · Public Thinking</small></span><span>↗</span></a>
-                <a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><span><b>我们这一代，还能以热爱和理想躬身入局吗？</b><small>Becoming · Long-term Question</small></span><span>↗</span></a>
+                <a href="https://mp.weixin.qq.com/s/Ttv2Pq7dIQhv3L1695wHyw" target="_blank" rel="noreferrer"><span><b>在 AI 浪潮之下，看见具体的人</b><small>AI 与人 · 公共思考</small></span><span>↗</span></a>
+                <a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><span><b>我们这一代，还能以热爱和理想躬身入局吗？</b><small>Becoming · 长期追问</small></span><span>↗</span></a>
               </nav>
             </div>
           </div>
@@ -5681,7 +5704,7 @@
 
         <div class="ending-meta">
           <span>Moon / Personal Portfolio / 2026</span>
-          <span>Research · Storytelling · Community · AI Workflow</span>
+          <span>研究 · 叙事 · 社区 · AI 工作流</span>
           <span>个人作品集 · 非机构官方页面</span>
         </div>
       </div>
