@@ -5361,6 +5361,30 @@
     .contact-direct button { background:var(--cobalt-deep); color:var(--canvas-raised); border-color:var(--cobalt-deep); padding:10px 20px; }
     .contact-direct .ending-contact-note { margin-top:12px; max-width:320px; }
     @media(max-width:600px) { .contact-direct { grid-template-columns:1fr; gap:24px; } .contact-direct .contact-qr { width:180px; } }
+
+    /* Compact series: small intact covers, direct work links, scoped evidence. */
+    .people-compact { scroll-margin-top:90px; background:var(--paper-warm); }
+    .people-compact__grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-block:1px solid var(--media-line); }
+    .people-series { min-width:0; padding:32px clamp(24px,3vw,44px); }
+    .people-series + .people-series { border-left:1px solid var(--media-line); }
+    .people-series__intro { display:grid; grid-template-columns:140px minmax(0,1fr); gap:24px; align-items:center; min-height:200px; }
+    .people-series__cover { display:flex; height:190px; align-items:center; justify-content:center; }
+    .people-series__cover img { display:block; max-width:100%; width:auto; height:auto; max-height:190px; object-fit:contain; }
+    .people-series .people-series__type { margin:0 0 10px; font-size:12px; line-height:1.5; color:var(--cobalt); }
+    .people-series h3 { margin:0 0 12px; font-family:var(--serif); font-size:clamp(24px,2.3vw,34px); line-height:1.25; }
+    .people-series .people-series__description { margin:0; font-size:14px; line-height:1.8; color:var(--body-ink); }
+    .people-series__works { margin-top:24px; border-top:1px solid var(--media-line); }
+    .people-work { display:flex; justify-content:space-between; align-items:center; gap:14px; padding:13px 0; border-bottom:1px solid var(--media-line); color:var(--cobalt-deep); text-decoration:none; }
+    .people-work b { display:block; font-size:16px; line-height:1.5; font-weight:500; }
+    .people-work small { display:block; margin-top:4px; font-size:12px; line-height:1.6; color:var(--body-ink); }
+    .people-work:hover b { text-decoration:underline; text-underline-offset:4px; }
+    .people-series__origin { display:inline-block; padding:14px 0; margin-top:8px; color:var(--cobalt-deep); font-size:13px; line-height:1.6; text-underline-offset:4px; }
+    .people-series__evidence { margin-top:18px; }
+    .people-series__evidence p { margin:5px 0; font-size:12px; line-height:1.7; }
+    .people-series__evidence span { color:var(--cobalt); margin-right:12px; }
+    .story-editorial__head { padding-bottom:24px; }
+    @media(max-width:1000px) and (min-width:701px) { .people-series__intro { grid-template-columns:100px minmax(0,1fr); gap:16px; } .people-series { padding-inline:20px; } }
+    @media(max-width:700px) { .people-compact__grid { grid-template-columns:1fr; } .people-series { padding:28px 0; } .people-series + .people-series { border-left:0; border-top:1px solid var(--media-line); } .people-series__intro { grid-template-columns:110px minmax(0,1fr); gap:20px; min-height:180px; } .people-series__cover, .people-series__cover img { max-height:180px; } .people-series h3 { font-size:25px; } .people-series .people-series__description { font-size:13px; } }
   </style>
 </head>
 <body class="lunar-home">
@@ -5530,21 +5554,27 @@
     <section class="story-editorial story-v3 story-v4" id="story" data-role-section="storyteller" aria-labelledby="story-editorial-title">
       <header class="story-editorial__head wrap reveal">
         <div><p class="story-editorial__folio">Storytelling</p><h2 id="story-editorial-title">人物与生态叙事</h2></div>
-        <p class="story-editorial__lede">从理解一个人、发现水下 Founder，到进入一整个开发者与社区生态现场。</p>
+        <p class="story-editorial__lede">从一个人的选择，理解 AI 创造与创业正在发生的变化。</p>
       </header>
       <nav class="story-editorial__sequence wrap reveal" aria-label="Storytelling 叙事顺序"><a href="#story-founders">人物与创业者</a><i>→</i><a href="#story-amd">开发者生态</a><small>从人物到生态</small></nav>
 
-      <section class="story-v4__people" id="story-founders" aria-labelledby="story-founders-title">
-        <div class="wrap story-v4__people-grid">
-          <article class="story-v4__becoming reveal">
-            <header class="story-v4__column-head"><p class="story-kicker">01A / Becoming · 微型生命史</p><h3 id="story-founders-title">一个有主体性、以热爱为驱动的创造者，是如何一步步成为的？</h3><p>以播客对谈与微型传记，进入普通人的成长经历、迷茫试错和关键节点。我们不复述成功标签，而是打开“成为”的黑箱：热爱如何被发现、验证，并在时代中逐渐长成一项愿意长期投入的事业。</p></header>
-            <figure class="story-v4__column-media"><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划系列视觉" width="1080" height="1528" loading="lazy" decoding="async" /><span>Becoming 计划 / 微型生命史</span></figure>
-            <div><blockquote>看见过程，而不只看见结果。</blockquote><div class="story-v4__becoming-links"><a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><b>开篇词｜我们这一代，还能以热爱和理想躬身入局吗？ ↗</b><small>从教育、主动性与时代焦虑出发，说明 Becoming 为什么开始。</small></a><a href="https://mp.weixin.qq.com/s/RWh69Q8JQmYlL40mfD1rKA" target="_blank" rel="noreferrer"><b>乐乐｜AI 教育创业者</b><small>从小城、留白与热爱，理解她为什么走向 AI、教育与游戏。</small></a><a href="https://mp.weixin.qq.com/s/wgFAtBLtW6yvm9acbR7FzQ" target="_blank" rel="noreferrer"><b>Tim｜Artflow.ai 创始人</b><small>从连续创业进入生活本身：一个创业者的人生哲学与选择。</small></a></div></div>
+      <section class="people-compact" id="story-founders" aria-label="人物深访与早期创造者报道">
+        <div class="wrap people-compact__grid">
+          <article class="people-series">
+            <header class="people-series__intro">
+              <a class="people-series__cover" href="assets/covers/becoming-visual.webp" target="_blank" rel="noopener noreferrer" aria-label="查看 Becoming 计划完整封面"><img src="assets/covers/becoming-visual.webp" alt="Becoming 计划绿色系列封面" width="1080" height="1528" loading="lazy" decoding="async" /></a>
+              <div><p class="people-series__type">01 / 人物深访</p><h3>Becoming 计划</h3><p class="people-series__description">通过播客对谈与微型生命史，追问一个人如何在成长、试错与选择中，找到愿意长期投入的事业。</p></div>
+            </header>
+            <div class="people-series__works" aria-label="Becoming 代表作品"><a class="people-work" href="https://mp.weixin.qq.com/s/RWh69Q8JQmYlL40mfD1rKA" target="_blank" rel="noopener noreferrer"><span><b>乐乐｜AI 教育创业者</b><small>从小城生活与成长中的留白，理解她为什么走向 AI、教育与游戏。</small></span><span aria-hidden="true">↗</span></a><a class="people-work" href="https://mp.weixin.qq.com/s/wgFAtBLtW6yvm9acbR7FzQ" target="_blank" rel="noopener noreferrer"><span><b>Tim｜Artflow.ai 创始人</b><small>从连续创业谈到生活本身，理解一个创业者如何作出选择。</small></span><span aria-hidden="true">↗</span></a></div>
+            <a class="people-series__origin" href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noopener noreferrer">了解 Becoming 为什么开始 ↗</a>
           </article>
-          <article class="story-v4__guacha reveal">
-            <header class="story-v4__column-head"><p class="story-kicker">01B / 观猹人物</p><h3>寻找还没有成为共识的 AI Builder。</h3><p>4 期公开人物稿。关注非标准路径里的早期创造者：他们还没有被成功叙事定义，却已经开始做产品、写代码和验证自己的判断。</p></header>
-            <a class="story-v4__column-media" href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><img src="assets/covers/redink-builder.webp" alt="默子与 Redink 人物稿封面" width="1080" height="1080" loading="lazy" decoding="async" /><span>默子 / Redink · 00 后开源 Builder　↗</span></a>
-            <div><div class="story-v4__metrics"><p><b>4</b><span>期公开人物稿</span></p><p><b>8000+</b><span>系列阅读</span></p><p><b>20+</b><span>默子稿后的资源沟通</span></p></div><div class="story-v4__people-links" aria-label="观猹人物四期公开文章"><a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noreferrer"><b>默子｜开源 Builder</b><small>3 天做出 4.5k+ Stars 的 Redink，进入投资人和大厂视野。</small></a><a href="https://mp.weixin.qq.com/s/pudO0eJISbL6BylC1BDC0Q" target="_blank" rel="noreferrer"><b>杨晨｜AI 创造者</b><small>前大厂运营；白天做保安，夜里用 AI 重建行动感。</small></a><a href="https://mp.weixin.qq.com/s/sEBMUapVyCz0tm073si_sg" target="_blank" rel="noreferrer"><b>核蛋｜17 岁创业少年</b><small>在课业、创业比赛与产品实践之间，长出自己的商业判断。</small></a><a href="https://mp.weixin.qq.com/s/7IHYXyU80C9vM8Tzz1KOrQ" target="_blank" rel="noreferrer"><b>小鹅｜创意硬件 Builder</b><small>从黑客松金奖走向 AI 硬件与设计型一人公司。</small></a></div></div>
+          <article class="people-series">
+            <header class="people-series__intro">
+              <a class="people-series__cover" href="assets/covers/redink-builder.webp" target="_blank" rel="noopener noreferrer" aria-label="查看观猹人物完整封面"><img src="assets/covers/redink-builder.webp" alt="观猹人物黑金系列封面" width="1080" height="1080" loading="lazy" decoding="async" /></a>
+              <div><p class="people-series__type">02 / 早期 AI 创造者报道</p><h3>观猹人物</h3><p class="people-series__description">关注非标准路径里的早期创造者，记录他们如何开始做产品、验证想法，以及重新安排自己的生活。</p></div>
+            </header>
+            <div class="people-series__works" aria-label="观猹人物四期公开文章"><a class="people-work" href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noopener noreferrer"><span><b>默子｜Redink 开源创造者</b><small>从一个开源项目，进入一位年轻创造者的产品实践。</small></span><span aria-hidden="true">↗</span></a><a class="people-work" href="https://mp.weixin.qq.com/s/pudO0eJISbL6BylC1BDC0Q" target="_blank" rel="noopener noreferrer"><span><b>杨晨｜AI 创造者</b><small>从大厂运营到白天做保安、夜里用 AI 创作，记录一个人如何重新开始行动。</small></span><span aria-hidden="true">↗</span></a><a class="people-work" href="https://mp.weixin.qq.com/s/sEBMUapVyCz0tm073si_sg" target="_blank" rel="noopener noreferrer"><span><b>核蛋｜17 岁创业少年</b><small>在课业、创业比赛与产品实践之间，观察他的商业判断如何形成。</small></span><span aria-hidden="true">↗</span></a><a class="people-work" href="https://mp.weixin.qq.com/s/7IHYXyU80C9vM8Tzz1KOrQ" target="_blank" rel="noopener noreferrer"><span><b>小鹅｜创意硬件创造者</b><small>从黑客松走向 AI 硬件，探索设计型一人公司的可能。</small></span><span aria-hidden="true">↗</span></a></div>
+            <div class="people-series__evidence"><p><span>系列记录</span>4 期公开人物稿 · 累计阅读 8000+</p><p><span>单篇后续</span>默子稿发布后，20+ 次资源沟通。</p></div>
           </article>
         </div>
       </section>
