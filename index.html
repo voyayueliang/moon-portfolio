@@ -5247,6 +5247,19 @@
       .moon-project-axis .project-preview h2 { margin: 4px 0 0; font-size: 24px; }
       .moon-project-axis .project-preview::after { left: 20px; bottom: 7px; }
     }
+
+    /* Booming Shenzhen: founder ecosystem case. */
+    .booming-case { padding-block: clamp(48px,6vw,88px); background: var(--canvas-raised); color: var(--body-ink); border-top: 1px solid rgba(31,62,197,.2); scroll-margin-top: 80px; }
+    .booming-case__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(28px,4vw,64px); align-items: center; }
+    .booming-case__eyebrow { color: var(--cobalt-deep); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .booming-case h2 { margin: 22px 0 14px; color: var(--cobalt); font-family: var(--serif); font-size: clamp(32px,3.4vw,50px); font-weight: 400; line-height: 1.2; letter-spacing: -.04em; }
+    .booming-case__role { color: var(--cobalt-deep); font-size: 12px; font-weight: 600; }
+    .booming-case__copy { font-size: 15px; line-height: 1.95; margin: 22px 0; }
+    .booming-case__link { display: inline-block; color: var(--cobalt-deep); font-size: 13px; line-height: 1.7; text-underline-offset: 5px; }
+    .booming-case figure { margin: 0; min-width: 0; }
+    .booming-case img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; }
+    .booming-case figcaption { margin-top: 12px; color: var(--body-ink); font-size: 11px; line-height: 1.7; opacity: .75; }
+    @media(max-width: 800px) { .booming-case__grid { grid-template-columns: 1fr; } .booming-case__copy { font-size: 14px; } }
   </style>
 </head>
 <body class="lunar-home">
@@ -5362,6 +5375,23 @@
           </section>
         </div>
 
+      </div>
+    </section>
+
+    <section class="booming-case" id="booming-shenzhen" data-role-section="connector" aria-labelledby="booming-title">
+      <div class="wrap booming-case__grid">
+        <div>
+          <p class="booming-case__eyebrow">CREATOR ECOSYSTEM / SHENZHEN · 2026</p>
+          <h2 id="booming-title">Booming Hub 深圳<br />AI × 硬件闭门交流</h2>
+          <p class="booming-case__role">活动 Owner · 跨团队协作 · AI 工作流</p>
+          <p class="booming-case__copy">作为深圳站活动 Owner，我协调市场、投资团队与深圳在地创业者网络，统筹活动筹备、现场执行与会后内容沉淀，并将 AI 融入信息整理、物料制作和内容生产等环节。</p>
+          <p class="booming-case__copy">围绕「共同定义新物种」，40 多位 AI 创业者与硬件、供应链及产品工程从业者，在六张主题桌上交流。从产品定义到工程落地，让不同背景的人找到可以继续讨论的问题与合作切入点。</p>
+          <a class="booming-case__link" href="https://mp.weixin.qq.com/s/BP98YG4RA9Z5et3M-R_OAg" target="_blank" rel="noopener noreferrer">阅读活动回顾：当 AI 遇见硬件，Truth 到底是什么？ ↗</a>
+        </div>
+        <figure>
+          <img src="assets/booming-shenzhen-owner.png" width="1080" height="720" alt="Booming Hub 深圳现场，参与者围绕陪伴机器人主题桌交流，人物面部经插画化处理" loading="lazy" decoding="async" />
+          <figcaption>2026.09.18 · 深圳前海｜陪伴机器人主题桌交流</figcaption>
+        </figure>
       </div>
     </section>
 
