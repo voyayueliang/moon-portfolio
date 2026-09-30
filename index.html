@@ -5507,6 +5507,22 @@
 .research-notes__grid .research-notes__context { margin:0; font-size:14px; color:#4d514e; }
 .research-notes__more { border:0; margin-top:12px; padding-top:0; }
 @media(max-width:760px) { .research-notes__feature { grid-template-columns:1fr; gap:24px; } .research-notes__grid article { grid-template-columns:1fr; gap:10px; padding:20px 0; } .research-notes__grid h3 { font-size:24px; } }
+
+.contact-direct.contact-quiet { display:block; padding:24px 0 8px; }
+.contact-quiet .contact-eyebrow { font-size:16px; margin:0 0 10px; color:var(--body-ink); letter-spacing:0; }
+.contact-quiet__actions { display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+.contact-quiet .contact-id { font-size:15px; margin:0; font-weight:400; }
+.contact-quiet button { background:none; color:var(--cobalt); border:0; padding:8px 0; font-size:14px; text-decoration:underline; text-underline-offset:5px; text-decoration-color:var(--media-line); }
+.contact-quiet .ending-contact-note { margin:4px 0 0; min-height:20px; font-size:12px; }
+.contact-dialog { border:1px solid var(--media-line); padding:28px; width:min(360px,calc(100vw - 48px)); box-sizing:border-box; background:var(--paper-warm); color:var(--cobalt-deep); text-align:center; }
+.contact-dialog::backdrop { background:rgba(15,22,40,.45); }
+.contact-dialog h3 { font-family:var(--serif); font-size:26px; font-weight:400; margin:16px 0 20px; }
+.contact-dialog__close { display:block; margin-left:auto; background:none; border:0; color:var(--cobalt); padding:8px; cursor:pointer; }
+.contact-dialog .contact-qr { display:block; position:relative; width:100%; aspect-ratio:1; overflow:hidden; background:white; }
+.contact-dialog .contact-qr img { position:absolute; width:121.978022%; max-width:none; height:auto; left:-10.989011%; top:-34.065934%; }
+.contact-dialog a { color:var(--cobalt); font-size:14px; text-underline-offset:4px; }
+.contact-quiet button:focus-visible,.contact-dialog :focus-visible { outline:2px solid var(--cobalt); outline-offset:4px; }
+@media(max-width:600px){ .contact-quiet__actions { gap:16px; } }
 </style>
 </head>
 <body class="lunar-home">
@@ -5806,10 +5822,12 @@
               <a href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">生命力博物馆 ↗</a>
               <a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer">流浪月亮计划 ↗</a>
             </nav>
-            <div class="contact-direct" id="contact">
-              <a class="contact-qr" href="assets/moon-wechat-contact.jpg" target="_blank" rel="noopener noreferrer" aria-label="打开微信加好友二维码原图"><img src="assets/moon-wechat-contact.jpg" width="888" height="1131" alt="月亮的个人微信加好友二维码，微信号 zcy-0312" loading="lazy" /></a>
-              <div><p class="contact-eyebrow">聊聊内容、社区与合作</p><h3>联系月亮</h3><p class="contact-id">微信号<strong>zcy-0312</strong></p><button type="button" data-contact-copy>复制微信号</button><p class="ending-contact-note" data-contact-note aria-live="polite">扫码添加微信。手机上可点开原图，保存后在微信中识别。</p></div>
+            <div class="contact-direct contact-quiet" id="contact">
+              <p class="contact-eyebrow">聊聊内容、社区与合作</p>
+              <div class="contact-quiet__actions"><span class="contact-id">微信 zcy-0312</span><button type="button" data-contact-copy>复制微信号</button><button type="button" data-contact-open>查看二维码</button></div>
+              <p class="ending-contact-note" data-contact-note role="status" aria-live="polite"></p>
             </div>
+            <dialog class="contact-dialog" aria-labelledby="contact-dialog-title"><button type="button" class="contact-dialog__close" data-contact-close aria-label="关闭二维码">关闭</button><h3 id="contact-dialog-title">微信联系</h3><a class="contact-qr" href="assets/moon-wechat-contact.jpg" target="_blank" rel="noopener noreferrer"><img src="assets/moon-wechat-contact.jpg" width="888" height="1131" alt="月亮的微信二维码，微信号 zcy-0312"></a><p>微信 zcy-0312</p><a href="assets/moon-wechat-contact.jpg" target="_blank" rel="noopener noreferrer">打开二维码原图</a></dialog>
           </div>
         </div>
 
@@ -5917,7 +5935,7 @@
       try {
         await navigator.clipboard.writeText(handle);
         contactCopy.textContent = '已复制微信号 ✓';
-        contactNote.textContent = '已复制 zcy-0312，请在微信中搜索添加。';
+        contactNote.textContent = '已复制';
         contactNote.classList.add('is-copied');
       } catch {
         contactNote.textContent = '请手动复制微信号：zcy-0312';
@@ -6481,5 +6499,5 @@
  const art=root.querySelector('.people-exhibit__art');art.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});art.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(touchX!==null&&Math.abs(dx)>45)select(active+(dx<0?1:-1));touchX=null;},{passive:true});
 })();
 </script>
-<script>(()=>{const rail=document.querySelector('.workflow-slider');const slides=[...rail.children];const tabs=[...document.querySelectorAll('[data-workflow]')];const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;function go(i){rail.scrollTo({left:slides[i].offsetLeft-slides[0].offsetLeft,behavior:reduced?'instant':'smooth'});}tabs.forEach((b,i)=>b.onclick=()=>go(i));let ticking=false;rail.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{let i=0,d=Infinity;slides.forEach((s,j)=>{let n=Math.abs(s.offsetLeft-slides[0].offsetLeft-rail.scrollLeft);if(n<d){d=n;i=j;}});tabs.forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));ticking=false;});},{passive:true});rail.addEventListener('keydown',e=>{if(e.target!==rail)return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();let i=tabs.findIndex(b=>b.getAttribute('aria-current')==='true');go(Math.max(0,Math.min(2,i+(e.key==='ArrowRight'?1:-1))));}});})();</script></body>
+<script>(()=>{const rail=document.querySelector('.workflow-slider');const slides=[...rail.children];const tabs=[...document.querySelectorAll('[data-workflow]')];const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;function go(i){rail.scrollTo({left:slides[i].offsetLeft-slides[0].offsetLeft,behavior:reduced?'instant':'smooth'});}tabs.forEach((b,i)=>b.onclick=()=>go(i));let ticking=false;rail.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{let i=0,d=Infinity;slides.forEach((s,j)=>{let n=Math.abs(s.offsetLeft-slides[0].offsetLeft-rail.scrollLeft);if(n<d){d=n;i=j;}});tabs.forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));ticking=false;});},{passive:true});rail.addEventListener('keydown',e=>{if(e.target!==rail)return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();let i=tabs.findIndex(b=>b.getAttribute('aria-current')==='true');go(Math.max(0,Math.min(2,i+(e.key==='ArrowRight'?1:-1))));}});})();</script><script>(()=>{const dialog=document.querySelector('.contact-dialog');const trigger=document.querySelector('[data-contact-open]');trigger.addEventListener('click',()=>dialog.showModal());dialog.querySelector('[data-contact-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>trigger.focus({preventScroll:true}));})();</script></body>
 </html>
