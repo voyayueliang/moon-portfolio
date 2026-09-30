@@ -5492,6 +5492,21 @@
 .research-notes__more div { display:grid; gap:14px; padding-top:20px; }
 .research-notes__more p { color:var(--body-ink); margin:0; }
 @media(max-width:760px) { .research-notes__feature { grid-template-columns:1fr; gap:22px; } }
+
+.research-notes__feature { grid-template-columns:1.12fr 1fr; align-items:center; gap:clamp(28px,5vw,72px); border:0; padding:0; margin-top:30px; }
+.research-notes__photo { margin:0; }
+.research-notes__photo img { display:block; width:100%; height:auto; }
+.research-notes__photo figcaption { margin-top:10px; font-size:12px; color:var(--body-ink); }
+.research-notes__feature h3 { font-size:clamp(26px,2.5vw,36px); color:var(--cobalt-deep); margin:0 0 20px; }
+.research-notes__feature p:not(.research-notes__number) { color:#4d514e; }
+.research-notes__grid { display:block; margin-top:38px; padding-top:10px; border-top:1px solid var(--media-line); }
+.research-notes__grid article { display:grid; grid-template-columns:160px minmax(0,1.1fr) minmax(0,1fr); align-items:baseline; gap:28px; border:0; padding:22px 0; }
+.research-notes__grid .research-notes__number { margin:0; font-size:12px; }
+.research-notes__grid h3 { margin:0; font-size:25px; line-height:1.5; }
+.research-notes__grid h3 a { font:inherit; color:var(--cobalt-deep); }
+.research-notes__grid .research-notes__context { margin:0; font-size:14px; color:#4d514e; }
+.research-notes__more { border:0; margin-top:12px; padding-top:0; }
+@media(max-width:760px) { .research-notes__feature { grid-template-columns:1fr; gap:24px; } .research-notes__grid article { grid-template-columns:1fr; gap:10px; padding:20px 0; } .research-notes__grid h3 { font-size:24px; } }
 </style>
 </head>
 <body class="lunar-home">
@@ -5764,13 +5779,13 @@
       <div class="wrap">
         <header class="research-notes__head"><p class="research-notes__eyebrow">独立研究者的现场观察</p><h2 id="field-notes-title">AI 浪潮下的研究笔记</h2></header>
         <article class="research-notes__feature">
-          <div><p class="research-notes__number">从这里开始 / 我的研究方法</p><h3>把田野作为方法，<br>观察创新如何在真实现场发生。</h3></div>
-          <div><p>我把田野作为方法，走入 AI 教育、创业与社区现场。通过持续参与、深度访谈与写作，记录技术变化中具体的人：他们如何创造、寻找方向，也如何面对自由的代价。</p><a href="https://mp.weixin.qq.com/s/qNgVznFUvZv3ohTekOKtxw" target="_blank" rel="noopener noreferrer">阅读方法与实践 ↗</a></div>
+          <figure class="research-notes__photo"><img src="assets/fieldwork/2025-kunshan-night.jpg" alt="夜间围桌对谈与现场录制" width="1080" height="810" loading="lazy"><figcaption>田野中的对话与记录</figcaption></figure>
+          <div><p class="research-notes__number">从这里开始 / 我的研究方法</p><h3>把田野作为方法，<br>观察创新如何在真实现场发生。</h3><p>我把田野作为方法，走入 AI 教育、创业与社区现场。通过持续参与、深度访谈与写作，记录技术变化中具体的人：他们如何创造、寻找方向，也如何面对自由的代价。</p><a href="https://mp.weixin.qq.com/s/qNgVznFUvZv3ohTekOKtxw" target="_blank" rel="noopener noreferrer">阅读方法与实践 ↗</a></div>
         </article>
         <div class="research-notes__grid">
-          <article><p class="research-notes__number">01 / 教育实验</p><h3>走入 AI 时代教育实验的第二年</h3><p class="research-notes__context">从黑客松筹备到项目后续，回望跨年度的教育实践：创造如何回应“出路”，理想落地又遇到什么困难。</p><a href="https://mp.weixin.qq.com/s/rtvXRlS_lKHpkE3LacCnYQ" target="_blank" rel="noopener noreferrer">创造者田野手记<span>阅读笔记 ↗</span></a></article>
-          <article><p class="research-notes__number">02 / 创造者观察</p><h3>看见 AI 浪潮下的青少年</h3><p class="research-notes__context">从一场黑客松面试开始，听见青少年自己的声音：日常生活里的创造冲动、对同伴的渴望，以及家庭的影响。</p><a href="https://mp.weixin.qq.com/s/tKRh8cjxxBEVIMR3vrp7BA" target="_blank" rel="noopener noreferrer">创造者人类学 · 从一场黑客松面试开始<span>阅读笔记 ↗</span></a></article>
-          <article><p class="research-notes__number">03 / 社区与连接</p><h3>当“旷野”撞上“AI”</h3><p class="research-notes__context">从安吉、大理到上海，追踪共同生活中的信任如何延伸为创造协作，也记录社区面对商业化时的摩擦。</p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2MzIwNjIzNQ==&amp;mid=2247487309&amp;idx=1&amp;sn=8dec95624e2e72e8898f9dd5e62fbb43&amp;chksm=ce7d6179f90ae86f95490b985372282449d50495ad6148921b0c7264b443ebe007825dca83da&amp;cur_album_id=3974777053244473349&amp;scene=190#rd" target="_blank" rel="noopener noreferrer">我们在寻找一种不被异化的连接<span>阅读笔记 ↗</span></a></article>
+          <article><p class="research-notes__number">01 / 教育实验</p><h3><a href="https://mp.weixin.qq.com/s/rtvXRlS_lKHpkE3LacCnYQ" target="_blank" rel="noopener noreferrer">走入 AI 时代教育实验的第二年</a></h3><p class="research-notes__context">从黑客松筹备到项目后续，回望跨年度的教育实践：创造如何回应“出路”，理想落地又遇到什么困难。</p></article>
+          <article><p class="research-notes__number">02 / 创造者观察</p><h3><a href="https://mp.weixin.qq.com/s/tKRh8cjxxBEVIMR3vrp7BA" target="_blank" rel="noopener noreferrer">看见 AI 浪潮下的青少年</a></h3><p class="research-notes__context">从一场黑客松面试开始，听见青少年自己的声音：日常生活里的创造冲动、对同伴的渴望，以及家庭的影响。</p></article>
+          <article><p class="research-notes__number">03 / 社区与连接</p><h3><a href="https://mp.weixin.qq.com/s?__biz=Mzg2MzIwNjIzNQ==&amp;mid=2247487309&amp;idx=1&amp;sn=8dec95624e2e72e8898f9dd5e62fbb43&amp;chksm=ce7d6179f90ae86f95490b985372282449d50495ad6148921b0c7264b443ebe007825dca83da&amp;cur_album_id=3974777053244473349&amp;scene=190#rd" target="_blank" rel="noopener noreferrer">当“旷野”撞上“AI”</a></h3><p class="research-notes__context">从安吉、大理到上海，追踪共同生活中的信任如何延伸为创造协作，也记录社区面对商业化时的摩擦。</p></article>
         </div>
         <details class="research-notes__more"><summary>更多笔记｜流浪月亮计划</summary><div><a href="https://mp.weixin.qq.com/s/qIlowuCYYJ81KYdPMVuvJQ" target="_blank" rel="noopener noreferrer">在 AI 时代，重新理解 Storytelling ↗</a><a href="https://mp.weixin.qq.com/s/2wHiQmaDG464SjqZEhrssg" target="_blank" rel="noopener noreferrer">脆弱、接纳与力量：当视障人士走入青少年 AI 课堂 ↗</a><p>更多文章可在公众号「流浪月亮计划」查看。</p></div></details>
       </div>
