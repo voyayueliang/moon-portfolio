@@ -5260,6 +5260,15 @@
     .booming-case img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; }
     .booming-case figcaption { margin-top: 12px; color: var(--body-ink); font-size: 11px; line-height: 1.7; opacity: .75; }
     @media(max-width: 800px) { .booming-case__grid { grid-template-columns: 1fr; } .booming-case__copy { font-size: 14px; } }
+
+    .contact-nav { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 12px; color:var(--cobalt-deep); font-size:13px; white-space:nowrap; }
+    .contact-direct { scroll-margin-top:100px; margin-top:32px; padding-top:24px; border-top:1px solid rgba(31,62,197,.2); display:flex; align-items:center; flex-wrap:wrap; gap:24px; }
+    .contact-direct img { display:block; width:220px; max-width:100%; height:auto; }
+    .contact-direct h3 { color:var(--cobalt-deep); font-size:22px; margin:0 0 12px; }
+    .contact-direct p { font-size:14px; line-height:1.8; }
+    .contact-direct button { min-height:44px; padding:10px 16px; color:var(--cobalt-deep); background:transparent; border:1px solid currentColor; cursor:pointer; font:inherit; }
+    .contact-direct .ending-contact-note { max-width:300px; font-size:12px; }
+    @media(max-width:600px) { .contact-nav { padding:0 6px; font-size:12px; } .contact-direct { gap:18px; } }
   </style>
 </head>
 <body class="lunar-home">
@@ -5267,6 +5276,7 @@
   <header class="site-header">
     <div class="inner wrap">
       <a class="brand" href="#top"><span>月亮</span><i>/</i><span>MOON</span></a>
+      <a class="contact-nav" href="#contact">联系</a>
       <div class="header-right">
         <nav class="site-nav site-nav--projects" aria-label="作品方向导航">
           <a href="#ecosystem" data-project-nav="ecosystem"><b>01 创造者生态</b></a>
@@ -5557,9 +5567,11 @@
               <a href="https://github.com/voyayueliang" target="_blank" rel="noreferrer">GitHub ↗</a>
               <a href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">Vitality Museum ↗</a>
               <a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer">流浪月亮计划 ↗</a>
-              <button type="button" data-contact-copy>Contact +</button>
             </nav>
-            <p class="ending-contact-note" data-contact-note aria-live="polite">Contact / 微信公众号 · 小红书 · 即刻：@流浪月亮计划</p>
+            <div class="contact-direct" id="contact">
+              <a href="assets/moon-wechat-contact.jpg" target="_blank" rel="noopener noreferrer" aria-label="打开微信加好友二维码原图"><img src="assets/moon-wechat-contact.jpg" width="888" height="1131" alt="月亮的个人微信加好友二维码，微信号 zcy-0312" loading="lazy" /></a>
+              <div><h3>联系合作</h3><p>微信号：<strong>zcy-0312</strong><br />扫码添加微信，或复制微信号搜索。</p><button type="button" data-contact-copy>复制微信号</button><p class="ending-contact-note" data-contact-note aria-live="polite">手机上可点开二维码原图，保存后在微信中识别。</p></div>
+            </div>
           </div>
         </div>
 
@@ -5663,14 +5675,14 @@
     const contactCopy = document.querySelector('[data-contact-copy]');
     const contactNote = document.querySelector('[data-contact-note]');
     contactCopy?.addEventListener('click', async () => {
-      const handle = '@流浪月亮计划';
+      const handle = 'zcy-0312';
       try {
         await navigator.clipboard.writeText(handle);
-        contactCopy.textContent = 'Copied ✓';
-        contactNote.textContent = '已复制 @流浪月亮计划，可在微信公众号、小红书或即刻联系。';
+        contactCopy.textContent = '已复制微信号 ✓';
+        contactNote.textContent = '已复制 zcy-0312，请在微信中搜索添加。';
         contactNote.classList.add('is-copied');
       } catch {
-        contactNote.textContent = '请在微信公众号、小红书或即刻搜索：@流浪月亮计划';
+        contactNote.textContent = '请手动复制微信号：zcy-0312';
         contactNote.classList.add('is-copied');
       }
     });
