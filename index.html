@@ -5271,8 +5271,7 @@
     @media(max-width:600px) { .contact-nav { padding:0 6px; font-size:12px; } .contact-direct { gap:18px; } }
     /* Editorial image system: preserve each source, share framing and captions. */
     :root { --media-line: rgba(31,62,197,.22); --media-paper: #f1efe8; }
-    .ecosystem-hero-photo img, .booming-case figure > img { display:block; width:100%; height:auto; border:1px solid var(--media-line); }
-    .ecosystem-hero-photo img { aspect-ratio:16/9; object-fit:cover; }
+    .booming-case figure > img { display:block; width:100%; height:auto; border:1px solid var(--media-line); }
     .booming-case figure > img { aspect-ratio:3/2; }
     .booming-case figcaption { opacity:1; color:#58647b; font-size:12px; line-height:1.65; margin-top:12px; }
     .story-v4__column-media { aspect-ratio:auto; background:var(--media-paper); border:1px solid var(--media-line); }
@@ -5307,7 +5306,6 @@
     .media-viewer p { font-size:13px; line-height:1.65; margin:12px 0 0; }
     @media(max-width:820px) { .talks-public__lead, .talks-public__slice, .talks-public__slice:nth-of-type(3) { grid-column:span 6; } }
     @media(max-width:620px) {
-      .ecosystem-hero-photo img { aspect-ratio:16/9; }
       .story-v4__column-media img, .story-v4__becoming .story-v4__column-media img { height:360px; padding:16px; }
       .talks-public__lead, .talks-public__slice, .talks-public__slice:nth-of-type(3) { grid-column:1/-1; grid-template-columns:1fr; grid-template-rows:auto auto; }
       .system-case--museum .system-screen img { padding:12px; max-height:560px; }
@@ -6296,7 +6294,7 @@
       dialog.addEventListener('click', event => { if (event.target === dialog) { const b=dialog.getBoundingClientRect(); if(event.clientX<b.left || event.clientX>b.right || event.clientY<b.top || event.clientY>b.bottom) close(); } });
       dialog.addEventListener('close', () => { document.body.style.overflow = previousOverflow; trigger?.focus({preventScroll:true}); });
       const groups = [
-        ['.ecosystem-hero-photo', 'img'], ['.booming-case figure', 'img'],
+        ['.booming-case figure', 'img'],
         ['.workflow-compact__screen', 'img'],
         ['.system-poster-gallery figure', 'img'], ['.talks-public__slice', 'img'],
         ['.story-v4__becoming .story-v4__column-media', 'img']
