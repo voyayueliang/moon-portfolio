@@ -5523,6 +5523,164 @@
 .contact-dialog a { color:var(--cobalt); font-size:14px; text-underline-offset:4px; }
 .contact-quiet button:focus-visible,.contact-dialog :focus-visible { outline:2px solid var(--cobalt); outline-offset:4px; }
 @media(max-width:600px){ .contact-quiet__actions { gap:16px; } }
+
+#workflow .workflow-systems__head { margin-bottom:28px; }
+.stage-tabs { display:flex; gap:32px; border-bottom:1px solid var(--media-line); overflow:auto; }
+.stage-tabs button { flex-shrink:0; background:none; border:0; border-bottom:2px solid transparent; padding:14px 0; font:inherit; font-size:15px; color:var(--body-ink); cursor:pointer; }
+.stage-tabs [aria-selected=true] { color:var(--cobalt); border-bottom-color:var(--cobalt); }
+.stage-panel { display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(32px,5vw,72px); align-items:center; padding:38px 0 28px; animation:stage-in .25s ease; }
+.stage-panel[hidden] { display:none; }
+.stage-kicker { color:var(--cobalt); font-size:13px; margin:0 0 18px; }
+.stage-copy h3 { font-family:var(--serif); font-size:clamp(28px,2.8vw,40px); font-weight:400; line-height:1.4; margin:0 0 22px; color:var(--cobalt-deep); }
+.stage-problem { font-size:16px; line-height:1.9; color:var(--body-ink); }
+.stage-copy dl { margin:24px 0; }
+.stage-copy dl div { margin:0 0 18px; }
+.stage-copy dt { color:var(--cobalt); font-size:13px; margin-bottom:6px; }
+.stage-copy dd { margin:0; font-size:15px; line-height:1.8; color:var(--body-ink); }
+.stage-copy summary,.stage-live { cursor:pointer; color:var(--cobalt); font-size:14px; }
+.stage-copy details { margin-top:20px; }
+.stage-copy details p { font-size:14px; line-height:1.8; }
+.stage-media { margin:0; min-width:0; }
+.stage-media>div { display:flex; gap:14px; align-items:center; justify-content:center; min-height:380px; }
+.stage-media a { min-width:0; display:block; }
+.stage-media img { display:block; width:100%; max-height:450px; object-fit:contain; }
+.stage-media figcaption { display:flex; justify-content:space-between; gap:12px; font-size:12px; line-height:1.7; color:var(--body-ink); margin-top:14px; }
+.stage-media figcaption span { white-space:nowrap; color:var(--cobalt); }
+.stage-lightbox { width:min(1100px,94vw); max-height:92vh; padding:16px; border:0; background:var(--paper-warm); }
+.stage-lightbox::backdrop { background:#101728b3; }
+.stage-lightbox button { display:block; margin:0 0 12px auto; background:none; border:0; color:var(--cobalt); padding:10px; cursor:pointer; }
+.stage-lightbox img { display:block; max-width:100%; max-height:78vh; margin:auto; object-fit:contain; }
+@keyframes stage-in { from { opacity:0; transform:translateY(5px); } to {opacity:1;transform:none;} }
+@media(max-width:760px) { .stage-tabs {gap:22px;} .stage-tabs button {font-size:13px;} .stage-panel {grid-template-columns:1fr;gap:24px;padding-top:28px;} .stage-media>div {min-height:0;} .stage-media img {max-height:440px;} }
+@media(prefers-reduced-motion:reduce){ .stage-panel {animation:none;} }
+
+.stage-tabs button { display:flex; align-items:center; gap:10px; }
+.phase-mark { width:22px; height:22px; object-fit:contain; flex-shrink:0; opacity:.45; }
+.stage-tabs [aria-selected=true] .phase-mark { opacity:1; }
+.phase-mark--0 { clip-path:ellipse(25% 48% at 72% 50%); }
+.phase-mark--1 { clip-path:inset(0 0 0 50%); }
+#stage-panel-1 { position:relative; isolation:isolate; overflow:hidden; }
+.museum-moon { position:absolute; width:540px; height:540px; right:-160px; top:-240px; opacity:.075; pointer-events:none; z-index:-1; }
+.moon-signature { display:flex; align-items:center; gap:8px; color:var(--cobalt); font-family:var(--serif); font-size:15px; letter-spacing:.08em; margin:10px 0 20px; }
+.moon-signature .phase-mark { opacity:.8; width:26px; height:26px; }
+@media(max-width:760px) { .stage-tabs button {gap:7px;} .phase-mark {width:18px;height:18px;} .museum-moon {width:340px;height:340px;right:-110px;top:-180px;} }
+
+#stage-panel-2 { grid-template-columns:.65fr 1.35fr; }
+#stage-panel-2 .stage-media>div { gap:24px; padding:20px 12px; }
+#stage-panel-2 .stage-media a:first-child { transform:rotate(-3deg); }
+#stage-panel-2 .stage-media a:last-child { transform:rotate(3deg) translateY(20px); }
+#stage-panel-2 .stage-media img {max-height:520px;}
+@media(max-width:760px){#stage-panel-2 {grid-template-columns:1fr;} #stage-panel-2 .stage-media>div {gap:14px;} }
+
+.moon-ink-surface { position:absolute; inset:-7%; width:114%; height:114%; max-width:none; object-fit:contain; z-index:6; pointer-events:none; user-select:none; transition:opacity .6s ease; }
+.bside-moon-object .moon-webgl,.bside-moon-object .moon-sphere { visibility:hidden; }
+.moon-bside[open] .moon-ink-surface { opacity:0; }
+
+/* Mobile navigation: all four destinations share normal layout flow. */
+@media (max-width:680px) {
+ .lunar-home .site-header .inner { display:grid; grid-template-columns:40px minmax(0,1fr) 36px; gap:8px; padding-inline:12px; }
+ .site-header .brand { grid-column:1; grid-row:1; }
+ .site-header .contact-nav { grid-column:3; grid-row:1; padding:0; min-height:44px; font-size:12px; text-decoration:none; }
+ .site-header .header-right { grid-column:2; grid-row:1; position:static; width:auto; height:auto; display:block; }
+ .lunar-home .site-header .site-nav { display:none; }
+ .lunar-home .site-header .role-mini-nav { position:static; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); width:100%; gap:2px; visibility:visible; opacity:1; transform:none; pointer-events:auto; }
+ .site-header .role-mini-link { border-radius:0; min-width:0; min-height:44px; padding:0; display:flex; justify-content:center; align-items:center; }
+ .site-header .mini-orb { display:none; }
+ .site-header .mini-label { white-space:nowrap; letter-spacing:0; }
+ .site-header .mini-label::after { font-size:10px; }
+}
+
+@media(max-width:760px){.workflow-stage {touch-action:pan-y pinch-zoom;} .stage-tabs::after {content:"左右滑动查看案例";display:block;grid-column:1/-1;font-size:11px;color:var(--body-ink);font-weight:400;}}
+
+/* The museum case opens a dark exhibition within the same layout. */
+#workflow { background:#f5f2e9; }
+.screening-room:has(#stage-panel-1:not([hidden])) {
+ background:#141515; color:#e8e3d8;
+ --body-ink:#bdbbb4; --cobalt:#c9b582; --cobalt-deep:#f0eade; --media-line:#48453b;
+}
+.screening-room:has(#stage-panel-1:not([hidden])) .workflow-systems__head,
+.screening-room:has(#stage-panel-1:not([hidden])) .workflow-systems__head h2,
+.screening-room:has(#stage-panel-1:not([hidden])) .workflow-systems__head h3 { color:#f0eade; }
+.screening-room:has(#stage-panel-1:not([hidden])) .workflow-systems__head p { color:#bdbbb4; }
+.screening-room:has(#stage-panel-1:not([hidden])) .phase-mark { filter:grayscale(1) brightness(2); }
+#stage-panel-1 .museum-moon { filter:grayscale(1) brightness(2); opacity:.045; }
+#stage-panel-1 .stage-media a,#stage-panel-1 .stage-media img { border:0; background:transparent; box-shadow:none; }
+#stage-panel-1 .stage-copy details p { color:#bdbbb4; }
+.screening-room:has(#stage-panel-1:not([hidden])) :focus-visible { outline:2px solid #c9b582; outline-offset:5px; }
+.screening-room:has(#stage-panel-1:not([hidden])) .stage-lightbox { background:#141515; color:#f0eade; }
+
+/* Screening preview: the work is the screen, the copy its caption. */
+#workflow .workflow-systems__head {margin-bottom:20px;}
+#workflow .stage-panel,#workflow #stage-panel-2 {grid-template-columns:minmax(0,1.9fr) minmax(260px,.85fr);gap:48px;padding:24px 0;animation:none;align-items:center;}
+#workflow .stage-media {grid-column:1;grid-row:1;}
+#workflow .stage-copy {grid-column:2;grid-row:1;}
+#workflow .stage-media>div {height:460px;min-height:0;}
+#workflow .stage-media img {max-height:460px;width:100%;object-fit:contain;}
+#workflow .stage-copy h3 {font-size:28px;line-height:1.5;}
+#workflow .stage-problem {font-size:14px;}
+#workflow .stage-copy dd {font-size:13px;}
+#workflow .stage-copy dl {margin:18px 0;}
+#workflow .stage-media--pair a {transform:none;}
+.screening-directory {display:flex;gap:32px;align-items:center;border-top:1px solid var(--media-line);padding:8px 0;}
+.screening-count {font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.13em;color:var(--cobalt);white-space:nowrap;}
+.screening-directory .stage-tabs {border:0;flex:1;}
+.stage-tabs::after {display:none!important;}
+@media(max-width:760px){
+ #workflow .stage-panel,#workflow #stage-panel-2 {grid-template-columns:1fr;gap:20px;}
+ #workflow .stage-media {grid-column:1;grid-row:1;}
+ #workflow .stage-copy {grid-column:1;grid-row:2;}
+ #workflow .stage-media>div {height:auto;min-height:210px;}
+ #workflow .stage-media img {max-height:300px;}
+ #workflow .stage-copy h3 {font-size:25px;}
+ .screening-directory {gap:12px;align-items:flex-start;}
+ .screening-count {padding-top:16px;font-size:11px;}
+ .screening-directory .stage-tabs {gap:18px;}
+ .screening-directory .stage-tabs button {font-size:12px;}
+}
+
+/* A quiet follow-on, rather than another article index. */
+.bside-copy .bside-socials {border:0;border-top:1px solid var(--ending-rule);padding-top:22px;margin-top:30px;}
+.bside-copy .bside-socials__title {display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0;color:var(--cobalt-deep);padding:0;margin:0 0 20px;}
+.bside-socials__title .phase-mark {width:20px;height:20px;opacity:.8;}
+.bside-copy .bside-social {border:0;padding:12px 0;grid-template-columns:64px minmax(0,1fr) auto;column-gap:18px;}
+.bside-copy .bside-social__platform {font-size:12px;font-weight:400;letter-spacing:0;color:#68748a;}
+.bside-copy .bside-social__account {font-size:18px;line-height:1.7;}
+.bside-copy .bside-social__account small {font:inherit;letter-spacing:0;margin-top:6px;}
+.bside-copy .bside-social__account a {border:0;text-decoration:underline;text-decoration-color:rgba(31,62,197,.2);text-underline-offset:5px;}
+.bside-copy .bside-social__hint {font-size:11px;letter-spacing:0;}
+@media(max-width:600px){.bside-copy .bside-social {grid-template-columns:50px minmax(0,1fr);gap:3px 12px;} .bside-copy .bside-social__hint {grid-column:2;} .bside-copy .bside-social__account {font-size:17px;}}
+
+/* Page rhythm: consistent reading scales and a contained exhibition. */
+.moon-stage-intro {font-size:16px!important;line-height:1.85!important;max-width:34em;}
+#workflow {padding-top:56px;padding-bottom:56px;}
+#workflow .workflow-systems__head {margin-bottom:24px;gap:32px;align-items:start;}
+#workflow .workflow-systems__head h2,#story>.story-editorial__head h2,.research-notes__head h2 {font-size:clamp(30px,3vw,42px);line-height:1.3;}
+#workflow .workflow-systems__head>p {font-size:18px;line-height:1.8;max-width:38em;}
+#story>.story-editorial__head {padding-top:32px;padding-bottom:24px;}
+.research-notes {padding-top:56px;padding-bottom:56px;}
+.screening-room {padding:12px 28px 8px;background:transparent;}
+.screening-room:has(#stage-panel-1:not([hidden])) {background:#141515;}
+#workflow .stage-copy dd,#workflow .stage-problem,#workflow .stage-copy details p {font-size:15px;line-height:1.8;}
+#workflow .stage-kicker,#workflow .stage-copy dt,#workflow .stage-media figcaption {font-size:12px;line-height:1.7;}
+.moon-stage-evidence {font-size:11px;line-height:1.6;}
+@media(max-width:760px){
+ #workflow,.research-notes {padding-top:36px;padding-bottom:36px;}
+ #workflow .workflow-systems__head {gap:14px;}
+ #workflow .workflow-systems__head>p {font-size:16px;}
+ .moon-stage-intro {font-size:15px!important;}
+ .screening-room {padding:16px 14px 6px;}
+ #workflow .stage-panel,#workflow #stage-panel-2 {gap:18px;}
+}
+
+.screening-controls {display:flex;align-items:center;gap:18px;padding:12px 0 4px;color:var(--cobalt);}
+.screening-position {font-size:13px;letter-spacing:.08em;font-variant-numeric:tabular-nums;}
+.screening-arrows {display:flex;gap:10px;margin-left:auto;}
+.screening-arrows button {display:grid;place-items:center;min-width:48px;min-height:44px;border:1px solid var(--media-line);background:transparent;color:var(--cobalt);font-size:25px;cursor:pointer;transition:background .15s;}
+.screening-arrows button:hover:not(:disabled) {background:rgba(128,128,128,.14);}
+.screening-arrows button:disabled {opacity:.28;cursor:default;}
+.screening-arrows button:focus-visible {outline:2px solid currentColor;outline-offset:3px;}
+.screening-swipe-hint {display:none;font-size:11px;color:var(--body-ink);}
+@media(max-width:760px){.screening-controls {gap:10px;}.screening-swipe-hint {display:block;}.screening-position {font-size:12px;}.screening-arrows {gap:6px;}.screening-arrows button {min-width:44px;}}
 </style>
 </head>
 <body class="lunar-home">
@@ -5554,7 +5712,7 @@
           <p class="moon-stage-signature">张婵媛（月亮） <span>｜</span> Moon</p>
           <p class="moon-stage-motto"><span>看见正在发生的生命力</span><small>Seeing What’s Emerging</small></p>
           <h1 id="moon-stage-title"><span>一个向 AI 走去的<br />人类学冒险家</span><small>创造者生态 · 人物叙事 · AI 工作流</small></h1>
-          <p class="moon-stage-intro">我从大理的数字游民社区和创新教育田野走来，也是一名 AI Native 创造者——AI 不只是我持续进入的领域，也是我研究项目、生产内容和运营关系的工作底座。<br />过去三年，我进入 AI 创新教育、创业孵化与开发者社区，持续发现和连接早期创业者；从 0 到 1 发起超级个体实验室，汇聚了 700+ 位 AI 创业者，并联动社区与孵化器，通过活动、黑客松和工作坊促成深度交流与合作。</p>
+          <p class="moon-stage-intro">我从大理的数字游民社区与创新教育田野走来，关注 AI 浪潮中的人、创造与连接。<br />通过人物叙事、社区活动和 AI 工具，把现场观察变成内容与行动。</p>
           <p class="moon-stage-evidence"><span>0→1 超级个体实验室</span><span>数百人 AI 创造者社群</span><span>7 天营地真实使用</span></p>
         </div>
 
@@ -5745,26 +5903,7 @@
           <p class="workflow-systems__intro">进入真实业务场景，理解团队原本的协作与信息流，再把重复劳动重构成可以运行、可以持续迭代的 AI 工作流程。</p>
         </header>
 
-        <nav class="workflow-tabs" aria-label="选择 AI 工作流"><button data-workflow="0" aria-current="true">01 现场观察工作流</button><button data-workflow="1" aria-current="false">02 生命力博物馆</button><button data-workflow="2" aria-current="false">03 活动内容产品化</button></nav><div class="system-stack workflow-slider" tabindex="0" aria-label="三个 AI 工作流，可左右滑动">
-          <article class="workflow-primary workflow-primary--compact reveal">
-            <header class="workflow-primary__head"><div><p class="system-case__index">01 / 真实场景 · 七天迭代</p><h3>真实场景中的 AI 工作流实验<small>从现场需求到可用流程</small></h3></div><p class="workflow-primary__thesis">用7天时间，搭建一个AI创造者观察记录体系</p></header>
-            <div class="workflow-compact">
-              <div class="workflow-compact__copy"><p>在大理 AI 营地中，老师每天需要记录学生状态，并向家长提供具体、可信的观察反馈。我将零散记录整理为一套由 AI 辅助、老师最终确认的工作流，并在七天真实使用中持续调整人机协作边界。</p><div class="workflow-compact__loop" aria-label="观察、搭建、使用、反馈、迭代循环"><span>观察</span><i>→</i><span>搭建</span><i>→</i><span>使用</span><i>→</i><span>反馈</span><i>→</i><span>迭代</span></div></div>
-              <div class="workflow-compact__visual"><figure class="workflow-compact__screen" data-private-workflow-screen><img src="assets/feishu/growth-editor-anonymized.png" alt="已隐去学生姓名的 AI 创造者观察编辑器真实界面" width="2940" height="1650" loading="lazy" decoding="async" /><figcaption><span>真实使用界面 / 学生信息已匿名</span><span>内部试用</span></figcaption></figure><div class="workflow-compact__proofs" aria-label="AI 工作流实验的三项核心证据"><div><b>7 天</b><span>连续投入真实教学现场</span></div><div><b>人工判断</b><span>老师保留事实确认与最终判断</span></div><div><b>持续迭代</b><span>每天根据使用反馈继续调整</span></div></div></div>
-            </div>
-          </article>
-
-          <article class="system-case system-case--featured system-case--museum reveal" id="vitality-museum-case">
-            <div class="system-case__copy"><p class="system-case__index">02 / 从故事到长期档案</p><h3>生命力博物馆</h3><p class="system-thesis">展览会结束，但故事不应该消失。</p><p>2025 年夏天，我先做了一个很小的 Demo，想把社区里创业者一路成长的故事保存下来。真正的转折发生在随后持续的深访里：学生、家长和志愿者讲述的不只是项目结果，也包括辍学、寻找、重新行动，以及教育如何改变一个人和一个家庭。</p><p>我把这些分散的生命历程组织成章节、时间轴、菌丝关系网络与生命力地图，让人们不仅看见一件作品，也能追踪作品背后的人如何变化，以及不同的人如何在一个组织中相遇、彼此影响。</p><p class="system-story">2026 年 WAIC，我与超脑团队共同策划「AI 原住民计划」线上特别展。来自不同城市、学校和机构的 44+ 个青少年项目来到现场；展览通过视频、自述、个人网页与 GitHub，把一次性的展台继续延伸为可以长期访问、持续更新的创造者档案。</p><div class="system-evidence" aria-label="生命力博物馆公开项目数据"><span><b>44+</b>带到 WAIC 现场的项目</span><span><b>67</b>累计收录项目</span><span><b>28</b>人物故事</span></div><div class="system-tags"><span>人物叙事</span><span>长期档案</span><span>线上策展</span><span>AI 辅助搭建</span></div><div class="system-actions"><a class="system-cta" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer">进入线上展馆 <span>↗</span></a><a class="system-cta" href="https://mp.weixin.qq.com/s/5NCHluULXcNHkgcI_rSx9g" target="_blank" rel="noreferrer">阅读项目故事 <span>↗</span></a></div></div>
-            <div class="system-case__visual"><a class="system-screen" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noreferrer"><img src="assets/vitality/vitality-museum-waic-2026-poster.png?v=public-2" alt="生命力博物馆与超脑 AI 孵化器在 WAIC 2026 联合策展的 AI 原住民计划海报" width="1085" height="1450" loading="lazy" decoding="async" /><span class="system-screen__bar"><b>WAIC 2026 / 联合策展真实海报</b><span>进入展馆 ↗</span></span></a><div class="system-status">线上展馆 · 可访问</div></div>
-          </article>
-
-          <article class="system-case system-case--event reveal">
-            <div class="system-case__copy"><p class="system-case__index">03 / 从活动到内容资产</p><h3>活动内容产品化</h3><p class="system-thesis">一场活动结束后，现场表达如何继续生长？</p><p>WAIC Pre-Party「AI时代，人文不做旁观者」活动结束后，我用 AI 辅助整理嘉宾的现场发言，再回到具体语境中核对、编辑，并与现场照片一起制作成可继续分发和归档的人物海报。</p><div class="system-tags"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>视觉编辑</span><span>分发归档</span></div></div>
-            <div class="system-case__visual"><div class="system-poster-stage"><div class="system-poster-gallery system-poster-gallery--two" aria-label="WAIC Pre-Party AI时代，人文不做旁观者嘉宾内容海报"><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-zhulianbi.png" alt="复旦大学历史系副教授朱联璧谈历史教育与 AI Agent 的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>朱联璧 / 历史教育 × AI Agent</figcaption></figure><figure><img src="assets/feishu/waic-quote-posters/waic-field-note-dehong.png" alt="独立硬件开发者德宏谈数字分身与人工具边界的活动内容海报" width="1080" height="1440" loading="lazy" decoding="async" /><figcaption>德宏 / 数字分身 × 人与工具的边界</figcaption></figure></div><span class="system-screen__bar"><b>2 张真实嘉宾内容海报</b><span>2026.07.15 · 上海</span></span></div><div class="system-mini-flow" aria-label="活动内容产品化路径"><span>现场素材</span><span>AI 辅助整理</span><span>语境核对</span><span>人工编辑</span><span>分发归档</span></div></div>
-          </article>
-        </div>
-
+<nav class="stage-tabs" role="tablist" aria-label="选择 AI 工作流"><button role="tab" id="stage-tab-0" aria-controls="stage-panel-0" aria-selected="true" tabindex="0" data-stage="0"><img class="phase-mark phase-mark--0" src="moon-mark.png" alt="" aria-hidden="true">01 现场观察工作流</button><button role="tab" id="stage-tab-1" aria-controls="stage-panel-1" aria-selected="false" tabindex="-1" data-stage="1"><img class="phase-mark phase-mark--1" src="moon-mark.png" alt="" aria-hidden="true">02 生命力博物馆</button><button role="tab" id="stage-tab-2" aria-controls="stage-panel-2" aria-selected="false" tabindex="-1" data-stage="2"><img class="phase-mark phase-mark--2" src="moon-mark.png" alt="" aria-hidden="true">03 活动内容产品化</button></nav><div class="workflow-stage"><article class="stage-panel" role="tabpanel" id="stage-panel-0" aria-labelledby="stage-tab-0" ><div class="stage-copy"><p class="stage-kicker">01 / 现场观察工作流</p><h3>把零散记录，<br>变成可核对的成长观察。</h3><p class="stage-problem">老师每天需要记录学生状态，并向家长提供具体、可信的反馈。</p><dl><div><dt>做成了什么</dt><dd>观察记录编辑器，在七天真实教学中持续试用与调整。</dd></div><div><dt>人的判断</dt><dd>AI 辅助整理；老师核实事实，保留最终判断。</dd></div></dl><details><summary>展开工作过程</summary><p>观察现场需求 → 搭建记录流程 → 老师使用 → 收集反馈 → 持续迭代。重点是让记录帮助观察，而不是让 AI 替老师评价学生。</p></details></div><figure class="stage-media "><div><a href="assets/feishu/growth-editor-anonymized.png" target="_blank" rel="noopener noreferrer" data-stage-image><img src="assets/feishu/growth-editor-anonymized.png" alt="真实使用界面 · 学生信息已匿名" loading="lazy"></a></div><figcaption>真实使用界面 · 学生信息已匿名<span>点击图片放大</span></figcaption></figure></article><article class="stage-panel" role="tabpanel" id="stage-panel-1" aria-labelledby="stage-tab-1" hidden><img class="museum-moon" src="moon-mark.png" alt="" aria-hidden="true"><div class="stage-copy"><p class="stage-kicker">02 / 生命力博物馆</p><h3>让展览之后，人的故事仍能被访问。</h3><p class="stage-problem">分散的人物故事与项目材料，需要一个可持续访问的叙事空间。</p><dl><div><dt>做成了什么</dt><dd>把人物与项目组织为章节、时间轴和关系网络，形成线上展馆。</dd></div><div><dt>人的判断</dt><dd>访谈、选材与叙事结构由人决定，AI 辅助搭建。</dd></div></dl><a class="stage-live" href="https://vitality-museum.wexiyi.com/" target="_blank" rel="noopener noreferrer">进入线上展馆 ↗</a><details><summary>展开工作过程</summary><p>从深度访谈开始，将分散生命历程整理为档案，并通过视频、自述、个人网页与 GitHub 延伸展览内容。</p></details></div><figure class="stage-media "><div><a href="museum-reference.png" target="_blank" rel="noopener noreferrer" data-stage-image><img src="museum-reference.png" alt="生命力博物馆 · 线上展馆页面" loading="lazy"></a></div><figcaption>生命力博物馆 · 线上展馆页面<span>点击图片放大</span></figcaption></figure></article><article class="stage-panel" role="tabpanel" id="stage-panel-2" aria-labelledby="stage-tab-2" hidden><div class="stage-copy"><p class="stage-kicker">03 / 活动内容产品化</p><h3>让一次现场表达，成为可继续传播的内容。</h3><p class="stage-problem">活动结束后，发言与照片需要整理成能被阅读、分发与归档的材料。</p><dl><div><dt>做成了什么</dt><dd>将 WAIC Pre-Party 的嘉宾发言与现场照片，制作成两张人物内容海报。</dd></div><div><dt>人的判断</dt><dd>AI 辅助整理发言；人工回到语境核对并完成编辑。</dd></div></dl><details><summary>展开工作过程</summary><p>现场素材 → AI 辅助整理 → 语境核对 → 人工编辑 → 分发归档。保留嘉宾表达的具体含义，避免把发言抽成脱离语境的金句。</p></details></div><figure class="stage-media stage-media--pair"><div><a href="assets/feishu/waic-quote-posters/waic-field-note-zhulianbi.png" target="_blank" rel="noopener noreferrer" data-stage-image><img src="assets/feishu/waic-quote-posters/waic-field-note-zhulianbi.png" alt="真实嘉宾内容海报" loading="lazy"></a><a href="assets/feishu/waic-quote-posters/waic-field-note-dehong.png" target="_blank" rel="noopener noreferrer" data-stage-image><img src="assets/feishu/waic-quote-posters/waic-field-note-dehong.png" alt="德宏的活动内容海报" loading="lazy"></a></div><figcaption>真实嘉宾内容海报<span>点击图片放大</span></figcaption></figure></article></div><dialog class="stage-lightbox" aria-label="工作流图片预览"><button type="button">关闭</button><img alt=""></dialog>
         <footer class="workflow-supplements reveal">
           <header class="workflow-supplements__head"><p class="workflow-supplements__eyebrow">研究与内容工具</p><h3 class="workflow-supplements__headline">日常使用的研究与内容工具</h3><p class="workflow-supplements__deck">人物与项目研究、内容创作，分别沉淀为可以持续使用的工具。</p></header>
           <div class="workflow-supplements__spread">
@@ -5839,7 +5978,7 @@
                 <img class="moon-portrait" src="assets/vitality/moon-field-portrait.jpg" alt="" width="933" height="1400" loading="lazy" decoding="async" />
                 <span class="moon-texture"></span><span class="moon-shadow"></span><span class="moon-rim"></span>
               </span>
-              <canvas class="moon-webgl" aria-hidden="true"></canvas>
+              <canvas class="moon-webgl" aria-hidden="true"></canvas><img class="moon-ink-surface" src="moon-mark.png" alt="" aria-hidden="true" draggable="false">
               <img class="bside-moon-reverse" src="assets/outdoor/moon-highland-portrait.jpg" alt="" loading="lazy" decoding="async" />
               <span class="bside-moon-darkness" aria-hidden="true"></span>
             </span>
@@ -5855,15 +5994,12 @@
               <h3>B-side of the Moon<small> / 月球背面</small></h3>
               <p>离开屏幕和现场之后，我也会走向山里、户外和路上。<br />徒步、雪山、旅行与在地观察，让我重新校准节奏，也提醒我保持对世界的好奇、耐心与感受力。</p>
               <nav class="bside-socials" aria-label="月亮的播客与社交媒体">
-                <p class="bside-socials__title">继续相遇</p>
+                <p class="bside-socials__title"><img class="phase-mark phase-mark--0" src="moon-mark.png" alt="" aria-hidden="true">继续相遇</p>
                 <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗</a><small><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">Becoming计划 ↗</a></small></span><span class="bside-social__hint">小宇宙</span></div>
                 <div class="bside-social"><span class="bside-social__platform">小红书</span><span class="bside-social__account">@流浪月亮计划</span><span class="bside-social__hint">小红书号 2893937787</span></div>
                 <div class="bside-social"><span class="bside-social__platform">公众号</span><span class="bside-social__account">流浪月亮计划</span><span class="bside-social__hint">微信内搜索</span></div>
               </nav>
-              <nav class="bside-reading" aria-label="月球背面的延伸阅读">
-                <a href="https://mp.weixin.qq.com/s/Ttv2Pq7dIQhv3L1695wHyw" target="_blank" rel="noreferrer"><span><b>在 AI 浪潮之下，看见具体的人</b><small>AI 与人 · 公共思考</small></span><span>↗</span></a>
-                <a href="https://mp.weixin.qq.com/s/RcnnQyAGgyg-8hP98hjsaQ" target="_blank" rel="noreferrer"><span><b>我们这一代，还能以热爱和理想躬身入局吗？</b><small>Becoming · 长期追问</small></span><span>↗</span></a>
-              </nav>
+              
             </div>
           </div>
         </details>
@@ -6499,5 +6635,39 @@
  const art=root.querySelector('.people-exhibit__art');art.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});art.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(touchX!==null&&Math.abs(dx)>45)select(active+(dx<0?1:-1));touchX=null;},{passive:true});
 })();
 </script>
-<script>(()=>{const rail=document.querySelector('.workflow-slider');const slides=[...rail.children];const tabs=[...document.querySelectorAll('[data-workflow]')];const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;function go(i){rail.scrollTo({left:slides[i].offsetLeft-slides[0].offsetLeft,behavior:reduced?'instant':'smooth'});}tabs.forEach((b,i)=>b.onclick=()=>go(i));let ticking=false;rail.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{let i=0,d=Infinity;slides.forEach((s,j)=>{let n=Math.abs(s.offsetLeft-slides[0].offsetLeft-rail.scrollLeft);if(n<d){d=n;i=j;}});tabs.forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));ticking=false;});},{passive:true});rail.addEventListener('keydown',e=>{if(e.target!==rail)return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();let i=tabs.findIndex(b=>b.getAttribute('aria-current')==='true');go(Math.max(0,Math.min(2,i+(e.key==='ArrowRight'?1:-1))));}});})();</script><script>(()=>{const dialog=document.querySelector('.contact-dialog');const trigger=document.querySelector('[data-contact-open]');trigger.addEventListener('click',()=>dialog.showModal());dialog.querySelector('[data-contact-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>trigger.focus({preventScroll:true}));})();</script></body>
+<script>(()=>{const dialog=document.querySelector('.contact-dialog');const trigger=document.querySelector('[data-contact-open]');trigger.addEventListener('click',()=>dialog.showModal());dialog.querySelector('[data-contact-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>trigger.focus({preventScroll:true}));})();</script><script>(()=>{const tabs=[...document.querySelectorAll('[data-stage]')],panels=[...document.querySelectorAll('.stage-panel')];let switching=false;async function select(i,focus=false){if(switching)return; switching=true;const stage=document.querySelector('.workflow-stage');const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;if(!reduced)await stage.animate([{opacity:1},{opacity:0}],{duration:180,fill:'forwards'}).finished;tabs.forEach((b,j)=>{b.setAttribute('aria-selected',String(i===j));b.tabIndex=i===j?0:-1;panels[j].hidden=i!==j;});document.querySelector('.screening-count').textContent='0'+(i+1)+' / 03';document.querySelector('.screening-position').textContent='案例 0'+(i+1)+' / 03';document.querySelector('[data-screen-prev]').disabled=i===0;document.querySelector('[data-screen-next]').disabled=i===2;if(focus)tabs[i].focus({preventScroll:true});if(!reduced){await stage.animate([{opacity:0},{opacity:1}],{duration:280,fill:'forwards'}).finished;stage.getAnimations().forEach(a=>a.cancel());}switching=false;}tabs.forEach((b,i)=>{b.onclick=()=>select(i);b.onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();select(e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3,true);}};});const dialog=document.querySelector('.stage-lightbox');let opener;document.querySelectorAll('[data-stage-image]').forEach(a=>a.onclick=e=>{e.preventDefault();opener=a;dialog.querySelector('img').src=a.href;dialog.querySelector('img').alt=a.querySelector('img').alt;dialog.showModal();});dialog.querySelector('button').onclick=()=>dialog.close();dialog.onclose=()=>opener?.focus({preventScroll:true});})();</script><script>
+(()=>{
+ const stage=document.querySelector('.workflow-stage');
+ const tabs=[...document.querySelectorAll('[data-stage]')];
+ const mobile=matchMedia('(max-width:760px)');
+ let start=null, suppressUntil=0;
+ stage.addEventListener('touchstart',e=>{
+  if(!mobile.matches||e.touches.length!==1||document.querySelector('.stage-lightbox[open]')){start=null;return;}
+  start={x:e.touches[0].clientX,y:e.touches[0].clientY};
+ },{passive:true});
+ stage.addEventListener('touchmove',e=>{
+  if(!start||e.touches.length!==1){start=null;return;}
+  if(Math.abs(e.touches[0].clientY-start.y)>30)start=null;
+ },{passive:true});
+ stage.addEventListener('touchcancel',()=>start=null);
+ stage.addEventListener('touchend',e=>{
+  if(!start)return;
+  const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;
+  if(Math.abs(dx)<60||Math.abs(dx)<Math.abs(dy)*1.6)return;
+  suppressUntil=Date.now()+450;
+  const current=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');
+  const next=Math.max(0,Math.min(tabs.length-1,current+(dx<0?1:-1)));
+  if(next===current)return;
+  tabs[next].click();
+  
+ },{passive:true});
+ stage.addEventListener('click',e=>{if(Date.now()<suppressUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
+})();
+</script><script>(()=>{const stage=document.querySelector('.workflow-stage'),tabs=document.querySelector('.stage-tabs');const footer=document.createElement('div');footer.className='screening-directory';const count=document.createElement('span');count.className='screening-count';count.textContent='01 / 03';count.setAttribute('aria-live','polite');const room=document.createElement("div");room.className="screening-room";stage.before(room);room.append(stage,footer);footer.append(count,tabs);})();</script><script>(()=>{
+ const room=document.querySelector('.screening-room');
+ const controls=document.createElement('div');controls.className='screening-controls';
+ controls.innerHTML='<span class="screening-position" aria-live="polite">案例 01 / 03</span><span class="screening-swipe-hint">左右滑动查看</span><div class="screening-arrows"><button type="button" data-screen-prev aria-label="上一个案例" disabled>←</button><button type="button" data-screen-next aria-label="下一个案例">→</button></div>';
+ room.prepend(controls);
+ controls.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{const tabs=[...document.querySelectorAll('[data-stage]')];const current=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');const next=current+(b.hasAttribute('data-screen-prev')?-1:1);if(tabs[next])tabs[next].click();}));
+})();</script></body>
 </html>
