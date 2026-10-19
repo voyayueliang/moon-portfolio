@@ -23,7 +23,7 @@
       <section class="intro"><div><div class="eyebrow">注意力观察簿 <span class="dot"></span> 私密基线 + 手动记录</div><h1>看见注意力，<br><span>慢慢回到自己的生活。</span></h1><p>记录一段关系出现在 AI 对话里的时刻，也看见讨论背后的顾虑与落点。<br class="mobile-break">对自己诚实，但不急着给自己打分。</p></div><div class="orbit" aria-hidden="true"><i></i><b>在这里<br>留一点空间<br>给自己</b><span>◌</span></div></section>
 <section id="private-baseline" class="recognized-history" aria-labelledby="baseline-title">
 <div class="section-head"><div><div class="eyebrow">PRIVATE BY DEFAULT</div><h2 id="baseline-title">先把历史留在自己的设备里</h2></div><span class="snapshot-badge">公开页不含历史内容</span></div>
-<p class="detected-explanation">这个网页的公开源码里没有姓名、聊天摘要或识别依据。选择你的私密基线 JSON 后，内容只会写入当前浏览器的本地存储，不会上传到本站。</p>
+<p class="detected-explanation">这个网页的公开源码里没有姓名、聊天摘要或识别依据。选择你的私密基线 JSON 后，内容只会写入当前浏览器的本地存储，不会上传到本站。本地存储并非加密保险箱，请只在自己的设备与浏览器中使用。</p>
 <div class="baseline-actions"><label class="primary file-button">导入私密基线 JSON<input type="file" id="import-baseline" accept="application/json,.json" hidden></label><button type="button" id="remove-baseline" class="danger" hidden>从此浏览器移除基线</button><span id="baseline-status" class="baseline-status" role="status">尚未导入；你也可以直接从今天开始手动记录。</span></div>
 <div class="purpose-note"><strong>目标：更诚实地看见自己。</strong><span>图谱帮助你观察注意力被什么牵动、讨论中反复出现哪些顾虑、讨论有没有落到判断、边界或行动。它不替你给这段关系下结论，也不把少聊当成唯一目标。</span></div>
 <section class="path-monitor" aria-labelledby="map-title">
@@ -37,7 +37,7 @@
   <div id="attention-map" class="map-canvas"></div>
   <div id="map-insight" class="map-insight"></div>
   <div id="map-selection" class="map-selection" role="status" aria-live="polite" aria-atomic="true"></div>
-  <details class="map-data"><summary>查看当前图谱的数据表</summary><div id="map-data-table" class="map-table-wrap"></div></details>
+  <details id="map-data" class="map-data"><summary>查看当前图谱的数据表</summary><div id="map-data-table" class="map-table-wrap"><p class="quiet-note">展开后才会在页面中显示讨论标题与依据。</p></div></details>
   <p class="map-note">“AI 初步归类”只表示根据已有片段做的路径整理；它是可核查的观察，不是心理诊断。切换私密基线与后续手动记录，可以观察“继续寻求确认”与“明确边界 / 形成下一步”的变化。空白不能解释为没有聊过。</p>
 </section>
 </section>
@@ -65,8 +65,8 @@
   <div id="storage-error" class="storage-error" role="alert" hidden></div>
 <script>'use strict';
 (() => {
-  const KEY = 'voya-attention-notebook-public-v1';
-  const BASELINE_KEY = 'voya-attention-baseline-v1';
+  const KEY = 'attention-notebook-manual-v1';
+  const BASELINE_KEY = 'attention-notebook-baseline-v1';
   const labels = {emotion:'关系与情绪',work:'工作推进',mixed:'两者都有'};
   const feelings = {clearer:'更清楚',same:'没变化',tangled:'更纠结'};
   const triggers = {contact:'刚和 TA 联系',work:'碰到工作问题',memory:'突然想起',mention:'别人提到 TA',uncertain:'想确认一个答案',other:'其他'};
@@ -78,15 +78,15 @@
   const mapStages=[{key:'topic',title:'主要在聊',labels:topics},{key:'concern',title:'核心顾虑',labels:concerns},{key:'outcome',title:'讨论落点',labels:outcomes}];
   const $ = id => document.getElementById(id);
   const esc = text => String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const dateFmt = new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'});
-  const timeFmt = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+  const dateFmt = new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit'});
+  const timeFmt = new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
   const today = () => {const p=Object.fromEntries(dateFmt.formatToParts(new Date()).map(x=>[x.type,x.value]));return `${p.year}-${p.month}-${p.day}`;};
   const nowTime = () => timeFmt.format(new Date());
   const shift = (date,n) => new Date(Date.parse(date+'T12:00:00Z')+n*86400000).toISOString().slice(0,10);
   const validDate = x => typeof x==='string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && !Number.isNaN(Date.parse(x+'T12:00:00Z')) && shift(x,0)===x && x>='2000-01-01' && x<=today();
   const shortDate = date => `${Number(date.slice(5,7))}/${Number(date.slice(8,10))}`;
   const newId = () => crypto.randomUUID ? crypto.randomUUID() : 'r-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
-  let state={version:1,entries:[],completeDays:[]}, range=7, visible=30, selectedDay=today(), toastTimer, locked=false, mapSource='manual', mapKind='all', mapPeriod='all', mapSelected=null, mapMobile=null, mapResizeTimer, baselineLoadError='';
+  let state={version:1,entries:[],completeDays:[]}, range=7, visible=30, selectedDay=today(), toastTimer, locked=false, mapSource='manual', mapKind='all', mapPeriod='all', mapSelected=null, mapMobile=null, mapResizeTimer, baselineLoadError='', baselineStored=false;
   function validate(raw){
     if(!raw || raw.version!==1 || !Array.isArray(raw.entries) || !Array.isArray(raw.completeDays) || raw.entries.length>50000 || raw.completeDays.length>20000) throw new Error('备份格式不正确，或文件过大。');
     const seen=new Set();
@@ -110,7 +110,7 @@
   function baselinePayload(paths){return {type:'attention-baseline',version:1,paths:paths.map(({id,date,kind,title,topic,concern,outcome,confidence,evidence})=>({id,date,kind,title,topic,concern,outcome,confidence,evidence}))};}
   try {const raw=localStorage.getItem(KEY);if(raw)state=validate(JSON.parse(raw));}
   catch {locked=true;$('storage-error').hidden=false;$('storage-error').textContent='暂时无法读取已有记录。为保护数据，已暂停保存；请先在“数据与备份”导出原始数据。';}
-  try {const raw=localStorage.getItem(BASELINE_KEY);if(raw){historyPaths=validateBaseline(JSON.parse(raw));if(historyPaths.length)mapSource='history';}}
+  try {const raw=localStorage.getItem(BASELINE_KEY);baselineStored=Boolean(raw);if(raw){historyPaths=validateBaseline(JSON.parse(raw));if(historyPaths.length)mapSource='history';}}
   catch {baselineLoadError='已保存的私密基线无法读取。请重新导入原文件；现有内容未被改动。';}
   function save(next){
     if(locked){toast('暂时无法保存，请先导出原始数据。');return false;}
@@ -135,7 +135,7 @@
     const filled=Object.values(f).reduce((a,b)=>a+b,0);
     $('stat-feeling').textContent=filled?`${filled} 次有反馈`:'等你记录';
     $('stat-feeling-detail').textContent=filled?`更清楚 ${f.clearer} · 没变化 ${f.same} · 更纠结 ${f.tangled}`:'更清楚 / 没变化 / 更纠结';
-    $('period-label').textContent=shortDate(dates[0])+' — '+shortDate(t)+' · 上海时间';
+    $('period-label').textContent=shortDate(dates[0])+' — '+shortDate(t)+' · 浏览器本地时间';
     const max=Math.max(1,...dates.map(d=>dayEntries(d).length));
     const chart=$('chart');chart.style.setProperty('--cols',range);chart.classList.toggle('compact',range>14);
     chart.innerHTML=dates.map(d=>{const es=dayEntries(d), c=counts(es), done=state.completeDays.includes(d);const summary=es.length?`${es.length} 次，情绪 ${c.emotion}，工作 ${c.work}，混合 ${c.mixed}`:done?'确认零次':'尚未记录';return `<button class="chart-day" data-date="${d}" aria-label="${d}，${summary}，${done?'已确认记全':'未确认记全'}，点击查看"><span class="bar-space"><span class="bar-total">${es.length?es.length:done?'○':'—'}</span><span class="stack">${['emotion','work','mixed'].map(k=>c[k]?`<i class="${k}" style="height:${c[k]/max*96}px"></i>`:'').join('')}</span></span><span class="day-label">${d===t?'今天':shortDate(d)}</span><span class="day-tag">${done?'已确认':es.length?'待确认':''}</span></button>`;}).join('');
@@ -172,7 +172,7 @@
     return `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="map-svg-title map-svg-desc"><title id="map-svg-title">话题、核心顾虑与讨论落点的路径图</title><desc id="map-svg-desc">当前筛选包含 ${rows.length} 组讨论。点击节点可以高亮并查看相关讨论。</desc>${edges}${nodes}</svg>`;
   }
   function renderBaselineStatus(){
-    $('remove-baseline').hidden=!historyPaths.length;
+    $('remove-baseline').hidden=!baselineStored;
     $('baseline-status').textContent=baselineLoadError || (historyPaths.length?`已在此浏览器载入 ${historyPaths.length} 组私密路径。换设备时需要重新导入。`:'尚未导入；你也可以直接从今天开始手动记录。');
   }
   function renderMap(){
@@ -186,7 +186,7 @@
     const feedback=rows.filter(e=>e.feeling),fc=feedback.reduce((a,e)=>(a[e.feeling]++,a),{clearer:0,same:0,tangled:0}),feelLine=mapSource==='manual'&&feedback.length?`；${feedback.length} 条填写了聊后感受：更清楚 ${fc.clearer}、没变化 ${fc.same}、更纠结 ${fc.tangled}`:'';
     $('map-insight').textContent=rows.length?`本次样本中，连接最多的核心顾虑是「${leaders.join('」和「')}」（${max} 组），讨论最常落在「${landing.join('」和「')}」（${omax} 组）${feelLine}。这些只描述当前讨论重心，不替你下结论。`:'当前没有可比较的完整路径。未记录或未标注，不等于没有发生。';
     if(mapSelected){const stage=mapStages.find(x=>x.key===mapSelected.stage);$('map-selection').innerHTML=`<div class="map-selection-head"><div><strong>${stage.title}：${esc(stage.labels[mapSelected.key])}</strong><span>${selectedRows.length} 组</span></div><button type="button" id="map-clear">取消选择</button></div><ul>${selectedRows.slice(0,20).map(e=>`<li><span>${esc(shortDate(e.date))} · ${esc(labels[e.kind])}</span><div><strong>${esc(e.title)}</strong><p>${esc(e.evidence)}</p></div><em>${e.classification==='ai_inferred'?`AI 初步归类 · ${confidenceLabels[e.confidence]}`:'本人填写'}</em></li>`).join('')}</ul>${selectedRows.length>20?`<p class="map-more">另有 ${selectedRows.length-20} 组，请在下方数据表查看。</p>`:''}`;}else $('map-selection').innerHTML='<p>点击图中的任一节点，可以看见哪些讨论经过它，以及这些讨论最终落在哪里。</p>';
-    const tableRows=mapSelected?selectedRows:rows;$('map-data-table').innerHTML=tableRows.length?`<table class="map-table"><caption class="sr-only">当前图谱中的讨论路径</caption><thead><tr><th>日期</th><th>讨论</th><th>依据</th><th>类型</th><th>主要在聊</th><th>核心顾虑</th><th>讨论落点</th><th>归类</th></tr></thead><tbody>${tableRows.map(e=>`<tr><td data-label="日期">${esc(e.date)}</td><td data-label="讨论">${esc(e.title)}</td><td data-label="依据">${esc(e.evidence)}</td><td data-label="类型">${esc(labels[e.kind])}</td><td data-label="主要在聊">${esc(topics[e.topic])}</td><td data-label="核心顾虑">${esc(concerns[e.concern])}</td><td data-label="讨论落点">${esc(outcomes[e.outcome])}</td><td data-label="归类">${e.classification==='ai_inferred'?`AI 初步归类 · ${confidenceLabels[e.confidence]}`:'本人填写'}</td></tr>`).join('')}</tbody></table>`:'<p class="quiet-note">当前没有可列出的完整路径。</p>';
+    const tableRows=mapSelected?selectedRows:rows;$('map-data-table').innerHTML=$('map-data').open?(tableRows.length?`<table class="map-table"><caption class="sr-only">当前图谱中的讨论路径</caption><thead><tr><th>日期</th><th>讨论</th><th>依据</th><th>类型</th><th>主要在聊</th><th>核心顾虑</th><th>讨论落点</th><th>归类</th></tr></thead><tbody>${tableRows.map(e=>`<tr><td data-label="日期">${esc(e.date)}</td><td data-label="讨论">${esc(e.title)}</td><td data-label="依据">${esc(e.evidence)}</td><td data-label="类型">${esc(labels[e.kind])}</td><td data-label="主要在聊">${esc(topics[e.topic])}</td><td data-label="核心顾虑">${esc(concerns[e.concern])}</td><td data-label="讨论落点">${esc(outcomes[e.outcome])}</td><td data-label="归类">${e.classification==='ai_inferred'?`AI 初步归类 · ${confidenceLabels[e.confidence]}`:'本人填写'}</td></tr>`).join('')}</tbody></table>`:'<p class="quiet-note">当前没有可列出的完整路径。</p>'):'<p class="quiet-note">展开后才会在页面中显示讨论标题与依据。</p>';
     $('attention-map').querySelectorAll('[data-map-stage]').forEach(node=>{const activate=()=>{const stage=node.dataset.mapStage,key=node.dataset.mapKey,same=mapSelected?.stage===stage&&mapSelected.key===key;mapSelected=same?null:{stage,key};renderMap();const restore=()=>[...$('attention-map').querySelectorAll('[data-map-stage]')].find(n=>n.dataset.mapStage===stage&&n.dataset.mapKey===key)?.focus();(window.requestAnimationFrame||setTimeout)(restore);};node.onclick=activate;node.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();activate();}};});$('map-clear')?.addEventListener('click',()=>{mapSelected=null;renderMap();});
   }
   function openRecord(e=null,date=today()){
@@ -217,16 +217,17 @@
   $('record-filter').onchange=()=>{visible=30;renderRecords();};$('show-more').onclick=()=>{visible+=30;renderRecords();};
   document.querySelectorAll('[data-map-source]').forEach(b=>b.onclick=()=>{mapSource=b.dataset.mapSource;mapPeriod='all';mapSelected=null;renderMap();});
   $('map-kind').onchange=ev=>{mapKind=ev.target.value;mapSelected=null;renderMap();};$('map-period').onchange=ev=>{mapPeriod=ev.target.value;mapSelected=null;renderMap();};
+  $('map-data').addEventListener('toggle',()=>renderMap());
   window.addEventListener('resize',()=>{clearTimeout(mapResizeTimer);mapResizeTimer=setTimeout(()=>{const mobile=window.matchMedia?.('(max-width:620px)').matches??false;if(mobile!==mapMobile)renderMap();},120);});
-  $('import-baseline').onchange=async ev=>{const file=ev.target.files[0];if(!file)return;try{if(file.size>2*1024*1024)throw new Error('文件过大，请使用 2 MB 以内的私密基线。');const paths=validateBaseline(JSON.parse(await file.text()));localStorage.setItem(BASELINE_KEY,JSON.stringify(baselinePayload(paths)));historyPaths=paths;baselineLoadError='';mapSource='history';mapPeriod='all';mapSelected=null;renderMap();toast(`已在此浏览器载入 ${paths.length} 组私密路径。`);}catch(err){baselineLoadError=err instanceof SyntaxError?'无法读取这个 JSON 文件。请确认选择的是私密基线。':err.message;renderBaselineStatus();}finally{ev.target.value='';}};
-  $('remove-baseline').onclick=()=>{if(!confirm('确定从这个浏览器移除私密基线吗？原始 JSON 文件不会被删除。'))return;try{localStorage.removeItem(BASELINE_KEY);historyPaths=[];baselineLoadError='';mapSource='manual';mapPeriod='all';mapSelected=null;renderMap();toast('已从此浏览器移除私密基线。');}catch{baselineLoadError='暂时无法移除私密基线，请稍后再试。';renderBaselineStatus();}};
+  $('import-baseline').onchange=async ev=>{const file=ev.target.files[0];if(!file)return;try{if(file.size>2*1024*1024)throw new Error('文件过大，请使用 2 MB 以内的私密基线。');const paths=validateBaseline(JSON.parse(await file.text()));localStorage.setItem(BASELINE_KEY,JSON.stringify(baselinePayload(paths)));historyPaths=paths;baselineStored=true;baselineLoadError='';mapSource='history';mapPeriod='all';mapSelected=null;renderMap();toast(`已在此浏览器载入 ${paths.length} 组私密路径。`);}catch(err){baselineLoadError=err instanceof SyntaxError?'无法读取这个 JSON 文件。请确认选择的是私密基线。':err.message;renderBaselineStatus();}finally{ev.target.value='';}};
+  $('remove-baseline').onclick=()=>{if(!confirm('确定从这个浏览器移除私密基线吗？原始 JSON 文件不会被删除。'))return;try{localStorage.removeItem(BASELINE_KEY);historyPaths=[];baselineStored=false;baselineLoadError='';mapSource='manual';mapPeriod='all';mapSelected=null;renderMap();toast('已从此浏览器移除私密基线。');}catch{baselineLoadError='暂时无法移除私密基线，请稍后再试。';renderBaselineStatus();}};
   $('backup-open').onclick=()=>{$('backup-status').textContent='';$('backup-dialog').showModal();};
   function download(text,name,mime){const url=URL.createObjectURL(new Blob([text],{type:mime}));const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
-  $('export-json').onclick=()=>{if(locked){try{const raw=localStorage.getItem(KEY);if(raw)download(raw,`attention-recovery-${today()}.json`,'application/json');else $('backup-status').textContent='未能读取原始数据。';}catch{$('backup-status').textContent='浏览器暂时不允许访问存储。';}return;}download(JSON.stringify({...state,exportedAt:new Date().toISOString(),timeZone:'Asia/Shanghai'},null,2),`attention-backup-${today()}.json`,'application/json');$('backup-status').textContent='已发起完整备份下载。';};
-  $('export-csv').onclick=()=>{if(locked){$('backup-status').textContent='请先导出完整备份，当前无法读取记录。';return;}const csvCell=v=>{let s=String(v??'');if(/^[\s]*[=+\-@]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';};const rows=[['日期（上海时间）','时间','类型','分钟（空白表示未填）','聊后感受','触发','主要在聊','核心顾虑','讨论落点','备注','更新时间'],...state.entries.slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).map(e=>[e.date,e.time,labels[e.kind],e.minutes,feelings[e.feeling]||'',triggers[e.trigger]||'',topics[e.topic]||'',concerns[e.concern]||'',outcomes[e.outcome]||'',e.note,e.updatedAt||''])];download('\ufeff'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),`attention-records-${today()}.csv`,'text/csv;charset=utf-8');$('backup-status').textContent='已发起表格下载。';};
+  $('export-json').onclick=()=>{if(locked){try{const raw=localStorage.getItem(KEY);if(raw)download(raw,`attention-recovery-${today()}.json`,'application/json');else $('backup-status').textContent='未能读取原始数据。';}catch{$('backup-status').textContent='浏览器暂时不允许访问存储。';}return;}download(JSON.stringify({...state,exportedAt:new Date().toISOString(),timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone||'local'},null,2),`attention-backup-${today()}.json`,'application/json');$('backup-status').textContent='已发起完整备份下载。';};
+  $('export-csv').onclick=()=>{if(locked){$('backup-status').textContent='请先导出完整备份，当前无法读取记录。';return;}const csvCell=v=>{let s=String(v??'');if(/^[\s]*[=+\-@]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';};const rows=[['日期（浏览器本地时间）','时间','类型','分钟（空白表示未填）','聊后感受','触发','主要在聊','核心顾虑','讨论落点','备注','更新时间'],...state.entries.slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).map(e=>[e.date,e.time,labels[e.kind],e.minutes,feelings[e.feeling]||'',triggers[e.trigger]||'',topics[e.topic]||'',concerns[e.concern]||'',outcomes[e.outcome]||'',e.note,e.updatedAt||''])];download('\ufeff'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),`attention-records-${today()}.csv`,'text/csv;charset=utf-8');$('backup-status').textContent='已发起表格下载。';};
   $('import-json').onchange=async ev=>{const file=ev.target.files[0];if(!file)return;try{if(file.size>10*1024*1024)throw new Error('文件过大，请使用 10 MB 以内的备份。');const data=validate(JSON.parse(await file.text())),incoming=new Map(data.entries.map(e=>[e.id,e])),ids=new Set(state.entries.map(e=>e.id));let updated=0;const merged=state.entries.map(local=>{const other=incoming.get(local.id);if(!other)return local;const newer=other.updatedAt&&(!local.updatedAt||other.updatedAt>local.updatedAt),fillsPath=!(local.topic&&local.concern&&local.outcome)&&(other.topic&&other.concern&&other.outcome);if(newer){updated++;return other;}if(fillsPath){updated++;return {...local,topic:other.topic,concern:other.concern,outcome:other.outcome,updatedAt:other.updatedAt||local.updatedAt};}return local;});const added=data.entries.filter(e=>!ids.has(e.id));const days=new Set([...state.completeDays,...data.completeDays]);const localKnown=new Set([...state.completeDays,...state.entries.map(e=>e.date)]);const importedKnown=new Set([...data.completeDays,...data.entries.map(e=>e.date)]);importedKnown.forEach(d=>{if(localKnown.has(d)){const localIds=state.entries.filter(e=>e.date===d).map(e=>e.id).sort().join('|');const importedIds=data.entries.filter(e=>e.date===d).map(e=>e.id).sort().join('|');if(localIds!==importedIds)days.delete(d);}});if(save({...state,entries:[...merged,...added],completeDays:[...days]})){const skipped=data.entries.length-added.length-updated;$('backup-status').textContent=`已新增 ${added.length} 条、更新 ${updated} 条记录，跳过 ${Math.max(0,skipped)} 条相同或较旧记录。两份记录数量不一致的日期，请重新确认记全。`;}}catch(err){$('backup-status').textContent=err instanceof SyntaxError?'无法读取这个 JSON 文件，请选择导出的完整备份。':err.message;}finally{ev.target.value='';}};
-  $('clear-all').onclick=()=>{if(!confirm('确定清除这个浏览器里的全部记录吗？建议先导出完整备份。此操作无法撤销。'))return;if(locked){try{localStorage.removeItem(KEY);locked=false;$('storage-error').hidden=true;}catch{$('backup-status').textContent='暂时无法清除数据。';return;}}if(save({version:1,entries:[],completeDays:[]}))$('backup-status').textContent='本浏览器的记录已清除。';};
-  window.addEventListener('storage',ev=>{if(ev.key===KEY){try{state=ev.newValue?validate(JSON.parse(ev.newValue)):{version:1,entries:[],completeDays:[]};render();}catch{locked=true;$('storage-error').hidden=false;$('storage-error').textContent='其他窗口更新的数据无法读取，已暂停保存。请在“数据与备份”导出原始数据。';toast('数据无法读取，已暂停保存。');}}if(ev.key===BASELINE_KEY){try{historyPaths=ev.newValue?validateBaseline(JSON.parse(ev.newValue)):[];baselineLoadError='';if(!historyPaths.length&&mapSource==='history')mapSource='manual';mapPeriod='all';mapSelected=null;renderMap();}catch{baselineLoadError='其他窗口更新的私密基线无法读取。请重新导入原文件。';renderBaselineStatus();}}});
+  $('clear-all').onclick=()=>{if(!confirm('确定清除这个浏览器里的全部手动记录吗？私密基线不会被移除。建议先导出手动备份；此操作无法撤销。'))return;if(locked){try{localStorage.removeItem(KEY);locked=false;$('storage-error').hidden=true;}catch{$('backup-status').textContent='暂时无法清除数据。';return;}}if(save({version:1,entries:[],completeDays:[]}))$('backup-status').textContent='本浏览器的手动记录已清除；私密基线仍保留。';};
+  window.addEventListener('storage',ev=>{if(ev.key===KEY){try{state=ev.newValue?validate(JSON.parse(ev.newValue)):{version:1,entries:[],completeDays:[]};render();}catch{locked=true;$('storage-error').hidden=false;$('storage-error').textContent='其他窗口更新的数据无法读取，已暂停保存。请在“数据与备份”导出原始数据。';toast('数据无法读取，已暂停保存。');}}if(ev.key===BASELINE_KEY){baselineStored=Boolean(ev.newValue);try{historyPaths=ev.newValue?validateBaseline(JSON.parse(ev.newValue)):[];baselineLoadError='';if(!historyPaths.length&&mapSource==='history')mapSource='manual';mapPeriod='all';mapSelected=null;renderMap();}catch{baselineLoadError='其他窗口更新的私密基线无法读取。请重新导入原文件，或从此浏览器移除它。';renderBaselineStatus();}}});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)render();});
   render();
 })();
