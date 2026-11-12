@@ -77,3 +77,48 @@ body.reader-mode{background:#d8d7d1;color:#293038}
 .book-page[data-design="18"] .editorial-steps p{font-size:13px;line-height:1.85}
 .book-page[data-design="2"] .book-contents+p{font-size:9px;line-height:1.6;margin-top:27px}
 .book-page[data-design="2"] .book-contents{margin-top:34px}
+/* A quieter shared grid; image spreads and running chapter labels. */
+.book{filter:drop-shadow(0 1px 1px #25251d18) drop-shadow(0 12px 20px #25251d1f)}
+.book-page,.turning-page{background-image:none}
+.book-page.left-page{background-image:linear-gradient(270deg,#383d3710,transparent 5%)}
+.book-page.right-page{background-image:linear-gradient(90deg,#383d3710,transparent 5%)}
+.page-content .page-kicker{letter-spacing:.08em;color:#5f6865;border-top-color:#939b904d;padding-top:12px}
+.blue .page-content .page-kicker{color:#f4f1e8cc;border-color:#f4f1e84a}
+.page-content h2{font-weight:500;letter-spacing:-.025em;line-height:1.34}
+.page-folio{font-size:8px;letter-spacing:.02em;opacity:.85;bottom:21px}
+.page-folio>span:last-child{font-size:14px}.page-content .caption{color:#626b66;opacity:1}
+.blue .page-content .caption{color:#f4f1e8b3}
+.book-page[data-design="1"] h2{font-size:36px;margin-top:38px;margin-bottom:32px}
+.book-page[data-design="2"] h2{font-size:38px}
+.book-contents a{align-items:center;padding:15px 0;line-height:1.7}
+.book-contents a>span{font-size:21px;font-weight:400}
+.book-page[data-design="3"] h2{font-size:39px;line-height:1.28}
+.book-page[data-design="3"] .portrait-plate{margin:25px 20px 0}
+.book-page[data-design="3"] .portrait-plate img{height:338px}
+.page-content .story-link{font-size:15px;line-height:1.7}
+.page-content .story-link>span{font-size:12px;line-height:2}
+.book-page[data-design="6"] h2,.book-page[data-design="7"] h2{font-size:34px;line-height:1.34;margin-top:0;margin-bottom:26px}
+.book-page[data-design="6"] .plate{margin-top:25px;margin-bottom:18px}
+.book-page[data-design="6"] .plate img{height:230px}
+.book-page[data-design="8"] h2{font-size:33px;line-height:1.34;margin-bottom:24px}
+.book-page[data-design="9"] .book-samples>a>img{height:163px;object-fit:contain;background:#e9e8e1}
+.book-page[data-design="9"] .book-samples .poster-pair{margin-top:26px;gap:22px}
+.book-page[data-design="9"] .book-samples .poster-pair img{height:240px;object-fit:contain;object-position:left center}
+.book-page[data-design="9"] .book-samples a>span{font-size:10px;line-height:1.6;margin-top:10px}
+.book-page[data-design="10"] h2{font-size:34px;margin-top:30px;margin-bottom:28px}
+.book-page[data-design="18"] h2{font-size:34px;margin-bottom:22px}
+.book-page[data-design="18"] .editorial-steps>div{margin-top:20px;padding-top:15px}
+.book-page[data-design="18"] .editorial-steps h3{font-size:19px;letter-spacing:-.01em}
+.book-page[data-design="13"] h2,.book-page[data-design="14"] h2{font-size:32px;line-height:1.34;margin-bottom:25px}
+.book-page[data-design="13"] .plate,.book-page[data-design="14"] .plate{height:215px;padding:0;margin:22px 0 26px;background:none;display:flex;align-items:center}
+.book-page[data-design="13"] .plate img,.book-page[data-design="14"] .plate img{height:215px;object-fit:contain}
+.book-page[data-design="14"] .book-link{margin-top:25px}
+.book-page[data-design="15"] h2{font-size:34px;line-height:1.34}
+.book-page[data-design="16"] h2{font-size:38px;line-height:1.34;margin-top:38px}
+.book-page[data-design="16"] .reading-list{margin-top:34px}
+.reader-stage{background:radial-gradient(ellipse at 50% 32%,#efeee8 0,#d8d7d0 90%)}
+.reader-mode .topbar{background:#eeede6}.reader-controls button{background:transparent;border-color:#8b938977}
+.reader-controls button:focus-visible{outline:2px solid #243eae;outline-offset:4px}
+@media(max-width:800px){.reader-stage{background:#deddd6}.page-content .page-kicker{font-size:9px}.page-folio{font-size:9px}.page-content .role-note{font-size:11px;opacity:.85}.page-content .caption{font-size:9px}.book-page[data-design="9"] .book-samples a>span{font-size:11px}.page-content .book-link{font-size:12px}}
+.book-page[data-design="2"] .book-contents{margin-top:23px}.book-page[data-design="2"] .book-contents a{padding:13px 0}
+.book-page[data-design="9"] .book-samples .poster-pair img{height:226px}
