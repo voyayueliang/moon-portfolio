@@ -89,3 +89,32 @@
 .book-page[data-design="7"] .page-content>p:not(.page-kicker):not(.caption){font-size:14px;line-height:1.9;letter-spacing:.01em;text-align:start}
 .book-page[data-design="6"] .page-content>[data-mobile-intro]{font-size:14px;line-height:1.95;letter-spacing:.01em}
 }
+/* Extend the approved study direction to the remaining inside pages. */
+.book-page:not([data-design="0"]):not([data-design="17"]){font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+.book-page:not([data-design="0"]):not([data-design="17"]) h2{font-weight:400;letter-spacing:.015em;font-feature-settings:"palt"}
+.book-page:not([data-design="0"]):not([data-design="17"]) .page-kicker{font-family:Georgia,"Times New Roman","PingFang SC",serif;font-style:italic;font-size:9px;font-weight:400;line-height:1.6;letter-spacing:.065em}
+.book-page:is([data-design="1"],[data-design="2"],[data-design="8"],[data-design="10"],[data-design="11"],[data-design="12"],[data-design="13"],[data-design="14"],[data-design="15"],[data-design="16"],[data-design="18"]) h2{font-size:29px;line-height:1.48}
+.book-page[data-design="1"] h2,.book-page[data-design="16"] h2{font-size:32px}
+.book-page[data-design="10"] h2{font-size:31px}
+.book-page[data-design="8"] .page-content>p:not(.page-kicker):not(.role-note){font-size:13px;line-height:2;letter-spacing:.01em;font-weight:400}
+.book-page[data-design="10"] .page-content>p:not(.page-kicker):not(.book-pull){font-size:13px;line-height:1.96;letter-spacing:.01em}
+.book-page[data-design="10"] .book-pull{font-size:18px;font-weight:400;letter-spacing:.015em;line-height:1.8}
+.book-page:is([data-design="11"],[data-design="12"]) .page-content>p:not(.page-kicker){font-size:13px;line-height:1.96;letter-spacing:.01em}
+.book-page:is([data-design="13"],[data-design="14"]) .page-content>p:not(.page-kicker){font-size:13px;line-height:1.96;letter-spacing:.01em}
+.book-page[data-design="13"] h3,.editorial-steps h3{font-size:18px;font-weight:500;letter-spacing:.02em;line-height:1.6}
+.book-page[data-design="18"] .editorial-steps p{font-size:13px;line-height:1.96;letter-spacing:.01em}
+.book-page[data-design="16"] .page-content>p:last-child{font-size:13px;line-height:2;letter-spacing:.01em}
+.book-page[data-design="9"] .book-samples a>span{font-size:10px;font-weight:400;line-height:1.8;letter-spacing:.02em}
+.book-page .role-note{font-weight:400;letter-spacing:.015em}
+.book-page .book-link{font-weight:400;letter-spacing:.02em}
+.book-contents a{font-weight:400;letter-spacing:.01em}
+@media(max-width:800px){
+.book-page:not([data-design="0"]):not([data-design="17"]) h2{font-weight:500;letter-spacing:.01em}
+.book-page[data-design="8"] .page-content>p:not(.page-kicker):not(.role-note),.book-page[data-design="10"] .page-content>p:not(.page-kicker):not(.book-pull){font-size:14px;line-height:1.9}
+.book-page:is([data-design="11"],[data-design="12"],[data-design="13"],[data-design="14"]) .page-content>p:not(.page-kicker){font-size:14px;line-height:1.9}
+.book-page[data-design="18"] .editorial-steps p{font-size:14px;line-height:1.85}
+.book-page[data-design="16"] .page-content>p:last-child{font-size:14px;line-height:1.9}
+.book-page[data-design="9"] .book-samples a>span{font-size:11px}
+}
+.book-page[data-design="18"] .editorial-steps>div{margin-top:18px;padding-top:12px}
+.book-page[data-design="9"] .book-samples .poster-pair img{height:230px}
