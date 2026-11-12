@@ -5681,7 +5681,49 @@
 .screening-arrows button:focus-visible {outline:2px solid currentColor;outline-offset:3px;}
 .screening-swipe-hint {display:none;font-size:11px;color:var(--body-ink);}
 @media(max-width:760px){.screening-controls {gap:10px;}.screening-swipe-hint {display:block;}.screening-position {font-size:12px;}.screening-arrows {gap:6px;}.screening-arrows button {min-width:44px;}}
+    .rte-case .booming-case__grid { align-items: start; row-gap: 0; }
+    .rte-case header { grid-column: 1; grid-row: 1; }
+    .rte-case h2 { font-size: clamp(32px,3.4vw,50px); text-wrap: balance; }
+    .rte-case__image { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+    .rte-case__body { grid-column: 1; grid-row: 2; }
+    .rte-case .booming-case__copy { margin: 18px 0; }
+    .rte-case .booming-case__copy:first-child { margin-top: 8px; }
+    .rte-case .booming-case__copy:last-child { margin-bottom: 0; }
+    @media(max-width:800px) {
+      .rte-case .booming-case__grid { row-gap: 24px; }
+      .rte-case header { grid-column: 1; grid-row: 1; }
+      .rte-case__image { grid-column: 1; grid-row: 2; }
+      .rte-case__body { grid-column: 1; grid-row: 3; }
+      .rte-case .booming-case__copy:first-child { margin-top: 0; }
+    }
+    .research-plan { scroll-margin-top: 90px; }
+    .research-plan h3 { margin-bottom: 18px; text-wrap: balance; }
+    .research-plan .research-notes__photo img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; }
+    .research-plan .research-notes__photo a { display: block; }
+    .research-plan__player { position: relative; background: #000; }
+    .research-plan__player video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
+    .research-plan__play { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; gap: 10px; padding: 0 20px 20px; color: #fff; background: linear-gradient(transparent 65%,rgba(0,0,0,.7)); border: 0; cursor: pointer; font: inherit; font-size: 15px; }
+    .research-plan__play:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 4px; }
+    .research-plan__play[hidden] { display: none; }
+    .research-notes__pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 48px; margin-top: 28px; }
+    .research-notes__pair > .research-notes__feature { display: flex; flex-direction: column; gap: 24px; margin-top: 0; min-width: 0; }
+    .research-notes__pair .research-notes__photo { margin: 0; width: 100%; align-self: stretch; flex: none; }
+    .research-notes__pair .research-notes__photo > img { width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; }
+    @media(max-width:760px) { .research-notes__pair { grid-template-columns: 1fr; gap: 28px; } }
+    .research-notes__pair > .research-notes__feature { padding: 28px 0; gap: 24px; }
+    .research-notes__pair .research-notes__feature > div { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+    .research-notes__pair .research-notes__feature .research-notes__number { margin: 0; }
+    .research-notes__pair .research-notes__feature h3 { font-size: clamp(26px,2.25vw,32px); line-height: 1.5; min-height: 3em; margin: 0; text-wrap: balance; }
+    .research-notes__pair .research-notes__feature p:not(.research-notes__number) { font-size: 15px; line-height: 1.9; margin: 0; }
+    .research-plan__phrase { white-space: nowrap; }
+    @media(max-width:760px) {
+      .research-notes__pair { gap: 12px; }
+      .research-notes__pair > .research-notes__feature { padding: 24px 0; gap: 22px; }
+      .research-notes__pair .research-notes__feature h3 { font-size: 26px; min-height: 0; }
+      .research-pair-break { display: none; }
+    }
 </style>
+  <link rel="stylesheet" href="assets/css/portfolio-polish.css" />
 </head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -5818,6 +5860,60 @@
       </div>
     </section>
 
+    <section class="booming-case rte-case" id="rte-2026" data-role-section="connector" aria-labelledby="rte-title">
+      <div class="wrap booming-case__grid">
+        <header>
+          <p class="booming-case__eyebrow">创造者生态 · 六场技术论坛 · 2026</p>
+          <h2 id="rte-title">RTE 2026<br />从技术议题到现场对话</h2>
+        </header>
+        <figure class="rte-case__image">
+          <img src="assets/rte-2026-hardware-panel.jpg" width="2000" height="1333" alt="iRTE 2026 智能硬件与具身智能专场，主持人与五位嘉宾在舞台上进行圆桌讨论" loading="lazy" decoding="async" />
+          <figcaption>iRTE 2026 · 智能硬件与具身智能专场｜「下一代 AI 新终端」圆桌现场 · 摄影：冠峰摄影</figcaption>
+        </figure>
+        <div class="rte-case__body">
+          <p class="booming-case__copy">在 iRTE 2026，我参与了六场技术论坛的议题策划与内容协作，涵盖对话式 AI、音视频 AI、实时基础设施，以及智能硬件与具身智能等前沿方向。</p>
+          <p class="booming-case__copy">从研究技术趋势、嘉宾背景与实际应用案例出发，我与主办方共同梳理论坛的核心议题和讨论框架，将不同领域的技术进展转化为具体、值得探讨的问题。</p>
+          <p class="booming-case__copy">围绕论坛议题，我参与嘉宾沟通与协作，完成论坛介绍、圆桌讨论提纲及主持材料，并配合会前彩排与现场推进，推动策划内容转化为真实发生的行业对话。</p>
+          <p class="booming-case__copy">大会结束后，我继续梳理演讲与圆桌讨论中的关键观点、实践案例及不同立场，完成系列技术论坛回顾的策划、撰写与编辑，让现场交流沉淀为可持续传播和引用的内容资产。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="superj-case" id="superj" data-role-section="connector" aria-labelledby="superj-title">
+      <div class="wrap superj-case__layout">
+        <div class="superj-case__text">
+          <p class="superj-case__eyebrow">持续合作 · 大学生创业孵化</p>
+          <h2 id="superj-title">超级交子孵化器</h2>
+          <p class="superj-case__role">品牌内容生态负责人</p>
+          <p class="superj-case__lead">AI 时代，创作者如何与<br />技术、产品实践者共同讲好故事？</p>
+          <p>在超级交子孵化器，我负责品牌内容生态建设，并参与推进面向年轻创作者的内容协作与人才培养机制。我们正在回应一个问题：当 AI 改变创造的方式，创作者与技术、产品实践者如何共同工作，让值得被看见的人、项目与探索被理解？</p>
+          <p>从品牌叙事、AI Builder School 招募，到现场手记与「AI Builder 来信」，我参与内容策划、写作与编辑，让创作者走近真实项目，在观察、研究与对话中理解实践，也让实践者的经验、判断与探索成为可以共同讨论的故事。</p>
+          <p>围绕 Creator Studio，我们正把共创者招募、真实项目协作、内容编辑与方法交接连接起来。受到 a16z New Media Fellowship 等实践的启发，我们正探索让创作者与技术、产品实践者共同成长的协作机制，为科技行业培养下一代创意内容叙事者。</p>
+          <div class="superj-case__scope" aria-label="工作方向"><span>品牌与内容机制</span><span>创作者 × 技术实践者</span><span>Storyteller 培养</span></div>
+        </div>
+        <div class="superj-case__works" aria-label="超级交子公开内容样本">
+          <a class="superj-case__letter" href="https://mp.weixin.qq.com/s/eOSrJZ5R0hVPKdIdVAo5YQ" target="_blank" rel="noopener noreferrer">
+            <img src="assets/superj/builder-letter.jpg" width="1080" height="459" alt="AI Builder 来信文章封面，黑白雅典学院图景与 Super J 标识" loading="lazy" />
+            <span class="superj-case__work-label">AI Builder 来信 <span aria-hidden="true">↗</span></span>
+            <span class="superj-case__work-description">当 AI 让创造变得触手可及，我们能不能重新想象学校的模样？</span>
+          </a>
+          <div class="superj-case__journal-pair">
+            <a href="https://mp.weixin.qq.com/s/oLOvB4kTMRYE2rSq36S3WA" target="_blank" rel="noopener noreferrer">
+              <img src="assets/superj/builder-week-one.jpg" width="1050" height="1400" alt="AI Builder School 首期现场手记红色封面" loading="lazy" />
+              <span class="superj-case__work-label">现场手记 · 第一期 <span aria-hidden="true">↗</span></span>
+              <span class="superj-case__work-description">一群身怀绝技的创造者，一所没有围墙的大学</span>
+            </a>
+            <a href="https://mp.weixin.qq.com/s/r1cZ66K68mLYX-wQKSzW4A" target="_blank" rel="noopener noreferrer">
+              <img src="assets/superj/builder-week-two.jpg" width="1050" height="1400" alt="AI Builder School 第二期现场手记红色封面" loading="lazy" />
+              <span class="superj-case__work-label">现场手记 · 第二期 <span aria-hidden="true">↗</span></span>
+              <span class="superj-case__work-description">从创意到作品，AI 创作的下一步</span>
+            </a>
+          </div>
+          <p class="superj-case__credit">品牌内容与系列栏目样本 · 各篇具体创作与协作署名见原文</p>
+        </div>
+      </div>
+    </section>
+
     <section class="ecosystem-map-strip" id="ecosystem-map" data-role-section="connector" aria-labelledby="ecosystem-map-title">
       <div class="wrap reveal">
         <p class="ecosystem-map-strip__folio">Ecosystem Map</p>
@@ -5933,10 +6029,31 @@
     <section class="field-notes research-notes" id="field-notes" aria-labelledby="field-notes-title">
       <div class="wrap">
         <header class="research-notes__head"><p class="research-notes__eyebrow">独立研究者的现场观察</p><h2 id="field-notes-title">AI 浪潮下的研究笔记</h2></header>
+        <div class="research-notes__pair">
+        <article class="research-notes__feature research-plan" id="unique-creators" aria-labelledby="research-plan-title">
+          <figure class="research-notes__photo">
+            <div class="research-plan__player">
+              <video id="research-plan-video" playsinline preload="none" poster="assets/fieldwork/unique-creators-cover.jpg" aria-label="独特创造者研究计划介绍视频">
+                <source src="assets/video/unique-creators-intro.mp4" type="video/mp4" />
+                您的浏览器暂不支持视频播放，请使用下方小红书链接观看。
+              </video>
+              <button class="research-plan__play" type="button" aria-label="播放研究计划介绍视频" aria-controls="research-plan-video"><span aria-hidden="true">▶</span><span>播放计划介绍</span></button>
+            </div>
+            <figcaption>研究计划介绍 · 点击封面播放</figcaption>
+          </figure>
+          <div>
+            <p class="research-notes__number">正在启动 / 独特创造者研究计划</p>
+            <h3 id="research-plan-title">AI 时代，<br class="research-pair-break" /><span class="research-plan__phrase">不走寻常路的人，</span>怎么活？</h3>
+            <p>从大理的创新教育田野，到上海的青少年黑客松与创造者社区，我持续关注：一个人如何发挥自己的独特性，又能在社会中找到位置、创造价值？</p>
+            <p>这个公共研究计划将从独特创造者的成长路径与具体经历出发，拆解他们如何谈钱、获得信任、寻找资源与创造合作机会，梳理那些学校很少教、却在走入社会时不断用到的默会知识。我希望将这些经历整理为可公开讨论的案例，与研究者和一线教育实践者共同探索。</p>
+            <a href="https://xhslink.cn/o/48nFjOSPnVX" target="_blank" rel="noopener noreferrer">观看研究计划介绍 · 小红书 ↗</a>
+          </div>
+        </article>
         <article class="research-notes__feature">
           <figure class="research-notes__photo"><img src="assets/fieldwork/2025-kunshan-night.jpg" alt="夜间围桌对谈与现场录制" width="1080" height="810" loading="lazy"><figcaption>田野中的对话与记录</figcaption></figure>
-          <div><p class="research-notes__number">从这里开始 / 我的研究方法</p><h3>把田野作为方法，<br>观察创新如何在真实现场发生。</h3><p>我把田野作为方法，走入 AI 教育、创业与社区现场。通过持续参与、深度访谈与写作，记录技术变化中具体的人：他们如何创造、寻找方向，也如何面对自由的代价。</p><a href="https://mp.weixin.qq.com/s/qNgVznFUvZv3ohTekOKtxw" target="_blank" rel="noopener noreferrer">阅读方法与实践 ↗</a></div>
+          <div><p class="research-notes__number">从这里开始 / 我的研究方法</p><h3>把田野作为方法，<br class="research-pair-break" />观察创新如何在真实现场发生。</h3><p>我把田野作为方法，走入 AI 教育、创业与社区现场。通过持续参与、深度访谈与写作，记录技术变化中具体的人：他们如何创造、寻找方向，也如何面对自由的代价。</p><a href="https://mp.weixin.qq.com/s/qNgVznFUvZv3ohTekOKtxw" target="_blank" rel="noopener noreferrer">阅读方法与实践 ↗</a></div>
         </article>
+        </div>
         <div class="research-notes__grid">
           <article><p class="research-notes__number">01 / 教育实验</p><h3><a href="https://mp.weixin.qq.com/s/rtvXRlS_lKHpkE3LacCnYQ" target="_blank" rel="noopener noreferrer">走入 AI 时代教育实验的第二年</a></h3><p class="research-notes__context">从黑客松筹备到项目后续，回望跨年度的教育实践：创造如何回应“出路”，理想落地又遇到什么困难。</p></article>
           <article><p class="research-notes__number">02 / 创造者观察</p><h3><a href="https://mp.weixin.qq.com/s/tKRh8cjxxBEVIMR3vrp7BA" target="_blank" rel="noopener noreferrer">看见 AI 浪潮下的青少年</a></h3><p class="research-notes__context">从一场黑客松面试开始，听见青少年自己的声音：日常生活里的创造冲动、对同伴的渴望，以及家庭的影响。</p></article>
@@ -6005,7 +6122,7 @@
         </details>
 
         <div class="ending-meta">
-          <span>Moon / Personal Portfolio / 2026</span>
+          <span>Moon / Personal Portfolio / 2026.11.12</span>
           <span>研究 · 叙事 · 社区 · AI 工作流</span>
           <span>个人作品集 · 非机构官方页面</span>
         </div>
@@ -6669,5 +6786,17 @@
  controls.innerHTML='<span class="screening-position" aria-live="polite">案例 01 / 03</span><span class="screening-swipe-hint">左右滑动查看</span><div class="screening-arrows"><button type="button" data-screen-prev aria-label="上一个案例" disabled>←</button><button type="button" data-screen-next aria-label="下一个案例">→</button></div>';
  room.prepend(controls);
  controls.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{const tabs=[...document.querySelectorAll('[data-stage]')];const current=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');const next=current+(b.hasAttribute('data-screen-prev')?-1:1);if(tabs[next])tabs[next].click();}));
-})();</script></body>
+})();</script><script>(() => {
+  const video = document.getElementById('research-plan-video');
+  const player = video.closest('.research-plan__player');
+  const button = player.querySelector('.research-plan__play');
+  button.addEventListener('click', async () => {
+    video.controls = true;
+    button.hidden = true;
+    player.classList.add('is-playing');
+    try { await video.play(); } catch { video.controls = false; button.hidden = false; player.classList.remove('is-playing'); }
+  });
+  video.addEventListener('play', () => { button.hidden = true; player.classList.add('is-playing'); });
+})();</script>
+</body>
 </html>
