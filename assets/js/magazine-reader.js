@@ -33,6 +33,11 @@ pages.splice(5,1);
 pages[4].html+=`<div class="related-note"><span>继续阅读 / 观猹人物</span><a href="https://mp.weixin.qq.com/s/NlHPL9TGlsSac6SzpU6sVg" target="_blank" rel="noopener">默子：从一个开源项目开始 ↗</a><a href="https://mp.weixin.qq.com/s/pudO0eJISbL6BylC1BDC0Q" target="_blank" rel="noopener">杨晨：重新安排生活与创作 ↗</a></div>`;
 pages.splice(10,0,{design:18,html:label('CREATOR STUDIO / 内容协作机制')+title('从走近实践，<br>到共同讲述。')+`<div class="editorial-steps"><div><span>01 / 进入</span><h3>走近人和项目</h3><p>通过观察、研究与对话，理解技术与产品实践。</p></div><div><span>02 / 共创</span><h3>一起整理问题与故事</h3><p>连接创作者与实践者，让经验、判断与探索成为可以共同讨论的内容。</p></div><div><span>03 / 延续</span><h3>留下作品，也留下方法</h3><p>把内容编辑与方法交接连接起来，探索可以持续协作的机制。</p></div></div>`});
 pages[2].html=pages[2].html.replace('现场 <span>07','现场 <span>06').replace('可能 <span>09','可能 <span>08');
+// Let the photograph lead the opening spread; keep the full account opposite it.
+const rteOpening=pages.find(page=>page.design===6);
+const rteAccount=pages.find(page=>page.design===7);
+rteOpening.html=rteOpening.html.replace(rte[0],rte[0].replace('<p ', '<p data-mobile-intro '));
+rteAccount.html=rteAccount.html.replace(rte[1],rte[0].replace('<p ', '<p data-desktop-intro ')+rte[1]);
 // Keep the actual playable video and its existing event handlers.
 const player=q('.video-frame');
 const reader=document.createElement('div');reader.className='reader';reader.innerHTML=`<div class="reader-stage"><div class="book" aria-label="月亮的作品刊"></div></div><nav class="reader-controls" aria-label="翻页控制"><button data-prev aria-label="上一页">← <span>上一页</span></button><span class="page-status" aria-live="polite"></span><button data-next aria-label="下一页"><span>下一页</span> →</button></nav><p class="reader-hint">左右翻阅 · 键盘方向键 · 手机可滑动</p>`;
