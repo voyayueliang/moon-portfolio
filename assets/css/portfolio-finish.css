@@ -1,0 +1,106 @@
+/* A single editorial frame for the original portfolio. */
+body.lunar-home{--media-line:rgba(39,59,126,.18);--body-ink:#485166;--muted-ink:#737b8a}
+.site-header{background:rgba(247,245,238,.96);backdrop-filter:blur(14px)}
+.site-header .brand{font-weight:500;letter-spacing:.075em}
+.site-nav--projects a{font-weight:400;letter-spacing:.025em}
+.site-nav--projects b{font-weight:500}
+.moon-stage-intro{font-weight:400!important;color:var(--body-ink);letter-spacing:.005em}
+.moon-stage-signature{font-weight:500;letter-spacing:.045em}
+.moon-stage h1>span{font-weight:400;letter-spacing:-.04em;line-height:1.18}
+.moon-stage h1>small{font-weight:400;letter-spacing:.045em;margin-top:20px}
+.moon-stage-evidence{font-weight:400;letter-spacing:.015em}
+.moon-project-axis .project-preview{padding-top:25px;padding-bottom:25px}
+.moon-project-axis .project-preview h2{font-size:26px;font-weight:400;line-height:1.4}
+.moon-project-axis .project-preview p{font-size:11px;line-height:1.8;margin-top:7px}
+.moon-project-axis .project-preview__number{font-family:Georgia,serif;font-weight:400;font-style:italic;font-size:15px}
+#main :is(.booming-case__eyebrow,.superj-case__eyebrow,.story-editorial__folio,.workflow-systems__folio,.research-notes__eyebrow,.ecosystem-map-strip__folio){font-weight:400;font-size:11px;line-height:1.8;letter-spacing:.075em}
+#main :is(.booming-case h2,.superj-case h2,.ecosystem-map-strip h2,.story-editorial__head h2,.workflow-systems__head h2,.talks-public__head h2,.research-notes h2){font-weight:400;letter-spacing:-.02em}
+#main :is(.booming-case__role,.superj-case__role,.research-notes__number,.talks-public__line){font-weight:400;letter-spacing:.025em}
+#main :is(.booming-case__copy,.superj-case__text>p:not([class]),.research-notes__feature p:not(.research-notes__number)){font-weight:400}
+.booming-case figure img,.rte-case__image img{border:0}
+.booming-case figcaption,.research-notes__photo figcaption{font-size:11px;line-height:1.8;color:#737b8a;opacity:1}
+.media-open{font-size:11px;min-height:30px;opacity:.7}
+.superj-case__works{border-left:1px solid var(--media-line);padding-left:28px}
+.superj-case__scope{font-size:11px;gap:10px 20px}
+.ecosystem-map-strip__grid{gap:32px}
+.ecosystem-map-strip__group h3{font-family:var(--sans);font-size:19px;line-height:1.6;font-weight:500}
+.ecosystem-map-strip__names{font-size:13px;line-height:2}
+#story>.story-editorial__head,.people-exhibit>.wrap{max-width:1240px;width:100%;padding-inline:55px}
+.story-editorial__head{border-top:1px solid var(--media-line)}
+.people-exhibit__layout{grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.people-exhibit__art{height:520px}
+.people-exhibit__content{padding-left:0}
+.people-exhibit .people-series h3{font-size:clamp(30px,2.8vw,40px);font-weight:400;line-height:1.4;letter-spacing:-.025em;margin-bottom:22px}
+.people-exhibit .people-series__type{font-size:11px;font-weight:400;letter-spacing:.06em}
+.people-exhibit .people-series__description{font-size:15px;line-height:1.95}
+.people-exhibit .people-work small{font-size:14px;font-weight:400;line-height:1.95}
+.people-exhibit .people-work__name{font-size:26px}
+.people-exhibit .people-work__role{font-size:13px;letter-spacing:.015em}
+.people-exhibit__switch [role=tab]{font-size:12px;padding-bottom:10px}
+.exhibit-cover{box-shadow:0 12px 24px -15px #393b3970}
+.story-v4__amd-head h3{letter-spacing:-.035em}
+#workflow .workflow-systems__head>p{font-size:16px;line-height:1.95;font-weight:400;max-width:44em}
+#workflow .workflow-systems__head{margin-bottom:32px}
+#workflow .stage-copy h3{font-size:clamp(25px,2.5vw,35px);font-weight:400;line-height:1.5;letter-spacing:-.02em}
+#workflow .stage-tabs{border-bottom-color:var(--media-line)}
+#workflow .stage-tabs button{font-size:12px;font-weight:400}
+#workflow .stage-copy dt{font-size:11px;letter-spacing:.03em;font-weight:400}
+#workflow .workflow-supplement-plate__meta{font-size:10px;letter-spacing:.08em}
+#workflow .workflow-supplement-plate__title{font-weight:400;font-size:24px}
+.talks-public__head h2 small{font-family:var(--sans);font-size:15px;font-weight:400;line-height:1.8;letter-spacing:0;margin-top:15px}
+.talks-public__grid figcaption h3{font-weight:400;letter-spacing:-.01em}
+.research-notes__pair .research-notes__feature h3{font-weight:400;line-height:1.6}
+.research-notes__pair .research-notes__number{font-size:11px}
+.field-video-case h3{font-weight:400;line-height:1.6}
+.field-video-case{border-top-color:var(--media-line)}
+.research-notes__grid h3{font-weight:400;line-height:1.6}
+.research-notes__grid article{align-items:baseline;padding-block:28px}
+.research-notes__more summary{font-size:12px}
+.portfolio-ending{padding-top:80px;padding-bottom:70px}
+.ending-copy h2{font-size:clamp(38px,4vw,54px);font-weight:400;line-height:1.4}
+.ending-statement p{font-size:16px;line-height:2;max-width:54ch;font-weight:400}
+.ending-links{font-size:12px;gap:22px}
+@media(min-width:1100px){
+.moon-stage h1>span{font-size:clamp(44px,3.4vw,54px);max-width:none}
+.moon-role-copy{background:rgba(246,244,237,.95);padding:15px 18px;border-left:1px solid var(--media-line);max-width:220px}
+.moon-role-copy h2{font-size:30px;line-height:1.4}
+.moon-role-description{font-size:12px;line-height:1.85}
+}
+@media(max-width:1100px) and (min-width:851px){.people-exhibit__art{height:440px}.people-exhibit__layout{gap:30px}}
+@media(max-width:850px){
+.people-exhibit>.wrap{padding-inline:25px}
+.people-exhibit__layout{grid-template-columns:1fr;gap:24px}
+.people-exhibit__art{height:min(85vw,540px);max-width:590px;margin-inline:auto}
+.people-exhibit__content{padding-top:0}
+.superj-case__works{border-left:0;padding-left:0;border-top:1px solid var(--media-line);padding-top:28px}
+}
+@media(max-width:760px){
+#story>.story-editorial__head,.people-exhibit>.wrap{padding-inline:20px}
+.moon-stage h1>span{font-size:clamp(35px,10.1vw,43px);line-height:1.22;letter-spacing:-.04em}
+.moon-stage h1>small{margin-top:18px;font-size:10px}
+.moon-stage-intro{font-size:15px!important;line-height:1.95!important}
+.moon-stage-evidence{line-height:1.9}
+.moon-project-axis .project-preview h2{font-size:24px}
+.people-exhibit .people-series h3{font-size:32px}
+.people-exhibit .people-series__description{font-size:15px}
+#workflow .stage-copy h3{font-size:26px}
+#workflow .workflow-supplement-plate__title{font-size:22px}
+#workflow .workflow-systems__head>p{font-size:15px}
+.research-notes__grid article{align-items:start;padding-block:23px}
+.portfolio-ending{padding-top:55px;padding-bottom:50px}
+.ending-statement p{font-size:15px;line-height:1.95}
+}
+@media(min-width:1100px){
+.moon-object{width:min(35vw,500px)}
+.moon-role-copy{left:42px;right:0;bottom:20px;width:calc(100% - 42px);max-width:none;display:grid;grid-template-columns:82px 1fr;column-gap:22px;row-gap:3px;background:transparent;border-left:1px solid var(--media-line);padding:0 0 0 17px}
+.moon-role-title-en{grid-column:1;grid-row:1;font-size:8px;margin:0}
+.moon-role-copy h2{grid-column:1;grid-row:2 / span 2;font-size:28px;margin:0;line-height:1.3}
+.moon-role-description{grid-column:2;grid-row:1;margin:0;font-size:12px;line-height:1.8}
+.moon-role-evidence{grid-column:2;grid-row:2;margin:0;font-size:10px}
+.moon-role-copy #role-jump{grid-column:2;grid-row:3;justify-self:start;font-size:10px;margin:4px 0 0}
+}
+@media(min-width:1100px){
+.moon-role-copy{top:calc(100% + 12px);bottom:auto}
+.moon-control-help{top:calc(100% + 88px);bottom:auto;right:0;left:auto;transform:none;font-size:9px}
+.moon-stage-inner{padding-bottom:130px}
+}
