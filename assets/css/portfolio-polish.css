@@ -143,3 +143,14 @@
   .superj-case__journal-pair img { height: 210px; }
   .superj-case__work-label { font-size: 13px; }
 }
+
+/* Field research → public short-form expression, connected to the research plan. */
+.field-video-case{display:grid;grid-template-columns:.75fr 1.4fr;gap:70px;margin:56px 0 60px;padding:36px 0 40px;border-top:1px solid #bfc3d0;border-bottom:1px solid #bfc3d0}
+.field-video-case h3{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(27px,2.5vw,38px);font-weight:500;line-height:1.45;letter-spacing:-.025em;margin:15px 0 22px;color:#1d2b85}
+.field-video-case__intro{font-size:15px;line-height:1.9;max-width:25em;color:#48536d}
+.field-video-case a{display:inline-block;font-size:13px;line-height:1.8;color:#243eae;margin-top:22px;text-underline-offset:5px}
+.field-video-case__lead{font-size:16px;line-height:2;color:#414d66;margin:0;max-width:52em}
+@media(max-width:900px){.field-video-case{grid-template-columns:1fr;gap:28px;margin:40px 0;padding:28px 0 32px}.field-video-case h3 br{display:none}.field-video-case h3{margin-bottom:15px}.field-video-case__intro{max-width:none}.field-video-case header>a{margin-top:12px}}
+@media(max-width:540px){.field-video-case__lead{font-size:15px}}
+
+.field-video-case__lead+.field-video-case__lead{margin-top:18px}
