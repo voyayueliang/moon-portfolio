@@ -154,3 +154,7 @@
 @media(max-width:540px){.field-video-case__lead{font-size:15px}}
 
 .field-video-case__lead+.field-video-case__lead{margin-top:18px}
+.field-video-case{margin:38px 0 44px;padding:28px 0 30px;gap:50px}
+.field-video-case h3{font-size:clamp(25px,2.2vw,32px);margin:12px 0 10px}
+.field-video-case__body>a{margin-top:15px}
+@media(max-width:900px){.field-video-case{gap:20px;margin:32px 0;padding:25px 0}.field-video-case header>a{margin-top:8px}}
