@@ -122,3 +122,11 @@ body.lunar-home{--sans:"PingFang SC",-apple-system,BlinkMacSystemFont,"Helvetica
 .people-exhibit .people-work__name{font-size:22px}
 #main :is(.booming-case figcaption,.research-notes__photo figcaption,.stage-media figcaption,.superj-case__credit){font-size:12px}
 }
+
+/* Narrative headings and project headings have distinct typographic roles. */
+#main :is(.booming-case h2,.superj-case h2,.ecosystem-map-strip h2,.workflow-systems__head h2,.talks-public__head h2,.story-v4__amd h3,.stage-copy h3,.workflow-supplement-plate__title,.talks-public__grid h3){font-family:var(--sans);font-weight:400;letter-spacing:-.015em}
+#ecosystem-title{font-family:var(--sans);font-weight:400}
+#main :is(.story-editorial__head h2,.research-notes h2,.people-series h3,.research-notes__feature h3,.field-video-case h3){font-family:var(--serif);font-weight:300;letter-spacing:.015em}
+.people-exhibit .people-series h3{font-family:var(--serif);font-weight:300;letter-spacing:.015em}
+.people-exhibit .people-work__name{font-family:var(--serif);font-weight:400;letter-spacing:.025em}
+#main .research-notes__grid h3{font-family:var(--serif);font-weight:400;letter-spacing:.01em}
