@@ -142,3 +142,14 @@ body.lunar-home{--sans:"PingFang SC",-apple-system,BlinkMacSystemFont,"Helvetica
 #main .talks-public__spread h3{font-family:var(--sans);font-weight:400;letter-spacing:-.01em;line-height:1.5}
 .research-notes__pair .research-notes__feature h3{text-wrap:balance}
 @media(max-width:760px){#main .talks-public__head h2{font-size:30px}}
+
+/* Remaining legacy weights, including expandable footer content. */
+#workflow .workflow-supplements__headline{font-family:var(--sans);font-weight:400;letter-spacing:-.01em}
+#ecosystem :is(.ecosystem-mechanism h3,.ecosystem-evidence h3){font-family:var(--sans);font-weight:500;letter-spacing:.035em}
+.moon-role-copy h2{font-weight:400}
+.bside-trigger-copy b{font-family:var(--serif);font-weight:400;line-height:1.45;letter-spacing:.01em}
+.bside-copy h3{font-family:var(--serif);font-weight:400;font-size:clamp(29px,2.6vw,38px);line-height:1.45;letter-spacing:0}
+.bside-copy h3 small{font-family:var(--sans);font-weight:400;line-height:1.6;letter-spacing:0}
+.bside-copy>p,.bside-copy .bside-social__account,.bside-copy .bside-social__platform{font-family:var(--sans);font-weight:400}
+@media(max-width:760px){.bside-trigger-copy b{font-size:20px}.bside-copy h3{font-size:29px}}
+.bside-copy h3 small{font-size:.65em;white-space:nowrap}
