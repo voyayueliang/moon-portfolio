@@ -130,3 +130,9 @@ body.lunar-home{--sans:"PingFang SC",-apple-system,BlinkMacSystemFont,"Helvetica
 .people-exhibit .people-series h3{font-family:var(--serif);font-weight:300;letter-spacing:.015em}
 .people-exhibit .people-work__name{font-family:var(--serif);font-weight:400;letter-spacing:.025em}
 #main .research-notes__grid h3{font-family:var(--serif);font-weight:400;letter-spacing:.01em}
+
+/* Research section: a restrained serif masthead, quiet sans-serif entry titles. */
+#main .research-notes h2{font-family:var(--serif);font-size:clamp(29px,2.5vw,36px);font-weight:400;line-height:1.45;letter-spacing:0}
+#main :is(.research-notes__feature h3,.field-video-case h3,.research-notes__grid h3){font-family:var(--sans);font-weight:400;letter-spacing:-.01em}
+.research-notes__pair .research-notes__feature h3{font-size:clamp(23px,1.8vw,26px);line-height:1.55}
+@media(max-width:760px){#main .research-notes h2{font-size:29px}.research-notes__pair .research-notes__feature h3{font-size:24px}}
