@@ -104,3 +104,21 @@ body.lunar-home{--media-line:rgba(39,59,126,.18);--body-ink:#485166;--muted-ink:
 .moon-control-help{top:calc(100% + 88px);bottom:auto;right:0;left:auto;transform:none;font-size:9px}
 .moon-stage-inner{padding-bottom:130px}
 }
+
+/* Font-only refinement: preserve the existing palette and composition. */
+body.lunar-home{--sans:"PingFang SC",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Microsoft YaHei",Arial,sans-serif}
+.moon-stage h1>span{font-family:var(--serif);font-weight:400}
+#main :is(.booming-case h2,.superj-case h2,.ecosystem-map-strip h2,.story-editorial__head h2,.workflow-systems__head h2,.talks-public__head h2,.research-notes h2){font-family:var(--sans);font-weight:500;letter-spacing:-.02em}
+#main :is(.people-series h3,.story-v4__amd h3,.stage-copy h3,.workflow-supplement-plate__title,.talks-public__grid h3,.research-notes__feature h3,.research-notes__grid h3,.field-video-case h3){font-family:var(--sans);font-weight:500;letter-spacing:-.015em}
+.people-exhibit .people-series h3{font-family:var(--sans);font-weight:500}
+.story-v4__amd h3{font-family:var(--sans);font-size:clamp(32px,3.1vw,44px);font-weight:500;line-height:1.35}
+.people-exhibit .people-work__name{font-family:var(--sans);font-size:23px;font-weight:500;letter-spacing:0}
+#main :is(.booming-case__copy,.superj-case__text>p:not([class]),.people-series__description,.people-work small,.story-v4__amd-copy p,.stage-problem,.stage-copy dd,.workflow-supplement-plate__copy,.talks-public__intro,.research-notes__feature p:not(.research-notes__number),.research-notes__context,.field-video-case__lead,.ending-statement p){font-family:var(--sans);font-weight:400}
+#main :is(.booming-case__eyebrow,.superj-case__eyebrow,.story-editorial__folio,.workflow-systems__folio,.ecosystem-map-strip__folio,.research-notes__eyebrow,.research-notes__number,.stage-kicker,.talks-public__line){font-family:var(--sans);font-weight:400;letter-spacing:.045em}
+#main :is(.booming-case figcaption,.research-notes__photo figcaption,.stage-media figcaption,.superj-case__credit){font-family:var(--sans);font-size:11px;font-weight:400;line-height:1.8;letter-spacing:.01em}
+.people-exhibit .people-work__role{font-family:var(--sans);font-weight:400;letter-spacing:0}
+@media(max-width:760px){
+.story-v4__amd h3{font-size:32px;line-height:1.35}
+.people-exhibit .people-work__name{font-size:22px}
+#main :is(.booming-case figcaption,.research-notes__photo figcaption,.stage-media figcaption,.superj-case__credit){font-size:12px}
+}
