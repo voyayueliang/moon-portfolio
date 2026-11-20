@@ -6151,6 +6151,11 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 .cover-long-intro article p{max-width:none!important;font-size:14px!important;line-height:1.95!important;color:#d7e1f5!important;margin:0!important;text-wrap:pretty}
 @media(min-width:1700px){.cover-long-intro article p{font-size:15px!important}.cover-long-intro{gap:40px}}
 @media(max-width:700px){.cover-long-intro{grid-template-columns:1fr;gap:24px;padding-top:24px!important}.cover-long-intro article+article{border-top:1px solid #b6c8e92b;padding-top:22px}.cover-long-intro h2{font-size:12px!important;margin-bottom:10px!important}.cover-long-intro article p{font-size:14px!important;line-height:1.95!important}}
+</style><style id="cover-portrait-reliable86">
+.moon-stage .moon-object .moon-webgl{display:none!important;opacity:0!important}
+.moon-stage .moon-object .moon-sphere{visibility:visible!important;opacity:1!important}
+.moon-stage .moon-object .moon-portrait{opacity:1!important;mix-blend-mode:normal!important;filter:none!important;transform:scale(1.05)!important}
+.moon-stage .moon-object .moon-texture,.moon-stage .moon-object .moon-shadow,.moon-stage .moon-object .moon-rim{display:none!important}
 </style></head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -6898,7 +6903,7 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 
     // Reduced-motion should remove automatic/animated transitions, not the
     // user-controlled WebGL moon itself. Dragging remains an explicit action.
-    if (window.MoonSphere && moonObject && moonCanvas) {
+    if (window.MoonSphere && moonObject && moonCanvas && !moonObject.closest('.moon-stage')) {
       moonRenderer = window.MoonSphere.create({
         host: moonObject,
         canvas: moonCanvas,
