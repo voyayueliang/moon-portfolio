@@ -6224,6 +6224,13 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 .people-cover-hint:hover{border-color:#2346aa;background:#edf1fa}
 .people-cover-hint:focus-visible{outline:2px solid #2346aa;outline-offset:4px}
 @media(max-width:700px){.people-cover-hint{font-size:12px}}
+</style><style id="workflow-autoplay-style94">
+.screening-controls{flex-wrap:wrap!important;row-gap:12px!important}
+.screening-swipe-hint{display:inline!important;font-size:12px!important}
+.screening-autoplay{border:1px solid #bcc7d9;background:transparent;color:#2346aa;min-height:44px;padding:8px 14px;font:inherit;font-size:12px;cursor:pointer}
+.screening-autoplay:hover{background:#edf1fa}.screening-autoplay:focus-visible{outline:2px solid #2346aa;outline-offset:3px}
+.stage-tabs button[aria-selected="true"]{background:#2346aa0c!important}
+@media(max-width:700px){.screening-swipe-hint{order:3;width:100%;font-size:11px!important}.screening-autoplay{margin-left:auto}.screening-controls{gap:10px!important}}
 </style></head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -7280,5 +7287,28 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 (()=>{const toc=document.querySelector('.reading-toc');const groups=[...toc.querySelectorAll('.toc-section')];const boundaries=[['ecology',0],['ecosystem',0],['creator-learning',0],['superj',0],['industry-events',0],['story',1],['workflow',2],['research-public',3],['field-notes',3],['talks',3],['index',-1]];let queued=false;function update(){queued=false;if(window.moonJumpUntil&&performance.now()<window.moonJumpUntil)return;let active=-1;for(const [id,index] of boundaries){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=innerHeight*.32)active=index}groups.forEach((g,i)=>{g.classList.toggle('is-reading',i===active);g.querySelector('.toc-main').setAttribute('aria-expanded',String(i===active))})}addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});groups.forEach(g=>g.querySelector('.toc-main').addEventListener('click',()=>{groups.forEach(x=>{x.classList.toggle('is-reading',x===g);x.querySelector('.toc-main').setAttribute('aria-expanded',String(x===g))})}));addEventListener('resize',update);update()})();
 </script><script>
 (()=>{const toc=document.querySelector('.reading-toc');let timer;toc.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const target=document.getElementById(a.hash.slice(1));if(!target)return;e.preventDefault();const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;window.moonJumpUntil=performance.now()+(reduced?0:1100);clearTimeout(timer);history.replaceState(null,'',a.hash);const top=Math.max(0,target.getBoundingClientRect().top+scrollY-100);scrollTo({top,behavior:reduced?'instant':'smooth'});timer=setTimeout(()=>{window.moonJumpUntil=0;dispatchEvent(new Event('scroll'))},1150)});function release(){window.moonJumpUntil=0}addEventListener('wheel',release,{passive:true});addEventListener('touchstart',release,{passive:true})})();
-</script><script>(()=>{const el=document.querySelector('.client-entry');new IntersectionObserver((entries,obs)=>{if(entries.some(e=>e.isIntersecting)){el.classList.add('art-arrived');obs.disconnect()}},{threshold:.12}).observe(el);document.querySelectorAll('.cooperation-visual').forEach(el=>{const a=el.parentElement.querySelector('.cooperation-links a');if(a){const image=el.querySelector('img');const link=document.createElement('a');link.href=a.getAttribute('href');link.setAttribute('aria-label',a.textContent.trim());image.replaceWith(link);link.append(image);link.style.display='block';link.style.height='100%'}})})();</script></body>
+</script><script>(()=>{const el=document.querySelector('.client-entry');new IntersectionObserver((entries,obs)=>{if(entries.some(e=>e.isIntersecting)){el.classList.add('art-arrived');obs.disconnect()}},{threshold:.12}).observe(el);document.querySelectorAll('.cooperation-visual').forEach(el=>{const a=el.parentElement.querySelector('.cooperation-links a');if(a){const image=el.querySelector('img');const link=document.createElement('a');link.href=a.getAttribute('href');link.setAttribute('aria-label',a.textContent.trim());image.replaceWith(link);link.append(image);link.style.display='block';link.style.height='100%'}})})();</script>
+<script id="workflow-autoplay94">
+(()=>{
+ const room=document.querySelector('.screening-room');
+ const controls=room.querySelector('.screening-controls');
+ const tabs=[...room.querySelectorAll('[data-stage]')];
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');
+ let paused=motion.matches, visible=false, timer;
+ const button=document.createElement('button');
+ button.type='button';button.className='screening-autoplay';controls.append(button);
+ function label(){button.textContent=paused?'继续自动切换':'暂停自动切换';button.setAttribute('aria-label',button.textContent);}
+ function schedule(){clearInterval(timer);timer=setInterval(()=>{if(!paused&&visible&&!document.hidden&&!motion.matches){const i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');tabs[(i+1)%tabs.length].click();}},8000);}
+ function stop(){paused=true;label();}
+ button.addEventListener('click',()=>{paused=!paused;label();schedule();});
+ room.addEventListener('pointerdown',e=>{if(!e.target.closest('.screening-autoplay'))stop();},{passive:true});
+ room.addEventListener('keydown',e=>{if(!e.target.closest('.screening-autoplay'))stop();});
+ room.addEventListener('click',e=>{if(e.isTrusted&&!e.target.closest('.screening-autoplay'))stop();});
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();},{threshold:1}).observe(controls);
+ motion.addEventListener('change',()=>{if(motion.matches)stop();});
+ const hint=controls.querySelector('.screening-swipe-hint');hint.textContent='点击标题或箭头切换案例';
+ label();schedule();
+})();
+</script>
+</body>
 </html>
