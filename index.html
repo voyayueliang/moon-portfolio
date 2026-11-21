@@ -6217,6 +6217,13 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 .contact-offerings p{margin:0 0 10px!important;font-size:14px!important;line-height:1.95!important}
 .contact-offerings strong{font-weight:500;color:#183b68}
 @media(max-width:700px){.contact-offerings{margin:20px 0 24px}.contact-eyebrow{overflow-wrap:break-word}}
+</style><style id="people-cover-click-hint93">
+.people-exhibit__art{margin-bottom:52px!important}
+.people-cover-hint{position:absolute;z-index:4;left:50%;bottom:-44px;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:8px 18px;border:1px solid #bcc7d9;background:#faf9f3;color:#2346aa;font:inherit;font-size:13px;white-space:nowrap;cursor:pointer}
+.people-cover-hint span{font-size:20px;line-height:1}
+.people-cover-hint:hover{border-color:#2346aa;background:#edf1fa}
+.people-cover-hint:focus-visible{outline:2px solid #2346aa;outline-offset:4px}
+@media(max-width:700px){.people-cover-hint{font-size:12px}}
 </style></head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -6409,6 +6416,7 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
         <div class="wrap"><p class="people-exhibit__label">02 / 内容策划与生态叙事</p>
         <div class="people-exhibit__layout">
           <div class="people-exhibit__art" aria-label="系列封面">
+            <button class="people-cover-hint" type="button" data-cover-next aria-label="切换到另一个人物系列"><span aria-hidden="true">↔</span> 点击切换系列</button>
             <button class="exhibit-cover exhibit-cover--becoming" data-cover="0" aria-label="选择 Becoming 计划"><img decoding="async" loading="lazy" src="assets/covers/becoming-visual.webp" alt="Becoming 计划绿色系列封面" width="1080" height="1528"></button>
             <button class="exhibit-cover exhibit-cover--guancha" data-cover="1" aria-label="选择观猹人物"><img decoding="async" loading="lazy" src="assets/covers/redink-builder.webp" alt="观猹人物黑金系列封面" width="1080" height="1080"></button>
           </div>
@@ -7201,11 +7209,21 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 <script>
 (() => {
  const root=document.querySelector('.people-exhibit'); if(!root)return;
- let active=0, touchX=null;
+ let active=0, touchX=null, autoStopped=false;
+ const coverHint=root.querySelector("[data-cover-next]");
  const tabs=[...root.querySelectorAll('[role=tab]')];
- function select(n,focus=false){const y=window.scrollY;active=(n+2)%2;root.dataset.active=active;tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===active));tab.tabIndex=i===active?0:-1;root.querySelector('#people-panel-'+i).hidden=i!==active;});if(focus)tabs[active].focus({preventScroll:true});window.scrollTo({top:y,behavior:"instant"});}
+ function select(n,focus=false,manual=true){if(manual)autoStopped=true;const y=window.scrollY;active=(n+2)%2;root.dataset.active=active;tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===active));tab.tabIndex=i===active?0:-1;root.querySelector('#people-panel-'+i).hidden=i!==active;});if(focus)tabs[active].focus({preventScroll:true});window.scrollTo({top:y,behavior:"instant"});}
  root.querySelectorAll('[data-series]').forEach(b=>b.addEventListener('click',()=>select(+b.dataset.series)));
- root.querySelectorAll('[data-cover]').forEach(b=>b.addEventListener('click',()=>select(+b.dataset.cover)));
+ root.querySelectorAll('[data-cover]').forEach(b=>b.addEventListener('click',()=>select(+b.dataset.cover===active?active+1:+b.dataset.cover)));
+ root.querySelector('[data-cover-next]').addEventListener('click',()=>select(active+1));
+ let coversVisible=false;
+ const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+ const artVisibility=new IntersectionObserver(entries=>{coversVisible=entries[0].isIntersecting;},{threshold:.5});
+ artVisibility.observe(root.querySelector('.people-exhibit__art'));
+ root.addEventListener('pointerdown',()=>{autoStopped=true;},{passive:true});
+ root.addEventListener('focusin',()=>{autoStopped=true;});
+ root.querySelector('.people-exhibit__content').addEventListener('pointerenter',()=>{autoStopped=true;});
+ setInterval(()=>{if(coversVisible&&!autoStopped&&!document.hidden&&!motionPreference.matches)select(active+1,false,false);},6000);
  root.querySelector('[role=tablist]').addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();select(e.key==='Home'?0:e.key==='End'?1:active+(e.key==='ArrowRight'?1:-1),true);}});
  const art=root.querySelector('.people-exhibit__art');art.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});art.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(touchX!==null&&Math.abs(dx)>45)select(active+(dx<0?1:-1));touchX=null;},{passive:true});
 })();
