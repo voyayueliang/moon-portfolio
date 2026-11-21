@@ -6241,6 +6241,26 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 .cinema-room .screening-autoplay{min-width:112px}
 @keyframes case-film-drift{from{transform:scale(1)}to{transform:scale(1.035)}}
 @media(prefers-reduced-motion:reduce){.cinema-room .stage-media img{animation:none!important}.cinema-progress>span{transition:none}}
+</style><style id="case-film96">
+.case-movie{position:fixed;inset:0;width:min(1280px,96vw);max-width:96vw;height:min(820px,94svh);max-height:94svh;margin:auto;padding:0;border:1px solid #ffffff24;background:#101217;color:#f7f5ee;overflow:hidden;box-sizing:border-box}
+.case-movie::backdrop{background:#080b12ee}
+.case-movie-close{position:absolute;top:12px;right:14px;z-index:5;border:0;background:#101217c9;color:#fff;padding:10px 14px;min-height:44px;font:inherit;font-size:13px;cursor:pointer}
+.case-movie-screen{height:calc(100% - 68px);position:relative;display:flex;flex-direction:column;cursor:pointer;outline-offset:-4px}
+.case-movie-frame{flex:1;min-height:0;display:flex;gap:18px;justify-content:center;align-items:center;padding:36px 36px 12px;overflow:hidden}
+.case-movie-frame img{display:block;width:100%;height:100%;min-width:0;object-fit:contain;animation:movie-image-push 8s linear both}
+.case-movie-frame.is-pair img{width:calc(50% - 9px)}
+.case-movie.is-paused img{animation-play-state:paused}
+.case-movie-subtitles{text-align:center;padding:12px 7% 20px;flex:none;color:#f7f5ee}
+.case-movie-subtitles .case-movie-scene{font-size:12px;color:#c7d880;margin:0 0 8px;line-height:1.5}
+.case-movie-subtitles h2{font-size:clamp(21px,2.3vw,32px);line-height:1.5;font-weight:400;margin:0 0 8px;color:#fff}
+.case-movie-description{font-size:14px;line-height:1.7;color:#c4cad4;margin:0}
+.case-movie-footer{height:68px;box-sizing:border-box;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:12px 28px;border-top:1px solid #ffffff20}
+.case-movie-status{font-size:12px;min-width:80px;color:#d9dfec}
+.case-movie-timeline{display:flex;gap:8px}.case-movie-timeline i{display:block;flex:1;height:3px;background:#ffffff30}.case-movie-timeline b{display:block;height:100%;background:#d5ed76;width:0;transition:width .1s linear}
+.case-movie-footer small{font-size:11px;color:#aeb8c8}
+@keyframes movie-image-push{from{transform:scale(1)}to{transform:scale(1.035)}}
+@media(max-width:700px){.case-movie{width:100vw;max-width:100vw;height:100svh;max-height:100svh;border:0}.case-movie-frame{padding:60px 16px 10px;gap:10px}.case-movie-frame.is-pair img{width:calc(50% - 5px)}.case-movie-subtitles{padding:16px 22px 24px}.case-movie-subtitles h2{font-size:23px}.case-movie-description{font-size:14px}.case-movie-footer{grid-template-columns:auto 1fr;gap:8px 14px;padding:10px 20px;height:78px}.case-movie-footer small{grid-column:1/-1;text-align:center}.case-movie-screen{height:calc(100% - 78px)}}
+@media(prefers-reduced-motion:reduce){.case-movie-frame img{animation:none}.case-movie-timeline b{transition:none}}
 </style></head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -7301,23 +7321,22 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 <script id="workflow-autoplay94">
 (()=>{
  const room=document.querySelector('.screening-room'),controls=room.querySelector('.screening-controls');
- const tabs=[...room.querySelectorAll('[data-stage]')],motion=matchMedia('(prefers-reduced-motion: reduce)');
- let paused=motion.matches,visible=false,elapsed=0,last=performance.now();
- room.classList.add('cinema-room');
- const button=document.createElement('button');button.type='button';button.className='screening-autoplay';controls.append(button);
- const progress=document.createElement('div');progress.className='cinema-progress';progress.setAttribute('aria-hidden','true');progress.innerHTML='<span></span>';controls.after(progress);
- function label(){button.textContent=paused?'▶ 继续放映':'Ⅱ 暂停放映';button.setAttribute('aria-label',paused?'继续放映':'暂停放映');room.classList.toggle('is-projecting',!paused&&visible&&!document.hidden&&!motion.matches);}
- function stop(){paused=true;label();}
- button.addEventListener('click',()=>{paused=!paused;last=performance.now();label();});
- room.addEventListener('pointerdown',e=>{if(!e.target.closest('.screening-autoplay'))stop();},{passive:true});
- room.addEventListener('keydown',e=>{if(!e.target.closest('.screening-autoplay'))stop();});
- room.addEventListener('click',e=>{if(e.target.closest('[data-stage],[data-screen-prev],[data-screen-next]')){elapsed=0;progress.firstChild.style.width='0%';}if(e.isTrusted&&!e.target.closest('.screening-autoplay'))stop();});
- new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;last=performance.now();label();},{threshold:.25}).observe(room);
- document.addEventListener('visibilitychange',()=>{last=performance.now();label();});
- motion.addEventListener('change',()=>{if(motion.matches)stop();});
- controls.querySelector('.screening-swipe-hint').textContent='三幕放映 · 点击下方标题选幕';
- setInterval(()=>{const now=performance.now(),delta=now-last;last=now;if(paused||!visible||document.hidden||motion.matches)return;elapsed+=Math.min(delta,300);if(elapsed>=10000){elapsed=0;const i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');tabs[(i+1)%tabs.length].click();}progress.firstChild.style.width=(elapsed/100)+'%';},100);
- label();
+ const play=document.createElement('button');play.type='button';play.className='screening-autoplay';play.textContent='▶ 播放三个案例';controls.append(play);
+ controls.querySelector('.screening-swipe-hint').textContent='也可点击下方标题查看案例';
+ const scenes=[...room.querySelectorAll('.stage-panel')].map(panel=>({title:panel.querySelector('h3').textContent,description:panel.querySelector('.stage-problem')?.textContent||'',images:[...panel.querySelectorAll('.stage-media img')].map(img=>({src:img.getAttribute('src'),alt:img.alt})),name:panel.querySelector('.stage-kicker').textContent}));
+ const movie=document.createElement('dialog');movie.className='case-movie';movie.setAttribute('aria-label','三个案例连续放映');
+ movie.innerHTML='<button type="button" class="case-movie-close" aria-label="关闭放映">关闭 ×</button><div class="case-movie-screen" tabindex="0" role="button" aria-label="点击画面暂停或继续放映"><div class="case-movie-frame"></div><div class="case-movie-subtitles"><p class="case-movie-scene"></p><h2></h2><p class="case-movie-description"></p></div></div><div class="case-movie-footer"><span class="case-movie-status" aria-live="polite"></span><div class="case-movie-timeline" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div><small>点击画面暂停 / 继续</small></div>';
+ document.body.append(movie);
+ const frame=movie.querySelector('.case-movie-frame'),screen=movie.querySelector('.case-movie-screen'),status=movie.querySelector('.case-movie-status'),bars=[...movie.querySelectorAll('.case-movie-timeline b')],reduce=matchMedia('(prefers-reduced-motion:reduce)');
+ let current=0,elapsed=0,paused=false,ended=false,last=performance.now(),opener;
+ const duration=8000;
+ function render(){movie.querySelector('.case-movie-footer small').textContent='点击画面暂停 / 继续';const scene=scenes[current];frame.replaceChildren(...scene.images.map(item=>{const img=new Image();img.src=item.src;img.alt=item.alt;return img;}));frame.classList.toggle('is-pair',scene.images.length>1);movie.querySelector('.case-movie-scene').textContent=scene.name;movie.querySelector('h2').textContent=scene.title;movie.querySelector('.case-movie-description').textContent=scene.description;frame.getAnimations().forEach(a=>a.cancel());if(!reduce.matches)frame.animate([{opacity:0,transform:'scale(1.015)'},{opacity:1,transform:'scale(1)'}],{duration:800,fill:'none'});update();}
+ function update(){status.textContent=ended?'放映结束':('0'+(current+1)+' / 03'+(paused?' · 已暂停':''));movie.classList.toggle('is-paused',paused);bars.forEach((bar,i)=>bar.style.width=(i<current?100:i>current?0:elapsed/duration*100)+'%');}
+ function toggle(){if(ended){current=0;elapsed=0;paused=false;ended=false;render();}else{paused=!paused;update();}last=performance.now();}
+ play.addEventListener('click',()=>{opener=play;current=0;elapsed=0;paused=false;ended=false;render();movie.showModal();last=performance.now();});
+ movie.querySelector('.case-movie-close').addEventListener('click',()=>movie.close());screen.addEventListener('click',toggle);screen.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();toggle();}});movie.addEventListener('close',()=>{paused=true;opener?.focus({preventScroll:true});});
+ setInterval(()=>{const now=performance.now(),delta=Math.min(now-last,250);last=now;if(!movie.open||paused||document.hidden)return;elapsed+=delta;if(elapsed>=duration){if(current===scenes.length-1){elapsed=duration;paused=true;ended=true;movie.querySelector('.case-movie-footer small').textContent='点击画面重播';}else{current++;elapsed=0;render();}}update();},100);
+ document.addEventListener('visibilitychange',()=>{last=performance.now();});
 })();
 </script>
 </body>
