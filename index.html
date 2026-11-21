@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://voyayueliang.github.io/moon-portfolio/" />
   <meta property="og:image" content="https://voyayueliang.github.io/moon-portfolio/assets/vitality/moon-field-portrait.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="assets/feishu/doc-profile-image.jpg" />
+  <link rel="icon" href="assets/feishu/site-icon.webp" />
   <link rel="preload" as="image" href="assets/vitality/moon-field-portrait.optimized.webp" />
   <title>月亮 Moon｜一个向 AI 走去的人类学冒险家</title>
   <style>
@@ -4076,7 +4076,7 @@
       --paper-warm: #f4f2ec;
       --paper-soft: #f6f4ef;
       --paper-cool: #f1f1ee;
-      --paper-texture: url("assets/textures/editorial-paper-folds-v2.png");
+      --paper-texture: url("assets/textures/editorial-paper-folds-v2.optimized.webp");
     }
     body.lunar-home { background-color: var(--paper-warm); }
     .moon-stage {
@@ -6638,7 +6638,7 @@ html body.lunar-home .bside-copy .bside-podcast-links>a{font-family:var(--type-t
         <article class="research-notes__feature research-plan" id="unique-creators" aria-labelledby="research-plan-title">
           <figure class="research-notes__photo">
             <div class="research-plan__player">
-              <video id="research-plan-video" playsinline preload="none" poster="assets/fieldwork/unique-creators-cover.jpg" aria-label="独特创造者研究计划介绍视频">
+              <video id="research-plan-video" playsinline preload="none" poster="assets/fieldwork/unique-creators-cover.optimized.webp" aria-label="独特创造者研究计划介绍视频">
                 <source src="assets/video/unique-creators-intro.mp4" type="video/mp4" />
                 您的浏览器暂不支持视频播放，请使用下方小红书链接观看。
               </video>
@@ -7134,7 +7134,7 @@ html body.lunar-home .bside-copy .bside-podcast-links>a{font-family:var(--type-t
       moonRenderer = window.MoonSphere.create({
         host: moonObject,
         canvas: moonCanvas,
-        portrait: 'assets/vitality/moon-field-portrait.jpg',
+        portrait: 'assets/vitality/moon-field-portrait.optimized.webp',
         surfaceAngle: 0,
         lightAngle: lightAngleForSurface(0),
         portraitOpacity: .92,
@@ -7195,11 +7195,12 @@ html body.lunar-home .bside-copy .bside-podcast-links>a{font-family:var(--type-t
       requestAnimationFrame(frame);
     }
 
-    if (window.MoonSphere && bsideMoonObject && bsideMoonCanvas) {
+    function initializeBsideMoon() {
+      if (!window.MoonSphere || !bsideMoonObject || !bsideMoonCanvas || bsideMoonRenderer) return;
       bsideMoonRenderer = window.MoonSphere.create({
         host: bsideMoonObject,
         canvas: bsideMoonCanvas,
-        portrait: 'assets/vitality/moon-field-portrait.jpg',
+        portrait: 'assets/vitality/moon-field-portrait.optimized.webp',
         surfaceAngle: bsideMoonAngle * Math.PI / 180,
         lightAngle: lightAngleForSurface(bsideMoonAngle),
         portraitOpacity: .92,
@@ -7221,6 +7222,15 @@ html body.lunar-home .bside-copy .bside-podcast-links>a{font-family:var(--type-t
         bsideMoonObject.classList.toggle('is-webgl-ready', Boolean(portraitReady));
         setBsideMoonAngle(bsideMoonAngle);
       });
+    }
+
+    if (bsideMoonObject) {
+      const bsideLoadObserver = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          initializeBsideMoon(); bsideLoadObserver.disconnect();
+        }
+      }, {rootMargin: '150px'});
+      bsideLoadObserver.observe(bsideMoonObject);
     }
 
     bsideMoonObject?.addEventListener('pointerdown', (event) => {
