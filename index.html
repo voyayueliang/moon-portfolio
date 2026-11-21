@@ -6231,6 +6231,16 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 .screening-autoplay:hover{background:#edf1fa}.screening-autoplay:focus-visible{outline:2px solid #2346aa;outline-offset:3px}
 .stage-tabs button[aria-selected="true"]{background:#2346aa0c!important}
 @media(max-width:700px){.screening-swipe-hint{order:3;width:100%;font-size:11px!important}.screening-autoplay{margin-left:auto}.screening-controls{gap:10px!important}}
+</style><style id="workflow-cinema95">
+.cinema-room .screening-controls{padding-bottom:16px!important}
+.cinema-progress{height:2px;background:#2346aa20;margin:0 0 28px;overflow:hidden}
+.cinema-progress>span{display:block;width:0;height:100%;background:currentColor;color:#2346aa;transition:width .1s linear}
+.cinema-room .stage-media>div{overflow:hidden;background:#11151c}
+.cinema-room .stage-media img{transform-origin:center;animation:case-film-drift 10s linear infinite alternate;animation-play-state:paused}
+.cinema-room.is-projecting .stage-panel:not([hidden]) .stage-media img{animation-play-state:running}
+.cinema-room .screening-autoplay{min-width:112px}
+@keyframes case-film-drift{from{transform:scale(1)}to{transform:scale(1.035)}}
+@media(prefers-reduced-motion:reduce){.cinema-room .stage-media img{animation:none!important}.cinema-progress>span{transition:none}}
 </style></head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -7235,7 +7245,7 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
  const art=root.querySelector('.people-exhibit__art');art.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});art.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(touchX!==null&&Math.abs(dx)>45)select(active+(dx<0?1:-1));touchX=null;},{passive:true});
 })();
 </script>
-<script>(()=>{const dialog=document.querySelector('.contact-dialog');const trigger=document.querySelector('[data-contact-open]');trigger.addEventListener('click',()=>{dialog.querySelector('img').loading='eager';dialog.showModal();});dialog.querySelector('[data-contact-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>trigger.focus({preventScroll:true}));})();</script><script>(()=>{const tabs=[...document.querySelectorAll('[data-stage]')],panels=[...document.querySelectorAll('.stage-panel')];let switching=false;async function select(i,focus=false){if(switching)return; switching=true;const stage=document.querySelector('.workflow-stage');const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;if(!reduced)await stage.animate([{opacity:1},{opacity:0}],{duration:180,fill:'forwards'}).finished;tabs.forEach((b,j)=>{b.setAttribute('aria-selected',String(i===j));b.tabIndex=i===j?0:-1;panels[j].hidden=i!==j;});document.querySelector('.screening-count').textContent='0'+(i+1)+' / 03';document.querySelector('.screening-position').textContent='案例 0'+(i+1)+' / 03';document.querySelector('[data-screen-prev]').disabled=i===0;document.querySelector('[data-screen-next]').disabled=i===2;if(focus)tabs[i].focus({preventScroll:true});if(!reduced){await stage.animate([{opacity:0},{opacity:1}],{duration:280,fill:'forwards'}).finished;stage.getAnimations().forEach(a=>a.cancel());}switching=false;}tabs.forEach((b,i)=>{b.onclick=()=>select(i);b.onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();select(e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3,true);}};});const dialog=document.querySelector('.stage-lightbox');let opener;document.querySelectorAll('[data-stage-image]').forEach(a=>a.onclick=e=>{e.preventDefault();opener=a;dialog.querySelector('img').src=a.href;dialog.querySelector('img').alt=a.querySelector('img').alt;dialog.showModal();});dialog.querySelector('button').onclick=()=>dialog.close();dialog.onclose=()=>opener?.focus({preventScroll:true});})();</script><script>
+<script>(()=>{const dialog=document.querySelector('.contact-dialog');const trigger=document.querySelector('[data-contact-open]');trigger.addEventListener('click',()=>{dialog.querySelector('img').loading='eager';dialog.showModal();});dialog.querySelector('[data-contact-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>trigger.focus({preventScroll:true}));})();</script><script>(()=>{const tabs=[...document.querySelectorAll('[data-stage]')],panels=[...document.querySelectorAll('.stage-panel')];let switching=false;async function select(i,focus=false){if(switching)return; switching=true;const stage=document.querySelector('.workflow-stage');const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;if(!reduced)await stage.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(6px)'}],{duration:420,fill:'forwards'}).finished;tabs.forEach((b,j)=>{b.setAttribute('aria-selected',String(i===j));b.tabIndex=i===j?0:-1;panels[j].hidden=i!==j;});document.querySelector('.screening-count').textContent='0'+(i+1)+' / 03';document.querySelector('.screening-position').textContent='案例 0'+(i+1)+' / 03';document.querySelector('[data-screen-prev]').disabled=i===0;document.querySelector('[data-screen-next]').disabled=i===2;if(focus)tabs[i].focus({preventScroll:true});if(!reduced){await stage.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:700,fill:'forwards'}).finished;stage.getAnimations().forEach(a=>a.cancel());}switching=false;}tabs.forEach((b,i)=>{b.onclick=()=>select(i);b.onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();select(e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3,true);}};});const dialog=document.querySelector('.stage-lightbox');let opener;document.querySelectorAll('[data-stage-image]').forEach(a=>a.onclick=e=>{e.preventDefault();opener=a;dialog.querySelector('img').src=a.href;dialog.querySelector('img').alt=a.querySelector('img').alt;dialog.showModal();});dialog.querySelector('button').onclick=()=>dialog.close();dialog.onclose=()=>opener?.focus({preventScroll:true});})();</script><script>
 (()=>{
  const stage=document.querySelector('.workflow-stage');
  const tabs=[...document.querySelectorAll('[data-stage]')];
@@ -7290,24 +7300,24 @@ body.lunar-home .moon-object{width:min(100%,27vw,40svh,400px)!important}
 </script><script>(()=>{const el=document.querySelector('.client-entry');new IntersectionObserver((entries,obs)=>{if(entries.some(e=>e.isIntersecting)){el.classList.add('art-arrived');obs.disconnect()}},{threshold:.12}).observe(el);document.querySelectorAll('.cooperation-visual').forEach(el=>{const a=el.parentElement.querySelector('.cooperation-links a');if(a){const image=el.querySelector('img');const link=document.createElement('a');link.href=a.getAttribute('href');link.setAttribute('aria-label',a.textContent.trim());image.replaceWith(link);link.append(image);link.style.display='block';link.style.height='100%'}})})();</script>
 <script id="workflow-autoplay94">
 (()=>{
- const room=document.querySelector('.screening-room');
- const controls=room.querySelector('.screening-controls');
- const tabs=[...room.querySelectorAll('[data-stage]')];
- const motion=matchMedia('(prefers-reduced-motion: reduce)');
- let paused=motion.matches, visible=false, timer;
- const button=document.createElement('button');
- button.type='button';button.className='screening-autoplay';controls.append(button);
- function label(){button.textContent=paused?'继续自动切换':'暂停自动切换';button.setAttribute('aria-label',button.textContent);}
- function schedule(){clearInterval(timer);timer=setInterval(()=>{if(!paused&&visible&&!document.hidden&&!motion.matches){const i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');tabs[(i+1)%tabs.length].click();}},8000);}
+ const room=document.querySelector('.screening-room'),controls=room.querySelector('.screening-controls');
+ const tabs=[...room.querySelectorAll('[data-stage]')],motion=matchMedia('(prefers-reduced-motion: reduce)');
+ let paused=motion.matches,visible=false,elapsed=0,last=performance.now();
+ room.classList.add('cinema-room');
+ const button=document.createElement('button');button.type='button';button.className='screening-autoplay';controls.append(button);
+ const progress=document.createElement('div');progress.className='cinema-progress';progress.setAttribute('aria-hidden','true');progress.innerHTML='<span></span>';controls.after(progress);
+ function label(){button.textContent=paused?'▶ 继续放映':'Ⅱ 暂停放映';button.setAttribute('aria-label',paused?'继续放映':'暂停放映');room.classList.toggle('is-projecting',!paused&&visible&&!document.hidden&&!motion.matches);}
  function stop(){paused=true;label();}
- button.addEventListener('click',()=>{paused=!paused;label();schedule();});
+ button.addEventListener('click',()=>{paused=!paused;last=performance.now();label();});
  room.addEventListener('pointerdown',e=>{if(!e.target.closest('.screening-autoplay'))stop();},{passive:true});
  room.addEventListener('keydown',e=>{if(!e.target.closest('.screening-autoplay'))stop();});
- room.addEventListener('click',e=>{if(e.isTrusted&&!e.target.closest('.screening-autoplay'))stop();});
- new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();},{threshold:1}).observe(controls);
+ room.addEventListener('click',e=>{if(e.target.closest('[data-stage],[data-screen-prev],[data-screen-next]')){elapsed=0;progress.firstChild.style.width='0%';}if(e.isTrusted&&!e.target.closest('.screening-autoplay'))stop();});
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;last=performance.now();label();},{threshold:.25}).observe(room);
+ document.addEventListener('visibilitychange',()=>{last=performance.now();label();});
  motion.addEventListener('change',()=>{if(motion.matches)stop();});
- const hint=controls.querySelector('.screening-swipe-hint');hint.textContent='点击标题或箭头切换案例';
- label();schedule();
+ controls.querySelector('.screening-swipe-hint').textContent='三幕放映 · 点击下方标题选幕';
+ setInterval(()=>{const now=performance.now(),delta=now-last;last=now;if(paused||!visible||document.hidden||motion.matches)return;elapsed+=Math.min(delta,300);if(elapsed>=10000){elapsed=0;const i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');tabs[(i+1)%tabs.length].click();}progress.firstChild.style.width=(elapsed/100)+'%';},100);
+ label();
 })();
 </script>
 </body>
