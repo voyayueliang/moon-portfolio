@@ -6420,6 +6420,29 @@ html body.lunar-home .moon-stage .moon-object{overflow:visible!important}
 html body.lunar-home .cover-lunar-motif{position:absolute;inset:-10%;width:120%;height:120%;z-index:5;overflow:visible;pointer-events:none}
 @media(max-width:700px){html body.lunar-home .moon-stage .moon-playground{padding-block:15px!important}}
 </style>
+<style id="mobile-reading-v1">
+@media(min-width:701px){.mobile-reading-fold{display:contents}.mobile-reading-fold>summary{display:none}}
+@media(max-width:700px){
+html body.lunar-home .mobile-reading-fold{display:block;min-width:0;width:100%;grid-column:1/-1;border-top:1px solid #9aafce55;padding-top:12px;margin-top:12px}
+html body.lunar-home .mobile-reading-fold>summary{display:flex;align-items:center;justify-content:space-between;list-style:none;cursor:pointer;min-height:44px;font:400 14px/1.6 "PingFang SC","Microsoft YaHei",sans-serif;color:inherit;padding:6px 0}
+.mobile-reading-fold>summary::-webkit-details-marker{display:none}
+.mobile-reading-fold>summary::after{content:'＋';font-size:18px}.mobile-reading-fold[open]>summary::after{content:'−'}
+html body.lunar-home .mobile-reading-fold .cover-long-intro{border-top:0!important;margin-top:0!important;padding-top:12px!important}
+html body.lunar-home #ecosystem .ecosystem-body{display:flex!important;flex-direction:column;gap:20px!important}
+html body.lunar-home .ecosystem-body>.mobile-reading-fold{order:2!important}
+html body.lunar-home .ecosystem-body>.ecosystem-evidence{order:1!important}
+html body.lunar-home .ecosystem-body>.mobile-reading-fold .ecosystem-mechanism{padding-top:12px!important}
+html body.lunar-home :is(.ecology-opening,.ecosystem-flagship,.education-case,.superj-case,.industry-events,.research-notes,.talks-public,.portfolio-ending){padding-top:44px!important;padding-bottom:44px!important}
+html body.lunar-home .research-notes--visual{gap:28px;padding-top:24px}
+html body.lunar-home .research-notes--visual figure{aspect-ratio:16/9}
+html body.lunar-home :is(.event-case>figure,.education-photo){max-height:220px;overflow:hidden}
+html body.lunar-home :is(.event-case>figure img,.education-photo img){max-height:200px;object-fit:cover;width:100%}
+html body.lunar-home .system-examples{margin-block:28px!important}
+html body.lunar-home .stage-media img{max-height:300px;object-fit:contain}
+html body.lunar-home .mobile-reading-fold:focus-within{outline-offset:4px}
+html body.lunar-home :is(.moon-stage,.ecosystem-flagship) .mobile-reading-fold>summary{color:#e0e9f7!important;font-weight:400!important}
+}
+</style>
 </head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -7502,6 +7525,17 @@ html body.lunar-home .cover-lunar-motif{position:absolute;inset:-10%;width:120%;
  movie.querySelector('.case-movie-close').addEventListener('click',()=>movie.close());screen.addEventListener('click',toggle);screen.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();toggle();}});movie.addEventListener('close',()=>{paused=true;opener?.focus({preventScroll:true});});
  setInterval(()=>{const now=performance.now(),delta=Math.min(now-last,250);last=now;if(!movie.open||paused||document.hidden)return;elapsed+=delta;if(elapsed>=duration){if(current===scenes.length-1){elapsed=duration;paused=true;ended=true;movie.querySelector('.case-movie-footer small').textContent='点击画面重播';}else{current++;elapsed=0;render();}}update();},100);
  document.addEventListener('visibilitychange',()=>{last=performance.now();});
+})();
+</script>
+<script id="mobile-reading-behavior-v1">
+(()=>{
+ const mq=matchMedia('(max-width:700px)');const folds=[];const moves=[];
+ function fold(selector,label){const el=document.querySelector(selector);if(!el)return;const d=document.createElement('details');d.className='mobile-reading-fold';const summary=document.createElement('summary');summary.textContent=label;el.before(d);d.append(summary,el);folds.push(d);}
+ fold('.cover-long-intro','更多关于我');
+ fold('.ecosystem-mechanism','查看搭建过程与合作故事');
+ document.querySelectorAll('.event-case').forEach(card=>{const paras=card.querySelectorAll(':scope > .event-deck');const d=card.querySelector(':scope > details');if(paras.length<2||!d)return;const el=paras[1];const marker=document.createComment('desktop-project-detail');el.before(marker);moves.push({el,marker,dest:d.querySelector('div')||d});});
+ function sync(){folds.forEach(d=>{d.open=!mq.matches;});moves.forEach(({el,marker,dest})=>{if(mq.matches)dest.prepend(el);else marker.after(el);});}
+ sync();mq.addEventListener('change',sync);
 })();
 </script>
 </body>
