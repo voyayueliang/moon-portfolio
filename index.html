@@ -6678,7 +6678,22 @@ html body.lunar-home .contact-offerings--clear .contact-offering{padding:13px 0;
 html body.lunar-home .contact-offerings--clear .contact-offering h4{font:400 17px/1.6 var(--type-body)!important;color:#183b68!important;margin:0 0 5px!important;letter-spacing:0!important}
 html body.lunar-home .contact-offerings--clear .contact-offering p{font:400 13px/1.85 var(--type-body)!important;color:#667991!important;margin:0!important}
 @media(max-width:700px){html body.lunar-home .contact-offerings--clear .contact-offering h4{font-size:16px!important}html body.lunar-home .contact-offerings--clear .contact-offering p{font-size:13px!important}}
-</style></head>
+</style><style>
+html body.lunar-home .moon-bside .bside-panel {align-items:start;scroll-margin-top:72px;}
+html body.lunar-home .moon-bside .bside-panel .bside-gallery {align-self:start;}
+html body.lunar-home .moon-bside .bside-panel .bside-copy > p {
+  font-size:clamp(16px,1.23vw,19px)!important;line-height:1.7!important;
+  margin:0 0 14px!important;
+}
+html body.lunar-home .moon-bside .bside-panel .bside-copy > p + p {margin-bottom:24px!important;}
+@media(max-width:700px){
+  html body.lunar-home .moon-bside .bside-panel {overflow-x:clip;}
+}
+@media(min-width:1001px){
+  html body.lunar-home .moon-bside .bside-panel .bside-gallery {margin-top:clamp(16px,2.5vw,36px);}
+}
+</style>
+</head>
 <body class="lunar-home">
   <a class="skip-link" href="#main">跳到正文</a>
   <header class="site-header">
@@ -7048,7 +7063,7 @@ html body.lunar-home .contact-offerings--clear .contact-offering p{font:400 13px
               <figcaption>在路上 · 田野记录</figcaption>
             </figure>
             <div class="bside-copy">
-              <p>离开屏幕和现场之后，我也会走向山里、户外和路上。<br />徒步、雪山、旅行与在地观察，让我重新校准节奏，也提醒我保持对世界的好奇、耐心与感受力。</p>
+              <p>离开屏幕和现场之后，我也会走向山里、户外和路上。</p><p>徒步、雪山、旅行与在地观察，让我重新校准节奏，也提醒我保持对世界的好奇、耐心与感受力。</p>
               <nav class="bside-socials" aria-label="月亮的播客与社交媒体">
                 <p class="bside-socials__title"><img decoding="async" loading="lazy" class="phase-mark phase-mark--0" src="moon-mark.optimized.webp" alt="" aria-hidden="true">继续相遇</p>
                 <div class="bside-social"><span class="bside-social__platform">播客</span><span class="bside-social__account bside-podcast-links"><a href="https://www.xiaoyuzhoufm.com/podcast/68d173caee4a4e6c3cb87349" target="_blank" rel="noreferrer">AI教育田野志 ↗︎</a><a href="https://www.xiaoyuzhoufm.com/podcast/675ed64384447b1bd00bbf63" target="_blank" rel="noreferrer">Becoming计划 ↗︎</a></span><span class="bside-social__hint">小宇宙</span></div>
